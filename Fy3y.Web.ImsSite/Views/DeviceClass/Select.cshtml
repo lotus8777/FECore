@@ -1,0 +1,103 @@
+﻿@{
+  ViewBag.Title = "设备类别管理";
+  Layout = "~/Views/Shared/_EmptyLayout.cshtml";
+}
+<br />
+@Scripts.Render("~/Scripts/jsTree")
+@Styles.Render("~/Content/themes/default/jsTree")
+<style>
+  .ibox {
+    clear: none !important;
+  }
+</style>
+<div style="width: 400px;">
+  <div style="margin-bottom: 5px;">
+    <button class="btn btn-success" onclick="setParentValue()">确定</button>
+    <br />
+  </div>
+  <div id="jstree" style="border: 1px solid gray; margin-left: 5px;"></div>
+</div>
+<script type="text/javascript">
+
+  var nodeId = 0;
+  var path = new Array();
+  $("#jstree").jstree({
+    "core": {
+      "data": {
+        url: "@Url.Action("GetDeviceClassTree","Helper")",
+        type: "post",
+        dataType: "json",
+        data: function(node) {
+          return { "nodeId": node.id };
+        },
+        success: function() {
+          //GetdataTable(0);
+        }
+      }
+    }
+
+  });
+
+  //只能选择子节点，不能选择含子节点的节点
+  $('#jstree').bind("activate_node.jstree",
+    function(obj, e) {
+      var currentNode = e.node;
+      if (!e.instance.is_leaf(currentNode)) {
+        e.instance.deselect_node(currentNode);
+        nodeId = 0;
+      } else {
+        nodeId = e.node.id;
+      };
+    });
+
+  // 展开节点
+  $("#jstree").on("loadvd.jstree",
+    function(event, data) {
+      // 展开所有节点
+      //$('#jstree').jstree('open_all');
+      // 展开指定节点
+      data.instance.open_node(0); // 单个节点 （1 是顶层的id）
+      //data.instance.open_node([1, 10]); // 多个节点 (展开多个几点只有在一次性装载后所有节点后才可行）
+    });
+
+  // 所有节点都加载完后
+  $("#jstree").on("ready.jstree",
+    function(event, data) {
+      //alert('all ok');
+      //data.instance.open_node(1); // 展开root节点
+      //// 隐藏根节点 http://stackoverflow.com/questions/10429876/how-to-hide-root-node-from-jstree
+      //$("#1_anchor").css("visibility", "hidden");
+      //$("li#1").css("position", "relative")
+      //$("li#1").css("top", "-20px")
+      //$("li#1").css("left", "-20px")
+      //$(".jstree-last .jstree-icon").first().hide();
+    });
+  $('#jstree').on("changed.jstree",
+    function(e, data) {
+      //console.log("The selected nodes are:");
+      //console.log(data.selected);
+      //nodeId = data.node.id;
+      //GetdataTable(data.node.id);
+      //setPath(data.node);
+      //alert('node.id is:' + data.node.id);
+      //alert('node.text is:'+data.node.text);
+      //console.log(data);
+
+      // TODO: 传递给Tab
+      //$.ajax({
+      //    type:"post",
+      //    url: 'Home/GetTreedata/',
+      //    data: { 'id': data.node.id }
+      //});
+    });
+
+  function setParentValue() {
+    if (nodeId === 0) {
+      layer.alert("请选择设备类型！");
+      return;
+    }
+    parent.setValue(nodeId);
+    var index = parent.layer.getFrameIndex(window.name);
+    parent.layer.close(index);
+  }
+</script>

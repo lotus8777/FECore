@@ -1,0 +1,59 @@
+﻿@model Fy3y.Model.Das.MedicarePrice
+
+@{
+  ViewBag.Title = "Delete";
+  Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h2>Delete</h2>
+<h3>Are you sure you want to delete this?</h3>
+<div>
+  <h4>MedicarePrice</h4>
+  <hr />
+  <dl class="dl-horizontal">
+    <dt>
+      @Html.DisplayNameFor(model => model.Xmbm)
+    </dt>
+    <dd>
+      @Html.DisplayFor(model => model.Xmbm)
+    </dd>
+    <dt>
+      @Html.DisplayNameFor(model => model.Xmmc)
+    </dt>
+    <dd>
+      @Html.DisplayFor(model => model.Xmmc)
+    </dd>
+    <dt>
+      @Html.DisplayNameFor(model => model.Level3Price)
+    </dt>
+    <dd>
+      @Html.DisplayFor(model => model.Level3Price)
+    </dd>
+    <dt>
+      @Html.DisplayNameFor(model => model.Level2Price)
+    </dt>
+    <dd>
+      @Html.DisplayFor(model => model.Level2Price)
+    </dd>
+    <dt>
+      @Html.DisplayNameFor(model => model.Level3Child)
+    </dt>
+    <dd>
+      @Html.DisplayFor(model => model.Level3Child)
+    </dd>
+    <dt>
+      @Html.DisplayNameFor(model => model.Level2Child)
+    </dt>
+    <dd>
+      @Html.DisplayFor(model => model.Level2Child)
+    </dd>
+  </dl>
+  @using (Html.BeginForm())
+  {
+  @Html.AntiForgeryToken()
+
+  <div class="form-actions no-color">
+    <input class="btn btn-success" type="submit" value="Delete" /> |
+    @Html.ActionLink("Back to List", "PriceIndex")
+  </div>
+  }
+</div>

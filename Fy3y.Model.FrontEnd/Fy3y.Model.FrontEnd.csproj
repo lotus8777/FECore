@@ -1,0 +1,139 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{549B242C-2263-4CED-B119-5EB90366510A}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Fy3y.Model.FrontEnd</RootNamespace>
+    <AssemblyName>Fy3y.Model.FrontEnd</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <LangVersion>latest</LangVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <LangVersion>latest</LangVersion>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BaseReturnObject.cs" />
+    <Compile Include="HosXyryzIn.cs" />
+    <Compile Include="HosCost.cs" />
+    <Compile Include="HosExamQuoteIn.cs" />
+    <Compile Include="HosInvoice.cs" />
+    <Compile Include="HosLabQuoteIn.cs" />
+    <Compile Include="HosMeddoc.cs" />
+    <Compile Include="HosOpLabTestIn.cs" />
+    <Compile Include="HosOpLabTestOut.cs" />
+    <Compile Include="HosOrder.cs" />
+    <Compile Include="HosPayCancel.cs" />
+    <Compile Include="HosPayConfirmIn.cs" />
+    <Compile Include="HosExamNoticeIn.cs" />
+    <Compile Include="HosExamNoticeOut.cs" />
+    <Compile Include="HosQuoteBase.cs" />
+    <Compile Include="hqjcjykdjk.cs" />
+    <Compile Include="OpExpenseInvoices.cs" />
+    <Compile Include="ExpenseInvoices.cs" />
+    <Compile Include="JsonConfig.cs" />
+    <Compile Include="HosOpPrescribe.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SmsIn.cs" />
+    <Compile Include="ToXElement.cs" />
+    <Compile Include="WsjCodePay.cs" />
+    <Compile Include="WsjCreateFile.cs" />
+    <Compile Include="WsjDqJzDl.cs" />
+    <Compile Include="WsjExamCheckIn.cs" />
+    <Compile Include="WsjFsdYy.cs" />
+    <Compile Include="WsjFyqdGet.cs" />
+    <Compile Include="WsjGhcl.cs" />
+    <Compile Include="WsjGhks.cs" />
+    <Compile Include="WsjLisAddPackage.cs" />
+    <Compile Include="WsjLisGetPackageIn.cs">
+      <SubType>code</SubType>
+    </Compile>
+    <Compile Include="WsjLisGetPackageOut.cs">
+      <SubType>code</SubType>
+    </Compile>
+    <Compile Include="WsjOpConfirm.cs" />
+    <Compile Include="WsjQueryHospitalIn.cs">
+      <SubType>code</SubType>
+    </Compile>
+    <Compile Include="WsjQueryHospitalOut.cs">
+      <SubType>code</SubType>
+    </Compile>
+    <Compile Include="WsjRenewSmk.cs" />
+    <Compile Include="WsjSignAdd.cs" />
+    <Compile Include="WsjSwqh.cs" />
+    <Compile Include="WsjThcl.cs" />
+    <Compile Include="WsjYspb.cs" />
+    <Compile Include="WsjYygh.cs" />
+    <Compile Include="WsjYyth.cs" />
+    <Compile Include="WsjExamConfirm.cs" />
+    <Compile Include="WsjQueryOpLabTestIn.cs" />
+    <Compile Include="WsjQueryOpLabTestOut.cs" />
+    <Compile Include="WsjQueryOpExamOut.cs">
+      <SubType>code</SubType>
+    </Compile>
+    <Compile Include="WsjQueryOpExamIn.cs">
+      <SubType>code</SubType>
+    </Compile>
+    <Compile Include="WsjExamDataUploadIn.cs">
+      <SubType>code</SubType>
+    </Compile>
+    <Compile Include="WsjExamRegisterIn.cs">
+      <SubType>code</SubType>
+    </Compile>
+    <Compile Include="WsjListAddPackageIn.cs">
+      <SubType>code</SubType>
+    </Compile>
+    <Compile Include="WsjListAddPackageOut.cs">
+      <SubType>code</SubType>
+    </Compile>
+    <Compile Include="WsjListGetCheckIn.cs">
+      <SubType>code</SubType>
+    </Compile>
+    <Compile Include="WsjListGetCheckOut.cs">
+      <SubType>code</SubType>
+    </Compile>
+    <Compile Include="YyghInterface.cs" />
+    <Compile Include="yzxmmxjfymxlb.cs" />
+    <Compile Include="yzxmztgxjk.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="EntityFramework">
+      <Version>6.4.4</Version>
+    </PackageReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

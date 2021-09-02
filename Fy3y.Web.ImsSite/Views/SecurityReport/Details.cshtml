@@ -1,0 +1,73 @@
+﻿@model Fy3y.Model.Das.SecurityReport
+@{
+  ViewBag.Title = "医疗安全日报表";
+  Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="footer">
+  <a class="btn d-print-none" href="@Url.Action("Index")">
+    <i class="fa fa-reply">返回</i>
+  </a>
+  <button class="btn d-print-none" onclick="javascript:window.print();">
+    <i class="fa fa-print"></i>
+  </button>
+</div>
+<br />
+<br />
+<div>
+  <table style="width: 100%;">
+    <tr>
+      <td>上报日期：@Model.ReportDate </td>
+      <td>上报科室：@Model.Department.DepartmentName </td>
+    </tr>
+  </table>
+  <table class="table table-sm table-bordered text-center table-striped">
+    <tr>
+      <td>报告项目 </td>
+      <td>上报人数 </td>
+      <td>报告项目 </td>
+      <td>上报人数 </td>
+      <td>报告项目 </td>
+      <td>上报人数 </td>
+    </tr>
+    <tr>
+      <td>@Html.DisplayNameFor(model => model.Criticality)</td>
+      <td>@Html.DisplayFor(model => model.Criticality)</td>
+      <td>@Html.DisplayNameFor(model => model.Infection)</td>
+      <td>@Html.DisplayFor(model => model.Infection)</td>
+      <td>@Html.DisplayNameFor(model => model.Undiagnosed)</td>
+      <td>@Html.DisplayFor(model => model.Undiagnosed)</td>
+    </tr>
+    <tr>
+      <td>@Html.DisplayNameFor(model => model.Death)</td>
+      <td>@Html.DisplayFor(model => model.Death)</td>
+      <td>@Html.DisplayNameFor(model => model.DrugAccident)</td>
+      <td>@Html.DisplayFor(model => model.DrugAccident)</td>
+      <td>@Html.DisplayNameFor(model => model.Harmful)</td>
+      <td>@Html.DisplayFor(model => model.Harmful)</td>
+    </tr>
+    <tr>
+      <td>@Html.DisplayNameFor(model => model.Complications)</td>
+      <td>@Html.DisplayFor(model => model.Complications)</td>
+      <td>@Html.DisplayNameFor(model => model.Complaint)</td>
+      <td>@Html.DisplayFor(model => model.Complaint)</td>
+      <td>@Html.DisplayNameFor(model => model.Others)</td>
+      <td>@Html.DisplayFor(model => model.Others)</td>
+    </tr>
+    <tr>
+      <td colspan="6" style="height: 850px; text-align: left; vertical-align: top;">
+        @Html.DisplayNameFor(model => model.Disposal):
+        <br />
+        @if (!string.IsNullOrEmpty(Model.Disposal))
+        {
+        @Html.TextAreaFor(model => model.Disposal, new {style = "width:99%;border:none;"})
+        }
+      </td>
+    </tr>
+  </table>
+  <table style="width: 100%">
+    <tr>
+      <td>报告人(值班人员)：@Model.Creator.EmployeeName </td>
+      <td>审核人(科室负责人)：@Model.Checker.EmployeeName </td>
+    </tr>
+  </table>
+</div>

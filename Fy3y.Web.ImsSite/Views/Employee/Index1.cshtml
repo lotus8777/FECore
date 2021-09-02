@@ -1,0 +1,66 @@
+﻿@model IList<Fy3y.Model.Das.Employee>
+@{
+    ViewBag.Title = "员工列表";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@using (Html.BeginForm(null, null, FormMethod.Post))
+{
+    <div class="form-row mb-2">
+        <div class="col">
+            @Html.DropDownList("departmentId", null, new { @class = "form-control" })
+        </div>
+        <div class="col">
+            @Html.DropDownList("statusId", null, new { @class = "form-control" })
+        </div>
+        <div class="col">
+            <button class="btn btn-dark d-print-none">
+                <span class="fa fa-search">查询</span>
+            </button>
+        </div>
+        <div class="col">
+            <a class="btn btn-dark   d-print-none" href="@Url.Action("Create")">
+                <i class="fa fa-plus">增加</i>
+            </a>
+        </div>
+        <div class="col">
+        </div>
+        <div class="col">
+        </div>
+    </div>
+}
+<ul class="nav nav-tabs" id="mytab" role="tablist">
+    <li class="nav-item">
+        <a class="active nav-link" data-toggle="tab" href="#A">真的</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" data-toggle="tab" href="#B">假的</a>
+    </li>
+</ul>
+<div class="border border-top-0 p-2 tab-content">
+    <div class="active fade show tab-pane" id="A">
+        @Html.Partial("IndexPartial", Model?.Where(p => !p.IsVirtual).ToList())
+    </div>
+    <div class="fade tab-pane" id="B">
+        @Html.Partial("IndexPartial", Model?.Where(p => p.IsVirtual).ToList())
+    </div>
+</div>
+<script type="text/javascript">
+    function remove(url) {
+        var con = confirm("确定要删除吗？");
+        if (con === true) {
+            $.ajax({
+                url: url,
+                type: "post",
+                data: null,
+                success: function (result) {
+                    if (result === "yes") {
+                        location.reload();
+                    } else {
+                        alert(result);
+                        return;
+                    }
+                }
+            });
+        }
+    }
+</script>

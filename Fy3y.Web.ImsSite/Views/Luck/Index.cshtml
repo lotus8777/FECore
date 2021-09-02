@@ -1,0 +1,87 @@
+﻿@{
+  Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+  body {
+    background-image: url(../../images/happy.jpg);
+    background-repeat:no-repeat;
+    background-position: center top;
+    background-size: cover;
+    color: blue;
+    line-height: normal;
+  }
+
+  .namebox {
+    border: 2px solid blue;
+    font-size: 90px;
+    height: 150px;
+    margin: auto;
+    width: 500px;
+  }
+
+  #lucker {
+    border: 2px solid blue;
+    font-size: 25px;
+    margin: auto;
+    min-height: 200px;
+  }
+</style>
+<div class="text-center">
+  <h1 style="color: gold; font-size: 55px;">杭州市富阳区第三人民医院</h1>
+  <h2 style="color: gold; font-size: 50px;">2020年联欢晚会抽奖环节</h2>
+  <br />
+  <div class="namebox" id="nameBox"></div>
+  <br />
+  <br />
+  <div>
+    <button class="btn btn-lg btn-success" id="start" style="font-size: x-large; height: 60px; width: 150px;">开始</button>
+  </div>
+</div>
+<br />
+<div class="text-center">
+  <h2>获奖人员名单：</h2>
+  <div class="center-block col-10 text-left" id="lucker"></div>
+</div>
+<script type="text/javascript">
+  var names = "@ViewBag.names";
+  var nameArray = names.split(",");
+  var length = nameArray.length - 1;
+  var randomNameTimer = "";
+  var index = 1;
+  var isStart = false;
+  var getRandomName = function() {
+    var random = Math.round(Math.random() * length);
+    $("#nameBox").html(nameArray[random]);
+  };
+
+  $("#start").click(function() {
+    if (!isStart) {
+      startRun();
+    } else {
+      stopRun();
+    }
+
+  });
+
+  var startRun = function() {
+    isStart = true;
+    randomNameTimer = setInterval(getRandomName, 100);
+    $("#start").html("暂停");
+
+  };
+
+  var stopRun = function() {
+    $("#start").html("开始");
+    clearInterval(randomNameTimer);
+    addLucker();
+    isStart = false;
+  };
+  var addLucker = function() {
+    var current = $("#lucker").text();
+    var name = $("#nameBox").text();
+    $("#lucker").append(index + "&hearts;" + name);
+    index++;
+    nameArray.remove(name);
+
+  };
+</script>

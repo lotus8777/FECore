@@ -1,0 +1,187 @@
+﻿@model IList<NumberOfOutpation>
+@{
+    ViewBag.Title = "就诊数量分类统计";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@using (Html.BeginForm(null, null, FormMethod.Post))
+{
+    <fieldset>
+        <legend>查询条件</legend>
+
+        <div class="form-row mb-2">
+            <div class="col">
+                @Html.TextBox("begin", null, new { onfocus = "WdatePicker({isShowClear:false,readOnly:true,isShowOK:false,minDate:'2018-02-01'})", @class = "form-control" })
+            </div>
+            <div class="col">
+                @Html.TextBox("end", null, new { onfocus = "WdatePicker({isShowClear:false,readOnly:true,isShowOK:false,maxDate:'%y-%M-%d'})", @class = "form-control" })
+            </div>
+            <div class="col">
+                <select class="custom-select" name="sortType" id="sortType">
+                    <option value="0">按医生排</option>
+                    <option value="1">按科室排</option>
+                </select>
+            </div>
+            <div class="col">
+                <button class="btn btn-dark d-print-none">
+                    <span class="fa fa-search">查询</span>
+                </button>
+            </div>
+            <div class="col">
+            </div>
+            <div class="col">
+            </div>
+            <div class="col">
+            </div>
+        </div>
+    </fieldset>
+}
+<br />
+
+@if (ViewBag.sortType == 1)
+{
+    <table class="table table-sm table-bordered table-hover text-center">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>坐诊科室</th>
+                <th>医生姓名</th>
+                <th>看诊数量</th>
+                <th>合计</th>
+            </tr>
+        </thead>
+        <tbody>
+        @{
+            if (Model?.Any() ?? false)
+            {
+                var i = 1;
+                var doctors = Model.Select(p => p.Ksdm).Distinct();
+                foreach (var ksdm in doctors)
+                {
+                    var records = Model.Where(p => p.Ksdm == ksdm).ToList();
+                    if (records.Any())
+                    {
+                        int count = records.Count;
+                        int m = 0;
+                        foreach (var item in records)
+                        {
+                            if (m == 0)
+                            {
+                                <tr>
+                                    <td rowspan="@count">@i </td>
+                                    <td rowspan="@count"  class="text-left">@item.Ksmc </td>
+                                    <td class="text-left">@item.Ygxm</td>
+                                    <td>@item.Kzsl </td>
+                                    <td rowspan="@count">@records.Sum(p=>p.Kzsl) </td>
+                                </tr>
+                            }
+                            else
+                            {
+                                <tr>
+                                    <td class="text-left">@item.Ygxm</td>
+                                    <td>@item.Kzsl </td>
+                                </tr>
+                            }
+                            m++;
+                        }
+                    }
+                    i++;
+                }
+            }
+        }
+        <tr></tr>
+        </tbody>
+        <tfoot>
+        <tr>
+            <td>总人次</td>
+            <td colspan="3">
+                @if (Model != null)
+                {
+                    @Model.Sum(p=>p.Kzsl)
+                }
+                else
+                {
+                    @:0
+                }
+                    
+            </td>
+        </tr>
+        </tfoot>
+    </table>
+}
+else
+{
+
+
+    <table class="table table-sm table-bordered table-hover text-center">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>医生姓名</th>
+                <th>坐诊科室</th>
+                <th>看诊数量</th>
+                <td>合计</td>
+            </tr>
+        </thead>
+        <tbody>
+        @{
+            if (Model?.Any() ?? false)
+            {
+                var i = 1;
+                var doctors = Model.Select(p => p.Ygdm).Distinct();
+                foreach (var ygdm in doctors)
+                {
+                    var doctorRecords = Model.Where(p => p.Ygdm == ygdm).ToList();
+                    if (doctorRecords.Any())
+                    {
+                        int count = doctorRecords.Count;
+                        int m = 0;
+                        foreach (var item in doctorRecords)
+                        {
+                            if (m == 0)
+                            {
+                                <tr>
+                                    <td rowspan="@count">@i </td>
+                                    <td rowspan="@count">@item.Ygxm </td>
+                                    <td class="text-left">@item.Ksmc</td>
+                                    <td>@item.Kzsl </td>
+                                    <td rowspan="@count">@doctorRecords.Sum(p=>p.Kzsl)</td>
+                                </tr>
+                            }
+                            else
+                            {
+                                <tr>
+                                    <td class="text-left">@item.Ksmc</td>
+                                    <td>@item.Kzsl </td>
+                                </tr>
+                            }
+                            m++;
+                        }
+                    }
+                    i++;
+                }
+            }
+        }
+        <tr></tr>
+        </tbody>
+        <tfoot>
+            <tr>
+                <td>总人次</td>
+                <td colspan="3">
+                    @if (Model != null)
+                    {
+                        @Model.Sum(p=>p.Kzsl)
+                    }
+                    else
+                    {
+                        @:0
+                    }
+                    
+                </td>
+            </tr>
+        </tfoot>
+    </table>
+}
+
+<script type="text/javascript">
+    $("#sortType").val(@ViewBag.sortType);
+</script>

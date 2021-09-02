@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="AddSms">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="inStr" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddSmsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AddSmsResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="string" nillable="true" type="s:string" />
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="AddSmsSoapIn">
+    <wsdl:part name="parameters" element="tns:AddSms" />
+  </wsdl:message>
+  <wsdl:message name="AddSmsSoapOut">
+    <wsdl:part name="parameters" element="tns:AddSmsResponse" />
+  </wsdl:message>
+  <wsdl:message name="AddSmsHttpGetIn">
+    <wsdl:part name="inStr" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="AddSmsHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="AddSmsHttpPostIn">
+    <wsdl:part name="inStr" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="AddSmsHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:portType name="smsSoap">
+    <wsdl:operation name="AddSms">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">智慧医疗云平台短信服务接口</wsdl:documentation>
+      <wsdl:input message="tns:AddSmsSoapIn" />
+      <wsdl:output message="tns:AddSmsSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="smsHttpGet">
+    <wsdl:operation name="AddSms">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">智慧医疗云平台短信服务接口</wsdl:documentation>
+      <wsdl:input message="tns:AddSmsHttpGetIn" />
+      <wsdl:output message="tns:AddSmsHttpGetOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="smsHttpPost">
+    <wsdl:operation name="AddSms">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">智慧医疗云平台短信服务接口</wsdl:documentation>
+      <wsdl:input message="tns:AddSmsHttpPostIn" />
+      <wsdl:output message="tns:AddSmsHttpPostOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="smsSoap" type="tns:smsSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="AddSms">
+      <soap:operation soapAction="http://tempuri.org/AddSms" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="smsSoap12" type="tns:smsSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="AddSms">
+      <soap12:operation soapAction="http://tempuri.org/AddSms" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="smsHttpGet" type="tns:smsHttpGet">
+    <http:binding verb="GET" />
+    <wsdl:operation name="AddSms">
+      <http:operation location="/AddSms" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="smsHttpPost" type="tns:smsHttpPost">
+    <http:binding verb="POST" />
+    <wsdl:operation name="AddSms">
+      <http:operation location="/AddSms" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="sms">
+    <wsdl:port name="smsSoap" binding="tns:smsSoap">
+      <soap:address location="http://10.120.22.100/pay/sms.asmx" />
+    </wsdl:port>
+    <wsdl:port name="smsSoap12" binding="tns:smsSoap12">
+      <soap12:address location="http://10.120.22.100/pay/sms.asmx" />
+    </wsdl:port>
+    <wsdl:port name="smsHttpGet" binding="tns:smsHttpGet">
+      <http:address location="http://10.120.22.100/pay/sms.asmx" />
+    </wsdl:port>
+    <wsdl:port name="smsHttpPost" binding="tns:smsHttpPost">
+      <http:address location="http://10.120.22.100/pay/sms.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

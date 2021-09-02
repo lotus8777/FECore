@@ -1,0 +1,64 @@
+﻿@model Fy3y.Model.Das.Goods
+
+@{
+  ViewBag.Title = "Details";
+}
+<h2>Details</h2>
+<div>
+  <h4>Goods</h4>
+  <hr />
+  <dl class="dl-horizontal">
+    <dt>
+      @Html.DisplayNameFor(model => model.ClassName)
+    </dt>
+    <dd>
+      @Html.DisplayFor(model => model.ClassName)
+    </dd>
+    <dt>
+      @Html.DisplayNameFor(model => model.ClassId)
+    </dt>
+    <dd>
+      @Html.DisplayFor(model => model.ClassId)
+    </dd>
+    <dt>
+      @Html.DisplayNameFor(model => model.GoodsName)
+    </dt>
+    <dd>
+      @Html.DisplayFor(model => model.GoodsName)
+    </dd>
+    <dt>
+      @Html.DisplayNameFor(model => model.BrandModel)
+    </dt>
+    <dd>
+      @Html.DisplayFor(model => model.BrandModel)
+    </dd>
+    <dt>
+      @Html.DisplayNameFor(model => model.Price)
+    </dt>
+    <dd>
+      @Html.DisplayFor(model => model.Price)
+    </dd>
+    <dt>
+      @Html.DisplayNameFor(model => model.Unit)
+    </dt>
+    <dd>
+      @Html.DisplayFor(model => model.Unit)
+    </dd>
+    <dt>
+      @Html.DisplayNameFor(model => model.CreateTime)
+    </dt>
+    <dd>
+      @Html.DisplayFor(model => model.CreateTime)
+    </dd>
+    <dt>
+      @Html.DisplayNameFor(model => model.IsValid)
+    </dt>
+    <dd>
+      @Html.DisplayFor(model => model.IsValid)
+    </dd>
+  </dl>
+</div>
+<p>
+  @Html.ActionLink("Edit", "Edit", new {id = Model.UniqueId}) |
+  @Html.ActionLink("Back to List", "Index")
+</p>

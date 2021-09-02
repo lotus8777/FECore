@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<messages xmlns="http://www.neusoft.com/hit/rhin" xmlns:xsi="http://www.w3.org/2001/XMLSchemainstance" xsi:schemaLocation="http://www.neusoft.com/hit/rhin file:///e:/return_message.xsd">
+	<switchset>
+		<visitor>
+			<sourceorgan>请求服务的机构编码</sourceorgan>
+			<sourcedomain>请求服务的接入系统编码</sourcedomain>
+		</visitor>
+		<serviceinf>
+			<servicecode></servicecode>
+		</serviceinf>
+		<provider>
+			<targetorgan/>
+			<targetdomain/>
+		</provider>
+		<route/>
+		<process/>
+		<switchmessage>
+			<messagecode/>
+			<messagetext/>
+		</switchmessage>
+	</switchset>
+	<business>
+		<standardcode></standardcode>
+		<returnmessage>
+			<retcode>0</retcode>
+			<rettext/>
+		</returnmessage>
+		<returnset>
+			<rettotal>1</rettotal>
+			<retpaging>0</retpaging>
+			<retpageindex/>
+			<retpageset/>
+		</returnset>
+		<datacompress/>
+		<BusinessData>
+			<datasets>
+				<setcode>B0404.0701.03</setcode>
+				<settype/>
+				<setdetails>
+					<!--异常描述-->
+					<WS04_10_180_03/>
+				</setdetails>
+			</datasets>
+		</BusinessData>
+	</business>
+	<extendset/>
+</messages>

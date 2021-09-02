@@ -1,0 +1,18 @@
+﻿@model decimal
+
+@if (Model == 0)
+{
+    <span class="text-secondary">普通</span>
+}
+else if (Model == 1)
+{
+    <span class="text-primary">精神</span>
+}
+else if (Model == 2)
+{
+    <span class="text-warning">公安</span>
+}
+else if (Model == 3)
+{
+    <span class="text-danger">三无</span>
+}

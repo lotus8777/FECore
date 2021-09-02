@@ -1,0 +1,39 @@
+﻿@model IList<Fy3y.Model.Das.ApproveConfig>
+
+@{
+  ViewBag.Title = "审核管理";
+  var i = 0;
+}
+<p>
+  <a class="btn btn-success" href="@Url.Action("Create")">
+
+    <i class="fa fa-plus">增加</i>
+  </a>
+</p>
+<table class="table table-sm table-bordered text-center table-striped">
+  <tr>
+    <th>#</th>
+    <th>审核项目</th>
+    <th>审核人</th>
+    <th>是否生效</th>
+    <th>修改</th>
+  </tr>
+  @foreach (var item in Model)
+  {
+    i++;
+  <tr>
+    <td>@i </td>
+    <td>@Html.DisplayFor(modelItem => item.OperaterName)</td>
+    <td>@Html.DisplayFor(modelItem => item.Approver.EmployeeName) </td>
+    <td>@Html.DisplayFor(modelItem => item.IsValid) </td>
+    <td>
+      <a href="@Url.Action("Edit",new{id=item.UniqueId})">
+        <i class="fa fa-edit"></i>
+      </a>|
+      <a href="@Url.Action("Details",new{id=item.UniqueId})">
+        <i class="fa fa-search"></i>
+      </a>
+    </td>
+  </tr>
+  }
+</table>

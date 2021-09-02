@@ -1,0 +1,147 @@
+﻿@model Fy3y.Model.Das.MaintainOrder
+@{
+  ViewBag.Title = "故障申报单";
+}
+<br />
+<br />
+<div class="container-fluid" style="max-width: 900px;">
+  <table class="table table-sm table-bordered" style="table-layout: fixed; ">
+    <tr>
+      <td class="text-center " style="width: 180px;">申报编号 </td>
+      <td>
+        @Model.OrderId </td>
+    </tr>
+    <tr>
+      <td class="text-center">申报时间 </td>
+      <td>@Model.CreateTime </td>
+    </tr>
+    <tr>
+      <td class="text-center">申报科室 </td>
+      <td>@ViewBag.departmentName </td>
+    </tr>
+    <tr>
+      <td class="text-center">设备类型 </td>
+      <td>@Model.DeviceType </td>
+    </tr>
+    <tr>
+      <td class="text-center">设备型号 </td>
+      <td>@Model.DeviceModel </td>
+    </tr>
+    <tr>
+      <td class="text-center">处理方式 </td>
+      <td>
+        <div class="form-group row" style="padding-left: 15px;">
+          <div class="form-inline">
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" id="repair" name="MaintainType" type="radio" value="维修" />
+              <label class="form-check-label" for="repair">维修</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" id="instead " name="MaintainType" type="radio" value="更换" />
+              <label class="form-check-label">更换</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" id="add" name="MaintainType" type="radio" value="新增" />
+              <label class="form-check-label" for="add">添加</label>
+            </div>
+          </div>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td class="text-center">紧急程度 </td>
+      <td>
+        <div class="form-group row" style="padding-left: 15px;">
+          <div class="form-inline">
+
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" id="nomal" name="Priority" type="radio" value="普通" />
+              <label class="form-check-label" for="nomal">普通</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" id="emergency " name="Priority" type="radio" value="紧急" />
+              <label class="form-check-label" for="emergency ">紧急</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" id="urgent" name="Priority" type="radio" value="特急" />
+              <label class="form-check-label" for="urgent">特急</label>
+            </div>
+          </div>
+        </div>
+      </td>
+    </tr>
+    @*<tr>
+          <td class="text-center">处理方式 </td>
+          <td>@Model.MaintainType </td>
+      </tr>
+      <tr>
+          <td class="text-center">紧急程度 </td>
+          <td>@Model.Priority </td>
+      </tr>*@
+    <tr>
+      <td class="text-center">故障描述 </td>
+      <td>@Html.TextAreaFor(model => model.FaultDescription, new {@class = "form-control", rows = "15"}) </td>
+    </tr>
+    <tr>
+      <td class="text-center">其它说明 </td>
+      <td>@Html.TextAreaFor(model => model.Remarks, new {@class = "form-control", rows = "5"}) </td>
+    </tr>
+    <tr>
+      <td class="text-center">申报人 </td>
+      <td>
+        请在纸质文档上签字
+        <h3 class="text-center">@ViewBag.CreatorName</h3>
+      </td>
+    </tr>
+    <tr>
+      <td class="text-center">领导审批 </td>
+      <td>
+        <br />
+        <br />
+      </td>
+    </tr>
+  </table>
+</div>
+@Html.HiddenFor(model => model.CreatorId)
+@Html.HiddenFor(model => model.MaintainStatus)
+@Html.HiddenFor(model => model.CreateTime)
+@Html.HiddenFor(model => model.OrderId)
+<div class="d-print-none text-center">
+  <input class="btn btn-dark" type="button" value="返回" />
+</div>
+<script type="text/javascript">
+  $(document).ready(function() {
+    ///设备名称
+    @*var deviceName='@Model.DeviceName';
+        $("input[name='DeviceName']").each(
+            function () {
+                if (deviceName == $(this).val()) {
+                    $(this).attr("checked", "checked");
+                    return false;
+                }
+            }
+        );*@
+    ///MaintainType
+    var maintainType = '@Model.MaintainType';
+    $("input[name='MaintainType']").each(
+      function() {
+        if (maintainType == $(this).val()) {
+          $(this).attr("checked", "checked").attr("disabled", "disabled");
+        } else {
+          $(this).attr("disabled", "disabled");
+        }
+      }
+    );
+    //Priority
+    var priority = '@Model.Priority';
+    $("input[name='Priority']").each(
+      function() {
+        if (priority == $(this).val()) {
+          $(this).attr("checked", "checked").attr("disabled", "disabled");
+        } else {
+          $(this).attr("disabled", "disabled");
+        }
+      }
+    );
+  });
+</script>

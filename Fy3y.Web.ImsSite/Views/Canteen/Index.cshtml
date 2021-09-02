@@ -1,0 +1,87 @@
+﻿@model IList<DietFeeOfPatient>
+@{
+    ViewBag.Title = "膳食科费用";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@Html.Partial("BeginEndFormPartial")
+<ul class="nav nav-tabs" id="mytabs" role="tablist">
+    <li class="nav-item">
+        <a class="active nav-link" data-toggle="tab" href="#statistics">费用总览</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" data-toggle="tab" href="#details">费用明细</a>
+    </li>
+</ul>
+<div class="border border-top-0 p-2 tab-content">
+    <div class="active fade show tab-pane" id="statistics">
+        <ul class="list-unstyled row">
+            <li class="col-3">
+                <div class="card">
+                    <div class="card-body">
+                        <span>膳食人数</span>
+                        <h1 class="text-center">@Model.Count()</h1>
+                    </div>
+                </div>
+            </li>
+            <li class="col-3">
+                <div class="card">
+                    <div class="card-body">
+                        <span>膳食费用</span>
+                        <h1 class="text-center">@Model.Sum(p => p.Ssfy)</h1>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <div class="fade tab-pane" id="details">
+        <table class="table table-sm table-bordered table-hover table-striped text-center" id="table1">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>姓名</th>
+                    <th>病区</th>
+                    <th>床号</th>
+                    <th>入院日期</th>
+                    <th>出院日期</th>
+                    <th>膳食费用</th>
+                    <th>状态</th>
+                </tr>
+            </thead>
+            <tbody>
+                @{
+                    var departments = ViewBag.departmentId as SelectList;
+                    var i = 0;
+                    foreach (var item in Model)
+                    {
+                        i++;
+                        <tr>
+                            <td>@i </td>
+                            <td>@item.Brxm </td>
+                            <td>@item.Ksmc </td>
+                            <td>@item.Brch </td>
+                            <td>@item.Ryrq </td>
+                            <td>@item.Cyrq </td>
+                            <td>@item.Ssfy </td>
+                            <td>
+                                @{
+                                    if (item.Cypb == 0)
+                                    {
+                                        <span class="badge badge-secondary">在院</span>
+                                    }
+                                    else if (item.Cypb == 1)
+                                    {
+                                        <span class="badge badge-primary">待结账</span>
+                                    }
+                                    else if (item.Cypb == 8)
+                                    {
+                                        <span class="badge badge-success">出院</span>
+                                    }
+                                }
+                            </td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

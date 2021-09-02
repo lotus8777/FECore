@@ -1,0 +1,148 @@
+﻿@model Fy3y.Model.Das.KeyFee
+@{
+    ViewBag.Title = "添加监控费用";
+    Layout = "../Shared/_Layout.cshtml";
+}
+<link href="~/Scripts/lib/jquery-ui/themes/base/autocomplete.css" />
+
+<script src="~/Scripts/lib/jquery-ui/jquery-ui.js"></script>
+<script src="~/Scripts/lib/jquery-ui/ui/widgets/autocomplete.js"></script>
+<style>
+    .autocomplete-suggestions {
+        border: 1px solid #999;
+        background: #FFF;
+        overflow: auto;
+    }
+
+    .autocomplete-suggestion {
+        padding: 2px 5px;
+        white-space: nowrap;
+        overflow: hidden;
+    }
+
+    .autocomplete-selected {
+        background: #F0F0F0;
+    }
+
+    .autocomplete-suggestions strong {
+        font-weight: normal;
+        color: #3399FF;
+    }
+
+    .autocomplete-group {
+        padding: 2px 5px;
+    }
+
+        .autocomplete-group strong {
+            display: block;
+            border-bottom: 1px solid #000;
+        }
+
+    .ui-autocomplete {
+        z-index: 10000000;
+    }
+
+    .ui-helper-hidden-accessible {
+        display: none;
+    }
+</style>
+<div class="alert alert-danger">
+    <ul>
+        <li>最少2个关键字，等待1秒钟会弹出搜索建议</li>
+        <li>最多只显示10个搜索建议,输入更多关键字缩小范围</li>
+    </ul>
+</div>
+<form id="form1" action="@Url.Action("AddKeyFee")" method="post">
+    @Html.AntiForgeryToken()
+    <div class="form-group">
+        <label class=" col-form-label">收费关键字</label>
+    </div>
+    <div class="form-group">
+        <input class="form-control" name="fymc" type="text" id="fymc" />
+        <input type="hidden" name="fyxh" id="fyxh" />
+    </div>
+    <br /><br /><br /><br /><br /><br /><br /><br />
+    <div class="form-group">
+        <button class="btn btn-dark" id="submit">
+            <i class="fa fa-save">保存</i>
+        </button>
+    </div>
+
+</form>
+
+
+<script charset="utf-8" type="text/javascript">
+    var dataUrl='@Url.Action("GetFees")';
+    $("#fymc").autocomplete(
+        {
+            source: function(request,response) {
+                $.ajax({
+                    url: dataUrl,
+                    dataType: "json",
+                    method:"post",
+                    data: {
+                        term:request.term
+                    },
+                    success:function(data) {
+                        response(data);
+                    }
+                });
+            },
+            select:function(event,ui) {
+                $("#fyxh").val(ui.item.data);
+            },
+            //不会显示各种提示
+            messages: {
+                noResults: "",
+                results: function () { }
+            },
+            minLength: 2,
+            delay:500
+        });
+
+    @*function changeKeyword() {
+        var key = $("#keyword").val();
+        if (key.length > 1) {
+            $.ajax({
+                type: "POST",
+                url: "@Url.Action("GetDrugs")",
+                data: "keyword=" + key,
+                success: function(msg) {
+                    if (msg.status == 1) {
+                        $("#YPXH option").remove();
+                        var count = msg.data.length;
+                        if (count > 0) {
+                            $("#YPXH").append("<option value=0>有" + count + "种药品，请选择</option>");
+                            msg.data.forEach(function(item) {
+                                $("#YPXH").append("<option value=" + item.Value + ">" + item.Text + "</option>");
+                            });
+                        }
+
+                    }
+                }
+            });
+        }
+    }*@
+
+
+    //function validForm() {
+    //    return $("#form1").validate({
+    //        rules: {
+    //            YPCD: {
+    //                required: true
+    //            }
+    //        }
+    //    });
+    //}
+
+    //注册表单验证
+    @*$(validForm());
+    $("#submit").click(function() {
+        if (validForm().form()) {
+            $("#CDMC").val($("#YPCD").find("option:selected").text());
+            var url = "@Url.Action("AddKeyDrug")";
+            var data = $("#form1").serialize();
+            AjaxSubmit(url, data);
+        }
+    });*@
+</script>

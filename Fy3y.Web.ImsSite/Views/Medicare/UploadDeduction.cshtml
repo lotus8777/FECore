@@ -1,0 +1,119 @@
+﻿@model Fy3y.Model.Das.MedicareDeduction
+@{
+  ViewData["Title"] = "工资明细单批量上传";
+  Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<form method="post" enctype="multipart/form-data">
+    @Html.AntiForgeryToken()
+    <fieldset>
+        <legend>上传明细</legend>
+        <div class="form-group row">
+        <label class="col-form-label col-2 text-right">选择月份</label>
+        <div class="col-2">
+            <input name="month" value="@ViewBag.month" class="form-control" onfocus="WdatePicker({ isShowClear: false, readOnly: true, isShowOK: false, dateFmt: 'yyyyMM' })" />
+        </div>
+        <div class="col-4 border">
+            <input type="file" name="excelFile" class="form-control-file" id="excelFile" accept=".xls,.xlsx" onchange="fileChange()" />
+        </div>
+        <div class="col-2">
+            <button class="btn btn-success">上传</button>
+        </div>
+        <div class="col-2">
+            <a href="@Url.Action("DeductionList")" class="btn btn-success">上传明细</a>
+        </div>
+    </div>
+    </fieldset>
+</form>
+<br /><br /><br />
+<h3 class="text-danger">上传表格注意事项</h3>
+<br />
+<ul class="list-group">
+    <li class="list-group-item list-group-item-danger">1. 上传表格表头名称请按照如下格式，顺序可以不一致
+        <ul class="list-unstyled">
+            <li>
+                <table class="table table-bordered text-center table-sm">
+                    <thead>
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Shyjsh)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Jylsh)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Djh)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.ZyMzH)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Jyfs)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.FYRQ)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Grbh)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.CbrXm)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Cblx)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Ksmc)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Ysxm)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Xmbh)
+                            </th>
+                            <!--支出-->
+                            <th>
+                                @Html.DisplayNameFor(model => model.Xmmc)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Xmsl)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Lzje)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Kcje)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Kcyy)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Wfgz)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Hkyy)
+                            </th>
+                        </tr>
+                    </thead>
+                </table>
+            </li>
+        </ul>
+    </li>
+    <li class="list-group-item  list-group-item-warning">2. 文字之间及前后不能包含空格，尤其是姓名一列</li>
+    <li class="list-group-item  list-group-item-warning">3. 数字单元格不能包含非数字字符</li>
+    <li class="list-group-item  list-group-item-warning">4. 单元格不能包含公式</li>
+</ul>
+
+    
+    <script type="text/javascript">
+        function fileChange() {
+            let file = $("#excelFile").val();
+            if (file) {
+                let fileType = file.substr(file.lastIndexOf("."));
+                let acceptFileType = $("#excelFile")[0].accept;
+                if (acceptFileType.indexOf(fileType) < 0) {
+                    layer.alert("请上传excel表格");
+                }
+            }
+        }
+    </script>

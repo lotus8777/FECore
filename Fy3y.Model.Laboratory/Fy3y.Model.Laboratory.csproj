@@ -1,0 +1,550 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.props" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{66A2D734-3CB8-4EE3-8624-225922BE3EE9}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Fy3y.Model.Laboratory</RootNamespace>
+    <AssemblyName>Fy3y.Model.Laboratory</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <LangVersion>latest</LangVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <LangVersion>latest</LangVersion>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=5.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Bcl.AsyncInterfaces.5.0.0\lib\net461\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="Oracle.ManagedDataAccess, Version=4.122.21.1, Culture=neutral, PublicKeyToken=89b483f429c47342, processorArchitecture=MSIL">
+      <HintPath>..\packages\Oracle.ManagedDataAccess.21.3.0\lib\net462\Oracle.ManagedDataAccess.dll</HintPath>
+    </Reference>
+    <Reference Include="Oracle.ManagedDataAccess.EntityFramework, Version=6.122.21.1, Culture=neutral, PublicKeyToken=89b483f429c47342, processorArchitecture=MSIL">
+      <HintPath>..\packages\Oracle.ManagedDataAccess.EntityFramework.21.3.0\lib\net462\Oracle.ManagedDataAccess.EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Memory, Version=4.0.1.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Memory.4.5.4\lib\net461\System.Memory.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Numerics.Vectors, Version=4.1.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Numerics.Vectors.4.5.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.5.0.0\lib\net45\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Text.Encodings.Web, Version=5.0.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Text.Encodings.Web.5.0.1\lib\net461\System.Text.Encodings.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Text.Json, Version=5.0.0.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Text.Json.5.0.2\lib\net461\System.Text.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Threading.Tasks.Extensions.4.5.4\lib\net461\System.Threading.Tasks.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ValueTuple.4.5.0\lib\net47\System.ValueTuple.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="APP_ERRORLOG.cs" />
+    <Compile Include="BASE_ACCESSTOKEN.cs" />
+    <Compile Include="BASE_ROLE.cs" />
+    <Compile Include="BASE_USER.cs" />
+    <Compile Include="BASE_USERROLES.cs" />
+    <Compile Include="BLOOD_AGREE.cs" />
+    <Compile Include="BLOOD_BLFY.cs" />
+    <Compile Include="BLOOD_BRLB.cs" />
+    <Compile Include="BLOOD_CHECKCONFIG.cs" />
+    <Compile Include="BLOOD_CHECKITEM.cs" />
+    <Compile Include="BLOOD_CHECKITEM_INFO.cs" />
+    <Compile Include="BLOOD_CHECKVALUE.cs" />
+    <Compile Include="BLOOD_CZLX.cs" />
+    <Compile Include="BLOOD_DICCONFIG.cs" />
+    <Compile Include="BLOOD_JCPX.cs" />
+    <Compile Include="BLOOD_LATER_EVALUATE.cs" />
+    <Compile Include="BLOOD_LEIBIE.cs" />
+    <Compile Include="BLOOD_NOTICE.cs" />
+    <Compile Include="BLOOD_PATIENTINFO.cs" />
+    <Compile Include="BLOOD_PRE_EVALUATE.cs" />
+    <Compile Include="BLOOD_PXFF.cs" />
+    <Compile Include="BLOOD_RKD.cs" />
+    <Compile Include="BLOOD_RKDINFO.cs" />
+    <Compile Include="BLOOD_RKD_GDC.cs" />
+    <Compile Include="BLOOD_SPECIALRESEAN.cs" />
+    <Compile Include="BLOOD_SQDXX.cs" />
+    <Compile Include="BLOOD_SQDXX_MX.cs" />
+    <Compile Include="BLOOD_SQD_CHECKITEM.cs" />
+    <Compile Include="BLOOD_SX_XS.cs" />
+    <Compile Include="BLOOD_XK_CX.cs" />
+    <Compile Include="BLOOD_XK_SX.cs" />
+    <Compile Include="BLOOD_XXFC.cs" />
+    <Compile Include="BLOOD_XYLX.cs" />
+    <Compile Include="FR_ADDRINFO.cs" />
+    <Compile Include="FR_BOXSET.cs" />
+    <Compile Include="FR_DEVICESET.cs" />
+    <Compile Include="FR_RACKSET.cs" />
+    <Compile Include="FR_SAMPLEDICT.cs" />
+    <Compile Include="FR_SAMPLEINFO.cs" />
+    <Compile Include="GY_BRXZ.cs" />
+    <Compile Include="GY_ERRORLOG.cs" />
+    <Compile Include="GY_FBRZ.cs" />
+    <Compile Include="GY_FYJY.cs" />
+    <Compile Include="GY_HGXX.cs" />
+    <Compile Include="GY_HZDICT.cs" />
+    <Compile Include="GY_INIT_CONFIG.cs" />
+    <Compile Include="GY_JKM.cs" />
+    <Compile Include="GY_KSDM.cs" />
+    <Compile Include="GY_KSDM_DY.cs" />
+    <Compile Include="GY_LJJG.cs" />
+    <Compile Include="GY_MHYH.cs" />
+    <Compile Include="GY_PERSONAL.cs" />
+    <Compile Include="GY_TERMINAL.cs" />
+    <Compile Include="GY_WSDW.cs" />
+    <Compile Include="GY_XHB.cs" />
+    <Compile Include="GY_XTCS.cs" />
+    <Compile Include="GY_YHQX.cs" />
+    <Compile Include="GY_ZDCS.cs" />
+    <Compile Include="GY_ZGXX.cs" />
+    <Compile Include="IDSM_DOCINFO.cs" />
+    <Compile Include="IDSM_HOSPINFO.cs" />
+    <Compile Include="IDSM_MPI_LOG.cs" />
+    <Compile Include="IDSM_PATIENTINFO.cs" />
+    <Compile Include="IDSM_XDSDOCUMENTENTRY.cs" />
+    <Compile Include="IDSM_XDSSUBMISSIONSET.cs" />
+    <Compile Include="IMALB_RZ_FEEDCONTENT.cs" />
+    <Compile Include="IMLAB_CHARGE_CASH.cs" />
+    <Compile Include="IMLAB_CHARGE_FORM.cs" />
+    <Compile Include="IMLAB_CHARGE_FORMMX.cs" />
+    <Compile Include="IMLAB_CHARGE_FREE.cs" />
+    <Compile Include="IMLAB_SHARE_OBJECTSET.cs" />
+    <Compile Include="JY_JYTS.cs" />
+    <Compile Include="KF_JJJL.cs" />
+    <Compile Include="KF_JJTS.cs" />
+    <Compile Include="KF_JJXXXGJL.cs" />
+    <Compile Include="KF_LDJL.cs" />
+    <Compile Include="KF_LDJL_XGJL.cs" />
+    <Compile Include="LAB_GWSZ.cs" />
+    <Compile Include="LAB_GWSZ_ZZMX.cs" />
+    <Compile Include="LAB_GW_SIGNLIST.cs" />
+    <Compile Include="LAB_GW_SIGNLISTMX.cs" />
+    <Compile Include="LAB_TABLE_DEFINE.cs" />
+    <Compile Include="LAB_TASKMX.cs" />
+    <Compile Include="LAB_TASKMX_YGDM.cs" />
+    <Compile Include="LAB_TESTITEM_PARA.cs" />
+    <Compile Include="LAB_YHQX_DEVICE.cs" />
+    <Compile Include="LAB_YHQX_GWMX.cs" />
+    <Compile Include="LAB_YHQX_KSDM.cs" />
+    <Compile Include="LAB_ZZSZ.cs" />
+    <Compile Include="LAB_ZZSZ_FJMX.cs" />
+    <Compile Include="LAB_ZZSZ_JGXZ.cs" />
+    <Compile Include="LAB_ZZSZ_PLAN.cs" />
+    <Compile Include="LAB_ZZSZ_PLANITEM.cs" />
+    <Compile Include="LAB_ZZSZ_PLANLX.cs" />
+    <Compile Include="LAB_ZZSZ_YQMX.cs" />
+    <Compile Include="LIS_FORMDIR.cs" />
+    <Compile Include="LIS_FORMRECORD.cs" />
+    <Compile Include="LIS_QUAL_SQL.cs" />
+    <Compile Include="LIS_QUAL_SQL_JGXX.cs" />
+    <Compile Include="LIS_TABLERECORD2.cs" />
+    <Compile Include="LIS_TABLERECORD_PJ.cs" />
+    <Compile Include="LIS_TABLERECORD_RIGHT.cs" />
+    <Compile Include="LIS_TABLERECORD_WORKFLOW.cs" />
+    <Compile Include="LIS_TABLETEMPLATE2.cs" />
+    <Compile Include="LIS_TABLE_SS_GRIGHT.cs" />
+    <Compile Include="LIS_TIPLIST.cs" />
+    <Compile Include="LIS_TIPS.cs" />
+    <Compile Include="LQ_CYCKSET.cs" />
+    <Compile Include="LQ_CYDL_DEFINE.cs" />
+    <Compile Include="LQ_CYDL_SET.cs" />
+    <Compile Include="LQ_CYQSET.cs" />
+    <Compile Include="LQ_HYXM_SET.cs" />
+    <Compile Include="LQ_QUEUE.cs" />
+    <Compile Include="LQ_QUEUE_FTSJ.cs" />
+    <Compile Include="LQ_QUEUE_TMXX.cs" />
+    <Compile Include="L_ANTI_BIO_RIS.cs" />
+    <Compile Include="L_ANTI_DICT.cs" />
+    <Compile Include="L_ANTI_GROUP.cs" />
+    <Compile Include="L_ANTI_GROUP_MX.cs" />
+    <Compile Include="L_ANTI_RESULT.cs" />
+    <Compile Include="L_ANTI_RESULT_EDIT.cs" />
+    <Compile Include="L_AUTOCHECK_LIST.cs" />
+    <Compile Include="L_BCDY.cs" />
+    <Compile Include="L_BDTESTSET.cs" />
+    <Compile Include="L_BDTEST_DEVICE.cs" />
+    <Compile Include="L_BDTEST_RESULT.cs" />
+    <Compile Include="L_BDTEST_TESTID.cs" />
+    <Compile Include="L_BIO_DICT.cs" />
+    <Compile Include="L_BIO_EXPLAIN.cs" />
+    <Compile Include="L_BIO_PLANT_CONDITION.cs" />
+    <Compile Include="L_BIO_PLANT_HISTORY.cs" />
+    <Compile Include="L_BIO_QCDATA.cs" />
+    <Compile Include="L_BIO_QCTARGETV.cs" />
+    <Compile Include="L_BIO_RESULT.cs" />
+    <Compile Include="L_BIO_RESULT_EDIT.cs" />
+    <Compile Include="L_BIO_SAVE_BASICINFO.cs" />
+    <Compile Include="L_BIO_SAVE_LOG.cs" />
+    <Compile Include="L_CALCULATEFORMULA.cs" />
+    <Compile Include="L_CALCULATEFORMULA_RULESET.cs" />
+    <Compile Include="L_CHANNEL.cs" />
+    <Compile Include="L_CHANNEL_BIO.cs" />
+    <Compile Include="L_DESCRIBE.cs" />
+    <Compile Include="L_DESCRI_MB.cs" />
+    <Compile Include="L_DEVICESET.cs" />
+    <Compile Include="L_DEVICESET_MODULE.cs" />
+    <Compile Include="L_DEVICESTATUS.cs" />
+    <Compile Include="L_DEVICETYPE.cs" />
+    <Compile Include="L_DEVICE_SENDSTRING.cs" />
+    <Compile Include="L_DISEASESET.cs" />
+    <Compile Include="L_DMZD.cs" />
+    <Compile Include="L_DOCFILE_CHECKDETAIL.cs" />
+    <Compile Include="L_DOCFILE_CUR.cs" />
+    <Compile Include="L_DOCFILE_DOCHECK.cs" />
+    <Compile Include="L_DOCFILE_EVALUATE.cs" />
+    <Compile Include="L_DOCFILE_HISTORY.cs" />
+    <Compile Include="L_DOCFILE_OPERATE.cs" />
+    <Compile Include="L_DOCFILE_OPERATE2.cs" />
+    <Compile Include="L_DOCFILE_READER.cs" />
+    <Compile Include="L_DOCFILE_UPDATE.cs" />
+    <Compile Include="L_DOCUMENTATIONDIRECTORY.cs" />
+    <Compile Include="L_DOC_CONN.cs" />
+    <Compile Include="L_DOC_SS_GRIGHT.cs" />
+    <Compile Include="L_DOC_TASK.cs" />
+    <Compile Include="L_DOC_TRAINPLAN.cs" />
+    <Compile Include="L_DOC_WORKFLOW.cs" />
+    <Compile Include="L_DOC_WORKFLOW2.cs" />
+    <Compile Include="L_ENZYMELMM.cs" />
+    <Compile Include="L_ENZYMELMM_BZ.cs" />
+    <Compile Include="L_ENZYMELMM_YSSJ.cs" />
+    <Compile Include="L_FORMULATMP.cs" />
+    <Compile Include="L_GRAPHDATA.cs" />
+    <Compile Include="L_GRAPHDATA_R80.cs" />
+    <Compile Include="L_GRAPHDATA_TEMP.cs" />
+    <Compile Include="L_GRK_SAMPLE.cs" />
+    <Compile Include="L_GSBGMB.cs" />
+    <Compile Include="L_GSBGSZ.cs" />
+    <Compile Include="L_GSRESULT.cs" />
+    <Compile Include="L_HINT.cs" />
+    <Compile Include="L_HOLIDAYDEFINE.cs" />
+    <Compile Include="L_HOLIDAY_HYXM.cs" />
+    <Compile Include="L_HYXM.cs" />
+    <Compile Include="L_HYXM_SAMPLETYPE.cs" />
+    <Compile Include="L_HYXM_SJDW.cs" />
+    <Compile Include="L_HYXM_ZHMX.cs" />
+    <Compile Include="L_IMAGEDATA.cs" />
+    <Compile Include="L_JYTMXX.cs" />
+    <Compile Include="L_JYTMXX_BBZQ.cs" />
+    <Compile Include="L_JYTMXX_BHGBBDJ.cs" />
+    <Compile Include="L_JYTMXX_MX.cs" />
+    <Compile Include="L_JYTMXX_PACKAGE.cs" />
+    <Compile Include="L_JYTMXX_PRERECEIEV.cs" />
+    <Compile Include="L_JYTMXX_PRERESULT.cs" />
+    <Compile Include="L_JYTMXX_TATTARGET.cs" />
+    <Compile Include="L_KQGL.cs" />
+    <Compile Include="L_KQGLDJ.cs" />
+    <Compile Include="L_KQGL_BC.cs" />
+    <Compile Include="L_KSB.cs" />
+    <Compile Include="L_KYXM_DJ.cs" />
+    <Compile Include="L_LIS_LCCS.cs" />
+    <Compile Include="L_LIS_REPORTSET.cs" />
+    <Compile Include="L_LIS_REPORT_INDEX.cs" />
+    <Compile Include="L_LIS_SQD.cs" />
+    <Compile Include="L_LIS_SQDMX.cs" />
+    <Compile Include="L_LIS_SQD_BBZQ.cs" />
+    <Compile Include="L_LIS_SQD_DOUBLE.cs" />
+    <Compile Include="L_LIS_SQD_EDITREASON.cs" />
+    <Compile Include="L_LIS_SQD_EDIT_LOG.cs" />
+    <Compile Include="L_LIS_SQD_TMBATCH.cs" />
+    <Compile Include="L_LIS_WARNMIX_SET.cs" />
+    <Compile Include="L_LIS_WARNMIX_SETMX.cs" />
+    <Compile Include="L_MESSAGE.cs" />
+    <Compile Include="L_MESSAGE_KSDM.cs" />
+    <Compile Include="L_MUTEX.cs" />
+    <Compile Include="L_MZTFXX.cs" />
+    <Compile Include="L_PARAMETER.cs" />
+    <Compile Include="L_PatientInfo.cs" />
+    <Compile Include="L_PATIENTINFO_EDIT.cs" />
+    <Compile Include="L_PATIENTINFO_NOCHECK.cs" />
+    <Compile Include="L_PBB.cs" />
+    <Compile Include="L_PBBWEEK.cs" />
+    <Compile Include="L_PBBWEEK_BC.cs" />
+    <Compile Include="L_PBB_BZ.cs" />
+    <Compile Include="L_PBB_ZB.cs" />
+    <Compile Include="L_PLANT_RESULT.cs" />
+    <Compile Include="L_PLANT_RESULT_DICT.cs" />
+    <Compile Include="L_PLANT_RESULT_EDIT.cs" />
+    <Compile Include="L_PROFILETEST.cs" />
+    <Compile Include="L_PROFILETEST_SR.cs" />
+    <Compile Include="L_QCBATCHSET.cs" />
+    <Compile Include="L_QCDATA.cs" />
+    <Compile Include="L_QCDATA_CHECK.cs" />
+    <Compile Include="L_QCDATA_RB.cs" />
+    <Compile Include="L_QCDAY.cs" />
+    <Compile Include="L_QCDAYMX.cs" />
+    <Compile Include="L_QCSHEET.cs" />
+    <Compile Include="L_QCSHEET_BATCH.cs" />
+    <Compile Include="L_QCSHEET_RULE.cs" />
+    <Compile Include="L_QCSUMMARIZE.cs" />
+    <Compile Include="L_QCTESTSET.cs" />
+    <Compile Include="L_QCTESTSET_DXWH.cs" />
+    <Compile Include="L_QCTESTSET_HISTROY.cs" />
+    <Compile Include="L_QCXJZD.cs" />
+    <Compile Include="L_QC_BRJG_AVGSET.cs" />
+    <Compile Include="L_QC_LYZC.cs" />
+    <Compile Include="L_QC_PATIENT_RESULT.cs" />
+    <Compile Include="L_REFERENCEVALUE.cs" />
+    <Compile Include="L_SAMPLENOREPLACE.cs" />
+    <Compile Include="L_SAMPLENO_BZ.cs" />
+    <Compile Include="L_SampleType.cs" />
+    <Compile Include="L_SAMPLE_HANDLE.cs" />
+    <Compile Include="L_SAMPLE_JSJL.cs" />
+    <Compile Include="L_SAMPLE_SAVE.cs" />
+    <Compile Include="L_SOURCE.cs" />
+    <Compile Include="L_SQD.cs" />
+    <Compile Include="L_SQDQX.cs" />
+    <Compile Include="L_SQDSET.cs" />
+    <Compile Include="L_SQD_LCCS.cs" />
+    <Compile Include="L_SRKZ.cs" />
+    <Compile Include="L_TAT_DMZD.cs" />
+    <Compile Include="L_TAT_HOLIDAY.cs" />
+    <Compile Include="L_TAT_JGDMZD.cs" />
+    <Compile Include="L_TAT_SEGMENT_SET.cs" />
+    <Compile Include="L_TAT_TARGET.cs" />
+    <Compile Include="L_TAT_TARGET_HYXM.cs" />
+    <Compile Include="L_TAT_XMLB_KSDMSET.cs" />
+    <Compile Include="L_TAT_XMLB_TESTSET.cs" />
+    <Compile Include="L_TEMPLET.cs" />
+    <Compile Include="L_TEMPLOG1.cs" />
+    <Compile Include="L_TEMPLOG2.cs" />
+    <Compile Include="L_TEMPLOG3.cs" />
+    <Compile Include="L_TESTDESCRIBE.cs" />
+    <Compile Include="L_TESTDESCRIBE_DY.cs" />
+    <Compile Include="L_TESTDESCRIBE_NOTE.cs" />
+    <Compile Include="L_TestResult.cs" />
+    <Compile Include="L_TESTRESULT_DESCRIBE.cs" />
+    <Compile Include="L_TESTRESULT_EDIT.cs" />
+    <Compile Include="L_TESTZDSH_RULE.cs" />
+    <Compile Include="L_TOPONYMY.cs" />
+    <Compile Include="L_TSXX.cs" />
+    <Compile Include="L_WARNTESTBLOG.cs" />
+    <Compile Include="L_WARNTESTBLOG_PRE.cs" />
+    <Compile Include="L_WSW_FJBG.cs" />
+    <Compile Include="L_XDJL.cs" />
+    <Compile Include="L_XDJL_MX.cs" />
+    <Compile Include="L_XMSH.cs" />
+    <Compile Include="L_XMWJZ_KSSZ.cs" />
+    <Compile Include="L_YBBH.cs" />
+    <Compile Include="L_ZYBQYZ_DELETE.cs" />
+    <Compile Include="MH_ZXWJ.cs" />
+    <Compile Include="PBCATCOL.cs" />
+    <Compile Include="PBCATFMT.cs" />
+    <Compile Include="PBCATTBL.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="PT_ANTIRESULT.cs" />
+    <Compile Include="PT_BASE_COUNTRYCODE.cs" />
+    <Compile Include="PT_BASE_DEPT.cs" />
+    <Compile Include="PT_BASE_DMZD.cs" />
+    <Compile Include="PT_BASE_JGDM.cs" />
+    <Compile Include="PT_BIORESULT.cs" />
+    <Compile Include="PT_CHARGE_FORM.cs" />
+    <Compile Include="PT_CHARGE_FORMMX.cs" />
+    <Compile Include="PT_DEMO.cs" />
+    <Compile Include="PT_DISEASECONDITION.cs" />
+    <Compile Include="PT_DISEASETEST.cs" />
+    <Compile Include="PT_HOS_ANTIDICT.cs" />
+    <Compile Include="PT_HOS_BIODICT.cs" />
+    <Compile Include="PT_HOS_HYXM.cs" />
+    <Compile Include="PT_HOS_SAMPLETYPE.cs" />
+    <Compile Include="PT_HOS_TESTDESCRIBE.cs" />
+    <Compile Include="PT_IDENTITY.cs" />
+    <Compile Include="PT_INCIDENT.cs" />
+    <Compile Include="PT_JYTMXX.cs" />
+    <Compile Include="PT_JYTMXX_MX.cs" />
+    <Compile Include="PT_JYTMXX_YDCJ.cs" />
+    <Compile Include="PT_LISDM_ANTIDICT.cs" />
+    <Compile Include="PT_LISDM_ANTI_BIO_RIS.cs" />
+    <Compile Include="PT_LISDM_BIODICT.cs" />
+    <Compile Include="PT_LISDM_HYXM.cs" />
+    <Compile Include="PT_LISDM_HYXM_BGMX.cs" />
+    <Compile Include="PT_LISDM_HYXM_DZ.cs" />
+    <Compile Include="PT_LISDM_HYXM_JG.cs" />
+    <Compile Include="PT_LISDM_HYXM_JGXM.cs" />
+    <Compile Include="PT_LISDM_HYXM_JG_PRICE.cs" />
+    <Compile Include="PT_LISDM_HYXM_PRICE.cs" />
+    <Compile Include="PT_LISDM_HYXM_PRICEMX.cs" />
+    <Compile Include="PT_LISDM_HYXM_PRICERATE.cs" />
+    <Compile Include="PT_LISDM_HYXM_ZHMX.cs" />
+    <Compile Include="PT_LISDM_JGBM.cs" />
+    <Compile Include="PT_LISDM_REFERENCEVALUE.cs" />
+    <Compile Include="PT_LISDM_SAMPLETYPE.cs" />
+    <Compile Include="PT_LISDM_TESTCLASS.cs" />
+    <Compile Include="PT_LISDM_TESTDESCRIBE.cs" />
+    <Compile Include="PT_LISDM_TESTDESCRIBE_DZ.cs" />
+    <Compile Include="PT_LISDM_TESTDESCRIB_JG.cs" />
+    <Compile Include="PT_LISDM_TOPONYMY.cs" />
+    <Compile Include="PT_LIS_SQD.cs" />
+    <Compile Include="PT_LIS_SQDMX.cs" />
+    <Compile Include="PT_MENU.cs" />
+    <Compile Include="PT_OA_ATTACHFILE.cs" />
+    <Compile Include="PT_PATIENTINFO.cs" />
+    <Compile Include="PT_PLANTRESULT.cs" />
+    <Compile Include="PT_POSITION.cs" />
+    <Compile Include="PT_PROJECT.cs" />
+    <Compile Include="PT_PROJECTMAPPING.cs" />
+    <Compile Include="PT_ROLE.cs" />
+    <Compile Include="PT_ROLEMENU.cs" />
+    <Compile Include="PT_RZ_BBZQ.cs" />
+    <Compile Include="PT_RZ_CANCELCHECK.cs" />
+    <Compile Include="PT_RZ_FEEDCONTENT.cs" />
+    <Compile Include="PT_RZ_NOREPORT.cs" />
+    <Compile Include="PT_TEST.cs" />
+    <Compile Include="PT_TESTRESULT.cs" />
+    <Compile Include="PT_UPLOADPDFREPORT.cs" />
+    <Compile Include="PT_UPLOADPDFREPORT2.cs" />
+    <Compile Include="PT_USERPOSITION.cs" />
+    <Compile Include="PT_USERROLE.cs" />
+    <Compile Include="PT_USER_STAFFS.cs" />
+    <Compile Include="PT_WARNCONF.cs" />
+    <Compile Include="PT_WARNLOG.cs" />
+    <Compile Include="PT_WEEKDAY.cs" />
+    <Compile Include="PT_WORKDAYEXCEPTION.cs" />
+    <Compile Include="PT_XTCS.cs" />
+    <Compile Include="PT_ZHSZ_LIST1.cs" />
+    <Compile Include="PUBLIC_DATABASE.cs" />
+    <Compile Include="QC_CALIBRATELOG.cs" />
+    <Compile Include="QC_CALIBRATELOG_PARAMX.cs" />
+    <Compile Include="QC_CALIBRATELOG_PARAMX_BZP.cs" />
+    <Compile Include="QC_CALIBRATELOG_PARAMX_SJPH.cs" />
+    <Compile Include="QC_CALIBRATELOG_SJSET.cs" />
+    <Compile Include="QC_CLOSECHECK.cs" />
+    <Compile Include="QC_CLOSECHECK_MX.cs" />
+    <Compile Include="QC_DEVICEREPAIRS.cs" />
+    <Compile Include="QC_DEVICESERVICELOG.cs" />
+    <Compile Include="QC_DEVICESERVICELOG_MX.cs" />
+    <Compile Include="QC_DEVICESERVICESET.cs" />
+    <Compile Include="QC_ICELOG.cs" />
+    <Compile Include="QC_ICESET.cs" />
+    <Compile Include="QC_ICETIMESET.cs" />
+    <Compile Include="QC_LISDOCLOG.cs" />
+    <Compile Include="QC_LISDOCSET.cs" />
+    <Compile Include="QC_LISDOCTIMESET.cs" />
+    <Compile Include="QC_LISDOCTYPESET.cs" />
+    <Compile Include="QC_REPORTTYPE.cs" />
+    <Compile Include="QC_ROOMLOG.cs" />
+    <Compile Include="QC_ROOMSET.cs" />
+    <Compile Include="QC_ROOMTIMESET.cs" />
+    <Compile Include="QC_WATERQUAL.cs" />
+    <Compile Include="QC_WATERQUAL_MX.cs" />
+    <Compile Include="QC_WESTGARDRULE.cs" />
+    <Compile Include="QY_TESTDESCRIBE.cs" />
+    <Compile Include="QY_TESTDESCRIBE_LIST.cs" />
+    <Compile Include="RES_DATAELEMENT.cs" />
+    <Compile Include="RES_DATAELEMENTCATEGORY.cs" />
+    <Compile Include="RES_DATAGROUP.cs" />
+    <Compile Include="RES_DATASET.cs" />
+    <Compile Include="RES_DATASETCATALOG.cs" />
+    <Compile Include="RES_DATASETCONTENT.cs" />
+    <Compile Include="RES_DATASTANDARD.cs" />
+    <Compile Include="SJ_CKD.cs" />
+    <Compile Include="SJ_CKDMX.cs" />
+    <Compile Include="SJ_COSTACCOUNTPARA.cs" />
+    <Compile Include="SJ_CRKFS.cs" />
+    <Compile Include="SJ_DWDM.cs" />
+    <Compile Include="SJ_DWDM_PIC.cs" />
+    <Compile Include="SJ_GHSPG.cs" />
+    <Compile Include="SJ_KC.cs" />
+    <Compile Include="SJ_KC_KS.cs" />
+    <Compile Include="SJ_MESSAGE.cs" />
+    <Compile Include="SJ_OPEN.cs" />
+    <Compile Include="SJ_OPENMX.cs" />
+    <Compile Include="SJ_PCD.cs" />
+    <Compile Include="SJ_PCDMX.cs" />
+    <Compile Include="SJ_PCRQ.cs" />
+    <Compile Include="SJ_RKD.cs" />
+    <Compile Include="SJ_RKDMX.cs" />
+    <Compile Include="SJ_RKDMX_ND.cs" />
+    <Compile Include="SJ_RKD_TM.cs" />
+    <Compile Include="SJ_SG.cs" />
+    <Compile Include="SJ_SG_MAIN.cs" />
+    <Compile Include="SJ_SJLB.cs" />
+    <Compile Include="SJ_SL_MAIN.cs" />
+    <Compile Include="SJ_SL_MX.cs" />
+    <Compile Include="SJ_SL_MX2.cs" />
+    <Compile Include="SJ_XHCK.cs" />
+    <Compile Include="SJ_XHCKMX.cs" />
+    <Compile Include="SJ_YSHCJLB.cs" />
+    <Compile Include="SS_INSTALL.cs" />
+    <Compile Include="SYS_BROWSINGHIST.cs" />
+    <Compile Include="SYS_DOMAIN.cs" />
+    <Compile Include="SYS_HOMEPAGE.cs" />
+    <Compile Include="SYS_JOBLAYOUT.cs" />
+    <Compile Include="SYS_LAYOUT.cs" />
+    <Compile Include="SYS_LOG4J.cs" />
+    <Compile Include="SYS_MAX_NUMBER.cs" />
+    <Compile Include="SYS_MESSAGE.cs" />
+    <Compile Include="SYS_NOTICE.cs" />
+    <Compile Include="SYS_OFFICE.cs" />
+    <Compile Include="SYS_ORGANIZATION.cs" />
+    <Compile Include="SYS_PERSONNEL.cs" />
+    <Compile Include="SYS_PRIVACYRULES.cs" />
+    <Compile Include="SYS_QUICK.cs" />
+    <Compile Include="SYS_USERPROP.cs" />
+    <Compile Include="SYS_USERS.cs" />
+    <Compile Include="YG_RESULT.cs" />
+    <Compile Include="YG_XMDL.cs" />
+    <Compile Include="YG_XMFL_DM.cs" />
+    <Compile Include="ZYYZK.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="Oracle.DataAccess.Common.Configuration.Section.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Oracle.ManagedDataAccess.Client.Configuration.Section.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>这台计算机上缺少此项目引用的 NuGet 程序包。使用“NuGet 程序包还原”可下载这些程序包。有关更多信息，请参见 http://go.microsoft.com/fwlink/?LinkID=322105。缺少的文件是 {0}。</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.props'))" />
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.targets'))" />
+  </Target>
+  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.targets" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" />
+</Project>

@@ -1,0 +1,44 @@
+﻿@model IList<Fy3y.Model.Das.Patient>
+<div class="mt-1 table-responsive-md">
+  <table class="table table-sm table-bordered table-hover table-striped text-center">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>@Html.DisplayNameFor(model => model.PatientName) </th>
+        <th>@Html.DisplayNameFor(model => model.Sex) </th>
+        <th>@Html.DisplayNameFor(model => model.IdCard) </th>
+        <th>@Html.DisplayNameFor(model => model.Address) </th>
+        <th>@Html.DisplayNameFor(model => model.Mobile) </th>
+        <th class="d-print-none">操作</th>
+      </tr>
+    </thead>
+    @{
+      var i = 0;
+      foreach (var item in Model)
+      {
+        i++;
+      <tr>
+        <td>@i </td>
+        <td>@Html.DisplayFor(modelItem => item.PatientName) </td>
+        <td>@(item.Sex == 1 ? "男" : "女") </td>
+        <td>@Html.DisplayFor(modelItem => item.IdCard) </td>
+        <td>@Html.DisplayFor(modelItem => item.Address) </td>
+        <td>@Html.DisplayFor(modelItem => item.Mobile) </td>
+        <td class="d-print-none">
+          <div>
+            <a href="@Url.Action("Edit",new {id=item.PatientId})" title="修改病人信息">
+              <i class="fa fa-edit"></i>
+            </a>
+            <a href="@Url.Action("PatientRecipes","Recipe",new {id=item.PatientId})" title="查看服药记录">
+              <span aria-hidden='true' class='fa fa-list'></span>
+            </a>
+            <a href="@Url.Action("Create","Recipe",new {id=item.PatientId})" title="快速服药">
+              <i class="fa fa-plus"></i>
+            </a>
+          </div>
+        </td>
+      </tr>
+      }
+    }
+  </table>
+</div>

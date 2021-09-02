@@ -1,0 +1,83 @@
+﻿@model IList<MobilePaymentStatictis>
+@{
+  ViewBag.Title = "移动支付奖励";
+  Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@using (Html.BeginForm(null, null, FormMethod.Post))
+{
+  <div class="form-row mb-2">
+    <div class="col">
+      @Html.TextBox("begin", null, new { onfocus = "WdatePicker({isShowClear:false,readOnly:true,isShowOK:false,minDate:'2018-02-01',maxDate:'%y-%M-%d'})", @class = "form-control" })
+    </div>
+    <div class="col">
+      @Html.TextBox("end", null, new { onfocus = "WdatePicker({isShowClear:false,readOnly:true,isShowOK:false,maxDate:'%y-%M-%d'})", @class = "form-control" })
+    </div>
+    <div class="col">
+      <button class="btn btn-dark d-print-none">
+        <span class="fa fa-search">查询</span>
+      </button>
+    </div>
+      <div class="col">
+          @Html.ActionLink("查看清单","PaymentDetail", null,null,new{ @class="btn btn-success"}) 
+      </div>
+    <div class="col">
+    </div>
+    <div class="col">
+    </div>
+  </div>
+}
+<table class="table table-sm table-bordered table-hover text-center table-striped">
+  <thead>
+    <tr>
+      <th>科室</th>
+      <th>姓名</th>
+      <th>次数</th>
+      <th>奖励</th>
+      <th>科室合计</th>
+    </tr>
+  </thead>
+  <tbody>
+    @{
+      if (Model?.Any() ?? false)
+      {
+        var departments = Model.Select(p => p.DepartmentName).Distinct();
+        foreach (var department in departments)
+        {
+          var sub = Model.Where(p => p.DepartmentName == department).ToList();
+          if (sub.Any())
+          {
+            var num = sub.Count();
+            var i = 1;
+            foreach (var item in sub)
+            {
+              if (i == 1)
+              {
+                <tr>
+                  <td rowspan="@num">@department </td>
+                  <td>@item.EmployeeName </td>
+                  <td>@item.Count </td>
+                  <td>@(item.Count * 20)</td>
+                  <td rowspan="@num">@(sub.Sum(p => p.Count) * 20)</td>
+                </tr>
+              }
+              else
+              {
+                <tr>
+                  <td>@item.EmployeeName </td>
+                  <td>@item.Count </td>
+                  <td>@(item.Count * 20)</td>
+                </tr>
+              }
+              i++;
+            }
+          }
+        }
+        <tr>
+          <td colspan="2">合计 </td>
+          <td>@Model.Sum(p => p.Count)</td>
+          <td colspan="2">@(Model.Sum(p => p.Count) * 20)</td>
+        </tr>
+      }
+    }
+  </tbody>
+</table>

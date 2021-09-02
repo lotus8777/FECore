@@ -1,0 +1,62 @@
+﻿@model IList<Fy3y.Model.Das.DeviceClass>
+<table class="table table-sm table-bordered text-center table-striped">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>类型名称</th>
+      <th>标准代码</th>
+      <th>报废年限</th>
+      <th>单位</th>
+      <th>有效性</th>
+      <th>终结点</th>
+      <th>操作</th>
+    </tr>
+  </thead>
+  <tbody>
+    @{
+    var i = 1;
+    foreach (var item in Model)
+    {
+      <tr>
+        <td>@i </td>
+        <td>@item.ClassName </td>
+        <td>@item.ClassCode </td>
+        <td>@item.LifeCycle </td>
+        <td>@item.Unit </td>
+        <td>
+          @if (item.IsValid)
+          {
+          <i class="fa fa-check"></i>
+          }
+          else
+          {
+          <i class="fa fa-times"></i>
+          }
+        </td>
+        <td>
+          @if (item.IsEnd)
+          {
+          <i class="fa fa-check"></i>
+          }
+          else
+          {
+          <i class="fa fa-times"></i>
+          }
+        </td>
+        <td>
+          <a href="@Url.Action("Edit",new {id=item.ClassId})">
+            <i class="fa fa-edit"></i>
+          </a> |
+          <a href="@Url.Action("Details",new {id=item.ClassId})">
+            <i class="fa fa-search"></i>
+          </a> |
+          <a href="@Url.Action("Delete",new {id=item.ClassId})">
+            <i class="fa fa-trash"></i>
+          </a>
+        </td>
+      </tr>
+      i++;
+    }
+    }
+  </tbody>
+</table>

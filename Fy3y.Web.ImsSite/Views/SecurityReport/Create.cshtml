@@ -1,0 +1,102 @@
+﻿@model SecurityReport
+@{
+  ViewBag.Title = "填写医疗安全日报表";
+  Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<form id="form1">
+  @Html.AntiForgeryToken()
+  @Html.ValidationSummary(true, "", new {@class = "text-danger"})
+  <div class="form-group row">
+    <label class="col-2 col-form-label">日报日期</label>
+    <div class="col-4">
+      @Html.TextBox("ReportDate", null, new {onfocus = "WdatePicker({isShowClear:false,readOnly:true,isShowOK:false})", @class = "form-control"})
+      @Html.ValidationMessageFor(model => model.ReportDate, "", new {@class = "text-danger"})
+    </div>
+      <label class="col-2 col-form-label">危重病人</label>
+    <div class="col-4">
+      @Html.EditorFor(model => model.Criticality, new {htmlAttributes = new {@class = "form-control"}})
+      @Html.ValidationMessageFor(model => model.Criticality, "", new {@class = "text-danger"})
+    </div>
+  </div>
+  <div class="form-group row">
+      <label class="col-2 col-form-label">危重病人</label>
+    <div class="col-4">
+      @Html.EditorFor(model => model.Death, new {htmlAttributes = new {@class = "form-control"}})
+      @Html.ValidationMessageFor(model => model.Death, "", new {@class = "text-danger"})
+    </div>
+    @Html.LabelFor(model => model.Infection, new {@class = "col-2 col-form-label"})
+    <div class="col-4">
+      @Html.EditorFor(model => model.Infection, new {htmlAttributes = new {@class = "form-control"}})
+      @Html.ValidationMessageFor(model => model.Infection, "", new {@class = "text-danger"})
+    </div>
+  </div>
+  <div class="form-group row">
+      <label class="col-2 col-form-label">危重病人</label>
+    <div class="col-4">
+      @Html.EditorFor(model => model.Undiagnosed, new {htmlAttributes = new {@class = "form-control"}})
+      @Html.ValidationMessageFor(model => model.Undiagnosed, "", new {@class = "text-danger"})
+    </div>
+      <label class="col-2 col-form-label">药物事件</label>
+    <div class="col-4">
+      @Html.EditorFor(model => model.DrugAccident, new {htmlAttributes = new {@class = "form-control"}})
+      @Html.ValidationMessageFor(model => model.DrugAccident, "", new {@class = "text-danger"})
+    </div>
+  </div>
+  <div class="form-group row">
+      <label class="col-2 col-form-label">伤害事件</label>
+    <div class="col-4">
+      @Html.EditorFor(model => model.Harmful, new {htmlAttributes = new {@class = "form-control"}})
+      @Html.ValidationMessageFor(model => model.Harmful, "", new {@class = "text-danger"})
+    </div>
+      <label class="col-2 col-form-label">并发症</label>
+    <div class="col-4">
+      @Html.EditorFor(model => model.Complications, new {htmlAttributes = new {@class = "form-control"}})
+      @Html.ValidationMessageFor(model => model.Complications, "", new {@class = "text-danger"})
+    </div>
+  </div>
+  <div class="form-group row">
+      <label class="col-2 col-form-label">科室投诉</label>
+    <div class="col-4">
+      @Html.EditorFor(model => model.Complaint, new {htmlAttributes = new {@class = "form-control"}})
+      @Html.ValidationMessageFor(model => model.Complaint, "", new {@class = "text-danger"})
+    </div>
+    <label class="col-2 col-form-label">其他</label>
+    <div class="col-4">
+      @Html.EditorFor(model => model.Others, new {htmlAttributes = new {@class = "form-control"}})
+      @Html.ValidationMessageFor(model => model.Others, "", new {@class = "text-danger"})
+    </div>
+  </div>
+  <div class="form-group row">
+      <label class="col-2 col-form-label">审核人</label>
+    <div class="col-4">
+      @Html.DropDownListFor(model => model.CheckerId, null, new {@class = "custom-select"})
+      @Html.ValidationMessageFor(model => model.CheckerId, "", new {@class = "text-danger"})
+    </div>
+  </div>
+  <div class="form-group row">
+      <label class="col-2 col-form-label">科室干预</label>
+    <div class="col-10">
+      @Html.TextAreaFor(model => model.Disposal, 5, 5, new {@class = "form-control", placeholder = "每个病人请填写时间，科室，床号，住院号，患者姓名，性别，年龄。没有请不要填'无'或'0'"})
+      @Html.ValidationMessageFor(model => model.Disposal, "", new {@class = "text-danger"})
+    </div>
+  </div>
+  @Html.HiddenFor(model => model.IsValid)
+  @Html.HiddenFor(model => model.CreatorId)
+  @Html.HiddenFor(model => model.CreateTime)
+  @Html.HiddenFor(model => model.DepartmentId)
+</form>
+<div>
+  <button class="btn btn-dark d-print-none" id="submit">
+    <i class="fa fa-save">保存</i>
+  </button>
+  @Html.ActionLink("返回列表", "Index")
+</div>
+<script type="text/javascript">
+
+  //点击表单保存按钮触发单击事件，进行表单验证，验证通过发起ajax请求，验证不通过在表单里提示
+  $("#submit").click(function() {
+    var url = "@Url.Action("Create")";
+    var data = $("#form1").serialize();
+    AjaxSubmit(url, data);
+  });
+</script>

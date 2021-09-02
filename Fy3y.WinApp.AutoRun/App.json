@@ -1,0 +1,60 @@
+﻿{
+    "Services": [
+        {
+            "FixTime": "",
+            "Interval": "5",
+            "LastTime": "",
+            "NextTime": "",
+            "ServiceId": "Sms",
+            "ServiceName": "短信发送服务",
+            "TypeId": 1
+        },
+        {
+            "TypeId": 1,
+            "Interval": "5",
+            "LastTime": "",
+            "ServiceId": "drgs",
+            "ServiceName": "DRGs上传服务",
+            "NextTime": "",
+            "FixTime": ""
+        },
+        {
+            "TypeId": 1,
+            "Interval": "3",
+            "LastTime": "",
+            "ServiceId": "opConfirm",
+            "ServiceName": "检验开单登记服务",
+            "NextTime": "",
+            "FixTime": ""
+        },
+        {
+            "TypeId": 1,
+            "Interval": "4",
+            "LastTime": "",
+            "ServiceId": "labCheck",
+            "ServiceName": "检验登记上传服务",
+            "NextTime": "",
+            "FixTime": ""
+        },
+
+        {
+            "TypeId": 1,
+            "Interval": "5",
+            "LastTime": "",
+            "ServiceId": "labConfirm",
+            "ServiceName": "检验结果上传服务",
+            "NextTime": "",
+            "FixTime": ""
+        },
+
+        {
+            "TypeId": 1,
+            "Interval": "60",
+            "LastTime": "",
+            "ServiceId": "cleanUp",
+            "ServiceName": "检验项目校对",
+            "NextTime": "",
+            "FixTime": ""
+        }
+    ]
+}

@@ -1,0 +1,127 @@
+﻿@model Fy3y.Model.Das.SleepMonitorRegistration
+@{
+    ViewBag.Title = "睡眠监测报告单";
+}
+<br />
+<form id="form1">
+    @Html.AntiForgeryToken()
+    <fieldset>
+        <legend>预约及患者信息</legend>
+        <div class="form-group row">
+            <label class="col-2 col-form-label">预约来源</label>
+            <label class="col-4 form-check-label">@Model.Source</label>
+            @Html.HiddenFor(m => m.Source)
+            <label class="col-2 col-form-label">患者性别</label>
+            <label class="col-2 form-check-label">
+                @if (Model.PatientSex == 1)
+                {
+                    @:男
+                }
+                else if (Model.PatientSex == 2)
+                {
+                    @:女
+                }
+                else
+                {
+                    @:其他
+                }
+            </label>
+            @Html.HiddenFor(m => m.PatientSex)
+        </div>
+        <div class="form-group row">
+            <label class="col-2 col-form-label">患者姓名</label>
+            <div class="col-4">
+                @Html.DisplayFor(m => m.PatientName, new { @class = "form-control", @readonly = "" })
+                @Html.HiddenFor(m => m.PatientName)
+            </div>
+            <label class="col-2 col-form-label">患者年龄</label>
+            <div class="col-4">
+                @Html.DisplayFor(m => m.PatientAge, new { @class = "form-control", placeholder = "岁", @readonly = "" })
+                @Html.HiddenFor(m => m.PatientAge)
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-2 col-form-label">预约时间</label>
+            <div class="col-4">
+                @Html.DisplayFor(m => m.PreVisitTime)
+                @Html.HiddenFor(m => m.PreVisitTime)
+            </div>
+            <label class="col-2 col-form-label ">预约医生</label>
+            <div class="col-4">
+                @Html.DisplayFor(m => m.Doctor)
+                @Html.HiddenFor(m => m.Doctor)
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-2 col-form-label">联系方式</label>
+            <label class="col-10"> @Html.DisplayFor(m => m.Contact)</label>
+            @Html.HiddenFor(m => m.Contact)
+        </div>
+    </fieldset>
+    <fieldset>
+        <legend>就诊结果信息</legend>
+        <div class="form-group row">
+            <label class="col-2 col-form-label">是否就诊</label>
+            <div class="col-1 form-check form-check-inline">
+                @Html.RadioButtonFor(m => m.Status, 2, new { @class = "form-check-input  ", id = "Status2", @checked = "" })
+                <label class="form-check-label">是</label>
+            </div>
+            <div class="col-1 form-check form-check-inline">
+                @Html.RadioButtonFor(m => m.Status, 0, new { @class = "form-check-input", id = "Status3" })
+                <label class="form-check-label">否</label>
+            </div>
+        </div>
+        <div class="form-group row" id="analystsArea">
+            <label class="col-2 col-form-label">图像分析</label>
+            <div class="col-4">
+                @Html.TextBoxFor(m => m.Analysts, new { @class = "form-control" })
+            </div>
+            <label class="col-2 col-form-label">完成时间</label>
+            <div class="col-4">
+                @Html.TextBoxFor(m => m.FinishTime, new { onfocus = "WdatePicker({ isShowClear: false, readOnly: true, isShowOK: false, maxDate: '%y-%M-%d', dateFmt: 'yyyy-MM-dd HH:mm:ss' })", @class = "form-control" })
+            </div>
+        </div>
+        <div class="form-group row" id="notCause">
+            <label class="col-2 col-form-label">未就诊原因</label>
+            <div class="col-10">
+                @Html.TextAreaFor(m => m.Cause, new { @class = "form-control", rows = "3" })
+            </div>
+        </div>
+    </fieldset>
+    @Html.HiddenFor(m => m.Creator)
+    @Html.HiddenFor(m => m.CreateTime)
+    @Html.HiddenFor(m => m.UniqueId)
+    @Html.HiddenFor(m => m.Reporter)
+    @Html.HiddenFor(m => m.ReportTime)
+</form>
+<button class="btn btn-dark" id="btnSubmit">
+    <i class="fa fa-save">保存</i>
+</button>
+<a href="@Url.Action("index")">返回</a>
+<script type="text/javascript">
+    $("#Cause").hide();
+  $("#Cause").attr("disabled", true);
+  $("input:radio[name='Status']").change(function() {
+    if (this.value === "3") {
+      $("#analystsArea").hide();
+        $("#notCause").show();
+      $("#Analysts").attr("disabled", true);
+      $("#FinishTime").attr("disabled", true);
+      $("#Cause").removeAttr("disabled");
+
+    } else if (this.value === "2") {
+      $("#analystsArea").show();
+        $("#notCause").hide();
+      $("#Cause").attr("disabled", true);
+      $("#Analysts").removeAttr("disabled");
+      $("#FinishTime").removeAttr("disabled");
+    }
+  });
+  $("#btnSubmit").click(function() {
+    $("#btnSubmit").attr("disabled", true);
+    var url = "@Url.Action("Report")";
+    var data = $("#form1").serialize();
+    AjaxSubmit(url, data);
+
+  });
+</script>

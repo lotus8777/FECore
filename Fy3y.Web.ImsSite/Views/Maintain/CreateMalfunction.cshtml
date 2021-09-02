@@ -1,0 +1,99 @@
+﻿@model Fy3y.Model.Das.MaintainOrder
+@{
+  ViewBag.Title = "故障申报单";
+}
+<br />
+<br />
+<form method="post">
+  @Html.AntiForgeryToken()
+  <table class="table table-sm table-bordered table-striped">
+    <tr>
+      <td class="text-center">申报时间 </td>
+      <td>@Model.CreateTime </td>
+      <td class="text-center">申报科室 </td>
+      <td>@Html.DropDownList("departmentId", ViewBag.departments as SelectList, new { @class = "form-control" }) </td>
+    </tr>
+    <tr>
+      <td class="text-center">设备类型 </td>
+      <td>
+        @Html.TextBoxFor(model => model.DeviceType, new { @class = "form-control", list = "types" })
+        <datalist id="types">
+          <option value="计算机"></option>
+          <option value="网络"></option>
+          <option value="打印机"></option>
+        </datalist>
+      </td>
+      <td class="text-center">设备型号 </td>
+      <td>@Html.TextBoxFor(model => model.DeviceModel, new { @class = "form-control" }) </td>
+    </tr>
+    <tr>
+      <td class="text-center">处理方式 </td>
+      <td colspan="3">
+        <div class="form-inline">
+          <label class="form-check-label" for="repair" style="margin-left: 25px;">
+            <input class="form-check-input" id="repair" name="MaintainType" type="radio" value="维修" />维修
+          </label>
+          <label class="form-check-label" style="margin-left: 25px;" for="instead">
+            <input class="form-check-input" id="instead " name="MaintainType" type="radio" value="更换" />更换
+          </label>
+          <label class="form-check-label" for="add" style="margin-left: 25px;">
+            <input class="form-check-input" id="add" name="MaintainType" type="radio" value="新增" />添加
+          </label>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td class="text-center">紧急程度 </td>
+      <td colspan="3">
+        <div class="form-inline">
+          <label class="form-check-label" for="nomal" style="margin-left: 25px;">
+            <input class="form-check-input" id="nomal" name="Priority" type="radio" value="普通" />普通
+          </label>
+          <label class="form-check-label" for="emergency" style="margin-left: 25px;">
+            <input class="form-check-input" id="emergency" name="Priority" type="radio" value="紧急" />紧急
+          </label>
+          <label class="form-check-label" for="urgent" style="margin-left: 25px;">
+            <input class="form-check-input" id="urgent" name="Priority" type="radio" value="特急" />特急
+          </label>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td class="text-center">故障描述 </td>
+      <td>@Html.TextAreaFor(model => model.FaultDescription, new { @class = "form-control", rows = "15" }) </td>
+    </tr>
+    <tr>
+      <td class="text-center">其它说明 </td>
+      <td>@Html.TextAreaFor(model => model.Remarks, new { @class = "form-control", rows = "5" }) </td>
+    </tr>
+  </table>
+  @Html.HiddenFor(model => model.CreatorId)
+  @Html.HiddenFor(model => model.MaintainStatus)
+  @Html.HiddenFor(model => model.CreateTime)
+  @Html.HiddenFor(model => model.OrderId)
+  <div class="d-print-none text-center">
+    <input class="btn btn-dark" type="submit" value="保存" />
+  </div>
+</form>
+<script type="text/javascript">
+  $(document).ready(function() {
+    //MaintainType
+    var maintainType = '@Model.MaintainType';
+    $("input[name='MaintainType']").each(
+      function() {
+        if (maintainType === $(this).val()) {
+          $(this).attr("checked", "checked");
+        }
+      }
+    );
+    //Priority
+    var priority = '@Model.Priority';
+    $("input[name='Priority']").each(
+      function() {
+        if (priority === $(this).val()) {
+          $(this).attr("checked", "checked");
+        }
+      }
+    );
+  });
+</script>

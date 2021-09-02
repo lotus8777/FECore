@@ -1,0 +1,100 @@
+﻿@model Fy3y.Model.Das.DisposeMaintain
+@{
+  ViewBag.Title = "添加处置记录";
+}
+<form id="form1" method="post">
+  @Html.AntiForgeryToken()
+  <table class="table table-sm table-bordered text-center table-striped">
+    <tr>
+      <td>处置科室 </td>
+      <td>@Html.DropDownList("departmentId", null, new { @class = "form-control" }) </td>
+    </tr>
+    <tr>
+      <td>处置人 </td>
+      <td>@Html.DropDownList("DisposerId", null, new { @class = "form-control" }) </td>
+    </tr>
+    <tr>
+      <td>处置时间 </td>
+      <td>@Html.TextBoxFor(model => model.DisposeTime, new { @class = "form-control", onfocus = "WdatePicker({isShowClear:false,readOnly:true,isShowOK:false,maxDate:'%y-%M-%d',dateFmt:'yyyy-MM-dd HH:mm:ss'})" }) </td>
+    </tr>
+    <tr>
+      <td>处置记录 </td>
+      <td>@Html.TextAreaFor(model => model.Remarks, new { @class = "form-control" }) </td>
+    </tr>
+    <tr>
+      <td>处置结果 </td>
+      <td>
+        @Html.TextBoxFor(model => model.Result, new { @class = "form-control", list = "resultList" })
+        <datalist id="resultList">
+          <option>处理完成</option>
+          <option>正在处理</option>
+          <option>无法完成</option>
+        </datalist>
+      </td>
+    </tr>
+  </table>
+  @Html.HiddenFor(model => model.CreatorId)
+  @Html.HiddenFor(model => model.CreateTime)
+  @Html.HiddenFor(model => model.MaintainId)
+  @Html.HiddenFor(model => model.DepartmentName)
+  @Html.HiddenFor(model => model.DisposerName)
+  @Html.HiddenFor(model => model.IsValid)
+</form>
+<div class="d-print-none text-center">
+  <button class="btn btn-dark" id="submit">
+    <i class="fa fa-save">保存</i>
+  </button>
+  <a href="@Url.Action("CreateMaintain")">
+    <i class="fa fa-backward">返回</i>
+  </a>
+</div>
+<script type="text/javascript">
+  function changeDepartment() {
+    var departmentId = $("#departmentId").val();
+    $.ajax({
+      type: "POST",
+      url: "@Url.Action("GetEmployees","Employee")",
+      data: { "departmentId": departmentId },
+      success: function(msg) {
+        if (msg.status === 1) {
+          $("#DisposerId").empty();
+          msg.data.forEach(function(item) {
+            $("#DisposerId").append("<option value='" + item.EmployeeId + "'>" + item.EmployeeName + "</option>");
+          });
+        } else {
+          layer.msg(msg.message,
+            {
+              icon: 2,
+              time: 2000
+            });
+        }
+      }
+    });
+  }
+
+  function validForm() {
+    return $("#form1").validate({
+      rules: {
+        Remarks: {
+          required: true
+        },
+        DeviceName: {
+          required: true
+        }
+      }
+    });
+  }
+
+  //注册表单验证
+  $(validForm());
+  //点击表单保存按钮触发单击事件，进行表单验证，验证通过发起ajax请求，验证不通过在表单里提示
+  $("#submit").click(function() {
+    if (validForm().form()) {
+      $("#DisposerName").val($("#DisposerId").find("option:selected").text());
+      $("#DepartmentName").val($("#DepartmentId").find("option:selected").text());
+      var url = "@Url.Action("AddDispose")";
+      var data = $("#form1").serialize();
+      AjaxSubmit(url, data);
+    }
+  });
+</script>

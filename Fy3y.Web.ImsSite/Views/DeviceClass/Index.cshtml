@@ -1,0 +1,128 @@
+﻿@{
+  ViewBag.Title = "设备类别管理";
+  Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<br />
+@Scripts.Render("~/Scripts/jsTree")
+@Styles.Render("~/Content/themes/default/jsTree")
+<style>
+  .ibox {
+    clear: none !important;
+  }
+</style>
+<p>
+  <button class="btn btn-dark btn-sm" onclick="addDeviceClass()">
+    <i class="fa fa-plus">增加</i>
+  </button>
+</p>
+<div>
+  <div id="jstree" style="border: 1px solid gray; float: left; min-height: 500px; width: 200px;"></div>
+  <div style="margin-left: 200px;">
+    <ol class="breadcrumb" style="font-size: 1.1rem; font-weight: bolder; padding: 5px 10px; padding: 5px;">
+      <li class="breadcrumb-item">
+        全部类型
+      </li>
+    </ol>
+    <div id="table"></div>
+  </div>
+</div>
+<script type="text/javascript">
+
+  var nodeId = 0;
+  var path = new Array();
+  $("#jstree").jstree({
+    "core": {
+      "data": {
+        url: "@Url.Action("GetDeviceClassTree","Helper")",
+        type: "post",
+        dataType: "json",
+        data: function(node) {
+          return { "nodeId": node.id };
+        },
+        success: function() {
+          GetDataTable(0);
+        }
+      }
+    }
+
+  });
+
+  // 展开节点
+  $("#jstree").on("loadvd.jstree",
+    function(event, data) {
+      // 展开所有节点
+      //$('#jstree').jstree('open_all');
+      // 展开指定节点
+      data.instance.open_node(1); // 单个节点 （1 是顶层的id）
+      //data.instance.open_node([1, 10]); // 多个节点 (展开多个几点只有在一次性装载后所有节点后才可行）
+    });
+
+  // 所有节点都加载完后
+  $("#jstree").on("ready.jstree",
+    function(event, data) {
+      //alert('all ok');
+      //data.instance.open_node(1); // 展开root节点
+      //// 隐藏根节点 http://stackoverflow.com/questions/10429876/how-to-hide-root-node-from-jstree
+      //$("#1_anchor").css("visibility", "hidden");
+      //$("li#1").css("position", "relative")
+      //$("li#1").css("top", "-20px")
+      //$("li#1").css("left", "-20px")
+      //$(".jstree-last .jstree-icon").first().hide();
+    });
+  $('#jstree').on("changed.jstree",
+    function(e, data) {
+      //console.log("The selected nodes are:");
+      //console.log(data.selected);
+      nodeId = data.node.id;
+      GetDataTable(data.node.id);
+      setPath(data.node);
+      //alert('node.id is:' + data.node.id);
+      //alert('node.text is:'+data.node.text);
+      //console.log(data);
+
+      // TODO: 传递给Tab
+      //$.ajax({
+      //    type:"post",
+      //    url: 'Home/GetTreedata/',
+      //    data: { 'id': data.node.id }
+      //});
+    });
+
+  function GetDataTable(id) {
+    $.ajax({
+      type: "post",
+      dateType: "text",
+      url: @Url.Action("GetDataTable"),
+      data: { "nodeId": id },
+      success: function(msg) {
+        $("#table").html(msg.data);
+        setParentFrameHeight();
+      }
+    });
+  }
+
+  //显示所选项目的路径
+  function setPath(node) {
+    path = [];
+    path.push(node.text);
+    var parents = node.parents;
+    var len = parents.length;
+    var i;
+    for (i = 0; i < len - 1; i++) {
+      var text = $("a#" + parents[i] + "_anchor")[0].innerText;
+      path.push(text);
+    }
+    var pathLength = path.length;
+    if (pathLength > 0) {
+      $("ol.breadcrumb").empty();
+      path.reverse();
+      for (i = 0; i < pathLength; i++) {
+        $("ol.breadcrumb").append("<li class=\"breadcrumb-item\">" + path[i] + "</li>");
+      }
+    }
+  }
+
+  function addDeviceClass() {
+    window.location.href = "/DeviceClass/Create/" + nodeId;
+  }
+</script>

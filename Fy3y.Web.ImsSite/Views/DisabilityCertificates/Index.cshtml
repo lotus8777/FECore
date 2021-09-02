@@ -1,0 +1,86 @@
+﻿@model IList<Fy3y.Model.Das.DisabilityCertificate>
+
+@{
+  ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+  @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table table-sm table-bordered table-striped text-center">
+  <tr>
+    <th>#</th>
+    <th>
+      姓名
+    </th>
+    <th>
+      残疾证号
+    </th>
+    <th>
+      监护人
+    </th>
+    <th>
+      联系方式
+    </th>
+    <th>
+      残疾类型
+    </th>
+    <th>
+      残疾等级
+    </th>
+    <th>
+      有限期
+    </th>
+    <th>操作</th>
+  </tr>
+
+  @{
+    int i = 1;
+    foreach (var item in Model)
+    {
+      <tr>
+        <td>@i</td>
+        <td>
+          @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+          @Html.DisplayFor(modelItem => item.DisabilityNo)
+        </td>
+        <td>
+          @Html.DisplayFor(modelItem => item.Guardian)
+        </td>
+        <td>
+          @Html.DisplayFor(modelItem => item.GuardianMobile)
+        </td>
+        <td>
+          @Html.DisplayFor(modelItem => item.DisabilityType)
+        </td>
+        <td>
+          @Html.DisplayFor(modelItem => item.DisabilityLevel)
+        </td>
+        <td>
+          @{
+            if (item.EffectiveDate.AddYears(item.Validity) > DateTime.Now)
+            {
+              <label class="text-success">有效</label>
+            }
+            else
+            {
+              <label class="text-danger">无效</label>
+            }
+          }
+        </td>
+
+        <td>
+          @Html.ActionLink("Edit", "Edit", new { id = item.CertId }) |
+          @Html.ActionLink("Details", "Details", new { id = item.CertId }) |
+          @Html.ActionLink("Delete", "Delete", new { id = item.CertId })
+        </td>
+      </tr>
+      i++;
+    }
+  }
+
+</table>

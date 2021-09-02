@@ -1,0 +1,48 @@
+﻿@model IList<Fy3y.Model.Das.Account>
+@{
+    ViewBag.Title = "帐户管理";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<a class="btn btn-dark" href="@Url.Action("Create")">
+    <i class="fa fa-plus">增加</i>
+</a>
+<div class="text-center">
+    <br/>
+        <table id="table1" class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>帐号</th>
+                    <th>姓名</th>
+                    <th>状态</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model.Any())
+                {
+                    var i = 0;
+                    foreach (var item in Model)
+                    {
+                        i++;
+                        <tr>
+                            <td>@i </td>
+                            <td>@item.UserId </td>
+                            <td>@item.Employee.EmployeeName </td>
+                            <td>@(item.IsValid ? "有效" : "无效") </td>
+                            <td>
+                                <div>
+                                    <a href="@Url.Action("ManageAuthority", new {id = item.UserId})">
+                                        <i class="fa fa-cogs"></i>
+                                    </a>
+                                    <a href="@Url.Action("Edit", new {id = item.UserId})">
+                                        <i class="fa fa-edit"></i>
+                                    </a>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+</div>

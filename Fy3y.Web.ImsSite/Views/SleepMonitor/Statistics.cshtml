@@ -1,0 +1,64 @@
+﻿@model IList<Fy3y.Model.Das.SleepMonitorRegistration>
+@{
+  ViewBag.Title = "睡眠监测预约统计";
+}
+<br />
+<form id="form1" method="post">
+  @Html.AntiForgeryToken()
+  <div class="form-row mb-2">
+    <div class="col-2">
+      @Html.TextBox("begin", null, new {onfocus = "WdatePicker({isShowClear:false,readOnly:true,isShowOK:false})", @class = "form-control"})
+    </div>
+    <div class="col-2">
+      @Html.TextBox("end", null, new {onfocus = "WdatePicker({isShowClear:false,readOnly:true,isShowOK:false})", @class = "form-control"})
+    </div>
+    <div class="col-2">
+      <button class="btn btn-dark d-print-none">
+        <span class="fa fa-search">查询</span>
+      </button>
+    </div>
+  </div>
+</form>
+<table class="table table-sm table-bordered table-striped text-center">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>预约医生</th>
+      <th>预约数</th>
+      <th>就诊数</th>
+      <th>爽约数</th>
+      <th>待就诊</th>
+    </tr>
+  </thead>
+  <tbody>
+    @{
+    var i = 1;
+    IList<string> doctors = Model?.Select(p => p.Doctor).Distinct().ToList();
+    if (doctors?.Count > 0)
+    {
+      foreach (var doctor in doctors)
+      {
+        var list = Model.Where(p => p.Doctor == doctor).ToList();
+      <tr>
+        <td>@i </td>
+        <td>@doctor </td>
+        <td>@list.Count </td>
+        <td>@list.Count(p => p.Status == 2)</td>
+        <td>@list.Count(p => p.Status == 3||p.Status==0)</td>
+        <td>@list.Count(p => p.Status == 1)</td>
+      </tr>
+        i++;
+      }
+    }
+    }
+  </tbody>
+  <tfoot>
+    <tr>
+      <td colspan="2">合计 </td>
+      <td>@(Model?.Count())</td>
+      <td>@(Model?.Where(p => p.Status == 2).Count())</td>
+      <td>@(Model?.Where(p => p.Status == 3||p.Status==0).Count())</td>
+      <td>@(Model?.Where(p => p.Status == 1).Count())</td>
+    </tr>
+  </tfoot>
+</table>

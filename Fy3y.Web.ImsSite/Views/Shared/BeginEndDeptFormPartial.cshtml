@@ -1,0 +1,25 @@
+﻿<form id="form1" method="post">
+    @Html.AntiForgeryToken()
+    <fieldset>
+        <legend>查询条件</legend>
+        <div class="form-group row text-center">
+            <label class="col-1 col-form-label">开始</label>
+            <div class="col-2">
+                @Html.TextBox("begin", null, new { onfocus = "WdatePicker({isShowClear:false,readOnly:true,isShowOK:false,maxDate:'%y/%M/%d',dateFmt: 'yyyy/MM/dd'})", @class = "form-control" })
+            </div>
+            <label class="col-1 col-form-label">结束</label>
+            <div class="col-2">
+                @Html.TextBox("end", null, new { onfocus = "WdatePicker({isShowClear:false,readOnly:true,isShowOK:false,maxDate:'%y/%M/%d',dateFmt: 'yyyy/MM/dd'})", @class = "form-control" })
+            </div>
+            <div class="col-2">
+                @Html.DropDownList("departmentId",null , new { @class = "form-control" })
+            </div>
+            <div class="col-2">
+                <button class="btn btn-dark d-print-none">
+                    <span class="fa fa-search">查询</span>
+                </button>
+            </div>
+        </div>
+    </fieldset>
+</form>
+<br/>

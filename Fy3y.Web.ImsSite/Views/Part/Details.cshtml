@@ -1,0 +1,78 @@
+﻿@model Part
+@{
+  ViewBag.Title = "配件详情";
+  Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<table class="border-dark table table-bordered table-striped text-center">
+  <tr>
+    <td><label class="col-form-label">配件类别</label> </td>
+    <td>@Model.ClassName </td>
+    <td><label class="col-form-label">配件名称</label> </td>
+    <td>@Model.PartName </td>
+  </tr>
+  <tr>
+    <td><label class="col-form-label">品牌型号</label> </td>
+    <td>@Model.BrandModel </td>
+    <td><label class="col-form-label">配件单位</label> </td>
+    <td>@Model.Unit </td>
+  </tr>
+  <tr>
+    <td><label class="col-form-label">配件数量</label> </td>
+    <td>@Model.Quantity </td>
+    <td><label class="col-form-label">剩余数量</label> </td>
+    <td>@Model.RemainingQuantity </td>
+  </tr>
+  <tr>
+    <td><label class="col-form-label">供应商</label> </td>
+    <td>@Model.Supplier </td>
+    <td><label class="col-form-label">供货日期</label> </td>
+    <td>@Model.PurchaseDate.ToShortDateString()</td>
+  </tr>
+  <tr>
+    <td><label class="col-form-label">购买备注</label> </td>
+    <td>@Model.Feedback </td>
+  </tr>
+</table>
+<div class="form-group row text-center">
+  <div class="col-12">
+    <h4>
+      配件使用清单
+      @if (Model.RemainingQuantity > 0)
+      {
+      <a href="@Url.Action("create","PartUsed",new {id=Model.UniqueId})" class="btn btn-dark">添加</a>
+      }
+    </h4>
+  </div>
+</div>
+<table class="border-dark table table-bordered table-striped text-center">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>使用时间</th>
+      <th>使用科室</th>
+      <th>签收人</th>
+      <th>使用数量</th>
+    </tr>
+  </thead>
+  <tbody>
+    @if (Model?.PartUseds?.Count > 0)
+  {
+    var i = 1;
+    foreach (var item in Model.PartUseds)
+    {
+    <tr>
+      <td>@i </td>
+      <td>@item.UsedTime.ToShortDateString()</td>
+      <td>@item.DepartmentName </td>
+      <td>@item.UserName </td>
+      <td>@item.Quantity </td>
+    </tr>
+      i++;
+    }
+  }
+  </tbody>
+</table>
+<div class="text-center">
+  @Html.ActionLink("编辑", "Create", new {id = Model.UniqueId}, new {@class = "btn btn-dark"})
+  @Html.ActionLink("返回", "Index")
+</div>

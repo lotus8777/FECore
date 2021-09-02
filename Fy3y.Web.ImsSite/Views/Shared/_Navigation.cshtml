@@ -1,0 +1,128 @@
+﻿@model IList<SiteMenu>
+<nav class="navbar-default navbar-static-side" id="navbar" role="navigation" style="background-color: #2f4050;">
+  <div class="sidebar-collapse">
+    <ul class="metismenu nav" id="side-menu">
+      <li class="nav-header">
+        <div class="dropdown profile-element">
+          <a href="javascript:void(0)" data-link="@Url.Action("UploadEmployeeImage","Image",new {UserManager.User.EmployeeId})">
+            @if (!string.IsNullOrEmpty(UserManager.User.ImageId))
+            {
+              <img alt="image" class="img-thumbnail" src="@Url.Action("GetImage","Image",new {id=UserManager.User.ImageId})" style="width: 120px;" />
+            }
+            else
+            {
+              <img alt="image" class="img-thumbnail" src="@Url.Action("GetRandomImage","Image")" style="width: 120px;" />
+            }
+          </a>
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+            <span class="block font-bold m-t-xs" style="font-size: 18px; margin-left: 40px;">@UserManager.User.EmployeeName </span>
+            <span class="block text-muted text-xs" style="font-size: 16px; margin-left: 40px; margin-top: 2px;">
+              @UserManager.User.DepartmentName
+              <b class="caret"></b>
+            </span>
+          </a>
+          <ul class="animated dropdown-menu fadeInRight m-t-xs">
+            <li>
+              <a class="dropdown-item" href="#">Profile</a>
+            </li>
+            <li>
+              <a class="dropdown-item" href="#">Contacts</a>
+            </li>
+            <li>
+              <a class="dropdown-item" data-link="@Url.Action("UploadEmployeeImage","Image",new {id=UserManager.User.EmployeeId})" href="javascript:void(0)">修改头像</a>
+            </li>
+            <li>
+              <a class="dropdown-item" data-link="@Url.Action("ChangePassword","Account")" href="javascript:void(0)">修改密码</a>
+            </li>
+            <li>
+              <a class="dropdown-item" href="@Url.Action("Logout","Home")">退出</a>
+            </li>
+          </ul>
+        </div>
+        <div class="logo-element">
+          <a href="javascript:void(0)" data-link="@Url.Action("UploadEmployeeImage",new {id=UserManager.User.EmployeeId})">
+            @if (!string.IsNullOrEmpty(UserManager.User.ImageId))
+            {
+              <img alt="image" class="img-thumbnail" src="@Url.Action("GetImage","Image",new {id=UserManager.User.ImageId})" style="width: 66px;" />
+            }
+            else
+            {
+              <img alt="image" class="img-thumbnail" src="@Url.Action("GetRandomImage","Image")" style="width: 66px;" />
+            }
+          </a>
+        </div>
+      </li>
+      <li>
+        <a href="#">
+          <i class="fa fa-th-large"></i>
+          <span class="nav-label">常用网站</span>
+          <span class="arrow fa"></span>
+        </a>
+        <ul class="nav nav-second-level">
+          <li>
+            <a href="http://www.fy3y.com" target="_blank">医院官网</a>
+          </li>
+          <li>
+            <a href="http://10.120.22.100:8080/home/login" target="_blank">卫计局OA</a>
+          </li>
+          <li>
+            <a href="http://172.16.70.71:9103/hzoa" target="_blank">医保管理</a>
+          </li>
+          <li>
+            <a href="http://192.26.25.4/HZEHR" target="_blank">慢病管理</a>
+          </li>
+            <li>
+                <a href="http://10.10.1.12" target="_blank">共享管理</a>
+            </li>
+            <li>
+                <a href="http://10.10.1.11:9099" target="_blank">老系统</a>
+            </li>
+          <li>
+                <a href="http://10.10.0.30:8060" target="_blank">PACS看片</a>
+            </li>
+          @*<li>
+            <a href="javascript:void(0)" onclick="openLuck()">2019晚会抽奖</a>
+          </li>*@
+        </ul>
+      </li>
+      @*<li>
+        <a href="#">
+          <i class="fa fa-address-book"></i>
+          <span class="nav-label">联系方式</span>
+          <span class="arrow fa"></span>
+        </a>
+        <ul class="nav nav-second-level">
+          <li>
+            <a data-link="@url.Action("PhoneBook","Employee")" href="javascript:void(0)">职工电话</a>
+          </li>
+          <li>
+            <a data-link="@url.Action("OfficeTelphone","Department")" href="javascript:void(0)">科室电话</a>
+          </li>
+        </ul>
+      </li>*@
+      @if (Model?.Count() > 0)
+      {
+        foreach (var parentModuleId in Model.Select(p => p.ParentModuleId).Distinct())
+        {
+          var links = Model.FirstOrDefault(p => p.ParentModuleId == parentModuleId);
+          <li>
+            <a href="#">
+              <i class="@links.ParentIcon"></i>
+              <span class="nav-label">@links.ParentModuleName</span>
+              <span class="arrow fa"></span>
+            </a>
+            <ul class="nav nav-second-level">
+              @foreach (var item in Model.Where(p => p.ParentModuleId == parentModuleId))
+              {
+                <li>
+                    @*<a data-link="@Url.Action(item.ActionName, item.ControllerName)" href="javascript:void(0)">@item.ModuleName</a>*@ 
+                    <a href="@Url.Action(item.ActionName, item.ControllerName)" target="_blank">@item.ModuleName</a>
+                </li>
+              }
+            </ul>
+          </li>
+        }
+      }
+    </ul>
+  </div>
+</nav>

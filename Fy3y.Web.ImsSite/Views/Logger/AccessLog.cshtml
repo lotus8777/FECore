@@ -1,0 +1,40 @@
+﻿@model IList<Fy3y.Model.Das.AccessLog>
+@{
+  ViewBag.Title = "访问记录";
+  Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@Html.Partial("BeginEndFormPartial")
+<table class="table table-sm table-bordered table-hover table-striped text-center">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>用户</th>
+      <th>时间</th>
+      <th>地址</th>
+      <th>方法</th>
+      @*<th>参数</th>*@
+    </tr>
+  </thead>
+  <tbody>
+    @{
+    if (!Model.Any())
+    {
+      <tr><td colspan="5">没有此查询月份的床日数据，请检查查询日期 </td> </tr>
+    }
+    else
+    {
+      foreach (var item in Model)
+      {
+      <tr>
+        <td>@(Model.IndexOf(item) + 1)</td>
+        <td>@item.CreatorName </td>
+        <td>@item.CreateTime </td>
+        <td>@(item.ControllerName + "/" + item.ActionName)</td>
+        <td>@item.HttpMethod </td>
+        @*<td>@item.Parameters </td>*@
+      </tr>
+      }
+    }
+    }
+  </tbody>
+</table>

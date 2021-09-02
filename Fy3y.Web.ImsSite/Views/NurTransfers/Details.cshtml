@@ -1,0 +1,97 @@
+﻿@model Fy3y.Model.Das.NurTransfer
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+  <h4>NurTransfer</h4>
+  <hr />
+  <dl class="dl-horizontal">
+    <dt>
+      @Html.DisplayNameFor(model => model.TransferTime)
+    </dt>
+
+    <dd>
+      @Html.DisplayFor(model => model.TransferTime)
+    </dd>
+
+    <dt>
+      @Html.DisplayNameFor(model => model.MedicalNo)
+    </dt>
+
+    <dd>
+      @Html.DisplayFor(model => model.MedicalNo)
+    </dd>
+
+    <dt>
+      @Html.DisplayNameFor(model => model.PatientName)
+    </dt>
+
+    <dd>
+      @Html.DisplayFor(model => model.PatientName)
+    </dd>
+
+    <dt>
+      @Html.DisplayNameFor(model => model.BedNo)
+    </dt>
+
+    <dd>
+      @Html.DisplayFor(model => model.BedNo)
+    </dd>
+
+    <dt>
+      @Html.DisplayNameFor(model => model.SenderId)
+    </dt>
+
+    <dd>
+      @Html.DisplayFor(model => model.SenderId)
+    </dd>
+
+    <dt>
+      @Html.DisplayNameFor(model => model.SenderName)
+    </dt>
+
+    <dd>
+      @Html.DisplayFor(model => model.SenderName)
+    </dd>
+
+    <dt>
+      @Html.DisplayNameFor(model => model.ReceiverId)
+    </dt>
+
+    <dd>
+      @Html.DisplayFor(model => model.ReceiverId)
+    </dd>
+
+    <dt>
+      @Html.DisplayNameFor(model => model.ReceiverName)
+    </dt>
+
+    <dd>
+      @Html.DisplayFor(model => model.ReceiverName)
+    </dd>
+
+    <dt>
+      @Html.DisplayNameFor(model => model.Remarks)
+    </dt>
+
+    <dd>
+      @Html.DisplayFor(model => model.Remarks)
+    </dd>
+
+    <dt>
+      @Html.DisplayNameFor(model => model.CreateTime)
+    </dt>
+
+    <dd>
+      @Html.DisplayFor(model => model.CreateTime)
+    </dd>
+  </dl>
+</div>
+<p>
+  @Html.ActionLink("Edit", "Edit", new { id = Model.TransferId }) |
+  @Html.ActionLink("Back to List", "Index")
+</p>

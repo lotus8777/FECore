@@ -1,0 +1,56 @@
+﻿@model IList<ProcAntibacterialagents>
+@{
+  ViewBag.Title = "病区抗生药物使用人数统计";
+  Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<form method="post">
+  @Html.AntiForgeryToken()
+  <fieldset>
+    <legend>查询条件</legend>
+    <div class="form-group row text-center">
+      <label class="col-1 col-form-label">开始</label>
+      @Html.TextBox("begin", null, new {onfocus = "WdatePicker({isShowClear:false,readOnly:true,isShowOK:false,dateFmt: 'yyyy/MM/dd'})", @class = "form-control col-2"})
+      <label class="col-1 col-form-label">结束</label>
+      @Html.TextBox("end", null, new {onfocus = "WdatePicker({isShowClear:false,readOnly:true,isShowOK:false,dateFmt: 'yyyy/MM/dd'})", @class = "form-control col-2"})
+      <div class="col-2">
+        <button class="btn btn-dark d-print-none">
+          <span class="fa fa-search">查询</span>
+        </button>
+      </div>
+      <div class="col-2">
+        <a href="@Url.Action("InpatientAntibiotics","Medicament")" class="btn btn-success">抗生明细</a>
+      </div>
+    </div>
+  </fieldset>
+</form>
+<br/>
+
+
+<table class="table table-sm table-bordered table-hover table-striped text-center">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>病区</th>
+      <th>抗生人数</th>
+      <th>出院人数</th>
+    </tr>
+  </thead>
+  <tbody>
+    @{
+    var number = 0;
+    if (Model != null)
+    {
+      foreach (var p in Model)
+      {
+        number++;
+      <tr>
+        <td>@number </td>
+        <td>@p.Ksmc </td>
+        <td>@p.Syrs </td>
+        <td>@p.Cyrs </td>
+      </tr>
+      }
+    }
+    }
+  </tbody>
+</table>

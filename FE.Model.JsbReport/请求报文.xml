@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<messages  	xmlns="http://www.neusoft.com/hit/rhin"
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:schemaLocation="http://www.neusoft.com/hit/rhin file:///e:/request_message.xsd">
+	<heartbeat>0</heartbeat>
+	<switchset>
+		<authority>
+			<authoritytype>0</authoritytype>
+			<username/>
+			<userpwd/>
+			<license/>
+		</authority>
+		<visitor>
+			<sourceorgan>(项目具体编码)</sourceorgan>
+			<sourcedomain> NRHP000001</sourcedomain>
+		</visitor>
+		<serviceinf>
+			<servicecode>HSBScene:HSBService</servicecode>
+		</serviceinf>
+		<provider>
+			<targetorgan/>
+			<targetdomain/>
+		</provider>
+		<route/>
+		<process/>
+	</switchset>
+	<business>
+		<standardcode/>
+		<requestset>
+			<reqcondition>
+				<condition/>
+			</reqcondition>
+			<reqpaging>0</reqpaging>
+			<reqpageindex>-1</reqpageindex>
+			<reqpageset>0</reqpageset>
+		</requestset>
+		<datacompress>0</datacompress>
+		<daqtaskid/>
+		<BusinessData>
+			<!--请参见下面的服务接口说明-->
+		</BusinessData>
+	</business>
+	<extendset/>
+</messages>

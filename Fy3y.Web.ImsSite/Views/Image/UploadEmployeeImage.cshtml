@@ -1,0 +1,90 @@
+﻿@model IList<Image>
+@{
+  ViewBag.Title = "修改头像";
+}
+
+当前头像
+<br />
+<div style="border: 1px solid black; min-height: 200px; width: 200px;">
+  <img alt="选择头像" class="img-thumbnail" id="currentImage" src="@Url.Action("GetImage",new { id=ViewBag.imageId})" style="width: 200px;" />
+</div>
+<br />
+<form enctype="multipart/form-data" id="form1">
+  @Html.AntiForgeryToken()
+  <div class="form-group">
+    <label for="uploadImage">选择头像文件</label>
+    <input accept=".jpeg,.bmp,.png,.jpg,.gif" class="form-control-file" id="uploadImage" name="upoadImage" type="file">
+  </div>
+  <input type="hidden" value="@ViewBag.employeeId" name="employeeId" />
+  <input name="imageId" type="hidden" />
+</form>
+<button class="btn btn-success" id="btnSubmit">上传</button>
+<hr />
+可选头像
+<br />
+@if (Model.Any())
+{
+  foreach (var item in Model)
+  {
+<img alt="@item.ImageName" class="img-thumbnail" data-imageId="@item.UniqueId" src="@Url.Action("GetImage",new { id=item.UniqueId})" style="width: 200px;" />
+  }
+}
+<script type="text/javascript">
+  $("#uploadImage").change(function() {
+    var $file = $(this);
+    var objUrl = $file[0].files[0];
+    //获得一个http格式的url路径:mozilla(firefox)||webkit or chrome
+    var windowUrl = window.URL || window.webkitURL;
+    //createObjectURL创建一个指向该参数对象(图片)的URL
+    var dataUrl = windowUrl.createObjectURL(objUrl);
+    $("#currentImage").attr("src", dataUrl);
+  });
+
+  $("#btnSubmit").click(function() {
+    var url = "@Url.Action("UploadEmployeeImage")";
+    $('#form1').ajaxSubmit({
+      type: "POST",
+      url: url,
+      success: function(msg) {
+        if (msg.status === 1) {
+          if (msg.message != null) {
+            parent.layer.msg(msg.message,
+              {
+                icon: 1,
+                time: 3000
+              },
+              function() {
+                parent.location.href = '@Url.Action("logout","Home")';
+                //window.location.href = msg.url;
+              }
+            );
+          } else {
+            //window.location.href = msg.url;
+            parent.location.href = '@Url.Action("logout","Home")';
+          }
+        } else {
+          parent.layer.msg(msg.message,
+            {
+              icon: 2,
+              time: 2000
+            });
+        }
+      },
+      error: function() {
+        parent.layer.msg('操作失败!',
+          {
+            icon: 2,
+            time: 2000
+          });
+      }
+    });
+  });
+
+  $("[name='selectImage']").click(function() {
+    var selectSrc = $(this).attr("src");
+    var imageId = $(this).data("imageId");
+    $("#currentImage").attr("src", selectSrc);
+    $("[name='imageId']").val(imageId);
+
+  });
+</script>

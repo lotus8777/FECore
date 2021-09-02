@@ -1,0 +1,2032 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://127.0.0.1/fyypt/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://127.0.0.1/fyypt/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://127.0.0.1/fyypt/">
+      <s:element name="wsj_CheckIn">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="inStr" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="wsj_CheckInResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="wsj_CheckInResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="wsj_OPConfirm">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="inStr" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="wsj_OPConfirmResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="wsj_OPConfirmResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="wsj_lab_register">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="inStr" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="wsj_lab_registerResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="wsj_lab_registerResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="wsj_lab_upload">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="inStr" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="wsj_lab_uploadResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="wsj_lab_uploadResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="wsj_exam_register">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="inStr" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="wsj_exam_registerResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="wsj_exam_registerResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="wsj_exam_checkin">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="inStr" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="wsj_exam_checkinResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="wsj_exam_checkinResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="wsj_opconfirmforexam">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="inStr" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="wsj_opconfirmforexamResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="wsj_opconfirmforexamResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="wsj_IPConfirm">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="inStr" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="wsj_IPConfirmResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="wsj_IPConfirmResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="wsj_payMent">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="inStr" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="wsj_payMentResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="wsj_payMentResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="wsj_queryfile">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="inStr" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="wsj_queryfileResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="wsj_queryfileResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="wsj_createfile">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="inStr" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="wsj_createfileResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="wsj_createfileResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="wsj_revisefile">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="inStr" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="wsj_revisefileResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="wsj_revisefileResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="wsj_paymentzf">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="inStr" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="wsj_paymentzfResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="wsj_paymentzfResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="wsj_jzxxconfirm">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="inStr" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="wsj_jzxxconfirmResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="wsj_jzxxconfirmResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="wsj_querypaylimit">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="inStr" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="wsj_querypaylimitResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="wsj_querypaylimitResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="wsj_query_yprk">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="inStr" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="wsj_query_yprkResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="wsj_query_yprkResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="wsj_yprk">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="inStr" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="wsj_yprkResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="wsj_yprkResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="wsj_yptk_apply">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="inStr" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="wsj_yptk_applyResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="wsj_yptk_applyResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="wsj_gmssc">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="inStr" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="wsj_gmsscResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="wsj_gmsscResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="wsj_deleteBill">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="inStr" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="wsj_deleteBillResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="wsj_deleteBillResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="wsj_checkin_delete">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="inStr" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="wsj_checkin_deleteResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="wsj_checkin_deleteResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="wsj_checkin_update">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="inStr" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="wsj_checkin_updateResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="wsj_checkin_updateResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="wsj_physicalexam">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="inStr" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="wsj_physicalexamResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="wsj_physicalexamResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="his_DesData">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="inStr" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="his_DesDataResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="his_DesDataResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="string" nillable="true" type="s:string" />
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="wsj_CheckInSoapIn">
+    <wsdl:part name="parameters" element="tns:wsj_CheckIn" />
+  </wsdl:message>
+  <wsdl:message name="wsj_CheckInSoapOut">
+    <wsdl:part name="parameters" element="tns:wsj_CheckInResponse" />
+  </wsdl:message>
+  <wsdl:message name="wsj_OPConfirmSoapIn">
+    <wsdl:part name="parameters" element="tns:wsj_OPConfirm" />
+  </wsdl:message>
+  <wsdl:message name="wsj_OPConfirmSoapOut">
+    <wsdl:part name="parameters" element="tns:wsj_OPConfirmResponse" />
+  </wsdl:message>
+  <wsdl:message name="wsj_lab_registerSoapIn">
+    <wsdl:part name="parameters" element="tns:wsj_lab_register" />
+  </wsdl:message>
+  <wsdl:message name="wsj_lab_registerSoapOut">
+    <wsdl:part name="parameters" element="tns:wsj_lab_registerResponse" />
+  </wsdl:message>
+  <wsdl:message name="wsj_lab_uploadSoapIn">
+    <wsdl:part name="parameters" element="tns:wsj_lab_upload" />
+  </wsdl:message>
+  <wsdl:message name="wsj_lab_uploadSoapOut">
+    <wsdl:part name="parameters" element="tns:wsj_lab_uploadResponse" />
+  </wsdl:message>
+  <wsdl:message name="wsj_exam_registerSoapIn">
+    <wsdl:part name="parameters" element="tns:wsj_exam_register" />
+  </wsdl:message>
+  <wsdl:message name="wsj_exam_registerSoapOut">
+    <wsdl:part name="parameters" element="tns:wsj_exam_registerResponse" />
+  </wsdl:message>
+  <wsdl:message name="wsj_exam_checkinSoapIn">
+    <wsdl:part name="parameters" element="tns:wsj_exam_checkin" />
+  </wsdl:message>
+  <wsdl:message name="wsj_exam_checkinSoapOut">
+    <wsdl:part name="parameters" element="tns:wsj_exam_checkinResponse" />
+  </wsdl:message>
+  <wsdl:message name="wsj_opconfirmforexamSoapIn">
+    <wsdl:part name="parameters" element="tns:wsj_opconfirmforexam" />
+  </wsdl:message>
+  <wsdl:message name="wsj_opconfirmforexamSoapOut">
+    <wsdl:part name="parameters" element="tns:wsj_opconfirmforexamResponse" />
+  </wsdl:message>
+  <wsdl:message name="wsj_IPConfirmSoapIn">
+    <wsdl:part name="parameters" element="tns:wsj_IPConfirm" />
+  </wsdl:message>
+  <wsdl:message name="wsj_IPConfirmSoapOut">
+    <wsdl:part name="parameters" element="tns:wsj_IPConfirmResponse" />
+  </wsdl:message>
+  <wsdl:message name="wsj_payMentSoapIn">
+    <wsdl:part name="parameters" element="tns:wsj_payMent" />
+  </wsdl:message>
+  <wsdl:message name="wsj_payMentSoapOut">
+    <wsdl:part name="parameters" element="tns:wsj_payMentResponse" />
+  </wsdl:message>
+  <wsdl:message name="wsj_queryfileSoapIn">
+    <wsdl:part name="parameters" element="tns:wsj_queryfile" />
+  </wsdl:message>
+  <wsdl:message name="wsj_queryfileSoapOut">
+    <wsdl:part name="parameters" element="tns:wsj_queryfileResponse" />
+  </wsdl:message>
+  <wsdl:message name="wsj_createfileSoapIn">
+    <wsdl:part name="parameters" element="tns:wsj_createfile" />
+  </wsdl:message>
+  <wsdl:message name="wsj_createfileSoapOut">
+    <wsdl:part name="parameters" element="tns:wsj_createfileResponse" />
+  </wsdl:message>
+  <wsdl:message name="wsj_revisefileSoapIn">
+    <wsdl:part name="parameters" element="tns:wsj_revisefile" />
+  </wsdl:message>
+  <wsdl:message name="wsj_revisefileSoapOut">
+    <wsdl:part name="parameters" element="tns:wsj_revisefileResponse" />
+  </wsdl:message>
+  <wsdl:message name="wsj_paymentzfSoapIn">
+    <wsdl:part name="parameters" element="tns:wsj_paymentzf" />
+  </wsdl:message>
+  <wsdl:message name="wsj_paymentzfSoapOut">
+    <wsdl:part name="parameters" element="tns:wsj_paymentzfResponse" />
+  </wsdl:message>
+  <wsdl:message name="wsj_jzxxconfirmSoapIn">
+    <wsdl:part name="parameters" element="tns:wsj_jzxxconfirm" />
+  </wsdl:message>
+  <wsdl:message name="wsj_jzxxconfirmSoapOut">
+    <wsdl:part name="parameters" element="tns:wsj_jzxxconfirmResponse" />
+  </wsdl:message>
+  <wsdl:message name="wsj_querypaylimitSoapIn">
+    <wsdl:part name="parameters" element="tns:wsj_querypaylimit" />
+  </wsdl:message>
+  <wsdl:message name="wsj_querypaylimitSoapOut">
+    <wsdl:part name="parameters" element="tns:wsj_querypaylimitResponse" />
+  </wsdl:message>
+  <wsdl:message name="wsj_query_yprkSoapIn">
+    <wsdl:part name="parameters" element="tns:wsj_query_yprk" />
+  </wsdl:message>
+  <wsdl:message name="wsj_query_yprkSoapOut">
+    <wsdl:part name="parameters" element="tns:wsj_query_yprkResponse" />
+  </wsdl:message>
+  <wsdl:message name="wsj_yprkSoapIn">
+    <wsdl:part name="parameters" element="tns:wsj_yprk" />
+  </wsdl:message>
+  <wsdl:message name="wsj_yprkSoapOut">
+    <wsdl:part name="parameters" element="tns:wsj_yprkResponse" />
+  </wsdl:message>
+  <wsdl:message name="wsj_yptk_applySoapIn">
+    <wsdl:part name="parameters" element="tns:wsj_yptk_apply" />
+  </wsdl:message>
+  <wsdl:message name="wsj_yptk_applySoapOut">
+    <wsdl:part name="parameters" element="tns:wsj_yptk_applyResponse" />
+  </wsdl:message>
+  <wsdl:message name="wsj_gmsscSoapIn">
+    <wsdl:part name="parameters" element="tns:wsj_gmssc" />
+  </wsdl:message>
+  <wsdl:message name="wsj_gmsscSoapOut">
+    <wsdl:part name="parameters" element="tns:wsj_gmsscResponse" />
+  </wsdl:message>
+  <wsdl:message name="wsj_deleteBillSoapIn">
+    <wsdl:part name="parameters" element="tns:wsj_deleteBill" />
+  </wsdl:message>
+  <wsdl:message name="wsj_deleteBillSoapOut">
+    <wsdl:part name="parameters" element="tns:wsj_deleteBillResponse" />
+  </wsdl:message>
+  <wsdl:message name="wsj_checkin_deleteSoapIn">
+    <wsdl:part name="parameters" element="tns:wsj_checkin_delete" />
+  </wsdl:message>
+  <wsdl:message name="wsj_checkin_deleteSoapOut">
+    <wsdl:part name="parameters" element="tns:wsj_checkin_deleteResponse" />
+  </wsdl:message>
+  <wsdl:message name="wsj_checkin_updateSoapIn">
+    <wsdl:part name="parameters" element="tns:wsj_checkin_update" />
+  </wsdl:message>
+  <wsdl:message name="wsj_checkin_updateSoapOut">
+    <wsdl:part name="parameters" element="tns:wsj_checkin_updateResponse" />
+  </wsdl:message>
+  <wsdl:message name="wsj_physicalexamSoapIn">
+    <wsdl:part name="parameters" element="tns:wsj_physicalexam" />
+  </wsdl:message>
+  <wsdl:message name="wsj_physicalexamSoapOut">
+    <wsdl:part name="parameters" element="tns:wsj_physicalexamResponse" />
+  </wsdl:message>
+  <wsdl:message name="his_DesDataSoapIn">
+    <wsdl:part name="parameters" element="tns:his_DesData" />
+  </wsdl:message>
+  <wsdl:message name="his_DesDataSoapOut">
+    <wsdl:part name="parameters" element="tns:his_DesDataResponse" />
+  </wsdl:message>
+  <wsdl:message name="wsj_CheckInHttpGetIn">
+    <wsdl:part name="inStr" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="wsj_CheckInHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="wsj_OPConfirmHttpGetIn">
+    <wsdl:part name="inStr" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="wsj_OPConfirmHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="wsj_lab_registerHttpGetIn">
+    <wsdl:part name="inStr" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="wsj_lab_registerHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="wsj_lab_uploadHttpGetIn">
+    <wsdl:part name="inStr" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="wsj_lab_uploadHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="wsj_exam_registerHttpGetIn">
+    <wsdl:part name="inStr" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="wsj_exam_registerHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="wsj_exam_checkinHttpGetIn">
+    <wsdl:part name="inStr" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="wsj_exam_checkinHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="wsj_opconfirmforexamHttpGetIn">
+    <wsdl:part name="inStr" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="wsj_opconfirmforexamHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="wsj_IPConfirmHttpGetIn">
+    <wsdl:part name="inStr" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="wsj_IPConfirmHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="wsj_payMentHttpGetIn">
+    <wsdl:part name="inStr" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="wsj_payMentHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="wsj_queryfileHttpGetIn">
+    <wsdl:part name="inStr" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="wsj_queryfileHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="wsj_createfileHttpGetIn">
+    <wsdl:part name="inStr" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="wsj_createfileHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="wsj_revisefileHttpGetIn">
+    <wsdl:part name="inStr" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="wsj_revisefileHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="wsj_paymentzfHttpGetIn">
+    <wsdl:part name="inStr" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="wsj_paymentzfHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="wsj_jzxxconfirmHttpGetIn">
+    <wsdl:part name="inStr" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="wsj_jzxxconfirmHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="wsj_querypaylimitHttpGetIn">
+    <wsdl:part name="inStr" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="wsj_querypaylimitHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="wsj_query_yprkHttpGetIn">
+    <wsdl:part name="inStr" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="wsj_query_yprkHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="wsj_yprkHttpGetIn">
+    <wsdl:part name="inStr" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="wsj_yprkHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="wsj_yptk_applyHttpGetIn">
+    <wsdl:part name="inStr" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="wsj_yptk_applyHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="wsj_gmsscHttpGetIn">
+    <wsdl:part name="inStr" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="wsj_gmsscHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="wsj_deleteBillHttpGetIn">
+    <wsdl:part name="inStr" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="wsj_deleteBillHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="wsj_checkin_deleteHttpGetIn">
+    <wsdl:part name="inStr" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="wsj_checkin_deleteHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="wsj_checkin_updateHttpGetIn">
+    <wsdl:part name="inStr" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="wsj_checkin_updateHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="wsj_physicalexamHttpGetIn">
+    <wsdl:part name="inStr" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="wsj_physicalexamHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="his_DesDataHttpGetIn">
+    <wsdl:part name="inStr" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="his_DesDataHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="wsj_CheckInHttpPostIn">
+    <wsdl:part name="inStr" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="wsj_CheckInHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="wsj_OPConfirmHttpPostIn">
+    <wsdl:part name="inStr" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="wsj_OPConfirmHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="wsj_lab_registerHttpPostIn">
+    <wsdl:part name="inStr" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="wsj_lab_registerHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="wsj_lab_uploadHttpPostIn">
+    <wsdl:part name="inStr" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="wsj_lab_uploadHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="wsj_exam_registerHttpPostIn">
+    <wsdl:part name="inStr" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="wsj_exam_registerHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="wsj_exam_checkinHttpPostIn">
+    <wsdl:part name="inStr" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="wsj_exam_checkinHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="wsj_opconfirmforexamHttpPostIn">
+    <wsdl:part name="inStr" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="wsj_opconfirmforexamHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="wsj_IPConfirmHttpPostIn">
+    <wsdl:part name="inStr" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="wsj_IPConfirmHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="wsj_payMentHttpPostIn">
+    <wsdl:part name="inStr" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="wsj_payMentHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="wsj_queryfileHttpPostIn">
+    <wsdl:part name="inStr" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="wsj_queryfileHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="wsj_createfileHttpPostIn">
+    <wsdl:part name="inStr" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="wsj_createfileHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="wsj_revisefileHttpPostIn">
+    <wsdl:part name="inStr" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="wsj_revisefileHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="wsj_paymentzfHttpPostIn">
+    <wsdl:part name="inStr" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="wsj_paymentzfHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="wsj_jzxxconfirmHttpPostIn">
+    <wsdl:part name="inStr" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="wsj_jzxxconfirmHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="wsj_querypaylimitHttpPostIn">
+    <wsdl:part name="inStr" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="wsj_querypaylimitHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="wsj_query_yprkHttpPostIn">
+    <wsdl:part name="inStr" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="wsj_query_yprkHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="wsj_yprkHttpPostIn">
+    <wsdl:part name="inStr" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="wsj_yprkHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="wsj_yptk_applyHttpPostIn">
+    <wsdl:part name="inStr" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="wsj_yptk_applyHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="wsj_gmsscHttpPostIn">
+    <wsdl:part name="inStr" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="wsj_gmsscHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="wsj_deleteBillHttpPostIn">
+    <wsdl:part name="inStr" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="wsj_deleteBillHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="wsj_checkin_deleteHttpPostIn">
+    <wsdl:part name="inStr" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="wsj_checkin_deleteHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="wsj_checkin_updateHttpPostIn">
+    <wsdl:part name="inStr" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="wsj_checkin_updateHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="wsj_physicalexamHttpPostIn">
+    <wsdl:part name="inStr" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="wsj_physicalexamHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="his_DesDataHttpPostIn">
+    <wsdl:part name="inStr" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="his_DesDataHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:portType name="fyyptSoap">
+    <wsdl:operation name="wsj_CheckIn">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">患者就诊报到接口</wsdl:documentation>
+      <wsdl:input message="tns:wsj_CheckInSoapIn" />
+      <wsdl:output message="tns:wsj_CheckInSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="wsj_OPConfirm">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">门急诊患者结诊时就诊确认接口</wsdl:documentation>
+      <wsdl:input message="tns:wsj_OPConfirmSoapIn" />
+      <wsdl:output message="tns:wsj_OPConfirmSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="wsj_lab_register">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">检验申请接口</wsdl:documentation>
+      <wsdl:input message="tns:wsj_lab_registerSoapIn" />
+      <wsdl:output message="tns:wsj_lab_registerSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="wsj_lab_upload">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">检验登记接口</wsdl:documentation>
+      <wsdl:input message="tns:wsj_lab_uploadSoapIn" />
+      <wsdl:output message="tns:wsj_lab_uploadSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="wsj_exam_register">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">检查申请接口</wsdl:documentation>
+      <wsdl:input message="tns:wsj_exam_registerSoapIn" />
+      <wsdl:output message="tns:wsj_exam_registerSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="wsj_exam_checkin">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">检查登记接口</wsdl:documentation>
+      <wsdl:input message="tns:wsj_exam_checkinSoapIn" />
+      <wsdl:output message="tns:wsj_exam_checkinSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="wsj_opconfirmforexam">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">检查检验单确认接口</wsdl:documentation>
+      <wsdl:input message="tns:wsj_opconfirmforexamSoapIn" />
+      <wsdl:output message="tns:wsj_opconfirmforexamSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="wsj_IPConfirm">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">住院患者结诊时的就诊确认接口</wsdl:documentation>
+      <wsdl:input message="tns:wsj_IPConfirmSoapIn" />
+      <wsdl:output message="tns:wsj_IPConfirmSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="wsj_payMent">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">就诊收费信息确认上报接口</wsdl:documentation>
+      <wsdl:input message="tns:wsj_payMentSoapIn" />
+      <wsdl:output message="tns:wsj_payMentSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="wsj_queryfile">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">基本档案查询接口</wsdl:documentation>
+      <wsdl:input message="tns:wsj_queryfileSoapIn" />
+      <wsdl:output message="tns:wsj_queryfileSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="wsj_createfile">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">基本档案建档接口</wsdl:documentation>
+      <wsdl:input message="tns:wsj_createfileSoapIn" />
+      <wsdl:output message="tns:wsj_createfileSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="wsj_revisefile">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">基本档案修改接口</wsdl:documentation>
+      <wsdl:input message="tns:wsj_revisefileSoapIn" />
+      <wsdl:output message="tns:wsj_revisefileSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="wsj_paymentzf">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">就诊收费信息作废上报接口</wsdl:documentation>
+      <wsdl:input message="tns:wsj_paymentzfSoapIn" />
+      <wsdl:output message="tns:wsj_paymentzfSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="wsj_jzxxconfirm">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">就诊信息信息的上传接口</wsdl:documentation>
+      <wsdl:input message="tns:wsj_jzxxconfirmSoapIn" />
+      <wsdl:output message="tns:wsj_jzxxconfirmSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="wsj_querypaylimit">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">获取授信及预授权冻结额度接口</wsdl:documentation>
+      <wsdl:input message="tns:wsj_querypaylimitSoapIn" />
+      <wsdl:output message="tns:wsj_querypaylimitSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="wsj_query_yprk">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">订单查询</wsdl:documentation>
+      <wsdl:input message="tns:wsj_query_yprkSoapIn" />
+      <wsdl:output message="tns:wsj_query_yprkSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="wsj_yprk">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">入库单确认</wsdl:documentation>
+      <wsdl:input message="tns:wsj_yprkSoapIn" />
+      <wsdl:output message="tns:wsj_yprkSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="wsj_yptk_apply">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">退药申请</wsdl:documentation>
+      <wsdl:input message="tns:wsj_yptk_applySoapIn" />
+      <wsdl:output message="tns:wsj_yptk_applySoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="wsj_gmssc">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">过敏史上传</wsdl:documentation>
+      <wsdl:input message="tns:wsj_gmsscSoapIn" />
+      <wsdl:output message="tns:wsj_gmsscSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="wsj_deleteBill">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">开单删除接口</wsdl:documentation>
+      <wsdl:input message="tns:wsj_deleteBillSoapIn" />
+      <wsdl:output message="tns:wsj_deleteBillSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="wsj_checkin_delete">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">删除住院就诊登记接口</wsdl:documentation>
+      <wsdl:input message="tns:wsj_checkin_deleteSoapIn" />
+      <wsdl:output message="tns:wsj_checkin_deleteSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="wsj_checkin_update">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">修改住院就诊登记接口</wsdl:documentation>
+      <wsdl:input message="tns:wsj_checkin_updateSoapIn" />
+      <wsdl:output message="tns:wsj_checkin_updateSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="wsj_physicalexam">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">体检系统在完成病人体检报告总检后调用该接口</wsdl:documentation>
+      <wsdl:input message="tns:wsj_physicalexamSoapIn" />
+      <wsdl:output message="tns:wsj_physicalexamSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="his_DesData">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">加解密数据接口</wsdl:documentation>
+      <wsdl:input message="tns:his_DesDataSoapIn" />
+      <wsdl:output message="tns:his_DesDataSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="fyyptHttpGet">
+    <wsdl:operation name="wsj_CheckIn">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">患者就诊报到接口</wsdl:documentation>
+      <wsdl:input message="tns:wsj_CheckInHttpGetIn" />
+      <wsdl:output message="tns:wsj_CheckInHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="wsj_OPConfirm">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">门急诊患者结诊时就诊确认接口</wsdl:documentation>
+      <wsdl:input message="tns:wsj_OPConfirmHttpGetIn" />
+      <wsdl:output message="tns:wsj_OPConfirmHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="wsj_lab_register">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">检验申请接口</wsdl:documentation>
+      <wsdl:input message="tns:wsj_lab_registerHttpGetIn" />
+      <wsdl:output message="tns:wsj_lab_registerHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="wsj_lab_upload">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">检验登记接口</wsdl:documentation>
+      <wsdl:input message="tns:wsj_lab_uploadHttpGetIn" />
+      <wsdl:output message="tns:wsj_lab_uploadHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="wsj_exam_register">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">检查申请接口</wsdl:documentation>
+      <wsdl:input message="tns:wsj_exam_registerHttpGetIn" />
+      <wsdl:output message="tns:wsj_exam_registerHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="wsj_exam_checkin">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">检查登记接口</wsdl:documentation>
+      <wsdl:input message="tns:wsj_exam_checkinHttpGetIn" />
+      <wsdl:output message="tns:wsj_exam_checkinHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="wsj_opconfirmforexam">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">检查检验单确认接口</wsdl:documentation>
+      <wsdl:input message="tns:wsj_opconfirmforexamHttpGetIn" />
+      <wsdl:output message="tns:wsj_opconfirmforexamHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="wsj_IPConfirm">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">住院患者结诊时的就诊确认接口</wsdl:documentation>
+      <wsdl:input message="tns:wsj_IPConfirmHttpGetIn" />
+      <wsdl:output message="tns:wsj_IPConfirmHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="wsj_payMent">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">就诊收费信息确认上报接口</wsdl:documentation>
+      <wsdl:input message="tns:wsj_payMentHttpGetIn" />
+      <wsdl:output message="tns:wsj_payMentHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="wsj_queryfile">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">基本档案查询接口</wsdl:documentation>
+      <wsdl:input message="tns:wsj_queryfileHttpGetIn" />
+      <wsdl:output message="tns:wsj_queryfileHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="wsj_createfile">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">基本档案建档接口</wsdl:documentation>
+      <wsdl:input message="tns:wsj_createfileHttpGetIn" />
+      <wsdl:output message="tns:wsj_createfileHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="wsj_revisefile">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">基本档案修改接口</wsdl:documentation>
+      <wsdl:input message="tns:wsj_revisefileHttpGetIn" />
+      <wsdl:output message="tns:wsj_revisefileHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="wsj_paymentzf">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">就诊收费信息作废上报接口</wsdl:documentation>
+      <wsdl:input message="tns:wsj_paymentzfHttpGetIn" />
+      <wsdl:output message="tns:wsj_paymentzfHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="wsj_jzxxconfirm">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">就诊信息信息的上传接口</wsdl:documentation>
+      <wsdl:input message="tns:wsj_jzxxconfirmHttpGetIn" />
+      <wsdl:output message="tns:wsj_jzxxconfirmHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="wsj_querypaylimit">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">获取授信及预授权冻结额度接口</wsdl:documentation>
+      <wsdl:input message="tns:wsj_querypaylimitHttpGetIn" />
+      <wsdl:output message="tns:wsj_querypaylimitHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="wsj_query_yprk">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">订单查询</wsdl:documentation>
+      <wsdl:input message="tns:wsj_query_yprkHttpGetIn" />
+      <wsdl:output message="tns:wsj_query_yprkHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="wsj_yprk">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">入库单确认</wsdl:documentation>
+      <wsdl:input message="tns:wsj_yprkHttpGetIn" />
+      <wsdl:output message="tns:wsj_yprkHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="wsj_yptk_apply">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">退药申请</wsdl:documentation>
+      <wsdl:input message="tns:wsj_yptk_applyHttpGetIn" />
+      <wsdl:output message="tns:wsj_yptk_applyHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="wsj_gmssc">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">过敏史上传</wsdl:documentation>
+      <wsdl:input message="tns:wsj_gmsscHttpGetIn" />
+      <wsdl:output message="tns:wsj_gmsscHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="wsj_deleteBill">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">开单删除接口</wsdl:documentation>
+      <wsdl:input message="tns:wsj_deleteBillHttpGetIn" />
+      <wsdl:output message="tns:wsj_deleteBillHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="wsj_checkin_delete">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">删除住院就诊登记接口</wsdl:documentation>
+      <wsdl:input message="tns:wsj_checkin_deleteHttpGetIn" />
+      <wsdl:output message="tns:wsj_checkin_deleteHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="wsj_checkin_update">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">修改住院就诊登记接口</wsdl:documentation>
+      <wsdl:input message="tns:wsj_checkin_updateHttpGetIn" />
+      <wsdl:output message="tns:wsj_checkin_updateHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="wsj_physicalexam">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">体检系统在完成病人体检报告总检后调用该接口</wsdl:documentation>
+      <wsdl:input message="tns:wsj_physicalexamHttpGetIn" />
+      <wsdl:output message="tns:wsj_physicalexamHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="his_DesData">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">加解密数据接口</wsdl:documentation>
+      <wsdl:input message="tns:his_DesDataHttpGetIn" />
+      <wsdl:output message="tns:his_DesDataHttpGetOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="fyyptHttpPost">
+    <wsdl:operation name="wsj_CheckIn">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">患者就诊报到接口</wsdl:documentation>
+      <wsdl:input message="tns:wsj_CheckInHttpPostIn" />
+      <wsdl:output message="tns:wsj_CheckInHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="wsj_OPConfirm">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">门急诊患者结诊时就诊确认接口</wsdl:documentation>
+      <wsdl:input message="tns:wsj_OPConfirmHttpPostIn" />
+      <wsdl:output message="tns:wsj_OPConfirmHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="wsj_lab_register">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">检验申请接口</wsdl:documentation>
+      <wsdl:input message="tns:wsj_lab_registerHttpPostIn" />
+      <wsdl:output message="tns:wsj_lab_registerHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="wsj_lab_upload">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">检验登记接口</wsdl:documentation>
+      <wsdl:input message="tns:wsj_lab_uploadHttpPostIn" />
+      <wsdl:output message="tns:wsj_lab_uploadHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="wsj_exam_register">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">检查申请接口</wsdl:documentation>
+      <wsdl:input message="tns:wsj_exam_registerHttpPostIn" />
+      <wsdl:output message="tns:wsj_exam_registerHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="wsj_exam_checkin">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">检查登记接口</wsdl:documentation>
+      <wsdl:input message="tns:wsj_exam_checkinHttpPostIn" />
+      <wsdl:output message="tns:wsj_exam_checkinHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="wsj_opconfirmforexam">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">检查检验单确认接口</wsdl:documentation>
+      <wsdl:input message="tns:wsj_opconfirmforexamHttpPostIn" />
+      <wsdl:output message="tns:wsj_opconfirmforexamHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="wsj_IPConfirm">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">住院患者结诊时的就诊确认接口</wsdl:documentation>
+      <wsdl:input message="tns:wsj_IPConfirmHttpPostIn" />
+      <wsdl:output message="tns:wsj_IPConfirmHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="wsj_payMent">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">就诊收费信息确认上报接口</wsdl:documentation>
+      <wsdl:input message="tns:wsj_payMentHttpPostIn" />
+      <wsdl:output message="tns:wsj_payMentHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="wsj_queryfile">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">基本档案查询接口</wsdl:documentation>
+      <wsdl:input message="tns:wsj_queryfileHttpPostIn" />
+      <wsdl:output message="tns:wsj_queryfileHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="wsj_createfile">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">基本档案建档接口</wsdl:documentation>
+      <wsdl:input message="tns:wsj_createfileHttpPostIn" />
+      <wsdl:output message="tns:wsj_createfileHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="wsj_revisefile">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">基本档案修改接口</wsdl:documentation>
+      <wsdl:input message="tns:wsj_revisefileHttpPostIn" />
+      <wsdl:output message="tns:wsj_revisefileHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="wsj_paymentzf">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">就诊收费信息作废上报接口</wsdl:documentation>
+      <wsdl:input message="tns:wsj_paymentzfHttpPostIn" />
+      <wsdl:output message="tns:wsj_paymentzfHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="wsj_jzxxconfirm">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">就诊信息信息的上传接口</wsdl:documentation>
+      <wsdl:input message="tns:wsj_jzxxconfirmHttpPostIn" />
+      <wsdl:output message="tns:wsj_jzxxconfirmHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="wsj_querypaylimit">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">获取授信及预授权冻结额度接口</wsdl:documentation>
+      <wsdl:input message="tns:wsj_querypaylimitHttpPostIn" />
+      <wsdl:output message="tns:wsj_querypaylimitHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="wsj_query_yprk">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">订单查询</wsdl:documentation>
+      <wsdl:input message="tns:wsj_query_yprkHttpPostIn" />
+      <wsdl:output message="tns:wsj_query_yprkHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="wsj_yprk">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">入库单确认</wsdl:documentation>
+      <wsdl:input message="tns:wsj_yprkHttpPostIn" />
+      <wsdl:output message="tns:wsj_yprkHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="wsj_yptk_apply">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">退药申请</wsdl:documentation>
+      <wsdl:input message="tns:wsj_yptk_applyHttpPostIn" />
+      <wsdl:output message="tns:wsj_yptk_applyHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="wsj_gmssc">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">过敏史上传</wsdl:documentation>
+      <wsdl:input message="tns:wsj_gmsscHttpPostIn" />
+      <wsdl:output message="tns:wsj_gmsscHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="wsj_deleteBill">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">开单删除接口</wsdl:documentation>
+      <wsdl:input message="tns:wsj_deleteBillHttpPostIn" />
+      <wsdl:output message="tns:wsj_deleteBillHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="wsj_checkin_delete">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">删除住院就诊登记接口</wsdl:documentation>
+      <wsdl:input message="tns:wsj_checkin_deleteHttpPostIn" />
+      <wsdl:output message="tns:wsj_checkin_deleteHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="wsj_checkin_update">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">修改住院就诊登记接口</wsdl:documentation>
+      <wsdl:input message="tns:wsj_checkin_updateHttpPostIn" />
+      <wsdl:output message="tns:wsj_checkin_updateHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="wsj_physicalexam">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">体检系统在完成病人体检报告总检后调用该接口</wsdl:documentation>
+      <wsdl:input message="tns:wsj_physicalexamHttpPostIn" />
+      <wsdl:output message="tns:wsj_physicalexamHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="his_DesData">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">加解密数据接口</wsdl:documentation>
+      <wsdl:input message="tns:his_DesDataHttpPostIn" />
+      <wsdl:output message="tns:his_DesDataHttpPostOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="fyyptSoap" type="tns:fyyptSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="wsj_CheckIn">
+      <soap:operation soapAction="http://127.0.0.1/fyypt/wsj_CheckIn" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="wsj_OPConfirm">
+      <soap:operation soapAction="http://127.0.0.1/fyypt/wsj_OPConfirm" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="wsj_lab_register">
+      <soap:operation soapAction="http://127.0.0.1/fyypt/wsj_lab_register" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="wsj_lab_upload">
+      <soap:operation soapAction="http://127.0.0.1/fyypt/wsj_lab_upload" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="wsj_exam_register">
+      <soap:operation soapAction="http://127.0.0.1/fyypt/wsj_exam_register" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="wsj_exam_checkin">
+      <soap:operation soapAction="http://127.0.0.1/fyypt/wsj_exam_checkin" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="wsj_opconfirmforexam">
+      <soap:operation soapAction="http://127.0.0.1/fyypt/wsj_opconfirmforexam" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="wsj_IPConfirm">
+      <soap:operation soapAction="http://127.0.0.1/fyypt/wsj_IPConfirm" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="wsj_payMent">
+      <soap:operation soapAction="http://127.0.0.1/fyypt/wsj_payMent" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="wsj_queryfile">
+      <soap:operation soapAction="http://127.0.0.1/fyypt/wsj_queryfile" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="wsj_createfile">
+      <soap:operation soapAction="http://127.0.0.1/fyypt/wsj_createfile" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="wsj_revisefile">
+      <soap:operation soapAction="http://127.0.0.1/fyypt/wsj_revisefile" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="wsj_paymentzf">
+      <soap:operation soapAction="http://127.0.0.1/fyypt/wsj_paymentzf" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="wsj_jzxxconfirm">
+      <soap:operation soapAction="http://127.0.0.1/fyypt/wsj_jzxxconfirm" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="wsj_querypaylimit">
+      <soap:operation soapAction="http://127.0.0.1/fyypt/wsj_querypaylimit" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="wsj_query_yprk">
+      <soap:operation soapAction="http://127.0.0.1/fyypt/wsj_query_yprk" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="wsj_yprk">
+      <soap:operation soapAction="http://127.0.0.1/fyypt/wsj_yprk" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="wsj_yptk_apply">
+      <soap:operation soapAction="http://127.0.0.1/fyypt/wsj_yptk_apply" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="wsj_gmssc">
+      <soap:operation soapAction="http://127.0.0.1/fyypt/wsj_gmssc" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="wsj_deleteBill">
+      <soap:operation soapAction="http://127.0.0.1/fyypt/wsj_deleteBill" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="wsj_checkin_delete">
+      <soap:operation soapAction="http://127.0.0.1/fyypt/wsj_checkin_delete" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="wsj_checkin_update">
+      <soap:operation soapAction="http://127.0.0.1/fyypt/wsj_checkin_update" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="wsj_physicalexam">
+      <soap:operation soapAction="http://127.0.0.1/fyypt/wsj_physicalexam" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="his_DesData">
+      <soap:operation soapAction="http://127.0.0.1/fyypt/his_DesData" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="fyyptSoap12" type="tns:fyyptSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="wsj_CheckIn">
+      <soap12:operation soapAction="http://127.0.0.1/fyypt/wsj_CheckIn" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="wsj_OPConfirm">
+      <soap12:operation soapAction="http://127.0.0.1/fyypt/wsj_OPConfirm" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="wsj_lab_register">
+      <soap12:operation soapAction="http://127.0.0.1/fyypt/wsj_lab_register" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="wsj_lab_upload">
+      <soap12:operation soapAction="http://127.0.0.1/fyypt/wsj_lab_upload" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="wsj_exam_register">
+      <soap12:operation soapAction="http://127.0.0.1/fyypt/wsj_exam_register" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="wsj_exam_checkin">
+      <soap12:operation soapAction="http://127.0.0.1/fyypt/wsj_exam_checkin" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="wsj_opconfirmforexam">
+      <soap12:operation soapAction="http://127.0.0.1/fyypt/wsj_opconfirmforexam" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="wsj_IPConfirm">
+      <soap12:operation soapAction="http://127.0.0.1/fyypt/wsj_IPConfirm" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="wsj_payMent">
+      <soap12:operation soapAction="http://127.0.0.1/fyypt/wsj_payMent" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="wsj_queryfile">
+      <soap12:operation soapAction="http://127.0.0.1/fyypt/wsj_queryfile" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="wsj_createfile">
+      <soap12:operation soapAction="http://127.0.0.1/fyypt/wsj_createfile" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="wsj_revisefile">
+      <soap12:operation soapAction="http://127.0.0.1/fyypt/wsj_revisefile" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="wsj_paymentzf">
+      <soap12:operation soapAction="http://127.0.0.1/fyypt/wsj_paymentzf" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="wsj_jzxxconfirm">
+      <soap12:operation soapAction="http://127.0.0.1/fyypt/wsj_jzxxconfirm" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="wsj_querypaylimit">
+      <soap12:operation soapAction="http://127.0.0.1/fyypt/wsj_querypaylimit" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="wsj_query_yprk">
+      <soap12:operation soapAction="http://127.0.0.1/fyypt/wsj_query_yprk" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="wsj_yprk">
+      <soap12:operation soapAction="http://127.0.0.1/fyypt/wsj_yprk" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="wsj_yptk_apply">
+      <soap12:operation soapAction="http://127.0.0.1/fyypt/wsj_yptk_apply" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="wsj_gmssc">
+      <soap12:operation soapAction="http://127.0.0.1/fyypt/wsj_gmssc" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="wsj_deleteBill">
+      <soap12:operation soapAction="http://127.0.0.1/fyypt/wsj_deleteBill" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="wsj_checkin_delete">
+      <soap12:operation soapAction="http://127.0.0.1/fyypt/wsj_checkin_delete" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="wsj_checkin_update">
+      <soap12:operation soapAction="http://127.0.0.1/fyypt/wsj_checkin_update" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="wsj_physicalexam">
+      <soap12:operation soapAction="http://127.0.0.1/fyypt/wsj_physicalexam" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="his_DesData">
+      <soap12:operation soapAction="http://127.0.0.1/fyypt/his_DesData" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="fyyptHttpGet" type="tns:fyyptHttpGet">
+    <http:binding verb="GET" />
+    <wsdl:operation name="wsj_CheckIn">
+      <http:operation location="/wsj_CheckIn" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="wsj_OPConfirm">
+      <http:operation location="/wsj_OPConfirm" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="wsj_lab_register">
+      <http:operation location="/wsj_lab_register" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="wsj_lab_upload">
+      <http:operation location="/wsj_lab_upload" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="wsj_exam_register">
+      <http:operation location="/wsj_exam_register" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="wsj_exam_checkin">
+      <http:operation location="/wsj_exam_checkin" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="wsj_opconfirmforexam">
+      <http:operation location="/wsj_opconfirmforexam" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="wsj_IPConfirm">
+      <http:operation location="/wsj_IPConfirm" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="wsj_payMent">
+      <http:operation location="/wsj_payMent" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="wsj_queryfile">
+      <http:operation location="/wsj_queryfile" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="wsj_createfile">
+      <http:operation location="/wsj_createfile" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="wsj_revisefile">
+      <http:operation location="/wsj_revisefile" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="wsj_paymentzf">
+      <http:operation location="/wsj_paymentzf" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="wsj_jzxxconfirm">
+      <http:operation location="/wsj_jzxxconfirm" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="wsj_querypaylimit">
+      <http:operation location="/wsj_querypaylimit" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="wsj_query_yprk">
+      <http:operation location="/wsj_query_yprk" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="wsj_yprk">
+      <http:operation location="/wsj_yprk" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="wsj_yptk_apply">
+      <http:operation location="/wsj_yptk_apply" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="wsj_gmssc">
+      <http:operation location="/wsj_gmssc" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="wsj_deleteBill">
+      <http:operation location="/wsj_deleteBill" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="wsj_checkin_delete">
+      <http:operation location="/wsj_checkin_delete" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="wsj_checkin_update">
+      <http:operation location="/wsj_checkin_update" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="wsj_physicalexam">
+      <http:operation location="/wsj_physicalexam" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="his_DesData">
+      <http:operation location="/his_DesData" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="fyyptHttpPost" type="tns:fyyptHttpPost">
+    <http:binding verb="POST" />
+    <wsdl:operation name="wsj_CheckIn">
+      <http:operation location="/wsj_CheckIn" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="wsj_OPConfirm">
+      <http:operation location="/wsj_OPConfirm" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="wsj_lab_register">
+      <http:operation location="/wsj_lab_register" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="wsj_lab_upload">
+      <http:operation location="/wsj_lab_upload" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="wsj_exam_register">
+      <http:operation location="/wsj_exam_register" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="wsj_exam_checkin">
+      <http:operation location="/wsj_exam_checkin" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="wsj_opconfirmforexam">
+      <http:operation location="/wsj_opconfirmforexam" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="wsj_IPConfirm">
+      <http:operation location="/wsj_IPConfirm" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="wsj_payMent">
+      <http:operation location="/wsj_payMent" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="wsj_queryfile">
+      <http:operation location="/wsj_queryfile" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="wsj_createfile">
+      <http:operation location="/wsj_createfile" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="wsj_revisefile">
+      <http:operation location="/wsj_revisefile" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="wsj_paymentzf">
+      <http:operation location="/wsj_paymentzf" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="wsj_jzxxconfirm">
+      <http:operation location="/wsj_jzxxconfirm" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="wsj_querypaylimit">
+      <http:operation location="/wsj_querypaylimit" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="wsj_query_yprk">
+      <http:operation location="/wsj_query_yprk" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="wsj_yprk">
+      <http:operation location="/wsj_yprk" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="wsj_yptk_apply">
+      <http:operation location="/wsj_yptk_apply" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="wsj_gmssc">
+      <http:operation location="/wsj_gmssc" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="wsj_deleteBill">
+      <http:operation location="/wsj_deleteBill" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="wsj_checkin_delete">
+      <http:operation location="/wsj_checkin_delete" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="wsj_checkin_update">
+      <http:operation location="/wsj_checkin_update" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="wsj_physicalexam">
+      <http:operation location="/wsj_physicalexam" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="his_DesData">
+      <http:operation location="/his_DesData" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="fyypt">
+    <wsdl:port name="fyyptSoap" binding="tns:fyyptSoap">
+      <soap:address location="http://10.120.22.100/pay/fyypt.asmx" />
+    </wsdl:port>
+    <wsdl:port name="fyyptSoap12" binding="tns:fyyptSoap12">
+      <soap12:address location="http://10.120.22.100/pay/fyypt.asmx" />
+    </wsdl:port>
+    <wsdl:port name="fyyptHttpGet" binding="tns:fyyptHttpGet">
+      <http:address location="http://10.120.22.100/pay/fyypt.asmx" />
+    </wsdl:port>
+    <wsdl:port name="fyyptHttpPost" binding="tns:fyyptHttpPost">
+      <http:address location="http://10.120.22.100/pay/fyypt.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

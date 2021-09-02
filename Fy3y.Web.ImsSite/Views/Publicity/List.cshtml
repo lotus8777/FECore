@@ -1,0 +1,41 @@
+﻿@model IList<Fy3y.Model.Das.Publicity>
+@{
+    ViewBag.Title = "公告公示";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style type="text/css">
+    dl {
+        padding: 0.8rem;
+    }
+
+        dl dt, dd {
+            float: left;
+            margin-right: 5px;
+        }
+
+        dl dd.time {
+            float: right;
+            margin-right: 5px;
+        }
+</style>
+@Html.Partial("BeginEndFormPartial")
+<div class="col border">
+    @if (Model.Any())
+    {
+        var maxTitleLength = 25;
+        foreach (var item in Model)
+        {
+            <dl>
+                <dt>【@item.Department.DepartmentName】</dt>
+                <dd class="">
+                    <a href="@Url.Action("Article",new {id=item.PublicityId})">@(item.Title.Length > maxTitleLength ? item.Title.Substring(0, 20) : item.Title)</a>
+                </dd>
+                <dd class="time">@item.CreateTime.ToShortDateString() </dd>
+            </dl>
+        }
+    }
+    else
+    {
+        <p>无相关数据</p>
+    }
+</div>

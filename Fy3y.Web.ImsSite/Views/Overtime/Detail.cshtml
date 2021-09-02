@@ -1,0 +1,54 @@
+﻿@model Fy3y.Model.Das.Overtime
+
+@{
+  ViewBag.Title = "加班申请";
+}
+<div>
+  <table class="table table-sm table-bordered text-center table-striped">
+    <tr>
+      <td>申请编号 </td>
+      <td><b> @(Model.OvertimeId.Split('-').Last().ToUpper().Substring(0,8))</b> </td>
+      <td>工作项目 </td>
+      <td><b> @Model.Title</b> </td>
+    </tr>
+    <tr>
+      <td>申请科室 </td>
+      <td>@Model.DepartmentName </td>
+      <td>申请人 </td>
+      <td>@Model.CreatorName </td>
+    </tr>
+    <tr>
+      <td>开始时间 </td>
+      <td>@Model.BeginTime.ToShortDateString() </td>
+      <td>结束时间 </td>
+      <td>@Model.EndTime.ToShortDateString() </td>
+    </tr>
+    <tr>
+      <td>累计时长 </td>
+      <td>
+          @(Model.Duration == 0d ? ((Model.EndTime - Model.BeginTime).TotalMinutes / 60).ToString("F2") : Model.Duration.ToString("F2"))
+      </td>
+      <td>申请时间 </td>
+      <td>@Model.CreateTime.ToShortDateString() </td>
+    </tr>
+    <tr>
+      <td>加班人员 </td>
+      <td colspan="3" class="text-left">@Model.Worker</td>
+    </tr>
+    <tr>
+      <td>加班事由 </td>
+        <td colspan="3" class="text-left">@Model.Remarks</td>
+    </tr>
+    <tr>
+      <td>科室审批 </td>
+      <td colspan="3"><textarea class="border-0 form-control" rows="7"></textarea> </td>
+    </tr>
+    <tr>
+      <td>领导审批 </td>
+      <td colspan="3"><textarea class="border-0 form-control" rows="7"></textarea> </td>
+    </tr>
+  </table>
+</div>
+<p>
+  <a class="btn btn-dark d-print-none" href="@Url.Action("Index")">返回</a>
+</p>

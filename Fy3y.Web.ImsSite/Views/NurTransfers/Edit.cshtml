@@ -1,0 +1,84 @@
+﻿@model Fy3y.Model.Das.NurTransfer
+@{
+  ViewBag.Title = "增加交接班记录";
+}
+@using (Html.BeginForm())
+{
+@Html.AntiForgeryToken()
+<div class="text-center">
+  <div class="form-group row">
+    <label class="col-form-label col-2">住院号</label>
+    <div class="col-md-4">
+      @Html.TextBoxFor(model => model.MedicalNo, new { @class = "form-control" })
+    </div>
+    <a href="javascript:void(0)" class="btn btn-success" id="lookUp" onclick="searchPatient()"><i class="fa fa-search">查找</i></a>
+  </div>
+  <div class="form-group row">
+    <label class="col-form-label col-2">姓名</label>
+    <div class="col-md-4">
+      @Html.TextBoxFor(model => model.PatientName, new { @class = "form-control",@readonly=""  })
+    </div>
+    <label class="col-form-label col-2">床号</label>
+    <div class="col-md-4">
+      @Html.TextBoxFor(model => model.BedNo, new { @class = "form-control",@readonly=""  })
+    </div>
+  </div>
+  <div class="form-group row">
+    <label class="col-form-label col-2">交班人</label>
+    <div class="col-md-4">
+      @Html.TextBoxFor(model => model.SenderName, new { @class = "form-control",@readonly="" })
+    </div>
+    <label class="col-form-label col-2">交班时间</label>
+    <div class="col-md-4">
+      @Html.TextBoxFor(m => m.TransferTime, new
+      {
+        onfocus = "WdatePicker({ isShowClear: false, readOnly: true, isShowOK: false, dateFmt: 'yyyy-MM-dd HH:mm' })",
+        @class = "form-control",
+        value = DateTime.Now
+      })
+    </div>
+  </div>
+  <div class="form-group row">
+    <label class="col-form-label col-2">接班人</label>
+    <div class="col-md-4">
+      @Html.DropDownListFor(model => model.ReceiverId,null, new { @class = "custom-select" })
+    </div>
+    <label class="col-form-label col-2">科室</label>
+    <div class="col-md-4">
+      @Html.TextBoxFor(model => model.DepartmentName, new { @class = "form-control",@readonly="" })
+    </div>
+  </div>
+  <div class="form-group row">
+    <label class="col-form-label col-2">主要病情</label>
+    <div class="col-md-10">
+      @Html.TextAreaFor(model => model.Remarks, new { @class = "form-control" ,rows=3})
+    </div>
+  </div>
+  @Html.HiddenFor(p => p.TransferId)
+  @Html.HiddenFor(p => p.CreateTime)
+  @Html.HiddenFor(p => p.ReceiverName)
+  @Html.HiddenFor(p => p.SenderId)
+  @Html.HiddenFor(p=>p.DepartmentId)
+  <div class="form-group">
+    <div class="col-md-offset-2 col-md-10">
+      <input type="submit" value="保存" class="btn btn-success" /> @Html.ActionLink("返回列表", "Index")
+    </div>
+  </div>
+</div>
+}
+<script type="text/javascript">
+  //页面初始化后绑定
+  setReceiverName();
+  //查找病人信息
+  function searchPatient() {
+    var medicalno = $("#MedicalNo").val();
+    getPatientInfo(medicalno);
+  }
+
+  $("#ReceiverId").change(setReceiverName);
+
+  function setReceiverName() {
+    let receiverName = $("#ReceiverId option:selected").text();
+    $("#ReceiverName").val(receiverName);
+  }
+</script>

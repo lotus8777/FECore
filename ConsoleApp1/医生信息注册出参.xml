@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<messages xmlns="http://www.neusoft.com/hit/rhin" >
+    <switchset>
+        <visitor>
+            <sourceorgan>3301110000000000000000</sourceorgan>
+            <sourcedomain>3301000029</sourcedomain>
+        </visitor>
+        <serviceinf>
+            <servicecode>10002710</servicecode>
+        </serviceinf>
+        <provider>
+            <targetorgan></targetorgan>
+            <targetdomain></targetdomain>
+        </provider>
+        <route></route>
+        <process></process>
+        <switchmessage>
+            <messagecode></messagecode>
+            <messagetext></messagetext>
+        </switchmessage>
+    </switchset>
+    <business>
+        <standardcode>REQ.B0404.0101.01</standardcode>
+        <returnmessage>
+            <retcode>1</retcode>
+            <rettext></rettext>
+        </returnmessage>
+        <returnset>
+            <rettotal>1</rettotal>
+            <retpaging>0</retpaging>
+            <retpageindex>-1</retpageindex>
+            <retpageset>0</retpageset>
+        </returnset>
+        <datacompress>0</datacompress>
+        <businessdata>
+
+            <datasets>
+                <setdetails>
+                    <WS04_10_180_03>Index: 0, Size: 0</WS04_10_180_03>
+                </setdetails>
+                <settype></settype>
+                <setcode></setcode>
+            </datasets>
+
+        </businessdata>
+    </business>
+    <extendset>
+
+        <token>
+            H4sIAAAAAAAAAA3LOw4CMQxF0cVQR3r+xE5KoEEUCDHNQGMlk2T/S2DKe6Q7FVilHD7USNAFTVbV
+            tbjP5jlfqnef4kgHN09Es6emgxMXm0PP07JFkDFnIRhVO/P1ebyvAEQjntvtu+377x4hAjoVXP8m
+            AM4edwAAAA==
+        </token>
+
+    </extendset>
+</messages>

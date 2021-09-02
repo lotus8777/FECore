@@ -1,0 +1,167 @@
+﻿@model Fy3y.Model.Das.AdverseNursingEvent
+@{
+  ViewBag.Title = "护理安全（不良）事件报告";
+}
+<br />
+<div class="text-center">
+  <div class="form-group row">
+    <label class="col-2 col-form-label">报告人</label>
+    <div class="col-2 div-text">
+     @Model.AdverseEvent.ReporterName
+    </div>
+    <div class="col-2 col-form-label">报告科室</div>
+    <div class="col-2 div-text">@Model.AdverseEvent.ReporterDeptName</div>
+    <label class="col-2 col-form-label">报告时间</label>
+    <div class="col-2  div-text-left">
+     @Model.AdverseEvent.ReportTime.ToString("yyyy/MM/dd hh:mm")
+    </div>
+  </div>
+  <br />
+  <fieldset>
+    <legend>A-基本资料</legend>
+    <div class="form-group row">
+      <label class="col-2 col-form-label">病案号</label>
+      <div class="col-2 div-text">
+       @Model.AdverseEvent.MedicalNo
+      </div>
+      <label class="col-2  col-form-label">性别</label>
+      <div class="col-2 div-text ">
+        @Model.AdverseEvent.PatientSex
+      </div>
+      <label class="col-2  col-form-label">姓名</label>
+      <div class="col-2 div-text">
+       @Model.AdverseEvent.PatientName
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-2  col-form-label">年龄</label>
+      <div class="col-2 div-text">
+       @Model.AdverseEvent.PatientAge
+      </div>
+      <label class="col-2  col-form-label">科室</label>
+      <div class="col-2  div-text">
+        @Model.AdverseEvent.PatientDeptName
+      </div>
+      <label class="col-2  col-form-label">床号</label>
+      <div class="col-2 div-text">
+       @Model.AdverseEvent.BedNo
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-2  col-form-label">诊断</label>
+      <div class="col-10 div-text-left">
+       @Model.AdverseEvent.Diagnosis
+      </div>
+    </div>
+  </fieldset>
+  <!--事件情况-->
+  <fieldset>
+    <legend>B-事件情况</legend>
+    <div class="form-group row">
+      <label class="col-2  col-form-label">发生时间</label>
+      <div class="col-2 div-text">
+       @Model.AdverseEvent.EventTime.ToString("yyyy/MM/dd HH:mm")
+      </div>
+      <label class="col-2  col-form-label">发生场所</label>
+      <div class="col-2 div-text">
+        @Model.EventPlace
+      </div>
+    </div>
+    <div class="form-group row">
+
+        <label class="col-2  col-form-label">事件级别</label>
+        <div class="col-2 div-text">
+          @Model.EventLevel.LevelName
+        </div>
+      
+     
+        <label class="col-2  col-form-label">事件类别</label>
+        <div class="col-2 div-text">
+          @Model.EventClass.ClassName
+        </div>
+      
+    </div>
+    <div class="form-group row">
+      <label class="col-2  col-form-label">主要表现</label>
+      <div class="col-10 div-textarea">
+        @Model.Performance
+      </div>
+    </div>
+  </fieldset>
+  <!--C-对患者或家属影响-->
+  <fieldset>
+    <legend>C-事件影响</legend>
+    <div class="form-group row">
+      <label class="col-2  col-form-label">影响级别</label>
+      <div class="col-2 div-text-left">
+        @Model.AffectLevel
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-2  col-form-label">详细说明</label>
+      <div class="col-10 div-textarea">
+        @Model.EventDetails
+      </div>
+    </div>
+  </fieldset>
+  <!--D-处理分析-->
+  <fieldset>
+    <legend>D-处理分析</legend>
+    <div class="form-group row">
+      <label class="col-2 col-form-label">事件经过</label>
+      <div class="col-10  div-textarea">
+        @Model.EventDetails
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-2 col-form-label">原因分析</label>
+      <div class="col-10  div-textarea">
+        @Model.ReasonAnalysis
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-2 col-form-label">整改措施</label>
+      <div class="col-10  div-textarea">
+        @Model.ImprovementMeasures
+      </div>
+    </div>
+  </fieldset>
+
+  @{
+    if (Model.AdverseEvent.IsChecked)
+    {
+      <!--E-事件评价-->
+      <fieldset>
+        <legend>E-事件评价</legend>
+          <div class="form-group row">
+            <label class="col-2 col-form-label">主管部门意见陈述:</label>
+            <div class="col-10  div-textarea">
+              @Model.SuperiorOpinion
+            </div>
+          </div>
+      </fieldset>
+    }
+  }
+
+  <div class="text-center">
+    @if (ViewBag.fatherType == "1")
+    {
+      //针对审核
+      <a class="d-print-none" href="@Url.Action("Manage","AdverseNursingEvent")">返回</a>
+      if (!Model.AdverseEvent.IsChecked)
+      {
+        <a class="d-print-none" href="@Url.Action("Delete","AdverseNursingEvent",new { id=Model.EventId})">删除</a>
+      }
+    }
+    else if (ViewBag.fatherType == "2")
+    {
+      //针对统计
+      <a href="@Url.Action("Statistics","AdverseEvent")">返回</a>
+    }
+    else
+    {
+      //针对个上报
+      <a class="d-print-none" href="@Url.Action("Index","AdverseEvent")">返回</a>
+    }
+  </div>
+</div>

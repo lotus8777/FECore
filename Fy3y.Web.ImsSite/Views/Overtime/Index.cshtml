@@ -1,0 +1,76 @@
+﻿@model IList<Fy3y.Model.Das.Overtime>
+@{
+    ViewBag.Title = "额外工作清单";
+}
+
+<form id="form1" method="post">
+    @Html.AntiForgeryToken()
+    <fieldset>
+        <legend>查询条件</legend>
+        <div class="form-group row text-center">
+            <label class="col-1 col-form-label">开始</label>
+            @Html.TextBox("begin", null, new { onfocus = "WdatePicker({isShowClear:false,readOnly:true,isShowOK:false,maxDate:'%y-%M-%d'})", @class = "form-control col-2" })
+            <label class="col-1 col-form-label">结束</label>
+            @Html.TextBox("end", null, new { onfocus = "WdatePicker({isShowClear:false,readOnly:true,isShowOK:false,maxDate:'%y-%M-%d'})", @class = "form-control col-2" })
+            <div class="col-2">
+                <button class="btn btn-dark d-print-none">
+                    <span class="fa fa-search">查询</span>
+                </button>
+            </div>
+            <div class="col-2">
+                <a class="btn btn-dark d-print-none" href="@Url.Action("Create")">
+                    <i class="fa fa-plus">添加</i>
+                </a>
+            </div>
+        </div>
+    </fieldset>
+</form>
+<br/>
+<table class="table table-sm table-bordered text-center table-striped">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>申请人</th>
+            <th>申请科室</th>
+            <th>工作项目</th>
+            <th>开始时间</th>
+            <th>结束时间</th>
+            <th>累计时长</th>
+            <th class="d-print-none">操作</th>
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            var total = 0.0d;
+            foreach (var item in Model)
+            {
+                double single = item.Duration;
+                if (single<=0)
+                {
+                    single = (item.EndTime - item.BeginTime).TotalMinutes / 60;
+                }
+                
+                total += single;
+                <tr>
+                    <td>@(Model.IndexOf(item) + 1) </td>
+                    <td>@Html.DisplayFor(modelItem => item.CreatorName) </td>
+                    <td>@Html.DisplayFor(modelItem => item.DepartmentName) </td>
+                    <td>@item.Title </td>
+                    <td>@item.BeginTime.ToShortDateString() </td>
+                    <td>@item.EndTime.ToShortDateString() </td>
+                    <td>@(single.ToString("f2")) </td>
+                    <td class="d-print-none">
+                        <a href="@Url.Action("Detail",new{id=item.OvertimeId})">
+                            <i class="fa fa-search"></i>
+                        </a>
+                    </td>
+                </tr>
+            }
+            <tr>
+                <td colspan="6">合计 </td>
+                <td>@(total.ToString("f2"))</td>
+                <td></td>
+            </tr>
+        }
+    </tbody>
+</table>

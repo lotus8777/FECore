@@ -1,0 +1,58 @@
+﻿@model Fy3y.Das.Bookmarks
+
+@{
+  ViewBag.Title = "添加收藏";
+}
+
+<form method="post">
+  @Html.AntiForgeryToken()
+  <div class="form-horizontal">
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-group row">
+      <label class="col-form-label col-md-2">链接名称</label>
+      <div class="col-md-10">
+        @Html.TextBoxFor(model => model.Title, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-form-label col-md-2">链接地址</label>
+      <div class="col-md-10">
+        @Html.TextBoxFor(model => model.LinkUrl, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.LinkUrl, "", new { @class = "text-danger" })
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label class="col-form-label col-md-2">登录账户</label>
+      <div class="col-md-10">
+        @Html.TextBoxFor(model => model.Account, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.Account, "", new { @class = "text-danger" })
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-form-label col-md-2">登录密码</label>
+
+      <div class="col-md-10">
+        @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+      </div>
+    </div>
+    @Html.HiddenFor(p => p.CreateTime)
+    @Html.HiddenFor(p => p.CreatorId)
+    @Html.HiddenFor(p => p.CreatorName)
+    @Html.HiddenFor(p => p.DepartmentId)
+    @Html.HiddenFor(p => p.DepartmentName)
+    @Html.HiddenFor(p => p.LinkId)
+    <div class="form-group">
+      <div class="col-md-offset-2 col-md-10">
+        <input type="submit" value="保存" class="btn btn-default" />
+        @Html.ActionLink("返回", "Index")
+      </div>
+    </div>
+  </div>
+</form>
+
+  
+
+

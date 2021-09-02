@@ -1,0 +1,64 @@
+﻿
+@using Newtonsoft.Json
+@model IList<EhrPatient>
+@{
+  ViewBag.Title = "就诊历史";
+  Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<partial name="BeginEndFormPartial" />
+<table class="table table-sm table-bordered table-striped text-center">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>姓名</th>
+      <th>开始</th>
+      <th>结束</th>
+      <th>操作</th>
+    </tr>
+  </thead>
+  <tbody>
+    @if (Model?.Count() > 0)
+  {
+    var x = 1;
+    foreach (var item in Model)
+    {
+      var json = JsonConvert.SerializeObject(item);
+    <tr>
+      <td>@x </td>
+      <td>@item.Brxm </td>
+      <td>@item.Kssj </td>
+      <td>@item.Jssj </td>
+      <td>
+        <a href="javascript:void(0)" onclick="openEHR(@json)">
+          <i class="fa fa-book"></i>
+        </a>
+      </td>
+    </tr>
+      x++;
+    }
+  }
+  </tbody>
+</table>
+<script type="text/javascript">
+  function openEHR(item) {
+    let data = { "item": item };
+    let url = "@Url.Action("GetEHRUrl")";
+    $.ajax({
+      type: "POST",
+      url: url,
+      data: data,
+      success: function(msg) {
+        if (msg.status === 1 && msg.url !== "" && msg.url.length > 0) {
+          window.open(msg.url);
+        } else {
+          parent.layer.msg(msg.message,
+            {
+              icon: 2,
+              time: 2000
+            });
+        }
+      }
+    });
+  }
+</script>

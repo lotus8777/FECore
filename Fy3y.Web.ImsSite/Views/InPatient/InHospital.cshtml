@@ -1,0 +1,139 @@
+﻿@model IList<Inpatient>
+@{
+    ViewBag.Title = "在院病人";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link href="~/Scripts/lib/layer/theme/default/layer.css" type="text/css" />
+<script src="~/Scripts/lib/layer/layer.js" type="text/javascript"></script>
+<ul class="nav nav-tabs" id="mytabs" role="tablist">
+    <li class="nav-item">
+        <a class="active nav-link" data-toggle="tab" href="#statistics">病人总览</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" data-toggle="tab" href="#details">病人清单</a>
+    </li>
+</ul>
+<div class="border border-top-0 p-2 tab-content">
+    <div class="active fade show tab-pane" id="statistics">
+        <ul class="list-unstyled row">
+            <li class="col-3">
+                <div class="card">
+                    <div class="card-body">
+                        <span>总人数</span>
+                        <h1 class="text-center">@Model.Count()</h1>
+                    </div>
+                </div>
+            </li>
+            @*<li class="col-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <span>普通病人</span>
+                            <h1 class=" text-center text-success">@(Model.Count(p => p.BRLX == 0))</h1>
+                        </div>
+                    </div>
+                </li>
+                <li class="col-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <span>公安司法</span>
+                            <h1 class="text-center text-warning">@(Model.Count(p => p.BRLX == 1))</h1>
+                        </div>
+                    </div>
+                </li>
+                <li class="col-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <span>三无流浪</span>
+                            <h1 class=" text-center text-danger">@(Model.Count(p => p.BRLX == 2))</h1>
+                        </div>
+                    </div>
+                </li>*@
+        </ul>
+    </div>
+    <div class="fade tab-pane" id="details">
+        <table class="table table-sm table-bordered table-hover table-striped text-center" id="table1">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>住院号</th>
+                    <th>姓名</th>
+                    <th>性别</th>
+                    <th>年龄</th>
+                    <th>科室</th>
+                    <th>床号</th>
+                    <th>入院时间</th>
+                    <th>床日</th>
+                    @*<th>类型</th>*@
+                    @*<th>修改</th>*@
+                </tr>
+            </thead>
+          
+                @{
+                    var number = 0;
+                    if (Model?.Count > 0)
+                    {
+                        <tbody>
+                        @foreach (var p in Model)
+                        {
+                            number++;
+                            <tr>
+                                <td>@number </td>
+                                <td>@p.Zyhm </td>
+                                <td>@p.Brxm </td>
+                                <td>
+                                   @Html.Partial("SexPartial",p.Brxb)
+                                </td>
+                                <td>
+                                    @Html.Partial("AgePartial",p.Age)
+                                </td>
+                                <td>@p.Ksmc </td>
+                                <td>@p.Brch </td>
+                                <td>@p.Ryrq.ToString("yyyy-MM-dd HH:mm") </td>
+                                <td>@p.Brcr.ToString("f2") </td>
+                                @*<td></td>*@
+                                @*<td><a href="javascript:void(0)" onclick="changePatientType(@p.Zyh)">修改</a> </td>*@
+                            </tr>
+                        }
+                        </tbody>
+                        <tfoot>
+                        <tr>
+                            <td colspan="2">总人数</td>
+                            <td>@Model.Count() </td>
+                            <td colspan="2">总床日数 </td>
+                            <td>@(Model.Sum(p=>p.Brcr).ToString("F2"))</td>
+                            <td colspan="2">平均床日</td>
+                            <td> @((Model.Sum(p=>p.Brcr)/Model.Count()).ToString("f2")) </td>
+                        </tr>
+                        </tfoot>
+                    }
+                }
+          
+        </table>
+    </div>
+</div>
+<!--end modal-->
+
+<script type="text/javascript">
+    function changePatientType(e) {
+        layer.open({
+            title: "修改病人类型",
+            type: 2,
+            //area: ['400px', '160px'],
+            shadeClose: true, //点击遮罩关闭
+            closeBtn: 0,
+            btn: ['保存', '取消'],
+            content: '@Url.Action("ChangePatientType")',
+            yes: function(index, layero) {
+                layer.close(index);
+                var brlx = $(layero).find("iframe")[0].contentWindow.document.getElementById("patientType").value;
+                var data = { "zyh": e, "brlx": brlx };
+                var url = '@Url.Action("ChangePatientType")';
+                AjaxSubmit(url, data);
+            },
+            btn2: function(index) {
+                layer.close(index);
+            }
+        });
+    }
+</script>

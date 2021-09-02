@@ -1,0 +1,205 @@
+﻿@model Fy3y.Model.Das.Recipe
+@{
+    ViewBag.Title = "处方预览";
+    Layout = null;
+}
+<html>
+<head>
+    <script src="~/lib/jquery/jquery-3.5.0.min.js"></script>
+    <script src="~/lib/jquery/jquery.validate.min.js"></script>
+    <script src="~/lib/Popper/popper.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="~/lib/metisMenu/dist/jquery.metisMenu.js"></script>
+    <script src="~/lib/pace/pace.min.js"></script>
+    <script src="~/lib/slimScroll/jquery.slimscroll.min.js"></script>
+    <script src="~/js/script.js" asp-append-version="true"></script>
+    <script src="~/js/mydas.js"></script>
+    <script src="~/lib/My97DatePicker/WdatePicker.js"></script>
+    <script src="~/lib/layer/layer.js"></script>
+
+
+    <link rel="stylesheet" href="~/lib/layer/theme/default/layer.css" />
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/lib/font-awesome/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="~/css/animate.css" />
+    <link rel="stylesheet" href="~/css/style.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/print.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <style type="text/css">
+        .hospital {
+            /*width: 630px;
+            float: left;*/
+            font-size: 40px;
+            font-weight: 500;
+            margin-left: 100px;
+            position: absolute;
+            text-align: center;
+            vertical-align: middle;
+            z-index: 0;
+        }
+
+        .ma {
+            float: right;
+            font-size: 40px;
+            font-weight: 500;
+            height: 80px;
+            line-height: 80px;
+            margin-right: 10px;
+            margin-top: 10px;
+            vertical-align: middle;
+            width: 80px;
+            z-index: 100;
+        }
+
+        body {
+            color: black;
+            font-size: 30px;
+            margin: auto;
+            padding: 10px;
+            width: 1024px;
+        }
+
+        #header {
+            height: 100px;
+            vertical-align: middle;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="header">
+        <div class="hospital">
+            杭州市富阳区第三人民医院
+            <br />
+            美沙酮药物治疗门诊麻醉药品专用处方笺
+        </div>
+        <div class="border border-dark ma text-center">
+            麻
+        </div>
+    </div>
+    <br />
+    <br />
+    <div>
+        <div style="float: left; margin-left: 10px;">
+            N
+            <u>o</u>：
+            <u>@($"{Model.RecipeId:000000000}")</u>
+        </div>
+        <div style="float: right; margin-right: 10px;">
+            处方日期：
+            <u>@Model.CreateTime.ToString("yyyy年MM月dd日")</u>
+        </div>
+    </div>
+    <br />
+    <div id="info" style="margin-top:10px;">
+        <table>
+            <tr>
+                <td>
+                    姓名：
+                    <u>@Model.Patient.PatientName</u>
+                </td>
+                <td>
+                    性别：
+                    <u>@(Model.Patient.Sex == 1 ? "男" : "女")</u>
+                </td>
+                <td>
+                    年龄：
+                    <u>@(DateTime.Now.Year - Convert.ToInt32(Model.Patient.IdCard.Substring(6, 4)) + 1)</u>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    科室：
+                    <u>美沙酮</u>
+                </td>
+                <td>
+                    卡号：
+                    <u>@Model.Patient.MedCard</u>
+                </td>
+                <td>
+                    电话：
+                    <u>@Model.Patient.Mobile</u>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="3">
+                    地址(单位)：
+                    <u>@Model.Patient.Address</u>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="3">
+                    临床诊断：
+                    <u>@Model.Dignose</u>
+                </td>
+            </tr>
+        </table>
+    </div>
+<div style="height: 800px;">
+        <h2>Rp:</h2>
+        <table id="recipe">
+            <thead>
+                <tr>
+                    <td>组号 </td>
+                    <td>药品及规格 </td>
+                    <td>用法用量 </td>
+                    <td>数量 </td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1.</td>
+                    <td>@Model.DrugName </td>
+                    <td>口服/立即/@(Model.DrugNumber)mg </td>
+                    <td>@(Model.DrugNumber)ml </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div style="display: block;">
+        <table id="foot">
+            <tr>
+                <td>
+                    药费：
+                    <u>0</u>元
+                </td>
+                <td class="text-right">
+                    医师：
+                    <u>林小美</u>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    发药窗口：
+                    <u>美沙酮</u>
+                </td>
+                <td class="text-right">
+                    发药人：
+                    <u>冯晖</u>
+                </td>
+            </tr>
+        </table>
+        <p style="font-size: 28px;">
+            注：请勿遗失，处方当日有效。因特殊情况，该处方有效期为
+            <u>&nbsp;&nbsp;&nbsp;</u>天（签名：
+            <u>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</u>）
+        </p>
+    </div>
+</body>
+</html>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("table td").css("font-size", "30px");
+        $("u").css("font-weight", "500");
+        $("table#recipe td").addClass("text-center");
+        $("table#recipe thead td").css("font-weight", "500");
+        $("table").css("width", "100%");
+        $("table#foot td").removeClass("text-left");
+        $("table").css("border-spacing", "5px").css("border-collapse", "separate");
+    });
+
+    function printPage() {
+        window.print();
+        window.close();
+    }
+</script>

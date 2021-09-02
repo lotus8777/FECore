@@ -1,0 +1,64 @@
+﻿@model IList<Fy3y.Model.Das.Recipe>
+@{
+  ViewBag.Title = "服药统计";
+}
+@Html.Partial("BeginEndFormPartial")
+<ul class="nav nav-tabs" id="mytabs" role="tablist">
+  <li class="nav-item">
+    <a class="active nav-link" data-toggle="tab" href="#statistics">开方统计</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" data-toggle="tab" href="#details">开方明细</a>
+  </li>
+</ul>
+<div class="border border-top-0 p-2 tab-content">
+  <div class="active fade show tab-pane" id="statistics">
+    <ul class="list-unstyled row">
+      <li class="col-3">
+        <div class="card">
+          <div class="card-body">
+            <span>服药人数</span>
+            <h1 class="text-center">@(Model?.Where(p => p.IsValid).Select(p => p.PatientId).Distinct().Count())</h1>
+          </div>
+        </div>
+      </li>
+      <li class="col-3">
+        <div class="card subcard">
+          <div class="card-body">
+            <span>开方数量</span>
+            <h1 class="text-center">@(Model?.Count(p => p.IsValid))</h1>
+          </div>
+        </div>
+      </li>
+      <li class="col-3">
+        <div class="card subcard">
+          <div class="card-body">
+            <span>作废方数</span>
+            <h1 class="text-center">@(Model?.Count(p => !p.IsValid))</h1>
+          </div>
+        </div>
+      </li>
+      <li class="col-3">
+        <div class="card subcard">
+          <div class="card-body">
+            <span>用药数量</span>
+            <h1 class="text-center">@(Model?.Where(p => p.IsValid).Sum(p => p.DrugNumber))</h1>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div class="fade tab-pane" id="details">
+      @Html.Partial(RecipeListPartitial,Model)
+  </div>
+</div>
+<div class="d-print-none">
+  <a class="btn btn-dark" href="@Url.Action("Index","Patient")">
+    <i class="fa fa-backward">返回</i>
+  </a>
+</div>
+<script type="text/javascript">
+  $(document).ready(function() {
+    $("table th").addClass("text-center");
+  });
+</script>

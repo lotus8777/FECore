@@ -1,0 +1,100 @@
+﻿@using System.Globalization
+@model IList<Fy3y.Model.Das.Schedule>
+@{
+  ViewBag.Title = "志愿者排班";
+}
+
+<form id="form1" method="post">
+    @Html.AntiForgeryToken()
+    <fieldset>
+        <legend>查询条件</legend>
+        <div class="form-group row text-center">
+            <label class="col-2 col-form-label">选择月份</label>
+            @Html.TextBox("queryMonth", null, 
+                new { onfocus = "WdatePicker({isShowClear:false,readOnly:true,isShowOK:false,dateFmt: 'yyyy/MM'})",
+                    @class = "form-control col-2" })
+            <div class="col-2">
+                <button class="btn btn-dark d-print-none">
+                    <span class="fa fa-search">查询</span>
+                </button>
+            </div>
+        </div>
+    </fieldset>
+</form>
+<br/>
+
+<table class="table table-sm table-bordered text-center">
+
+  <tr>
+    <td rowspan="2">#</td>
+    <td colspan="3" class="font-weight-bolder">值班时间</td>
+    <td colspan="2" class="font-weight-bolder">值班人员</td>
+    <td colspan="2" class="font-weight-bolder">短信发送</td>
+  </tr>
+  <tr>
+    <td>日期</td>
+    <td>周历</td>
+    <td>午别</td>
+    <td>姓名</td>
+    <td>手机</td>
+    <td>状态</td>
+    <td>发送时间</td>
+  </tr>
+
+  @{
+    DateTime currentDate = DateTime.MinValue;
+    int i = 1;
+    foreach (var item in Model)
+    {
+      <tr>
+        @if (currentDate != item.DutyTime)
+        {
+          currentDate = item.DutyTime;
+          <td rowspan="2">@i</td>
+          <td rowspan="2">@item.DutyTime.ToShortDateString() </td>
+          <td rowspan="2">@CultureInfo.GetCultureInfo("zh-CN").DateTimeFormat.GetDayName(item.DutyTime.DayOfWeek) </td>
+        }
+        else
+        {
+          i++;
+        }
+        <td>
+          @if (item.IsForenoon)
+          {
+            <label class="badge badge-success">上午</label>
+          }
+          else
+          {
+            <label class="badge badge-warning">下午</label>
+          }
+        </td>
+        <td>
+          @item.Employee.EmployeeName
+        </td>
+        <td>@item.Employee.Mobile </td>
+        <td>
+          @if (item.SmsInfo.IsSend)
+          {
+            <label class="badge badge-success">已发</label>
+          }
+          else
+          {
+            <label class="badge badge-warning">未发</label>
+          }
+        </td>
+        <td>
+          @if (item.SmsInfo.IsSend)
+          {
+            if (item.SmsInfo.RealSendTime != null)
+            {
+              @item.SmsInfo.RealSendTime.Value.ToString("yyyy/MM/dd HH:mm")
+            }
+          }
+        </td>
+      </tr>
+
+    }
+  }
+</table>
+
+

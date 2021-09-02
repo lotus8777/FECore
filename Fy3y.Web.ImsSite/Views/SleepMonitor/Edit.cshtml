@@ -1,0 +1,65 @@
+﻿@model Fy3y.Model.Das.SleepMonitorRegistration
+@{
+  ViewBag.Title = "修改预约单";
+}
+<br />
+<form id="form1">
+  @Html.AntiForgeryToken()
+    <fieldset>
+        <legend>预约信息</legend>
+        @Html.Partial("PatientInfoPartial")
+        <div class="form-group row">
+            <label class="col-2 col-form-label">就诊时间</label>
+            <div class="col-4">
+                @Html.TextBoxFor(m => m.PreVisitTime, new { onfocus = "WdatePicker({ isShowClear: false, readOnly: true, isShowOK: false, minDate: '%y-%M-%d', dateFmt: 'yyyy/MM/dd' })", @class = "form-control" })
+            </div>
+            <label class="col-2 col-form-label ">预约医生</label>
+            <div class="col-4">
+                @Html.TextBoxFor(m => m.Doctor, new { @class = "form-control", list = "doctorlist" })
+                <datalist id="doctorlist">
+                    <option>王身祥</option>
+                    <option>张薇薇</option>
+                </datalist>
+            </div>
+        </div>
+    </fieldset>
+  @Html.HiddenFor(m => m.Creator)
+  @Html.HiddenFor(m => m.CreateTime)
+  @Html.HiddenFor(m => m.UniqueId)
+  @Html.HiddenFor(m => m.Status)
+</form>
+<button class="btn btn-dark" id="btnSubmit">
+  <i class="fa fa-save">保存</i>
+</button>
+<a href="@Url.Action("Index")">返回</a>
+<script type="text/javascript">
+  function validForm() {
+    return $("#form1").validate({
+      rules: {
+        Doctor: {
+          required: true
+        },
+        Contact: {
+          required: true
+        },
+        PatientName: {
+          required: true
+        },
+        PatientAge: {
+          required: true
+        }
+      }
+    });
+  }
+
+  //注册表单验证
+  $(validForm());
+  $("#btnSubmit").click(function() {
+    if (validForm().form()) {
+      $("#btnsubmit").attr("disabled", true);
+      var url = "@Url.Action("Edit")";
+      var data = $("#form1").serialize();
+      AjaxSubmit(url, data);
+    }
+  });
+</script>

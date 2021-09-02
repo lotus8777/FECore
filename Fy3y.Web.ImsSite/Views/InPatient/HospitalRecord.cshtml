@@ -1,0 +1,69 @@
+﻿
+@model IList<Inpatient>
+@{
+  ViewBag.Title = "按姓名查询住院病人";
+  Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@Html.ValidationSummary(false)
+@using (Html.BeginForm("HospitalRecord", null, FormMethod.Post))
+{
+  @Html.AntiForgeryToken()
+  <div class="form-group row">
+    <div class="col-4">
+      @Html.TextBox("name", null, new { @class = "form-control", placeholder = "请输入身份证号或姓名" })
+    </div>
+    <div class="col-2">
+      <button class="btn btn-dark d-print-none">
+        <span class="fa fa-search">查询</span>
+      </button>
+    </div>
+  </div>
+}
+<br />
+<table class="table table-sm table-bordered table-hover table-striped text-center" id="table1">
+    <thead>
+    <tr>
+        <th>#</th>
+        <th>住院号</th>
+        <th>姓名</th>
+        <th>性别</th>
+        <th>年龄</th>
+        <th>科室</th>
+        <th>床号</th>
+        <th>入院时间</th>
+        <th>出院时间</th>
+        <th>床日</th>
+        <th>类型</th>
+        <th>操作</th>
+    </tr>
+    </thead>
+    <tbody>
+    @{
+        var number = 0;
+        if (Model?.Count() > 0)
+        {
+            foreach (var p in Model)
+            {
+                number++;
+                <tr>
+                    <td>@number </td>
+                    <td>@p.Zyhm </td>
+                    <td>@p.Brxm </td>
+                    <td>@Html.Partial("SexPartial",p.Brxb) </td>
+                    <td>@Html.Partial("AgePartial",p.Age) </td>
+                    <td>@p.Ksmc </td>
+                    <td>@p.Brch </td>
+                    <td>@p.Ryrq.ToString("yyyy-MM-dd HH:mm") </td>
+                    <td>@(p.Cyrq.HasValue?p.Cyrq.Value.ToString("yyyy-MM-dd HH:mm"):"") </td>
+                    <td>@p.Brcr.ToString("f2") </td>
+                    <td>
+                        @Html.Partial("Partial/PatientTypePartial",p.Brlx)
+                    </td>
+                    <td><a href="@Url.Action("ReRegister",new { zyh=p.Zyh})">入院</a></td>
+                </tr>
+            }
+        }
+    }
+    </tbody>
+</table>

@@ -1,0 +1,76 @@
+﻿@model Fy3y.Model.Das.WebModule
+@{
+  ViewBag.Title = "编辑模块";
+}
+<div style="margin: 30px;">
+  @using (Html.BeginForm())
+  {
+    @Html.AntiForgeryToken()
+    <div class="form-horizontal">
+      @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+      <div class="form-group row">
+        <label class="col-md-2 control-label text-right">父模块</label>
+        <div class="col-md-10">
+            @Html.DropDownListFor(p=>p.ParentModuleId, ViewBag.parentWebModuleId as SelectList,new{@class="custom-select"})
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-md-2 col-form-label text-right">模块名称</label>
+        <div class="col-md-10">
+           
+            @Html.TextBoxFor(p=>p.ModuleName,new {@class="form-control"})
+        </div>
+      </div>
+      <div class="form-group row" id="control">
+        <label class="col-md-2 col-form-label text-right">控制器</label>
+        <div class="col-md-10">
+            @Html.TextBoxFor(p=>p.ControllerName,new {@class="form-control"})
+        </div>
+      </div>
+      <div class="form-group row ">
+        <label class="col-md-2 col-form-label text-right">页面</label>
+        <div class="col-md-10">
+            @Html.TextBoxFor(p=>p.ActionName,new {@class="form-control"})
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-md-2 col-form-label text-right">参数</label>
+        <div class="col-md-10">
+            @Html.TextBoxFor(p=>p.Parameters,new {@class="form-control"})
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-form-label col-md-2 text-right">图标</label>
+        <div class="col-md-10">
+            @Html.TextBoxFor(p=>p.Icon,new {@class="form-control"})
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-form-label col-md-2 text-right">其它属性</label>
+        <div class="col-md-10">
+          <div class="form-check form-check-inline">
+              @Html.CheckBoxFor(p=>p.IsValid,new {@class="form-check-input"})
+            <label class="form-check-label">有效?</label>
+          </div>
+          <div class="form-check form-check-inline">
+              @Html.CheckBoxFor(p=>p.IsPublic,new {@class="form-check-input"})
+            <label class="form-check-label">公用?</label>
+          </div>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-md-2 col-form-label text-right" text-right>备注</label>
+        <div class="col-md-10">
+            @Html.TextAreaFor(p=>p.Description,4,2,new {@class="form-control"})
+        </div>
+      </div>
+      @Html.HiddenFor(p=>p.ModuleId)
+      @Html.HiddenFor(p=>p.CreateTime)
+      <div id="controller">
+      </div>
+      <div class="text-center">
+        <input class="btn btn-dark d-print-none" type="submit" value="保存" />
+      </div>
+    </div>
+  }
+</div>

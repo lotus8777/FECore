@@ -1,0 +1,78 @@
+﻿@model IList<Ys_Mz_Jzls>
+@{
+    ViewData["Title"] = "就诊历史";
+}
+
+@Html.ValidationSummary(false)
+<form action="@Url.Action("OutRecord")" method="post">
+    @Html.AntiForgeryToken()
+    <div class="form-group row">
+        <div class="col-4">
+            @Html.TextBox("keyWord", null, new { @class = "form-control", placeholder = "请输入身份证号或姓名或门诊号或手机号" })
+        </div>
+        <div class="col-2">
+            <button class="btn btn-dark d-print-none">
+                <span class="fa fa-search">查询</span>
+            </button>
+        </div>
+    </div>
+</form>
+<table class="table table-bordered table-sm text-center"  id="table1">
+    <thead>
+    <tr>
+        <td>#</td>
+        <td>姓名</td>
+        <td>身份证</td>
+        <td>门诊号</td>
+        <td>手机</td>
+        <td>科室</td>
+        <td>医生</td>
+        <td>时间</td>
+        <td>诊断</td>
+        <td>详细</td>
+    </tr>
+    </thead>
+    <tbody>
+    @if (Model?.Any()!=null)
+    {
+        int i = 1;
+        foreach (var item in Model)
+        {
+            var keyValue = item.Jzxh;
+            <tr>
+                <td>@i</td>
+                <td>@item.Ms_Brda.Brxm</td>
+                <td>@item.Ms_Brda.Sfzh</td>
+                <td>@item.Ms_Brda.Mzhm</td>
+                <td>@item.Ms_Brda.Phone</td>
+                <td>@item.Ms_Ghks.Ksmc</td>
+                <td>@item.Gy_Ygdm.Ygxm</td>
+                <td>@item.Kssj.ToShortDateString()</td>
+                <td>@item.Mqzd</td>
+                <td>
+                    <a href="javascript:;" onclick="openDetails('@Url.Action("TreatmentDetails",new{id=keyValue})')">
+                        <i class="fa fa-search"></i>
+                    </a>
+                </td>
+            </tr>
+
+            i++;
+        }
+
+    }
+
+    </tbody>
+</table>
+<script type="text/javascript">
+    function openDetails(url) {
+        layer.open({
+            type: 2,
+            title: '处方详细',
+            shadeClose: true,
+            shade: 0.8,
+            area: ['100%','100%'],
+            content: url
+        }); 
+    }
+
+</script>

@@ -1,0 +1,259 @@
+﻿@model Fy3y.Model.Das.AdverseInstructionEvent
+@{
+  ViewBag.Title = "医疗器械（不良）事件报告";
+}
+<br />
+<link href="~/Content/viewpage.css" rel="stylesheet" type="text/css" />
+<div class="text-center">
+  <div class="form-group row ">
+    <label class="col-2 col-form-label">报告人</label>
+    <div class="col-2 div-text ">
+     @Model.AdverseEvent.ReporterName
+    </div>
+    <label class="col-2 col-form-label">报告科室</label>
+    <div class="col-2 div-text ">
+      @Model.AdverseEvent.ReporterDeptName
+    </div>
+    <label class="col-2 col-form-label">报告时间</label>
+    <div class="col-2 div-text  ">
+     @Model.AdverseEvent.ReportTime.ToString("yyyy/MM/dd HH:mm")
+    </div>
+  </div>
+  <br />
+  <!--A-患者基本信息-->
+  <fieldset>
+    <legend>A-基本资料</legend>
+    <div class="form-group row">
+      <label class="col-2 col-form-label">病案号</label>
+      <div class="col-2 div-text">
+       @Model.AdverseEvent.MedicalNo
+      </div>
+      <label class="col-2 col-form-label">性别</label>
+      <div class="col-2 div-text">
+
+        @Model.AdverseEvent.PatientSex
+      </div>
+      <label class="col-2 col-form-label">姓名</label>
+      <div class="col-2 div-text">
+       @Model.AdverseEvent.PatientName
+      </div>
+      <label class="col-2 col-form-label">年龄</label>
+      <div class="col-2 div-text">
+       @Model.AdverseEvent.PatientAge
+      </div>
+      <label class="col-2 col-form-label">科室</label>
+      <div class="col-2 div-text">
+        @Model.AdverseEvent.PatientDeptName
+      </div>
+      <label class="col-2 col-form-label">床号</label>
+
+      <div class="col-2 div-text">
+       @Model.AdverseEvent.BedNo
+      </div>
+      <label class="col-2 col-form-label">诊断</label>
+     <div class="col-10 div-text-left">
+       @Model.AdverseEvent.Diagnosis
+      </div>
+    </div>
+  </fieldset>
+  <!--B-事件情况-->
+  <fieldset>
+    <legend>B-事件情况</legend>
+    <div class="form-group row">
+      <label class="col-2 col-form-label">发生时间</label>
+      <div class="col-2 div-text">
+       @Model.AdverseEvent.EventTime
+      </div>
+      <label class="col-2 col-form-label">知悉时间</label>
+      <div class="col-2 div-text">
+        @Model.KnowTime
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-2 col-form-label">使用场所</label>
+      <div class="col-2 div-text">
+        @Model.OperationPlace
+      </div>
+      <label class="col-2 col-form-label">预期作用</label>
+      <div class="col-2 div-text">
+        @Model.ExpectedEffect
+      </div>
+      <label class="col-2 col-form-label">事件后果</label>
+      <div class="col-2 div-text">
+        @Model.EventResult
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-2 col-form-label">主要表现</label>
+      <div class="col-10 div-text-left">
+        @Model.Performance
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-2 col-form-label">事件陈述</label>
+
+      <div class="col-10 div-textarea">
+        @Model.EventDetails
+      </div>
+    </div>
+  </fieldset>
+  <!--C-医疗器械使用情况-->
+  <fieldset>
+    <legend>C-医疗器械使用情况</legend>
+    <div class="form-group row">
+      <label class="col-2 col-form-label">产品名称</label>
+      <div class="col-4 div-text">
+        @Model.ProductName
+      </div>
+      <label class="col-2 col-form-label">商品名称</label>
+      <div class="col-4 div-text">
+        @Model.CommodityName
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-2 col-form-label">企业名称</label>
+      <div class="col-4 div-text">
+        @Model.EnterpriseName
+      </div>
+      <label class="col-2 col-form-label">联系电话</label>
+      <div class="col-4 div-text">
+        @Model.ContactNumber
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-2 col-form-label">企业地址</label>
+      <div class="col-4 div-text">
+        @Model.EnterpriseAddress
+      </div>
+      <label class="col-2 col-form-label">注册证号</label>
+      <div class="col-4 div-text">
+        @Model.RegistrationNumber
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-2 col-form-label">型号规格</label>
+      <div class="col-2 div-text">
+        @Model.Specification
+      </div>
+      <label class="col-2 col-form-label">产品编号</label>
+      <div class="col-2 div-text">
+        @Model.CatalogNumber
+      </div>
+      <label class="col-2 col-form-label">产品批号</label>
+      <div class="col-2 div-text">
+        @Model.LotNumber
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-2 col-form-label">操作人员</label>
+      <div class="col-2 div-text">
+        @Model.OperatorType
+      </div>
+      <label class="col-2 col-form-label">生产日期</label>
+      <div class="col-2 div-text">
+        @Model.ProducedDate.ToShortDateString()
+      </div>
+      <label class="col-2 col-form-label">有效期至</label>
+
+      <div class="col-2 div-text">
+        @Model.ExpiryDate.ToShortDateString()
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-2 col-form-label">停用日期</label>
+      <div class="col-2 div-text">
+        @Model.DisabledDate.ToShortDateString()
+      </div>
+      @if (Model.ImplantationDate.HasValue)
+      {
+        <label class="col-2 col-form-label">植入日期</label>
+        <div class="col-2">
+          @(Model.ImplantationDate?.ToShortDateString())
+        </div>
+      }
+      <label class="col-2 col-form-label">报告状态</label>
+      <div class="col-6 div-text-left">
+        @Model.ReportUnit
+      </div>
+    </div>
+  </fieldset>
+  <!--D-关联评价-->
+  <fieldset>
+    <legend>D-关联评价</legend>
+    <div class="form-group row text-left">
+      <label class="col-9 col-form-label offset-1">(1)使用医疗器械与已发生/可能发生的伤害事件之间是否具有合理的先后时间顺序？</label>
+      <div class="col-2">
+        @Model.TimeSequence
+      </div>
+    </div>
+    <div class="form-group row text-left">
+      <label class="col-9 col-form-label offset-1">(2)已发生/可能发生的伤害事件是否属于所使用医疗器械可能导致的伤害类型？</label>
+      <div class="col-2">
+        @Model.BelongTo
+      </div>
+    </div>
+    <div class="form-group row text-left">
+      <label class="col-9 col-form-label offset-1">(3)已发生/可能发生的伤害事件是否可用合并用药和/或械的作用、患者病情或其他非医疗器械因素来解释？</label>
+      <div class="col-2">
+        @Model.OtherFactor
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-9 col-form-label offset-1 text-left">评价结论：综上所述是否与该医疗器械有关？</label>
+      <div class="col-2 text-left">
+        @Model.Conclusion
+      </div>
+    </div>
+  </fieldset>
+  <!--E-主管部门意见-->
+  <fieldset>
+    <legend>E-事件评价</legend>
+    @if (Model.AdverseEvent.IsChecked)
+    {
+      <div class="form-group row">
+        <label class="col-2 col-form-label">主管部门意见陈述:</label>
+        <div class="col-10 div-textarea">
+         @Model.SuperiorOpinion
+        </div>
+      </div>
+    }
+    else
+    {
+      <label class="text-danger fa-2x">未审核</label>
+    }
+  </fieldset>
+</div>
+<div class="text-center">
+  @if (ViewBag.fatherType == "1")
+  {
+    <a class="d-print-none" href="@Url.Action("Manage","AdverseEvent")">返回</a>
+  }
+  else if (ViewBag.fatherType == "2")
+  {
+    <a href="@Url.Action("Statistics","AdverseEvent")">返回</a>
+  }
+  else
+  {
+    <a class="d-print-none" href="@Url.Action("Index","AdverseEvent")">返回</a>
+  }
+</div>
+<script type="text/javascript">
+
+  $("input[type='radio'][name='TimeSequence'][value='@Model.TimeSequence']").attr("checked", true);
+  $("input[type='radio'][ name='BelongTo'][ value='@Model.BelongTo']").attr("checked", true);
+  $("input[type='radio'][ name='OtherFactor'][ value='@Model.OtherFactor']").attr("checked", true);
+
+  //通知单位赋值
+  var units = "@Model.ReportUnit";
+  $("input[type='checkbox'][name='ReportUnit']").each(function() {
+    if (units.indexOf(this.value) >= 0) {
+      $(this).attr("checked", "checked");
+    }
+  });
+
+  $("input[type='text']").attr("readonly", "readonly");
+  $("textarea").attr("readonly", "readonly");
+  $("select").attr("disabled", "true");
+  $("input[type='checkbox']").attr("disabled", "disabled");
+  $("input[type='radio']").attr("disabled", "true");
+</script>

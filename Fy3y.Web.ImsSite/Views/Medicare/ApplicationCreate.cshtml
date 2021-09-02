@@ -1,0 +1,132 @@
+﻿@model Fy3y.Model.Das.MedicareApplication
+@{
+    ViewBag.Title = "医保备案审批申请";
+}
+@Html.ValidationSummary(true, "", new { @class = "text-danger" })
+@Html.Partial("~/Views/AdverseEvent/QueryPatientPartial.cshtml")
+<br />
+<form id="form1" class="text-center">
+    @Html.AntiForgeryToken()
+    <fieldset>
+        <legend>
+            病人基本信息
+        </legend>
+        <div class="form-group row">
+            <label class="col-2 col-form-label">患者姓名</label>
+            <div class="col-4">
+                @Html.TextBoxFor(model => model.PatientName, new { @class = "form-control", required = "" })
+            </div>
+            <label class="col-2 col-form-label">患者性别</label>
+            <div class="col-4">
+                @Html.TextBoxFor(model => model.PatientSex, new { @class = "form-control", required = "" })
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-2 col-form-label">患者年龄</label>
+            <div class="col-4">
+                @Html.TextBoxFor(model => model.PatientAge, new { @class = "form-control" })
+            </div>
+            <label class="col-2 col-form-label">所在床号</label>
+            <div class="col-4">
+                @Html.TextBoxFor(model => model.BedNo, new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-2 col-form-label">就诊科室</label>
+            <div class="col-4">
+                @Html.TextBoxFor(model => model.PatientDeptName, new { @class = "form-control", required = "" })
+            </div>
+            <label class="col-2 col-form-label">就诊医生</label>
+            <div class="col-4">
+                @Html.TextBoxFor(model => model.DoctorName, new { @class = "form-control", required = "" })
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-2 col-form-label">临床诊断</label>
+            <div class="col-10">
+                @Html.TextBoxFor(model => model.Diagnosis, new { @class = "form-control" })
+            </div>
+        </div>
+    </fieldset>
+    <fieldset>
+        <legend>申请项目信息</legend>
+        <div class="form-group row">
+            <label class="col-2 col-form-label">项目名称</label>
+            <div class="col-4">
+                @Html.TextBoxFor(model => model.ItemName, new { @class = "form-control", list = "itemlist", required = "" })
+                <datalist id="itemlist">
+                    <option>认知知觉功能障碍训练</option>
+                    <option>作业疗法</option>
+                    <option>日常生活能力评定</option>
+                    <option>认知知觉功能检查</option>
+                    <option>计算定向思维推理 </option>
+                    <option>全身肌力训练</option>
+                    <option>各关节活动度训练</option>
+                    <option>徒手体操 </option>
+                    <option>器械训练</option>
+                    <option>步态平衡功能训练</option>
+                    <option>电动起立床训练</option>
+                    <option>言语训练 </option>
+                    <option>康复评定</option>
+                    <option>有氧训练</option>
+                </datalist>
+            </div>
+            <label class="col-2 col-form-label">申请数量</label>
+            <div class="col-4">
+                @Html.TextBoxFor(model => model.ApplicationCount, new { @class = "form-control", required = "" })
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-2 col-form-label">开始时间</label>
+            <div class="col-4">
+                @Html.TextBoxFor(model => model.BeginDate, new { Value = Model.BeginDate.ToShortDateString(), @class = "form-control", onfocus = "WdatePicker({ isShowClear: false, readOnly: true, isShowOK: false, dateFmt: 'yyyy/MM/dd' })" })
+            </div>
+            <label class="col-2 col-form-label">结束时间</label>
+            <div class="col-4">
+                @Html.TextBoxFor(model => model.EndDate, new { Value = Model.EndDate.ToShortDateString(), @class = "form-control", onfocus = "WdatePicker({ isShowClear: false, readOnly: true, isShowOK: false,  dateFmt: 'yyyy/MM/dd' })" })
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-2 col-form-label">申请理由</label>
+            <div class="col-10">
+                @Html.TextAreaFor(model => model.Reason, 2, 2, new { @class = "form-control" })
+            </div>
+        </div>
+    </fieldset>
+    @Html.HiddenFor(p => p.MedicalNo)
+    @Html.HiddenFor(p => p.RecordId)
+    @Html.HiddenFor(p => p.StatusCode)
+    @Html.HiddenFor(p => p.CreateTime)
+    @Html.HiddenFor(p => p.CreatorName)
+    @Html.HiddenFor(p => p.CreatorId)
+</form>
+<br/>
+<div class="form-group d-print-none">
+    <div class="text-center">
+        <button class="btn btn-success" id="submit">
+            <i class="fa fa-save">保存</i>
+        </button>
+        @Html.ActionLink("返回", "ApplicationIndex")
+    </div>
+</div>
+<script>
+  function validForm() {
+    return $("#form1").validate({
+      rules: {
+        Diagnosis: {
+          required: true
+        }
+      }
+    });
+  }
+  //注册表单验证
+  $(validForm());
+  //点击表单保存按钮触发单击事件，进行表单验证，验证通过发起ajax请求，验证不通过在表单里提示
+  $("#submit").click(function() {
+    if (validForm().form()) {
+      var url = "@Url.Action("ApplicationCreate")";
+      var data = $("#form1").serialize();
+      AjaxSubmit(url, data);
+    }
+  });
+</script>

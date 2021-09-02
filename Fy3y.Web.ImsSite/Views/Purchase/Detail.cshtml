@@ -1,0 +1,43 @@
+﻿@model Fy3y.Model.Das.Purchase
+
+@{
+  ViewBag.Title = "采购申请单";
+}
+<br />
+<br />
+<br />
+<div>
+  <table class="table table-sm table-bordered text-center table-striped">
+    <tr>
+      <td>申请单号 </td>
+      <td><b> @("CG" + Model.PurchaseId)</b> </td>
+      <td>申请时间 </td>
+      <td>@Model.CreateTime.ToShortDateString() </td>
+    </tr>
+    <tr>
+      <td>申请人 </td>
+      <td>@Model.CreatorName </td>
+      <td>申请科室 </td>
+      <td>@Model.DepartmentName </td>
+    </tr>
+    <tr>
+      <td>采购清单 </td>
+      <td><textarea class="border-0 form-control" readonly rows="7">@Model.Budget</textarea> </td>
+    </tr>
+    <tr>
+      <td>申请事由 </td>
+      <td><textarea class="border-0 form-control" readonly rows="10">@Model.Remarks</textarea> </td>
+    </tr>
+    <tr>
+      <td>科室审批 </td>
+      <td><textarea class="border-0 form-control" rows="7"></textarea> </td>
+    </tr>
+    <tr>
+      <td>领导审批 </td>
+      <td><textarea class="border-0 form-control" rows="7"></textarea> </td>
+    </tr>
+  </table>
+</div>
+<p>
+  <a class="btn btn-dark d-print-none" href="@Url.Action("Index")">返回</a>
+</p>

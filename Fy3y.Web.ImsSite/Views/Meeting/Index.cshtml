@@ -1,0 +1,45 @@
+﻿@model IList<Fy3y.Model.Das.Meeting>
+@{
+  ViewBag.Title = "会议列表";
+}
+<a class="btn btn-dark" href="@Url.Action("Create")">
+  <i class="fa fa-plus">添加会议</i>
+</a>
+<br />
+<br />
+<table class="table table-sm table-bordered table-hover table-striped text-center">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>会议时间</th>
+      <th>会议主题</th>
+      <th>会议地点</th>
+      @*<th>参会人员</th>*@
+      <th>详情</th>
+    </tr>
+  </thead>
+  <tbody>
+    @{
+    var number = 0;
+    if(Model?.Any()??false)
+    {
+      foreach (var p in Model)
+      {
+        number++;
+      <tr>
+        <td>@number </td>
+        <td>@p.StartTime </td>
+        <td>@p.Topic </td>
+        <td>@p.Place </td>
+        @*<td>@p.Attendee </td>*@
+        <td>
+          <a>
+            <i class="fa fa-search"></i>
+          </a>
+        </td>
+      </tr>
+      }
+    }
+    }
+  </tbody>
+</table>

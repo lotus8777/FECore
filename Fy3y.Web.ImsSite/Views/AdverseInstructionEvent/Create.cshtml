@@ -1,0 +1,295 @@
+﻿@model Fy3y.Model.Das.AdverseInstructionEvent
+@{
+  ViewBag.Title = "医疗器械不良事件报告";
+}
+<br />
+@Html.Partial("~/Views/AdverseEvent/QueryPatientPartial.cshtml")
+<form class="text-center" id="form1" method="post" onsubmit="return validForm()">
+  @Html.AntiForgeryToken()
+  <fieldset>
+    <legend>A-基本资料</legend>
+    <div class="form-group row">
+      <label class="col-2 col-form-label">病案号码</label>
+      <div class="col-4">
+        @Html.TextBoxFor(m => m.AdverseEvent.MedicalNo, new { @class = "form-control", placeholder = "住院号/门诊号" })
+      </div>
+      <label class="col-2 col-form-label">性别</label>
+      <div class="col-4">
+        @Html.TextBoxFor(m => m.AdverseEvent.PatientSex, new { @class = "form-control", list = "sexList" })
+        <datalist id="sexList">
+          <option>男</option>
+          <option>女</option>
+          <option>其他</option>
+        </datalist>
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-2 col-form-label">患者姓名</label>
+      <div class="col-4">
+        @Html.TextBoxFor(m => m.AdverseEvent.PatientName, new { @class = "form-control" })
+      </div>
+      <label class="col-2 col-form-label">年龄</label>
+      <div class="col-4">
+        @Html.TextBoxFor(m => m.AdverseEvent.PatientAge, new { @class = "form-control" })
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-2 col-form-label">所属科室</label>
+      <div class="col-4">
+        @Html.TextBoxFor(m => m.AdverseEvent.PatientDeptName, new { @class = "form-control" })
+      </div>
+      <label class="col-2 col-form-label">所在床号</label>
+      <div class="col-4">
+        @Html.TextBoxFor(m => m.AdverseEvent.BedNo, new { @class = "form-control" })
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-2 col-form-label">临床诊断</label>
+      <div class="col-10">
+        @Html.TextBoxFor(m => m.AdverseEvent.Diagnosis, new { @class = "form-control" })
+      </div>
+    </div>
+  </fieldset>
+  <!--B-事件情况-->
+  <fieldset>
+    <legend>B-事件情况</legend>
+    <div class="form-group row">
+      <label class="col-2 col-form-label">预期作用</label>
+      <div class="col-10">
+        @Html.TextBoxFor(m => m.ExpectedEffect, new { @class = "form-control", placeholder = "预期治疗疾病或作用", required = "" })
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-2 col-form-label">主要表现</label>
+      <div class="col-10">
+        @Html.TextBoxFor(m => m.Performance, new { @class = "form-control", placeholder = "事件发生的表现", required = "" })
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-2 col-form-label">发生时间</label>
+      <div class="col-4">
+        @Html.TextBoxFor(m => m.AdverseEvent.EventTime, new
+        {
+          onfocus = "WdatePicker({ isShowClear: false, readOnly: true, isShowOK: false, dateFmt: 'yyyy-MM-dd HH:mm:ss' })",
+          @class = "form-control",
+          value = DateTime.Now
+        })
+      </div>
+      <label class="col-2 col-form-label">知悉时间</label>
+      <div class="col-4">
+        @Html.TextBoxFor(m => m.KnowTime, new
+        {
+          onfocus = "WdatePicker({ isShowClear: false, readOnly: true, isShowOK: false, dateFmt: 'yyyy-MM-dd HH:mm:ss' })",
+          @class = "form-control",
+          value = DateTime.Now
+        })
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-2 col-form-label">使用场所</label>
+      <div class="col-4">
+        @Html.TextBoxFor(m => m.OperationPlace, new
+        {
+          @class = "form-control",
+          list = "placeList",
+          placeholder = "医疗器械实际使用场所,请选择或填写"
+        })
+        <datalist id="placeList">
+          <option>医疗机构</option>
+          <option>家庭使用</option>
+        </datalist>
+      </div>
+      <label class="col-2 col-form-label">事件后果</label>
+      <div class="col-4">
+        @Html.TextBoxFor(m => m.EventResult, new { @class = "form-control", list = "resultList", placeholder = "事件造成后果,请选择或填写" })
+        <datalist id="resultList">
+          <option>(XXX时间)死亡</option>
+          <option>危及生命</option>
+          <option>机体功能结构永久性损伤</option>
+          <option>可能导致机体功能结构永久性损伤</option>
+          <option>需要内、外科治疗避免上述永久损伤</option>
+        </datalist>
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-2 col-form-label">事件陈述</label>
+      <div class="col-10">
+        @Html.TextAreaFor(m => m.EventDetails, 3, 2, new { @class = "form-control", placeholder = "（至少包括器械使用时间、使用目的、使用依据、使用情况、出现的事件情况、对受害者影响、采取的治疗措施、器械联合使用情况）" })
+      </div>
+    </div>
+  </fieldset>
+  <!--C-医疗器械使用情况-->
+  <fieldset>
+    <legend>C-医疗器械使用情况</legend>
+    <div class="form-group row">
+      <label class="col-2 col-form-label">产品名称</label>
+      <div class="col-4">
+        @Html.TextBoxFor(m => m.ProductName, new { @class = "form-control", required = "" })
+      </div>
+      <label class="col-2 col-form-label">商品名称</label>
+      <div class="col-4">
+        @Html.TextBoxFor(m => m.CommodityName, new { @class = "form-control", required = "" })
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-2 col-form-label">企业名称</label>
+      <div class="col-4">
+        @Html.TextBoxFor(m => m.EnterpriseName, new { @class = "form-control", required = "" })
+      </div>
+      <label class="col-2 col-form-label">联系电话</label>
+      <div class="col-4">
+        @Html.TextBoxFor(m => m.ContactNumber, new { @class = "form-control", required = "" })
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-2 col-form-label">企业地址</label>
+      <div class="col-10">
+        @Html.TextBoxFor(m => m.EnterpriseAddress, new { @class = "form-control" })
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-2 col-form-label">注册证号</label>
+      <div class="col-4">
+        @Html.TextBoxFor(m => m.RegistrationNumber, new { @class = "form-control", required = "" })
+      </div>
+      <label class="col-2 col-form-label">型号规格</label>
+      <div class="col-4">
+        @Html.TextBoxFor(m => m.Specification, new { @class = "form-control", required = "" })
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-2 col-form-label">产品编号</label>
+      <div class="col-4">
+        @Html.TextBoxFor(m => m.CatalogNumber, new { @class = "form-control", required = "" })
+      </div>
+      <label class="col-2 col-form-label">产品批号</label>
+      <div class="col-4">
+        @Html.TextBoxFor(m => m.LotNumber, new { @class = "form-control", required = "" })
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-2 col-form-label">操作人员</label>
+      <div class="col-4">
+        @Html.TextBoxFor(m => m.OperatorType, new
+        {
+          @class = "form-control",
+          list = "operatorList",
+          placeholder = "请选择或填写"
+        })
+        <datalist id="operatorList">
+          <option>专业人员</option>
+          <option>非专业人员</option>
+          <option>患者</option>
+        </datalist>
+      </div>
+      <label class="col-2 col-form-label">生产日期</label>
+      <div class="col-4">
+        @Html.TextBoxFor(m => m.ProducedDate, new { onfocus = "WdatePicker({ isShowClear: false, readOnly: true, isShowOK: false, dateFmt: 'yyyy/MM/dd' })", @class = "form-control" })
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-2 col-form-label">有效期至</label>
+      <div class="col-4">
+        @Html.TextBoxFor(m => m.ExpiryDate, new { onfocus = "WdatePicker({ isShowClear: false, readOnly: true, isShowOK: false, dateFmt: 'yyyy/MM/dd' })", @class = "form-control" })
+      </div>
+      <label class="col-2 col-form-label">停用日期</label>
+      <div class="col-4">
+        @Html.TextBoxFor(m => m.DisabledDate, new { onfocus = "WdatePicker({ isShowClear: false, readOnly: true, isShowOK: false, dateFmt: 'yyyy/MM/dd' })", @class = "form-control" })
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-2 col-form-label">植入日期</label>
+      <div class="col-4">
+        @Html.TextBoxFor(m => m.ImplantationDate, new { onfocus = "WdatePicker({ isShowClear: false, readOnly: true, isShowOK: false, dateFmt: 'yyyy/MM/dd' })", @class = "form-control" })
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-2 col-form-label">报告状态</label>
+      <div class="col-10 text-left">
+        <div class="col-2 form-check form-check-inline">
+          <input class="form-check-input" id="ReportUnit1" name="ReportUnit" type="checkbox" value="已通知使用单位" />
+          <label class="form-check-label" for="ReportUnit1">已通知使用单位</label>
+        </div>
+        <div class="col-2 form-check form-check-inline">
+          <input class="form-check-input" id="ReportUnit2" name="ReportUnit" type="checkbox" value="已通知生产企业" />
+          <label class="form-check-label" for="ReportUnit2">已通知生产企业</label>
+        </div>
+        <div class="col-2 form-check form-check-inline">
+          <input class="form-check-input" id="ReportUnit3" name="ReportUnit" type="checkbox" value="已通知经营企业" />
+          <label class="form-check-label" for="ReportUnit3">已通知经营企业</label>
+        </div>
+        <div class="col-2 form-check form-check-inline">
+          <input class="form-check-input" id="ReportUnit4" name="ReportUnit" type="checkbox" value="已通知药监部门" />
+          <label class="form-check-label" for="ReportUnit4">已通知药监部门</label>
+        </div>
+      </div>
+    </div>
+  </fieldset>
+  <!--D-关联评价-->
+  <fieldset>
+    <legend>D-关联评价</legend>
+    <div class="form-group row text-left">
+      <label class="col-9 col-form-label offset-1">(1)使用医疗器械与已发生/可能发生的伤害事件之间是否具有合理的先后时间顺序？</label>
+      <div class="col-2">
+        @Html.TextBoxFor(m => m.TimeSequence, new { @class = "form-control", list = "affectList", required = "" })
+        <datalist id="affectList">
+          <option>是</option>
+          <option>否</option>
+          <option>不清楚</option>
+        </datalist>
+      </div>
+    </div>
+    <div class="form-group row text-left">
+      <label class="col-9 col-form-label offset-1">(2)已发生/可能发生的伤害事件是否属于所使用医疗器械可能导致的伤害类型？</label>
+      <div class="col-2">
+        @Html.TextBoxFor(m => m.BelongTo, new { @class = "form-control", list = "affectList", required = "" })
+      </div>
+    </div>
+    <div class="form-group row text-left">
+      <label class="col-9 col-form-label offset-1">(3)已发生/可能发生的伤害事件是否可用合并用药和/或械的作用、患者病情或其他非医疗器械因素来解释？</label>
+      <div class="col-2">
+        @Html.TextBoxFor(m => m.OtherFactor, new { @class = "form-control", list = "affectList", required = "" })
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-9 col-form-label offset-1 text-left">评价结论：综上所述是否与该医疗器械有关？</label>
+      <div class="col-2">
+        @Html.TextBoxFor(m => m.Conclusion, new { @class = "form-control", placeholder = "请选择", list = "conclusionList" })
+        <datalist id="conclusionList">
+          <option>很可能</option>
+          <option>可能有关</option>
+          <option>可能无关</option>
+          <option>无法确定</option>
+        </datalist>
+      </div>
+    </div>
+  </fieldset>
+  @Html.HiddenFor(m => m.AdverseEvent.Birthday)
+  @Html.HiddenFor(m => m.AdverseEvent.ReporterName)
+  @Html.HiddenFor(m => m.AdverseEvent.ReportTime)
+  @Html.HiddenFor(m => m.AdverseEvent.ReporterDeptName)
+  @Html.HiddenFor(m => m.AdverseEvent.AdverseType)
+  @Html.HiddenFor(m => m.AdverseEvent.CheckerName)
+  @Html.HiddenFor(m => m.AdverseEvent.CheckerId)
+  <br />
+  <div class="text-center">
+    <button class="btn btn-dark" id="btnSubmit">保存</button>
+    <a href="@Url.Action("Index","AdverseEvent")">返回</a>
+  </div>
+</form>
+
+<script type="text/javascript">
+  //验证表单内容是否存在
+  function validForm() {
+    return $("#form1").validate({
+      rules: {
+        EventResult: {
+          required: true
+        }
+      }
+    });
+  }
+
+  //注册表单验证方法
+  $(validForm());
+</script>

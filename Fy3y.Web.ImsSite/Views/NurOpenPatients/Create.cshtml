@@ -1,0 +1,58 @@
+﻿@model Fy3y.Model.Das.NurOpenPatient
+@{
+  ViewBag.Title = "增加开放病人记录";
+}
+@using (Html.BeginForm())
+{
+@Html.AntiForgeryToken()
+<div class="text-center">
+  @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+  <div class="form-group row">
+    <label class="col-form-label col-2">姓名</label>
+    <div class="col-md-4">
+      @Html.TextBoxFor(model => model.PatientName, new { @class = "form-control", @readonly = "" })
+      @Html.ValidationMessageFor(model => model.PatientName, "", new { @class = "text-danger" })
+    </div>
+    <label class="col-form-label col-2">床号</label>
+    <div class="col-md-4">
+      @Html.TextBoxFor(model => model.BedNo, new { @class = "form-control", @readonly = "" })
+      @Html.ValidationMessageFor(model => model.BedNo, "", new { @class = "text-danger" })
+    </div>
+  </div>
+  <div class="form-group row">
+    <label class="col-form-label col-2">开始时间</label>
+    <div class="col-md-4">
+      @Html.TextBoxFor(m => m.OpenTime, "{0:yyyy/MM/dd}", new
+      {
+        onfocus = "WdatePicker({ isShowClear: false, readOnly: true, isShowOK: false, dateFmt: 'yyyy/MM/dd',minDate:'%y-%M-1',maxDate:'%y-%M-%ld'  })",
+        @class = "form-control"
+      })
+    </div>
+    <label class="col-form-label col-2">结束时间</label>
+    <div class="col-md-4">
+      @Html.TextBoxFor(m => m.CloseTime, "{0:yyyy/MM/dd}", new
+      {
+        onfocus = "WdatePicker({ isShowClear: false, readOnly: true, isShowOK: false, dateFmt: 'yyyy/MM/dd',minDate:'%y-%M-%d',maxDate:'%y-%M-%ld' })",
+        @class = "form-control"
+      })
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label class="col-form-label col-2">备注</label>
+    <div class="col-md-10">
+      @Html.TextAreaFor(model => model.Remarks, new { @class = "form-control", rows = 3 })
+    </div>
+  </div>
+  @Html.HiddenFor(p => p.OpenId)
+  @Html.HiddenFor(p => p.CreateTime)
+  @Html.HiddenFor(p => p.CreatorId)
+  @Html.HiddenFor(p => p.DepartmentId)
+  @Html.HiddenFor(p => p.DepartmentName)
+  <div class="form-group">
+    <div class="col-md-offset-2 col-md-10">
+      <input type="submit" value="保存" class="btn btn-success" /> @Html.ActionLink("返回列表", "Index")
+    </div>
+  </div>
+</div>
+}

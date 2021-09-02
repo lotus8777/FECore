@@ -1,0 +1,167 @@
+﻿@model IList<Fy3y.Model.Das.AdverseEvent>
+@{
+    ViewBag.Title = "不良事件报告清单";
+}
+<br />
+<form id="form1" method="post">
+    @Html.AntiForgeryToken()
+    <fieldset>
+        <legend>查询条件</legend>
+        <div class="form-group row">
+            <label class="col-1 col-form-label">开始</label>
+            @Html.TextBox("begin", null, new { onfocus = "WdatePicker({isShowClear:false,readOnly:true,isShowOK:false,maxDate:'%y-%M-%d'})", @class = "form-control col-2" })
+            <label class="col-1 col-form-label">结束</label>
+            @Html.TextBox("end", null, new { onfocus = "WdatePicker({isShowClear:false,readOnly:true,isShowOK:false,maxDate:'%y-%M-%d'})", @class = "form-control col-2" })
+            <div class="col-2">
+                <button class="btn btn-dark d-print-none">
+                    <span class="fa fa-search">查询</span>
+                </button>
+            </div>
+            <div class="col-2 text-left">
+                <button class="btn btn-success" data-toggle="dropdown">
+                        添加事件
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li>
+                            @*<a href="@url.Action("Create", "NurOpenPatients")" class="dropdown-item">开放登记</a>
+                                <a href="@url.Action("Create", "NurTransfers")" class="dropdown-item">重点交接班</a>*@
+                            <a href="@Url.Action("Create", "AdverseMedicalEvent")" class="dropdown-item" target="_blank">医疗不良事件</a>
+                            <a href="@Url.Action("Create", "AdverseNursingEvent")" class="dropdown-item" target="_blank">护理不良事件</a>
+                            <a href="@Url.Action("Create", "AdverseDrugEvent")" class="dropdown-item" target="_blank">药品不良反应</a>
+                            <a href="@Url.Action("Create", "AdverseInstructionEvent")" class="dropdown-item" target="_blank">设备不良事件</a>
+                            <a href="@Url.Action("Create", "AdverseMedicationError")" class="dropdown-item" target="_blank">药品差错事件</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+    </fieldset>
+</form>
+<br />
+<div class="text-center">
+    <table class="table table-sm table-bordered table-striped">
+        <thead>
+        <tr>
+            <th>#</th>
+            <th>事件类型</th>
+            <th>上报时间</th>
+            <th>上报科室</th>
+            <th>审核状态</th>
+            <th>报告人</th>
+            <th>操作</th>
+        </tr>
+        </thead>
+        <tbody>
+        @if (Model?.Count() > 0)
+        {
+            var index = 0;
+            foreach (var item in Model)
+            {
+                index++;
+                <tr>
+                    <td>@index </td>
+                    <td>@(item.AdverseType == 1 ? "医疗事件" : item.AdverseType == 2 ? "护理事件" : item.AdverseType == 3 ? "设备事件" : item.AdverseType == 4 ? "药品反应" :item.AdverseType==5?"药品差错": "其他事件") </td>
+                    <td>@item.ReportTime.ToString("yyyy/MM/dd HH:mm") </td>
+                    <td>@item.ReporterDeptName </td>
+                    <td>
+                        @if (item.IsChecked)
+                        {
+                            <span class="badge badge-success">已审核</span>
+                        }
+                        else
+                        {
+                            <span class="badge badge-danger">未审核</span>
+                        }
+                    </td>
+                    <td>@item.ReporterName </td>
+                    <td>
+                        @{
+                            if (item.AdverseType == 1)
+                            {
+                                if (item.IsChecked)
+                                {
+                                    <a href="@Url.Action("Details","AdverseMedicalEvent",new {id=item.EventId})" title="查看"><i class="fa fa-search fa-lg"></i></a>
+                                }
+                                else
+                                {
+                                    <a href="@Url.Action("Edit","AdverseMedicalEvent",new {id=item.EventId})" title="修改"><i class="fa fa-edit fa-lg"></i></a>
+                                    <a href="javascript:void(0)" onclick="remove('@Url.Action("Delete","AdverseMedicalEvent",new {id=item.EventId})')" title="删除"><i class="fa fa-trash fa-lg"></i></a>
+                                }
+                            }
+                            else if (item.AdverseType == 2)
+                            {
+                                if (item.IsChecked)
+                                {
+                                    <a href="@Url.Action("Details","AdverseNursingEvent",new {id=item.EventId})" title="查看"><i class="fa fa-search fa-lg"></i></a>
+                                }
+                                else
+                                {
+                                    <a href="@Url.Action("Edit","AdverseNursingEvent",new {id=item.EventId})" title="修改"><i class="fa fa-edit fa-lg"></i></a>
+                                    <a href="javascript:void(0)" onclick="remove('@Url.Action("Delete","AdverseNursingEvent",new {id=item.EventId})')" title="删除"><i class="fa fa-trash fa-lg"></i></a>
+                                }
+                            }
+                            else if (item.AdverseType == 3)
+                            {
+                                if (item.IsChecked)
+                                {
+                                    <a href="@Url.Action("Details","AdverseInstructionEvent",new {id=item.EventId})" title="查看"><i class="fa fa-search fa-lg"></i></a>
+                                }
+                                else
+                                {
+                                    <a href="@Url.Action("Edit","AdverseInstructionEvent",new {id=item.EventId})" title="修改"><i class="fa fa-edit fa-lg"></i></a>
+                                    <a href="javascript:void(0)" onclick="remove('@Url.Action("Delete","AdverseInstructionEvent",new {id=item.EventId})')" title="删除"><i class="fa fa-trash fa-lg"></i></a>
+                                }
+                            }
+                            else if (item.AdverseType == 4)
+                            {
+                                if (item.IsChecked)
+                                {
+                                    <a href="@Url.Action("Details","AdverseDrugEvent",new {id=item.EventId})" title="查看"><i class="fa fa-search fa-lg"></i></a>
+                                }
+                                else
+                                {
+                                    <a href="@Url.Action("Edit","AdverseDrugEvent",new {id=item.EventId})" title="修改"><i class="fa fa-edit fa-lg"></i></a>
+                                    @*<a href="@url.Action("Delete","AdverseDrugEvent",new {id=item.EventId})" title="删除"><i class="fa fa-trash fa-lg"></i></a>*@
+                                    <a href="javascirpt:void(0)" onclick="removeConfirm('@Url.Action("Delete","AdverseDrugEvent",new {id=item.EventId})')" title="删除"><i class="fa fa-trash fa-lg"></i></a>
+                                }
+                            }
+                            else if (item.AdverseType == 5)
+                            {
+                                if (item.IsChecked)
+                                {
+                                    <a href="@Url.Action("Details","AdverseMedicationError",new {id=item.EventId})" title="查看"><i class="fa fa-search fa-lg"></i></a>
+                                }
+                                else
+                                {
+                                    <a href="@Url.Action("Edit","AdverseMedicationError",new {id=item.EventId})" title="修改"><i class="fa fa-edit fa-lg"></i></a>
+                                    <a href="javascirpt:void(0)" onclick="removeConfirm(@Url.Action("Delete","AdverseMedicationError",new {id=item.EventId}))" title="删除"><i class="fa fa-trash fa-lg"></i></a>
+                                }
+                            }
+                        }
+                    </td>
+                </tr>
+            }
+        }
+        </tbody>
+    </table>
+</div>
+    
+<script type="text/javascript">
+
+    function removeConfirm(url ) {
+
+        var r = confirm("确定删除吗？");
+        if (r === true) {
+            var token = '@Html.AntiForgeryToken()';
+            token = $(token).val();
+            $.ajax({
+                type: "post",
+                url: url,
+                data: { '__RequestVerificationToken': token},
+                success:function(data) {
+                    window.location.href = "/AdverseEvent/Index";
+                }
+
+            });
+        }
+    }
+</script>

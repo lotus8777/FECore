@@ -1,0 +1,107 @@
+﻿@model Fy3y.Model.Das.WardRound
+@{
+    ViewBag.Title = "查房详单";
+}
+<br />
+<div class="text-center" >
+    <!--患者基本资料-->
+    <fieldset>
+        <legend>患者情况</legend>
+        <div class="form-group row">
+            <label class="col-2 col-form-label">病案号</label>
+            <div class="col-2 div-text">
+                @Model.MedicalNo
+            </div>
+            <label class="col-2 col-form-label">姓名</label>
+            <div class="col-2 div-text">
+                @Model.PatientName
+            </div>
+            <label class="col-2 col-form-label">性别</label>
+            <div class="col-2 div-text">
+                @Model.PatientSex
+            </div>
+
+        </div>
+        <div class="form-group row">
+            <label class="col-2 col-form-label">年龄</label>
+            <div class="col-2 div-text">
+                @Model.PatientAge
+            </div>
+
+            <label class="col-2 col-form-label">科室</label>
+            <div class="col-2 div-text">
+                @Model.DepartmentName
+            </div>
+            <label class="col-2 col-form-label">床号</label>
+            <div class="col-2 div-text">
+                @Model.BedNo
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-2 col-form-label">主治医生</label>
+            <div class="col-2 div-text">
+                @Model.DoctorName
+            </div>
+
+            <label class="col-2 col-form-label">入院时间</label>
+            <div class="col-2 div-text">
+                @Model.TreatmentDate.ToShortDateString()
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-2 col-form-label">主要诊断</label>
+            <div class="col-9 div-text-left">
+                @Model.Diagnosis
+            </div>
+        </div>
+    </fieldset>
+    <fieldset>
+        <legend>申请情况</legend>
+        <div class="form-group row">
+            <label class="col-2 col-form-label">申请理由</label>
+            <div class="col-10 div-textarea">
+                @Model.Reason
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-2 col-form-label">申请医生</label>
+            <div class="col-4 div-text">
+                @Model.CreatorName
+            </div>
+            <label class="col-2 col-form-label">申请时间</label>
+            <div class="col-4 div-text">
+                @Model.CreateTime
+            </div>
+        </div>
+    <br/>
+    </fieldset>
+    <fieldset>
+        <legend>查房情况</legend>
+        <div class="form-group row">
+            <label class="col-2 col-form-label">查房重点</label>
+            <div class="col-10 div-textarea">
+                @Model.KeyPoint
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-2 col-form-label">处理意见</label>
+            <div class="col-10 div-textarea">
+                @Model.Suggestion
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-2 col-form-label">查房医生</label>
+            <div class="col-4 div-text">
+                @Model.CheckDoctor
+            </div>
+            <label class="col-2 col-form-label">查房时间</label>
+            <div class="col-4 div-text">
+                @Model.CheckTime
+            </div>
+        </div>
+    </fieldset>
+    <br />
+    <div class="d-print-none text-center">
+        <a href="@Url.Action("Index")">返回</a>
+    </div>
+</div>

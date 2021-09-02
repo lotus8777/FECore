@@ -1,0 +1,247 @@
+﻿
+@using Fy3y.Model.Das
+@model Fy3y.Model.Das.AdverseNursingEvent
+@{
+  ViewBag.Title = "护理不良事件报告";
+  var eventType = ViewBag.eventType as EventType;
+}
+<br />
+<form class="text-center" id="form1" method="post">
+  @Html.AntiForgeryToken()
+  <!--患者基本资料-->
+  <fieldset>
+    <legend>A-基本资料</legend>
+    <div class="form-group row">
+      <label class="col-2 col-form-label">病案号码</label>
+      <div class="col-4">
+        @Html.TextBoxFor(m => m.AdverseEvent.MedicalNo, new { @class = "form-control", placeholder = "住院号/门诊号" })
+      </div>
+      <label class="col-2 col-form-label">性别</label>
+      <div class="col-4">
+        @Html.TextBoxFor(m => m.AdverseEvent.PatientSex, new { @class = "form-control", list = "sexList" })
+        <datalist id="sexList">
+          <option>男</option>
+          <option>女</option>
+          <option>其他</option>
+        </datalist>
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-2 col-form-label">患者姓名</label>
+      <div class="col-4">
+        @Html.TextBoxFor(m => m.AdverseEvent.PatientName, new { @class = "form-control" })
+      </div>
+      <label class="col-2 col-form-label">年龄</label>
+      <div class="col-4">
+        @Html.TextBoxFor(m => m.AdverseEvent.PatientAge, new { @class = "form-control" })
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-2 col-form-label">所属科室</label>
+      <div class="col-4">
+        @Html.TextBoxFor(m => m.AdverseEvent.PatientDeptName, new { @class = "form-control" })
+      </div>
+      <label class="col-2 col-form-label">所在床号</label>
+      <div class="col-4">
+        @Html.TextBoxFor(m => m.AdverseEvent.BedNo, new { @class = "form-control" })
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-2 col-form-label">临床诊断</label>
+      <div class="col-10">
+        @Html.TextBoxFor(m => m.AdverseEvent.Diagnosis, new { @class = "form-control" })
+      </div>
+    </div>
+  </fieldset>
+  <fieldset>
+    <legend>B-事件情况</legend>
+    <div class="form-group row">
+      <label class="col-2 col-form-label">主要表现</label>
+      <div class="col-10">
+        @Html.TextBoxFor(m => m.Performance, new { @class = "form-control", list = "performancelist", placeholder = "事件发生的表现" })
+        <datalist id="performancelist">
+          <option>病人逃跑</option>
+          <option>病人跌倒</option>
+          <option>病人昏迷不醒</option>
+        </datalist>
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-2 col-form-label">发生时间</label>
+      <div class="col-4">
+        @Html.TextBoxFor(m => m.AdverseEvent.EventTime, new { @class = "form-control", onfocus = "WdatePicker({ isShowClear: false, readOnly: true, isShowOK: false, maxDate: '%y-%M-%d', dateFmt: 'yyyy-MM-dd HH:mm:ss' })" })
+      </div>
+      <label class="col-2 col-form-label">发生场所</label>
+      <div class="col-4 text-left">
+        <select class="custom-select" id="EventPlace" name="EventPlace">
+          <option value="病房区域">病房区域</option>
+          <option value="急诊区域">急诊区域</option>
+          <option value="门诊区域">门诊区域</option>
+          <option value="医技部门">医技部门</option>
+          <option value="行政后勤">行政后勤</option>
+          <option value="其他区域">其他区域</option>
+        </select>
+      </div>
+    </div>
+    @if (eventType?.EventLevels.Count > 0)
+    {
+      <div class="form-group row">
+        <label class="col-2 col-form-label">事件级别</label>
+        <div class="col-10">
+          @Html.DropDownListFor(m => m.LevelId, new SelectList(eventType.EventLevels.OrderBy(p => p.LevelId), "LevelId", "LevelName"), new { @class = "custom-select col-6" })
+        </div>
+        @foreach (var item in eventType.EventLevels)
+        {
+          <input type="hidden" id='@("level" + item.LevelId)' value="@item.Details" />
+        }
+      </div>
+      <div class="form-group row">
+        <label class="col-2 col-form-label">级别说明</label>
+        <div class="col-10 text-left">
+          <label id="levelDetails" class="text-danger"></label>
+        </div>
+
+      </div>
+    }
+    @if (eventType?.EventClasses.Count > 0)
+    {
+      <div class="form-group row">
+        <label class="col-2 col-form-label">事件类别</label>
+        <div class="col-10">
+          @Html.DropDownListFor(m => m.ClassId, new SelectList(eventType.EventClasses.OrderBy(p => p.ClassId), "ClassId", "ClassName"), new { @class = "custom-select col-6" })
+        </div>
+        @foreach (var item in eventType.EventClasses)
+        {
+          <input type="hidden" id='@("class" + item.ClassId)' value="@item.Details" />
+        }
+      </div>
+      <div class="form-group row">
+        <label class="col-2 col-form-label">类别说明</label>
+        <div class="col-10 text-left">
+          <label id="classDetails" class="text-danger"></label>
+        </div>
+
+      </div>
+    }
+  </fieldset>
+  <!--C-对患者或家属影响-->
+  <fieldset>
+    <legend>C-事件影响</legend>
+    <div class="form-group row">
+      <label class="col-2 col-form-label">影响级别</label>
+      <div class="col-10 text-left">
+        <select class="col-6 custom-select" name="AffectLevel" id="AffectLevel">
+          <option value="潜在事件">潜在事件</option>
+          <option value="没有伤害">没有伤害</option>
+          <option value="轻度伤害">轻度伤害</option>
+          <option value="中度伤害">中度伤害</option>
+          <option value="重度伤害">重度伤害</option>
+          <option value="极重伤害">极重伤害</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-2 col-form-label">详细说明</label>
+      <div class="col-10">
+        @Html.TextAreaFor(m => m.AffectDetails, 2, 3, new { @class = "form-control", placeholder = "如果有，请对病人造成的伤害或影响的详细说明，还应注明有无投诉" })
+      </div>
+    </div>
+  </fieldset>
+  <!--D-处理分析-->
+  <fieldset>
+    <legend>D-处理分析</legend>
+    <div class="form-group row">
+      <label class="col-2 col-form-label">事件经过</label>
+      <div class="col-10">
+        @Html.TextAreaFor(m => m.EventDetails, 2, 3, new { @class = "form-control", placeholder = "详细经过" })
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-2 col-form-label">原因分析</label>
+      <div class="col-10">
+
+
+        @Html.TextAreaFor(m => m.ReasonAnalysis, 2, 3, new { @class = "form-control", placeholder = "事件原因分析" })
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-2 col-form-label">整改措施</label>
+      <div class="col-10">
+
+
+        @Html.TextAreaFor(m => m.ImprovementMeasures, 2, 3, new { @class = "form-control" })
+      </div>
+    </div>
+  </fieldset>
+  @Html.HiddenFor(m => m.EventId)
+  @Html.HiddenFor(m => m.AdverseEvent.EventId)
+  @Html.HiddenFor(m => m.AdverseEvent.ReporterName)
+  @Html.HiddenFor(m => m.AdverseEvent.ReportTime)
+  @Html.HiddenFor(m => m.AdverseEvent.AdverseType)
+  @Html.HiddenFor(m => m.AdverseEvent.ReporterDeptName)
+  @Html.HiddenFor(m => m.AdverseEvent.Birthday)
+  @Html.HiddenFor(m => m.AdverseEvent.CheckerId)
+
+  <br />
+  <div class="text-center">
+    <button class="btn btn-dark" id="btnSubmit">保存</button>
+    <a href="@Url.Action("Index","AdverseEvent")">返回</a>
+  </div>
+</form>
+
+<script type="text/javascript">
+  changeClassDetails();
+  changeLevelDetails();
+  $("#ClassId").change(function () {
+    changeClassDetails();
+  });
+  $("#LevelId").change(function () {
+    changeLevelDetails();
+  });
+
+  //影响类别赋值
+var affect = "@Model.AffectLevel";
+$("select#AffectLevel").val(affect);
+//事件场所赋值
+var eventPlace = "@Model.EventPlace";
+$("select#EventPlace").val(eventPlace);
+  //验证表单内容是否存在
+  function validForm() {
+    return $("#form1").validate({
+      rules: {
+        AffectDetails: {
+          required: true
+        },
+        EventDetails: {
+          required: true
+        },
+        ReasonAnalysis: {
+          required: true
+        },
+        ImprovementMeasures: {
+          required: true
+        },
+        PersonsInform: {
+          required: true
+        },
+        EventPlace: {
+          required: true
+        }
+
+      }
+    });
+  }
+
+  //注册表单验证方法
+  $(validForm());
+
+  //保存数据
+  $("#btnSubmit").click(function() {
+    if (validForm().form()) {
+      var url = '@Url.Action("Edit")';
+      var data = $("#form1").serialize();
+      AjaxSubmit(url, data);
+    }
+
+  });
+</script>

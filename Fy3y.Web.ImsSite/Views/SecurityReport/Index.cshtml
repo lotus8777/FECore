@@ -1,0 +1,85 @@
+﻿@model IList<Fy3y.Model.Das.SecurityReport>
+@{
+    ViewBag.Title = "医疗安全日报表";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<form id="form1" method="post">
+    @Html.AntiForgeryToken()
+    <fieldset>
+        <legend>查询条件</legend>
+        <div class="form-group row text-center">
+            <label class="col-1 col-form-label">开始</label>
+            <div class="col-2">
+                @Html.TextBox("begin", null, new { onfocus = "WdatePicker({isShowClear:false,readOnly:true,isShowOK:false,maxDate:'%y-%M-%d'})", @class = "form-control" })
+            </div>
+            <label class="col-1 col-form-label">结束</label>
+            <div class="col-2">
+                @Html.TextBox("end", null, new { onfocus = "WdatePicker({isShowClear:false,readOnly:true,isShowOK:false,maxDate:'%y-%M-%d'})", @class = "form-control" })
+            </div>
+            <div class="col-2">
+                <button class="btn btn-dark d-print-none">
+                    <span class="fa fa-search">查询</span>
+                </button>
+            </div>
+            <div class="col-2">
+                <a class="btn btn-dark d-print-none" href="@Url.Action("Create")">
+                    <span class="fa fa-plus">添加</span>
+                </a>
+            </div>
+        </div>
+    </fieldset>
+</form>
+<br />
+
+<table class="table table-sm table-bordered table-hover table-striped text-center" id="table1">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>日报日期</th>
+            <th>科室</th>
+            <th>报告人</th>
+            <th>上报时间</th>
+            <th>数量</th>
+            <th>操作</th>
+        </tr>
+    </thead>
+    @if (Model != null)
+    {
+        var num = 0;
+        foreach (var item in Model)
+        {
+            var count = item.Complaint + item.Criticality + item.Infection +
+                        item.Undiagnosed + item.DrugAccident + item.Harmful + item.Complications + item.Others + item.Death;
+            if (Convert.ToDateTime(item.ReportDate) < Convert.ToDateTime(item.CreateTime.AddDays(-1).ToString("yyyy/MM/dd")))
+            {
+                item.ReportDate = "补" + item.ReportDate;
+            }
+            num++;
+            <tr>
+                <td>@num </td>
+                <td>@item.ReportDate </td>
+                <td>@item.Department.DepartmentName </td>
+                <td>@item.Creator.EmployeeName </td>
+                <td>@item.CreateTime.ToString("yyyy-MM-dd HH:mm") </td>
+                <td>@count </td>
+                <td>
+                    <div>
+                        <a href="@Url.Action("Edit",new {id=item.ReportId})" title="编辑">
+                            <i class="fa fa-edit"></i>
+                        </a>
+                        <a href="javascript:void(0)" onclick="remove('@Url.Action("Delete",new {id=item.ReportId})')" title="删除">
+                            <i class="fa fa-trash"></i>
+                        </a>
+                        <a href="@Url.Action("Details",new {id=item.ReportId})" title="详情">
+                            <i class="fa fa-eye"></i>
+                        </a>
+                    </div>
+                </td>
+            </tr>
+        }
+    }
+</table>
+<div class="pager">
+    @Html.ActionLink("统计该页数据", "Statistics", new { ViewBag.begin, ViewBag.end }, new { @class = "btn btn-dark d-print-none" })
+</div>

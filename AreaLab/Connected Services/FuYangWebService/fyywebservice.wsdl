@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="CommonWebService">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="methodName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="inStr" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CommonWebServiceResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CommonWebServiceResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="string" nillable="true" type="s:string" />
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="CommonWebServiceSoapIn">
+    <wsdl:part name="parameters" element="tns:CommonWebService" />
+  </wsdl:message>
+  <wsdl:message name="CommonWebServiceSoapOut">
+    <wsdl:part name="parameters" element="tns:CommonWebServiceResponse" />
+  </wsdl:message>
+  <wsdl:message name="CommonWebServiceHttpGetIn">
+    <wsdl:part name="methodName" type="s:string" />
+    <wsdl:part name="inStr" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="CommonWebServiceHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="CommonWebServiceHttpPostIn">
+    <wsdl:part name="methodName" type="s:string" />
+    <wsdl:part name="inStr" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="CommonWebServiceHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:portType name="FYYWebServiceSoap">
+    <wsdl:operation name="CommonWebService">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">富阳云统一接口</wsdl:documentation>
+      <wsdl:input message="tns:CommonWebServiceSoapIn" />
+      <wsdl:output message="tns:CommonWebServiceSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="FYYWebServiceHttpGet">
+    <wsdl:operation name="CommonWebService">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">富阳云统一接口</wsdl:documentation>
+      <wsdl:input message="tns:CommonWebServiceHttpGetIn" />
+      <wsdl:output message="tns:CommonWebServiceHttpGetOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="FYYWebServiceHttpPost">
+    <wsdl:operation name="CommonWebService">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">富阳云统一接口</wsdl:documentation>
+      <wsdl:input message="tns:CommonWebServiceHttpPostIn" />
+      <wsdl:output message="tns:CommonWebServiceHttpPostOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="FYYWebServiceSoap" type="tns:FYYWebServiceSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="CommonWebService">
+      <soap:operation soapAction="http://tempuri.org/CommonWebService" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="FYYWebServiceSoap12" type="tns:FYYWebServiceSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="CommonWebService">
+      <soap12:operation soapAction="http://tempuri.org/CommonWebService" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="FYYWebServiceHttpGet" type="tns:FYYWebServiceHttpGet">
+    <http:binding verb="GET" />
+    <wsdl:operation name="CommonWebService">
+      <http:operation location="/CommonWebService" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="FYYWebServiceHttpPost" type="tns:FYYWebServiceHttpPost">
+    <http:binding verb="POST" />
+    <wsdl:operation name="CommonWebService">
+      <http:operation location="/CommonWebService" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="FYYWebService">
+    <wsdl:port name="FYYWebServiceSoap" binding="tns:FYYWebServiceSoap">
+      <soap:address location="http://10.120.22.100/pay/fyywebservice.asmx" />
+    </wsdl:port>
+    <wsdl:port name="FYYWebServiceSoap12" binding="tns:FYYWebServiceSoap12">
+      <soap12:address location="http://10.120.22.100/pay/fyywebservice.asmx" />
+    </wsdl:port>
+    <wsdl:port name="FYYWebServiceHttpGet" binding="tns:FYYWebServiceHttpGet">
+      <http:address location="http://10.120.22.100/pay/fyywebservice.asmx" />
+    </wsdl:port>
+    <wsdl:port name="FYYWebServiceHttpPost" binding="tns:FYYWebServiceHttpPost">
+      <http:address location="http://10.120.22.100/pay/fyywebservice.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

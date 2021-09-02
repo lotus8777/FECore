@@ -1,0 +1,109 @@
+﻿@model IList<Fy3y.Model.Das.NonDrugFee>
+
+@{
+    ViewBag.Title = "非药品费用统计";
+}
+<form id="form1" method="post">
+    @Html.AntiForgeryToken()
+    <fieldset>
+        <legend>查询条件</legend>
+        <div class="form-group row text-center">
+            <label class="col-2 col-form-label">选择月份</label>
+            @Html.TextBox("queryMonth", null, 
+                new { onfocus = "WdatePicker({isShowClear:false,readOnly:true,isShowOK:false,dateFmt: 'yyyy/MM',minDate:'2014-01-01',maxDate:'%y-%M-%ld'})",
+                    @class = "form-control col-2" })
+            <div class="col-2">
+                <button class="btn btn-dark d-print-none">
+                    <span class="fa fa-search">查询</span>
+                </button>
+            </div>
+            <div class="col-2">
+                <a href="@Url.Action("NonDrugDetails")" class="btn btn-info">明细</a>
+            </div>
+        </div>
+    </fieldset>
+</form>
+<br/>
+<ul class="nav nav-tabs" id="mytabs" role="tablist">
+    <li class="nav-item">
+        <a class="active nav-link" data-toggle="tab" href="#static1">分类Type</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" data-toggle="tab" href="#static2">分类Class</a>
+    </li>
+</ul>
+
+<div class="border border-top-0 p-2 tab-content">
+    <div class="active fade show tab-pane" id="static1">
+        <table class="table table-sm table-bordered text-center table-striped">
+            <tr>
+                <td>分类(Type)</td>
+                <td>总额</td>
+                <td>总差额</td>
+                <td>住院</td>
+                <td>门诊</td>
+            </tr>
+
+            @{
+                var type = Model.Select(p => p.FeeType).Distinct();
+                foreach (var item in type)
+                {
+                    var feeType = Model.Where(p => p.FeeType == item).ToList();
+                    <tr>
+                        <td>@item </td>
+                        <td>@(feeType.Sum(p => p.TotalFee))</td>
+                        <td>@(feeType.Sum(p => p.Spread * p.TotalCount))</td>
+                        <td>@(feeType.Sum(p => p.InFee))</td>
+                        <td>@(feeType.Sum(p =>p.TotalFee- p.InFee))</td>
+                    </tr>
+                }
+                <tr>
+                    <td>合计</td>
+                    <td>@(Model.Sum(p => p.TotalFee))</td>
+                    <td>@(Model.Sum(p => p.Spread * p.TotalCount))</td>
+                    <td>@(Model.Sum(p => p.InFee))</td>
+                    <td>@(Model.Sum(p =>p.TotalFee- p.InFee))</td>
+                </tr>
+            }
+        </table>
+    </div>
+    <div class="fade tab-pane" id="static2">
+        <table class="table table-sm table-bordered text-center table-striped">
+            <tr>
+                <td>分类(Class)</td>
+                <td>总额</td>
+                <td>总差额</td>
+                <td>住院</td>
+                <td>门诊</td>
+            </tr>
+            @{
+                var feeClass = Model.Select(p => p.FeeClass).Distinct();
+                foreach (var item in feeClass)
+                {
+                    var fee = Model.Where(p => p.FeeClass == item).ToList();
+                    <tr>
+                        <td>@item </td>
+                        <td>@(fee.Sum(p => p.TotalFee))</td>
+                        <td>@(fee.Sum(p => p.Spread * p.TotalCount))</td>
+                        <td>@(fee.Sum(p => p.InFee))</td>
+                        <td>@(fee.Sum(p =>p.TotalFee- p.InFee))</td>
+                    </tr>
+                }
+            }
+            <tr>
+                <td>合计</td>
+                <td>@(Model.Sum(p => p.TotalFee))</td>
+                <td>@(Model.Sum(p => p.Spread * p.TotalCount))</td>
+                <td>@(Model.Sum(p => p.InFee))</td>
+                <td>@(Model.Sum(p =>p.TotalFee- p.InFee))</td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+
+
+
+
+
+

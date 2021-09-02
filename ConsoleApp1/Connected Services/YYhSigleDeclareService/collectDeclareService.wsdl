@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://collectdeclareservice.webservice.entrance.si.neusoft.com/" xmlns:ns1="http://schemas.xmlsoap.org/soap/http" name="collectDeclareService" targetNamespace="http://collectdeclareservice.webservice.entrance.si.neusoft.com/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xs:schema attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="http://collectdeclareservice.webservice.entrance.si.neusoft.com/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:element name="afterDeclare" type="tns:afterDeclare" />
+      <xs:element name="afterDeclareResponse" type="tns:afterDeclareResponse" />
+      <xs:element name="singleDeclare" type="tns:singleDeclare" />
+      <xs:element name="singleDeclareResponse" type="tns:singleDeclareResponse" />
+      <xs:element name="totalDeclare" type="tns:totalDeclare" />
+      <xs:element name="totalDeclareResponse" type="tns:totalDeclareResponse" />
+      <xs:complexType name="singleDeclare">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="arg0" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="singleDeclareResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="return" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="totalDeclare">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="arg0" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="totalDeclareResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="return" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="afterDeclare">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="arg0" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="afterDeclareResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="return" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="Exception" type="tns:Exception" />
+      <xs:complexType name="Exception">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="message" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+    </xs:schema>
+  </wsdl:types>
+  <wsdl:message name="Exception">
+    <wsdl:part name="Exception" element="tns:Exception" />
+  </wsdl:message>
+  <wsdl:message name="totalDeclareResponse">
+    <wsdl:part name="parameters" element="tns:totalDeclareResponse" />
+  </wsdl:message>
+  <wsdl:message name="afterDeclare">
+    <wsdl:part name="parameters" element="tns:afterDeclare" />
+  </wsdl:message>
+  <wsdl:message name="singleDeclare">
+    <wsdl:part name="parameters" element="tns:singleDeclare" />
+  </wsdl:message>
+  <wsdl:message name="singleDeclareResponse">
+    <wsdl:part name="parameters" element="tns:singleDeclareResponse" />
+  </wsdl:message>
+  <wsdl:message name="totalDeclare">
+    <wsdl:part name="parameters" element="tns:totalDeclare" />
+  </wsdl:message>
+  <wsdl:message name="afterDeclareResponse">
+    <wsdl:part name="parameters" element="tns:afterDeclareResponse" />
+  </wsdl:message>
+  <wsdl:portType name="CollectDeclareService">
+    <wsdl:operation name="singleDeclare">
+      <wsdl:input name="singleDeclare" message="tns:singleDeclare" />
+      <wsdl:output name="singleDeclareResponse" message="tns:singleDeclareResponse" />
+      <wsdl:fault name="Exception" message="tns:Exception" />
+    </wsdl:operation>
+    <wsdl:operation name="totalDeclare">
+      <wsdl:input name="totalDeclare" message="tns:totalDeclare" />
+      <wsdl:output name="totalDeclareResponse" message="tns:totalDeclareResponse" />
+      <wsdl:fault name="Exception" message="tns:Exception" />
+    </wsdl:operation>
+    <wsdl:operation name="afterDeclare">
+      <wsdl:input name="afterDeclare" message="tns:afterDeclare" />
+      <wsdl:output name="afterDeclareResponse" message="tns:afterDeclareResponse" />
+      <wsdl:fault name="Exception" message="tns:Exception" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="collectDeclareServiceSoapBinding" type="tns:CollectDeclareService">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="singleDeclare">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="singleDeclare">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="singleDeclareResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="Exception">
+        <soap:fault use="literal" name="Exception" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="afterDeclare">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="afterDeclare">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="afterDeclareResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="Exception">
+        <soap:fault use="literal" name="Exception" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="totalDeclare">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="totalDeclare">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="totalDeclareResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="Exception">
+        <soap:fault use="literal" name="Exception" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="collectDeclareService">
+    <wsdl:port name="CollectDeclareServiceImplPort" binding="tns:collectDeclareServiceSoapBinding">
+      <soap:address location="http://10.120.48.15:8889/SJCJHQRWHJKL/HQDCRWHL" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

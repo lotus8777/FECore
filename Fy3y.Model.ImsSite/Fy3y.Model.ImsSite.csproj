@@ -1,0 +1,110 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{BE3A78BA-A3E0-45D9-A5C4-ECCDB5A7BB4A}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Fy3y.Model.ImsSite</RootNamespace>
+    <AssemblyName>Fy3y.Model.ImsSite</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <LangVersion>latest</LangVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <LangVersion>latest</LangVersion>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BasicPatientInfo.cs" />
+    <Compile Include="BasicPrincipal.cs" />
+    <Compile Include="BedDay.cs" />
+    <Compile Include="BedDayDetail.cs" />
+    <Compile Include="ChangePasswordViewModel.cs" />
+    <Compile Include="CurrentStatistics.cs" />
+    <Compile Include="DietFeeOfDepartment.cs" />
+    <Compile Include="DietFeeOfPatient.cs" />
+    <Compile Include="DoctorDeduction.cs" />
+    <Compile Include="DoctorDrug.cs" />
+    <Compile Include="DoctorImport.cs" />
+    <Compile Include="DoctorRank.cs" />
+    <Compile Include="DrugInfo.cs" />
+    <Compile Include="DrugRank.cs" />
+    <Compile Include="EHRPatient.cs" />
+    <Compile Include="EmployeePrivilege.cs" />
+    <Compile Include="ErrorViewModel.cs" />
+    <Compile Include="FixedBedDayModel.cs" />
+    <Compile Include="FixedBedDayStatistics.cs" />
+    <Compile Include="ImportModels.cs" />
+    <Compile Include="Inpatient.cs" />
+    <Compile Include="InpatientFeeStatistics.cs" />
+    <Compile Include="KeyFeeItem.cs" />
+    <Compile Include="LoginModel.cs" />
+    <Compile Include="LoginUser.cs" />
+    <Compile Include="LongTermPatientsModel.cs" />
+    <Compile Include="MobilePayment.cs" />
+    <Compile Include="MobilePaymentStatictis.cs" />
+    <Compile Include="ModuleExtend.cs" />
+    <Compile Include="NumberOfOutpation.cs" />
+    <Compile Include="PatientDrug.cs" />
+    <Compile Include="PatientInDays.cs" />
+    <Compile Include="PatientSpecialFee.cs" />
+    <Compile Include="PaymentCheck.cs" />
+    <Compile Include="PreScriptionPrice.cs" />
+    <Compile Include="ProcAntibacterialagents.cs" />
+    <Compile Include="ProcDoctorFeeDetail.cs" />
+    <Compile Include="ProcPatientInOut.cs" />
+    <Compile Include="ProcStatisticsByWard.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RegisterDetail.cs" />
+    <Compile Include="ScheduleEmployee.cs" />
+    <Compile Include="SecurityReportStatistics.cs" />
+    <Compile Include="SetPasswordViewModel.cs" />
+    <Compile Include="SiteMenu.cs" />
+    <Compile Include="Top10AmountByDrug.cs" />
+    <Compile Include="Top10RankByDrug.cs" />
+    <Compile Include="TreatmentDetails.cs" />
+    <Compile Include="UserManager.cs" />
+    <Compile Include="WardFeeStatistics.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Fy3y.Model.Das\Fy3y.Model.Das.csproj">
+      <Project>{0044EE27-2980-411D-A422-63967B8DDA14}</Project>
+      <Name>Fy3y.Model.Das</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Fy3y.Model.PortalHis\Fy3y.Model.PortalHis.csproj">
+      <Project>{65f9e1e0-095e-4aeb-be9f-741640c6cc6a}</Project>
+      <Name>FE.Model.PortalHis</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

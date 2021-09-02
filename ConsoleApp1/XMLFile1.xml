@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<messages>
+    <heartbeat>0</heartbeat>
+    <switchset>
+        <authority>
+            <authoritytype>0</authoritytype>
+            <username />
+            <userpwd />
+            <license />
+        </authority>
+        <visitor>
+            <sourceorgan>47033249933018311H1191</sourceorgan>
+            <sourcedomain>3301000029</sourcedomain>
+        </visitor>
+        <serviceinf>
+            <servicecode>10002703</servicecode>
+        </serviceinf>
+        <provider>
+            <targetorgan />
+            <targetdomain />
+        </provider>
+        <route />
+        <process />
+    </switchset>
+    <business>
+        <standardcode />
+        <requestset>
+            <reqpaging>0</reqpaging>
+            <reqpageindex>-1</reqpageindex>
+            <reqpageset>0</reqpageset>
+        </requestset>
+        <datacompress>0</datacompress>
+        <daqtaskid />
+        <BusinessData>
+            <datasets>
+                <setcode>B0404.0701.01</setcode>
+                <setdetails>
+                    <WS99_00_930_07>077d24c2085f4ef88d28a3717114e6f4</WS99_00_930_07>
+                    <WS02_01_039_001>肖启</WS02_01_039_001>
+                    <WS99_99_909_14>020</WS99_99_909_14>
+                    <WS02_01_031_01>01</WS02_01_031_01>
+                    <CT02_01_031_01>身份证</CT02_01_031_01>
+                    <WS02_01_030_01>230204196301210412</WS02_01_030_01>
+                    <WS08_10_052_01>47033249933018311H1191</WS08_10_052_01>
+                    <CT08_10_052_01>杭州市富阳区第三人民医院</CT08_10_052_01>
+                    <WS02_01_928_01>1</WS02_01_928_01>
+                    <WS02_01_928_02>Add</WS02_01_928_02>
+                    <WS99_99_013_20>20210329025755</WS99_99_013_20>
+                    <WS02_01_039_002>管理员</WS02_01_039_002>
+                </setdetails>
+            </datasets>
+        </BusinessData>
+    </business>
+    <extendset />
+</messages>

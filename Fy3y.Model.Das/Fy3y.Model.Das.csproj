@@ -1,0 +1,147 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.props" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{0044EE27-2980-411D-A422-63967B8DDA14}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Fy3y.Model.Das</RootNamespace>
+    <AssemblyName>Fy3y.Model.Das</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <LangVersion>9.0</LangVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AccessLog.cs" />
+    <Compile Include="Account.cs" />
+    <Compile Include="AdverseDrug.cs" />
+    <Compile Include="AdverseDrugEvent.cs" />
+    <Compile Include="AdverseEvent.cs" />
+    <Compile Include="AdverseInstructionEvent.cs" />
+    <Compile Include="AdverseMedicalEvent.cs" />
+    <Compile Include="AdverseMedicationError.cs" />
+    <Compile Include="AdverseNursingEvent.cs" />
+    <Compile Include="Apply_DataModify.cs" />
+    <Compile Include="ApproveConfig.cs" />
+    <Compile Include="BaseModel.cs" />
+    <Compile Include="Bookmarks.cs" />
+    <Compile Include="Cart.cs" />
+    <Compile Include="CartItem.cs" />
+    <Compile Include="EmployeeCategory.cs" />
+    <Compile Include="Contact.cs" />
+    <Compile Include="Contract.cs" />
+    <Compile Include="ContractItem.cs" />
+    <Compile Include="Department.cs" />
+    <Compile Include="DeviceClass.cs" />
+    <Compile Include="DeviceIP.cs" />
+    <Compile Include="DeviceUsage.cs" />
+    <Compile Include="DisabilityCertificate.cs" />
+    <Compile Include="DisposeMaintain.cs" />
+    <Compile Include="EamDevice.cs" />
+    <Compile Include="EHRLog.cs" />
+    <Compile Include="Employee.cs" />
+    <Compile Include="EmployeeExtend.cs" />
+    <Compile Include="EquipmentCategory.cs" />
+    <Compile Include="EventClass.cs" />
+    <Compile Include="EventLevel.cs" />
+    <Compile Include="EventPlaceTypes.cs" />
+    <Compile Include="EventType.cs" />
+    <Compile Include="FeeSpread.cs" />
+    <Compile Include="FtpInfo.cs" />
+    <Compile Include="Goods.cs" />
+    <Compile Include="image.cs" />
+    <Compile Include="InpatientAntibiotic.cs" />
+    <Compile Include="KeyDrug.cs" />
+    <Compile Include="KeyFee.cs" />
+    <Compile Include="Maintain.cs" />
+    <Compile Include="MaintainOrder.cs" />
+    <Compile Include="MedicareApplication.cs" />
+    <Compile Include="MedicareDeduction.cs" />
+    <Compile Include="MedicarePrice.cs" />
+    <Compile Include="Meeting.cs" />
+    <Compile Include="WardDoctorFee.cs" />
+    <Compile Include="WardItemFee.cs" />
+    <Compile Include="Watchkeeper.cs" />
+    <Compile Include="WebModule.cs" />
+    <Compile Include="NonDrugFee.cs" />
+    <Compile Include="NurAcupointCure.cs" />
+    <Compile Include="NurOpenPatient.cs" />
+    <Compile Include="NurTransfer.cs" />
+    <Compile Include="OAContacts.cs" />
+    <Compile Include="OutDoctorBusiness.cs" />
+    <Compile Include="Overtime.cs" />
+    <Compile Include="Part.cs" />
+    <Compile Include="PartsUsed.cs" />
+    <Compile Include="PartUsed.cs" />
+    <Compile Include="Patient.cs" />
+    <Compile Include="PriceCompare.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Publicity.cs" />
+    <Compile Include="Purchase.cs" />
+    <Compile Include="PurchaseItem.cs" />
+    <Compile Include="Recipe.cs" />
+    <Compile Include="RefundOrder.cs" />
+    <Compile Include="Salary.cs" />
+    <Compile Include="Schedule.cs" />
+    <Compile Include="SecurityReport.cs" />
+    <Compile Include="SleepMonitorRegistration.cs" />
+    <Compile Include="Sms.cs" />
+    <Compile Include="SMSInfo.cs" />
+    <Compile Include="StepDict.cs" />
+    <Compile Include="StepExecute.cs" />
+    <Compile Include="Supplier.cs" />
+    <Compile Include="UploadFile.cs" />
+    <Compile Include="UserInfo.cs" />
+    <Compile Include="WardRound.cs" />
+    <Compile Include="Wf_Flow.cs" />
+    <Compile Include="Wjj_Request.cs" />
+    <Compile Include="WorkStatus.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>这台计算机上缺少此项目引用的 NuGet 程序包。使用“NuGet 程序包还原”可下载这些程序包。有关更多信息，请参见 http://go.microsoft.com/fwlink/?LinkID=322105。缺少的文件是 {0}。</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.props'))" />
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.targets'))" />
+  </Target>
+  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.targets" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" />
+</Project>

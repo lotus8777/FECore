@@ -1,0 +1,32 @@
+﻿@model Fy3y.Model.PortalEmr.Emr_Bl_Blzy
+@{
+    ViewBag.Title = "补充出院小结";
+}
+<form method="post" action="@Url.Action("DischargeResult")">
+    
+    @Html.HiddenFor(p=>p.Jlxh)
+    <div class=" text-center">
+        <div class="form-group row">
+            <label class="col-form-label col-2">入院情况</label>
+            @Html.TextAreaFor(p => p.Bqjs, 5, 1, new { @class = "form-control col-10" })
+        </div>
+        <div class="form-group row">
+            <label class="col-form-label col-2">诊疗过程</label>
+            @Html.TextAreaFor(p => p.Zljg, 5, 1, new { @class = "form-control col-10" })
+
+        </div>
+        <div class="form-group row">
+            <label class="col-form-label col-2">出院情况</label>
+            @Html.TextAreaFor(p => p.Cyxj, 5, 1, new { @class = "form-control col-10" })
+        </div>
+        
+        <div class="form-group row">
+            <label class="col-form-label col-2">出院医嘱</label>
+            @Html.TextAreaFor(p => p.Cyyz, 5, 1, new { @class = "form-control col-10" })
+        </div>
+    </div>
+    
+    <div class="text-center">
+        <button class="btn btn-success">保存</button>
+    </div>
+</form>

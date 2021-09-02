@@ -1,0 +1,60 @@
+﻿@model IList<Inpatient>
+@{
+    ViewBag.Title = "在院病人";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@Html.Partial("DepartmentFormPartial")
+<style type="text/css">
+    .row {
+        background-color: #f3f3f4;
+        padding: 10px 0;
+    }
+</style>
+
+<div class="row">
+    @{
+        if (Model.Any())
+        {
+            foreach (var p in Model)
+            {
+                <div class="col-md-3 col-lg-2">
+                    <div class="ibox">
+                        <div class="ibox-content">
+                            <h3 class="m-b-md">
+                                <span style="color: green;"> @(p.Brch)床</span>
+
+                                <span style="float: right;"> @(p.Brcr.ToString("F2"))天</span>
+                            </h3>
+                            <div class="btn-group">
+                                <button class="btn" data-toggle="dropdown">
+                                    <h2>
+                                        @if (p.Brxb == 1)
+                                        {
+                                            <i class="fa fa-male " style="color: dodgerblue;">@p.Brxm</i>
+                                        }
+                                        else
+                                        {
+                                            <i class="fa fa-female" style="color: deeppink;">@p.Brxm</i>
+                                        }
+                                    </h2>
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        <a href="@Url.Action("Create", "NurOpenPatients", new {id = p.Zyh})" class="dropdown-item">开放登记</a>
+                                        <a href="@Url.Action("Create", "NurTransfers", new {id = p.Zyh})" class="dropdown-item">重点交接班</a>
+                                        <a href="@Url.Action("Create", "AdverseMedicalEvent", new {id = p.Zyh})" class="dropdown-item">医疗不良事件</a>
+                                        <a href="@Url.Action("Create", "AdverseNursingEvent", new {id = p.Zyh})" class="dropdown-item">护理不良事件</a>
+                                        <a href="@Url.Action("Create", "AdverseDrugEvent", new {id = p.Zyh})" class="dropdown-item">药品不良反应</a>
+                                        <a href="@Url.Action("Create", "AdverseInstructionEvent", new {id = p.Zyh})" class="dropdown-item">设备不良事件</a>
+                                        <a href="@Url.Action("Create", "MedicationErrorEvent", new {id = p.Zyh})" class="dropdown-item">药品不良事件</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+    }
+</div>

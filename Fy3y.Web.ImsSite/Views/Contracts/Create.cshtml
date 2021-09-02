@@ -1,0 +1,101 @@
+﻿@model Contract
+
+@{
+  ViewBag.Title = "合同录入";
+}
+
+  <form enctype="multipart/form-data" method="post">
+    @Html.AntiForgeryToken()
+    <div class="text-right">
+      <div class="form-group row">
+        <label class="col-form-label col-2">合同类型</label>
+        <div class="col-10 text-left">
+          <div class="form-check form-check-inline">
+            <input type="radio" value="软件" class="form-check-input" name="ContractType" id="ContractType1" checked="checked" />
+            <label class="form-check-label" for="ContractType1">软件</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input type="radio" value="硬件" class="form-check-input" id="ContractType2" name="ContractType" />
+            <label class="form-check-label" for="ContractType2">硬件</label>
+          </div>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-form-label col-md-2">合同名称</label>
+        <div class="col-md-10">
+          @Html.TextBoxFor(p => p.ContactName, new {@class = "form-control"})
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-form-label col-md-2">合同金额</label>
+        <div class="col-md-10">
+          @Html.TextBoxFor(p => p.ContactAmount, new { @class = "form-control" })
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-form-label col-md-2">甲方</label>
+        <div class="col-md-10">
+          @Html.TextBoxFor(p => p.Buyer, new { @class = "form-control" })
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-form-label col-md-2">乙方</label>
+        <div class="col-md-10">
+          @Html.TextBoxFor(p => p.Seller, new { @class = "form-control" })
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label class="col-form-label col-md-2">代理方</label>
+        <div class="col-md-10">
+          @Html.TextBoxFor(p => p.Agent, new { @class = "form-control" })
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-form-label col-md-2">签署日期</label>
+        <div class="col-md-10">
+          @Html.TextBoxFor(model => model.SigningDate, new
+          {
+            Value = Model.SigningDate.ToString("yyyy/MM/dd"),
+            onfocus = "WdatePicker({ isShowClear: false, readOnly: true, isShowOK: false, dateFmt: 'yyyy/MM/dd' })",
+            @class = "form-control"
+          })
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-form-label col-md-2">维保期(月)</label>
+        <div class="col-md-10">
+          @Html.TextBoxFor(p => p.Duration, new { @class = "form-control" })
+        </div>
+      </div>
+      <div class="form-group row ">
+        <label class="col-form-label col-md-2">合同扫描件</label>
+        <div class="col-md-9 custom-file text-left">
+          <input class="custom-file-input" name="file" type="file" accept="application/pdf" id="customFile" />
+          <label class="custom-file-label" for="customFile" data-browse="选择文件">请选择PDF文件</label>
+        </div>
+      </div>
+      @Html.HiddenFor(p => p.ContactId)
+      @Html.HiddenFor(p => p.CreatorId)
+      @Html.HiddenFor(p => p.CreateTime)
+      <div class="offset-2 text-left">
+        <input type="submit" value="保存" class="btn btn-success" />
+        @Html.ActionLink("返回", "Index")
+      </div>
+    </div>
+  </form>
+
+<script type="text/javascript">
+  $('.custom-file-input').change(function () {
+
+    let fileName = $(this).val().split('\\').pop();
+    let fileType = fileName.substring(fileName.lastIndexOf("."));
+    if (fileType != ".pdf") {
+      layer.alert('只允许上传PDF文件');
+      $(this).val('');
+      $(this).next('.custom-file-label').addClass("selected").html("请选择PDF文件");
+    } else {
+      $(this).next('.custom-file-label').addClass("selected").html(fileName);
+    }
+}); 
+</script>

@@ -1,0 +1,119 @@
+﻿@model Ys_Mz_Jzls
+@{
+    ViewBag.Title = "处方明细";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<br />
+@{
+    if (Model != null)
+    {
+
+        <div class="form-group row text-center">
+
+            <label class="col-2 col-form-label">患者姓名:@Model.Ms_Brda.Brxm</label>
+            <label class="col-2 col-form-label">接诊医生:@Model.Gy_Ygdm.Ygxm</label>
+            <label class="col-2 col-form-label">就诊科室:@Model.Ms_Ghks.Ksmc</label>
+            <label class="col-2 col-form-label">就诊日期:@Model.Kssj.ToShortDateString()</label>
+            <label class="col-2 col-form-label">诊断:@Model.Mqzd</label>
+        </div>
+        <hr />
+        //处方
+        if (Model.Ms_Cf01Set.Any())
+        {
+            var drugCount = 1;
+            <fieldset>
+                <legend>处方/药品</legend>
+                <table class="table table-bordered text-center table-sm">
+                    <tr>
+                        <td>#</td>
+                        <td>处方号</td>
+                        <td>付费</td>
+                        <td>药品</td>
+                        <td>剂量</td>
+                        <td>频次</td>
+                        <td>单位</td>
+                        <td>天数</td>
+                        <td>数量</td>
+                        <td>金额</td>
+                    </tr>
+                    @foreach (var item in Model.Ms_Cf01Set.Where(p => p.Zfpb == 0))
+                    {
+                        foreach (var cf02 in item.Ms_Cf02S)
+                        {
+                            <tr>
+                                <td>@drugCount</td>
+                                <td>@item.Cfsb</td>
+                                <td>
+                                    @if (string.IsNullOrEmpty(item.Fphm))
+                                    {
+                                        <div class="badge badge-danger">未付费</div>
+                                    }
+                                    else
+                                    {
+                                        <div class="badge badge-success">已付费</div>
+                                    }
+                                </td>
+                                <td>@cf02.Yk_Ypml.Ypmc</td>
+                                <td>@cf02.Ycsl</td>
+                                <td>@cf02.Ypyf</td>
+                                <td>@cf02.Yfdw</td>
+                                <td>@cf02.Cfts</td>
+                                <td>@cf02.Ypsl</td>
+                                <td>@cf02.Hjje</td>
+                            </tr>
+                            drugCount++;
+                        }
+                    }
+                </table>
+            </fieldset>
+        }
+        //治疗检查
+        if (Model.Ms_Yj01Set.Any())
+        {
+            var yjCount = 1;
+            <fieldset>
+                <legend>诊察/治疗</legend>
+                <table class="table table-bordered text-center table-sm">
+                    <tr>
+                        <td>#</td>
+                        <td>单号</td>
+                        <td>付费</td>
+                        <td>名称</td>
+                        <td>数量</td>
+                        <td>单价</td>
+                        <td>金额</td>
+                    </tr>
+                    @foreach (var item in Model.Ms_Yj01Set.Where(p => p.Zfpb == 0))
+                    {
+                        foreach (var cf02 in item.Ms_Yj02S)
+                        {
+                            <tr>
+                                <td>@yjCount</td>
+                                <td>@item.Yjxh</td>
+                                <td>
+                                    @if (string.IsNullOrEmpty(item.Fphm))
+                                    {
+                                        <div class="badge badge-danger">未付费</div>
+                                    }
+                                    else
+                                    {
+                                        <div class="badge badge-success">已付费</div>
+                                    }
+                                </td>
+                                <td>@cf02.Gy_Ylml.Fymc</td>
+                                <td>@cf02.Ylsl</td>
+                                <td>@cf02.Yldj</td>
+                                <td>@cf02.Hjje</td>
+                            </tr>
+                            yjCount++;
+                        }
+                    }
+                </table>
+            </fieldset>
+        }
+    }
+}
+<br />
+<div class="text-center">
+    <a href="@Url.Action("OutRecord")" class="btn btn-success">返回上一页</a>
+</div>

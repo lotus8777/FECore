@@ -1,0 +1,46 @@
+﻿@model IList<Fy3y.Model.Das.SleepMonitorRegistration>
+
+@{
+  ViewBag.Title = "监测结果填报管理";
+}
+<br />
+<div class="callout callout-warning">
+  超过预约时间24小时或未到预约时间均不可填报！
+</div>
+<table class="table table-sm table-bordered table-responsive-sm table-striped text-center">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>预约时间 </th>
+      <th>姓名 </th>
+      <th>性别 </th>
+      <th>年龄 </th>
+      <th>联系方式 </th>
+      <th>状态 </th>
+      <th>填报 </th>
+    </tr>
+  </thead>
+  @foreach (var item in Model)
+  {
+    <tr>
+      <td>@(Model.IndexOf(item) + 1)</td>
+      <td>@item.PreVisitTime.ToShortDateString() </td>
+      <td>@Html.DisplayFor(modelItem => item.PatientName) </td>
+      <td>
+          @Html.Partial("SexPartial",item.PatientSex)
+      </td>
+      <td>@Html.DisplayFor(modelItem => item.PatientAge) </td>
+      <td>@Html.DisplayFor(modelItem => item.Contact) </td>
+      <td>
+          @Html.Partial("RegistrationStatusPartial", item.Status)
+      </td>
+      <td class="d-print-none">
+        <div>
+          <a href="@Url.Action("Report",new{id=item.UniqueId})" title="结果填报">
+            <i class="fa fa-edit"></i>
+          </a>
+        </div>
+      </td>
+    </tr>
+  }
+</table>

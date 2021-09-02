@@ -1,0 +1,88 @@
+﻿@using System.Globalization
+@model IList<Fy3y.Model.Das.Schedule>
+@{
+    ViewBag.Title = "志愿者排班";
+}
+
+<form id="form1" method="post" action="@Url.Action("DefaultCreate")">
+    @Html.AntiForgeryToken()
+    <fieldset>
+        <legend>查询条件</legend>
+        <div class="form-group row text-center">
+            <label class="col-2 col-form-label">选择月份</label>
+            @Html.TextBox("queryMonth", null,
+                new
+                     {
+                         onfocus = "WdatePicker({isShowClear:false,readOnly:true,isShowOK:false,dateFmt: 'yyyy/MM',minDate:'2021-01-01'})",
+                         @class = "form-control col-2"
+                     })
+            <div class="col-2">
+                <button class="btn btn-dark d-print-none">
+                    <span class="fa fa-search">查询</span>
+                </button>
+            </div>
+        </div>
+    </fieldset>
+</form>
+<br />
+<br />
+
+<form method="post" action="@Url.Action("Create")">
+    @Html.AntiForgeryToken()
+
+    <table class="table table-sm table-bordered text-center table-striped">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>日期</th>
+                <th>周历</th>
+                <th>午别</th>
+                <th>排班</th>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                int i = 1;
+                DateTime currentDate = DateTime.MinValue;
+                foreach (var item in Model)
+                {
+                    var onDutyList = new SelectList(ViewBag.onDuty, "EmployeeId", "EmployeeName", item.OnDutyId);
+                    <tr>
+                        @if (item.DutyTime != currentDate)
+                        {
+                            currentDate = item.DutyTime;
+                            <td rowspan="2">@i</td>
+                            <td rowspan="2">@item.DutyTime.ToShortDateString() </td>
+                            <td rowspan="2">@CultureInfo.GetCultureInfo("zh-CN").DateTimeFormat.GetDayName(item.DutyTime.DayOfWeek) </td>
+                        }
+                        else
+                        {
+                            i++;
+                        }
+                        <td>
+                            @if (item.IsForenoon)
+                            {
+                                <label class="badge badge-success">上午</label>
+                            }
+                            else
+                            {
+                                <label class="badge badge-warning">下午</label>
+                            }
+                        </td>
+                        <td>
+                            @Html.DropDownList("duty", onDutyList, new { @class = "custom-select" })
+                        </td>
+                        @Html.Hidden("ItemId", item.ItemId)
+                        @Html.Hidden("DutyTime", item.DutyTime)
+                        @Html.Hidden("IsValid", item.IsValid)
+                        @Html.Hidden("CreateTime", item.CreateTime)
+                        @Html.Hidden("CreatorId", item.CreatorId)
+                        @Html.Hidden("IsForenoon", item.IsForenoon)
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+    <input type="submit" value="保存" class="btn btn-success" />
+</form>
+

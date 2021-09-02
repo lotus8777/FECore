@@ -1,0 +1,124 @@
+﻿@model Fy3y.Model.Das.Salary
+@{
+  ViewData["Title"] = "工资明细上传";
+  Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<form method="post" enctype="multipart/form-data">
+    @Html.AntiForgeryToken()
+    <fieldset>
+        <legend>上传</legend>
+
+    <div class="form-group row">
+        <label class="col-form-label col-2 text-right">选择月份</label>
+        <div class="col-2">
+            <input name="month" value="@ViewBag.month" class="form-control" onfocus="WdatePicker({ isShowClear: false, readOnly: true, isShowOK: false, dateFmt: 'yyyyMM' })" />
+        </div>
+        <div class="col-4 border">
+            <input type="file" name="excelFile" class="form-control-file" id="excelFile" accept=".xls,.xlsx" onchange="fileChange()" />
+        </div>
+        <div class="col-2">
+            <button class="btn btn-success">上传</button>
+        </div>
+        <div class="col-2">
+            <a href="@Url.Action("List")" class="btn btn-success">工资清单</a>
+        </div>
+
+    </div>
+    </fieldset>
+</form>
+<br /><br /><br />
+<h3 class="text-danger">上传表格注意事项</h3>
+<br />
+<ul class="list-group">
+    <li class="list-group-item list-group-item-danger">1. 上传表格表头名称请按照如下格式，顺序可以不一致
+        <ul class="list-unstyled">
+            <li>
+                <table class="table table-bordered text-center table-sm">
+                    <thead>
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.EmployeeName)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.WorkAge)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.RankWage)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.PayWage)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.BackPay)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.FloatingWage)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.TenPercentForNursing)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.NursingAgeSubsidy)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.LivingSubsidy)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.PositionSubsidy)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.WorkAgeSubsidy)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.HealthCareSubsidy)
+                            </th>
+                            <!--支出-->
+                            <th>
+                                @Html.DisplayNameFor(model => model.ProvidentFund)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.EndowmentInsurance)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.OccupationalAnnuity)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.MedicalInsurance)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.UnemploymentInsurance)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.IncomeTax)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.DeductPay)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Comments)
+                            </th>
+                        </tr>
+                    </thead>
+                </table>
+            </li>
+        </ul>
+    </li>
+    <li class="list-group-item  list-group-item-warning">2. 文字之间及前后不能包含空格，尤其是姓名一列</li>
+    <li class="list-group-item  list-group-item-warning">3. 数字单元格不能包含非数字字符</li>
+    <li class="list-group-item  list-group-item-warning">4. 单元格不能包含公式</li>
+</ul>
+
+    
+    <script type="text/javascript">
+        function fileChange() {
+            let file = $("#excelFile").val();
+            if (file) {
+                let fileType = file.substr(file.lastIndexOf("."));
+                let acceptFileType = $("#excelFile")[0].accept;
+                if (acceptFileType.indexOf(fileType) < 0) {
+                    layer.alert("请上传excel表格");
+                }
+            }
+        }
+    </script>

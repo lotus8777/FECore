@@ -1,0 +1,22 @@
+﻿@model int
+
+@if (Model <= 17)
+{
+<span class="text-info">@Model</span>
+}
+else if (Model >= 18 && Model < 45)
+{
+<span class="text-primary">@Model</span>
+}
+else if (Model >= 45 && Model < 65)
+{
+<span class="text-warning">@Model</span>
+}
+else if (Model >= 65)
+{
+<span class="text-danger">@Model</span>
+}
+else
+{
+<span class="text-secondary">@Model</span>
+}

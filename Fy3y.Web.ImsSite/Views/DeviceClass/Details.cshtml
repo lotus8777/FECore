@@ -1,0 +1,58 @@
+﻿@model Fy3y.Model.Das.DeviceClass
+
+@{
+  ViewBag.Title = "Details";
+}
+<h2>Details</h2>
+<div>
+  <h4>DeviceClass</h4>
+  <hr />
+  <dl class="dl-horizontal">
+    <dt>
+      @Html.DisplayNameFor(model => model.Parent.ClassName)
+    </dt>
+    <dd>
+      @Html.DisplayFor(model => model.Parent.ClassName)
+    </dd>
+    <dt>
+      @Html.DisplayNameFor(model => model.ClassName)
+    </dt>
+    <dd>
+      @Html.DisplayFor(model => model.ClassName)
+    </dd>
+    <dt>
+      @Html.DisplayNameFor(model => model.Remarks)
+    </dt>
+    <dd>
+      @Html.DisplayFor(model => model.Remarks)
+    </dd>
+    <dt>
+      @Html.DisplayNameFor(model => model.Path)
+    </dt>
+    <dd>
+      @Html.DisplayFor(model => model.Path)
+    </dd>
+    <dt>
+      @Html.DisplayNameFor(model => model.CreatorId)
+    </dt>
+    <dd>
+      @Html.DisplayFor(model => model.CreatorId)
+    </dd>
+    <dt>
+      @Html.DisplayNameFor(model => model.CreateTime)
+    </dt>
+    <dd>
+      @Html.DisplayFor(model => model.CreateTime)
+    </dd>
+    <dt>
+      @Html.DisplayNameFor(model => model.IsValid)
+    </dt>
+    <dd>
+      @Html.DisplayFor(model => model.IsValid)
+    </dd>
+  </dl>
+</div>
+<p>
+  @Html.ActionLink("Edit", "Edit", new {id = Model.ClassId}) |
+  @Html.ActionLink("Back to List", "Index")
+</p>

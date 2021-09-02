@@ -1,0 +1,56 @@
+﻿@model IList<Fy3y.Model.Das.Maintain>
+@{
+  ViewBag.Title = "故障申报列表";
+}
+<a class="btn btn-dark" href="@Url.Action("CreateMaintain")">
+  <i class="fa fa-plus">新增</i>
+</a>
+<div class="mt-1 text-center">
+  <table class="table table-sm table-bordered table-hover table-striped">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>科室</th>
+        <th>设备类型</th>
+        <th>处理类型</th>
+        <th>优先级别</th>
+        <th>申报时间</th>
+        <th>状态</th>
+        <th>操作</th>
+      </tr>
+    </thead>
+    <tbody>
+      @if (Model?.Count() > 0)
+    {
+      var i = 0;
+      foreach (var item in Model)
+      {
+        i++;
+      <tr>
+        <td>@i </td>
+        <td>@item.DepartmentName </td>
+        <td>@item.DeviceName </td>
+        <td>@item.MaintainType </td>
+        <td>@item.Priority </td>
+        <td>@item.CreateTime </td>
+        <td>
+          @if (item.StatusName == "新增")
+            {
+          <span class="badge badge-primary">@item.StatusName</span>
+            }
+            else
+            {
+          <span class="badge badge-success">@item.StatusName</span>
+            }
+        </td>
+        <td>
+          <a href="../Maintain/View/@item.MaintainId">
+            <i class="fa fa-eye"></i>
+          </a>
+        </td>
+      </tr>
+      }
+    }
+    </tbody>
+  </table>
+</div>

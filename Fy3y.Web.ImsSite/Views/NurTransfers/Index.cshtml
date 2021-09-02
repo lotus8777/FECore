@@ -1,0 +1,63 @@
+﻿@model IList<Fy3y.Model.Das.NurTransfer>
+@{
+  ViewBag.Title = "重点病人交班记录表";
+}
+
+<fieldset>
+  <legend>查询条件</legend>
+  <form id="form1" method="post">
+    @Html.AntiForgeryToken()
+    <div class="form-group row text-center">
+      <label class="col-1 col-form-label">开始</label>
+      <div class="col-2">
+        @Html.TextBox("begin", null, new { onfocus = "WdatePicker({isShowClear:false,readOnly:true,isShowOK:false,maxDate:'%y/%M/%d',dateFmt: 'yyyy/MM/dd'})", @class = "form-control" })
+      </div>
+      <label class="col-1 col-form-label">结束</label>
+      <div class="col-2">
+        @Html.TextBox("end", null, new { onfocus = "WdatePicker({isShowClear:false,readOnly:true,isShowOK:false,maxDate:'%y/%M/%d',dateFmt: 'yyyy/MM/dd'})", @class = "form-control" })
+      </div>
+      <div class="col-2">
+        @Html.DropDownList("departmentId", null, new { @class = "form-control" })
+      </div>
+
+      <div class="col-2">
+        <button class="btn btn-dark d-print-none">
+          <span class="fa fa-search">查询</span>
+        </button>
+      </div>
+      <div class="col-2">
+        <a class="btn btn-success d-print-none" href="@Url.Action("Hospitalizing","InPatient")"><i class="fa fa-plus">增加</i></a>
+      </div>
+    </div>
+  </form>
+</fieldset>
+
+<table class="table table-sm table-bordered text-center table-striped">
+  <tr>
+    <th># </th>
+    <th>时间 </th>
+    <th>姓名 </th>
+    <th>床号 </th>
+    <th>主要病情 </th>
+    <th>交班人 </th>
+    <th>接班人 </th>
+    <th class="d-print-none">#</th>
+  </tr>
+  @{
+    int i = 0;
+    foreach (var item in Model)
+    {
+      i++;
+    <tr>
+      <td>@i </td>
+      <td style="word-break: keep-all; white-space: nowrap;">@(item.TransferTime.ToString("yyyy-MM-dd HH:mm")) </td>
+      <td style="word-break: keep-all;">@item.PatientName </td>
+      <td style="word-break: keep-all;">@item.BedNo </td>
+      <td class="text-left">@Html.DisplayFor(modelItem => item.Remarks) </td>
+      <td style="word-break: keep-all;">@item.SenderName </td>
+      <td style="word-break: keep-all;">@item.ReceiverName </td>
+      <td class="d-print-none" style="word-break: keep-all; white-space: nowrap;"><a href="@Url.Action("Edit",new{id=item.TransferId})" title="编辑"><i class="fa fa-edit fa-lg"></i></a> </td>
+    </tr>
+    }
+  }
+</table>

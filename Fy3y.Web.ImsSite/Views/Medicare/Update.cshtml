@@ -1,0 +1,22 @@
+﻿@{
+  ViewBag.Title = "收费项目变更";
+}
+
+@model IList<Fy3y.Model.Das.PriceCompare>
+<table class="table table-sm table-bordered table-striped">
+  <tr>
+    <td>#</td>
+    <td>费用名称 </td>
+    <td>旧单价 </td>
+    <td>新单价 </td>
+  </tr>
+  @foreach (var item in Model)
+  {
+  <tr>
+    <td>@item.Fyxh </td>
+    <td>@item.Fymc </td>
+    <td>@item.Fydj </td>
+    <td>@item.NewFydj </td>
+  </tr>
+  }
+</table>

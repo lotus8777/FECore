@@ -1,0 +1,76 @@
+﻿@model Fy3y.Model.Das.EamDevice
+@{
+  ViewBag.Title = "资产详情";
+}
+<br />
+<div class="text-center">
+  <div class="form-group row">
+    <label class="col-2 col-form-label">所在科室</label>
+    <div class="col-4">
+      @Html.TextBoxFor(model => model.ClassName, new {@class = "form-control", @readonly = ""})
+    </div>
+    <label class="col-2 col-form-label">所在科室</label>
+    <div class="col-4">
+      @Html.TextBoxFor(m => m.DepartmentName, null, new {@class = "form-control", @readonly = ""})
+    </div>
+  </div>
+  <div class="form-group row">
+    <label class="col-2 col-form-label">设备名称</label>
+    <div class="col-4">
+      @Html.TextBoxFor(model => model.DeviceName, new {@class = "form-control", @readonly = ""})
+    </div>
+    <label class="col-2 col-form-label">设备品牌</label>
+    <div class="col-4">
+      @Html.TextBoxFor(model => model.Brand, new {@class = "form-control", @readonly = ""})
+    </div>
+  </div>
+  <div class="form-group row">
+    <label class="col-2 col-form-label">设备型号</label>
+    <div class="col-4">
+      @Html.TextBoxFor(model => model.DeviceModel, new {@class = "form-control", @readonly = ""})
+    </div>
+    <label class="col-2 col-form-label">购入价格</label>
+    <div class="col-4">
+      @Html.TextBoxFor(model => model.Price, new {@class = "form-control", @readonly = ""})
+    </div>
+  </div>
+  <div class="form-group row">
+    <label class="col-2 col-form-label">购入日期</label>
+    <div class="col-4">
+      @Html.TextBoxFor(model => model.PurchaseDate, new {@class = "form-control", @readonly = ""})
+    </div>
+    <label class="col-2 col-form-label">保修期限</label>
+    <div class="col-4">
+      @Html.TextBoxFor(model => model.Warranty, new {@class = "form-control", @readonly = ""})
+    </div>
+  </div>
+  <div class="form-group row">
+    <label class="col-2 col-form-label">设备单位</label>
+    <div class="col-4">
+      @Html.TextBoxFor(model => model.Unit, new {@class = "form-control", @readonly = ""})
+    </div>
+    <label class="col-2 col-form-label">设备编号</label>
+    <div class="col-4">
+      @Html.TextBoxFor(model => model.SerialNo, new {@class = "form-control", @readonly = ""})
+    </div>
+  </div>
+  <div class="form-group row">
+    <label class="col-2 col-form-label">使用年限</label>
+    <div class="col-4">
+      @Html.TextBoxFor(model => model.LifeCycle, new {@class = "form-control", @readonly = ""})
+    </div>
+    <label class="col-2 col-form-label">供应商</label>
+    <div class="col-4">
+      @Html.TextBoxFor(model => model.Supplier, new {@class = "form-control", @readonly = ""})
+    </div>
+  </div>
+  <div class="form-group row">
+    <label class="col-2 col-form-label">其他信息</label>
+    <div class="col-10">
+      @Html.TextAreaFor(model => model.Feedback, new {@class = "form-control", rows = 4, @readonly = ""})
+    </div>
+  </div>
+</div>
+<div class="text-center">
+  @Html.ActionLink("返回列表", "Index")
+</div>

@@ -1,0 +1,91 @@
+﻿@model Fy3y.Model.Das.DeviceIp
+@{
+  ViewBag.Title = "添加IP地址";
+  Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<form id="form1" method="post" onsubmit="return setValue()">
+  @Html.AntiForgeryToken()
+  <div class="text-center">
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-group row">
+      <label class="col-2 col-form-label">所在科室</label>
+      <div class="col-4">
+        <select asp-for="DepartmentId" asp-items="ViewBag.DepartmentId" class="custom-select"></select>
+      </div>
+      <label class="col-2 col-form-label">设备类型</label>
+      <div class="col-4">
+        <select asp-for="ClassId" asp-items="ViewBag.ClassId" class="custom-select"></select>
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-2 col-form-label">设备名称</label>
+      <div class="col-4">
+        <input type="text" asp-for="DeviceName" class="form-control" />
+      </div>
+      <label class="col-2 col-form-label">IP地址</label>
+      <div class="col-4">
+        <input class="form-control" asp-for="IpAddress" />
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-2 col-form-label">描述</label>
+      <div class="col-4">
+        <input asp-for="Description" class="form-control" />
+      </div>
+      <label class="col-2 col-form-label">有效性</label>
+      <div class="col-4">
+        <input asp-for="IsValid" class="form-control" />
+        <label>是否有效？</label>
+      </div>
+    </div>
+  </div>
+  <!--隐藏属性-->
+  @Html.HiddenFor(model => model.UniqueId)
+  @Html.HiddenFor(m => m.CreatorId)
+  @Html.HiddenFor(m => m.Creator)
+  @Html.HiddenFor(m => m.CreateTime)
+  @Html.HiddenFor(m => m.DepartmentName)
+  @Html.HiddenFor(m => m.ClassName)
+  <div class="text-center  d-print-none">
+    <button class="btn btn-dark">
+      <i class="fa fa-save">保存</i>
+    </button>
+    @Html.ActionLink("返回列表", "Index")
+  </div>
+</form>
+<script type="text/javascript">
+  function setValue() {
+    let departmentName = $("#DepartmentId option:selected").text();
+    let className = $("#ClassId option:selected").text();
+    $("#DepartmentName").val(departmentName);
+    $("#ClassName").val(className);
+    return checkIp();
+  }
+
+  function checkIp() {
+      var ip = $("#IpAddress").val();
+      var isNotExist = false;
+    $.ajax({
+      type: "post",
+      url: "@Url.Action("ValidateIp")",
+      async:false,
+      data: { "ip": ip },
+      dataType:'json',
+      success: function (data)
+      {
+        if (data === 'true')
+        {
+          layer.alert("ip地址已经存在", { icon: 5, offset: 't', time: 1000 });
+              $("#IpAddress").focus();
+          } else {
+              isNotExist = true;
+          }
+      },
+      error:function(jqXhr,textStatus,errorThrown) {
+        alert(`error:${textStatus}  ${errorThrown}`);
+      }
+    });
+      return isNotExist;
+  }
+
+</script>

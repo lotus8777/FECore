@@ -1,0 +1,46 @@
+﻿@model Fy3y.Model.Das.ApproveConfig
+
+@{
+  ViewBag.Title = "Details";
+}
+<h2>Details</h2>
+<div>
+  <h4>ApproveConfig</h4>
+  <hr />
+  <dl class="dl-horizontal">
+    <dt>
+      @Html.DisplayNameFor(model => model.Approver.EmployeeName)
+    </dt>
+    <dd>
+      @Html.DisplayFor(model => model.Approver.EmployeeName)
+    </dd>
+    <dt>
+      @Html.DisplayNameFor(model => model.OperaterName)
+    </dt>
+    <dd>
+      @Html.DisplayFor(model => model.OperaterName)
+    </dd>
+    <dt>
+      @Html.DisplayNameFor(model => model.ControllerName)
+    </dt>
+    <dd>
+      @Html.DisplayFor(model => model.ControllerName)
+    </dd>
+    <dt>
+      @Html.DisplayNameFor(model => model.ActionName)
+    </dt>
+    <dd>
+      @Html.DisplayFor(model => model.ActionName)
+    </dd>
+    <dt>
+      @Html.DisplayNameFor(model => model.IsValid)
+    </dt>
+    <dd>
+      @Html.DisplayFor(model => model.IsValid)
+    </dd>
+  </dl>
+</div>
+<p>
+  @Html.ActionLink("Edit", "Edit", new {id = Model.UniqueId}) |
+  @Html.ActionLink("Back to List", "Index")
+</p>

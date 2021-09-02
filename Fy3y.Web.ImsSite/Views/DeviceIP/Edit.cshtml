@@ -1,0 +1,85 @@
+﻿@model Fy3y.Model.Das.DeviceIp
+@{
+  ViewBag.Title = "添加IP地址";
+  Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<form id="form1" method="post" onsubmit="return setValue()">
+  @Html.AntiForgeryToken()
+  <div class="text-center">
+    @Html.ValidationSummary(true, "", new {@class = "text-danger"})
+    <div class="form-group row">
+      <label class="col-2 col-form-label">所在科室</label>
+      <div class="col-4">
+        @Html.DropDownListFor(model => model.DepartmentId, null, new {@class = "custom-select" })
+      </div>
+      <label class="col-2 col-form-label">设备类型</label>
+      <div class="col-4">
+        @Html.DropDownListFor(model => model.ClassId, null, new {@class = "custom-select" })
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-2 col-form-label">设备名称</label>
+      <div class="col-4">
+        @Html.TextBoxFor(model => model.DeviceName, new {htmlAttributes = new {@class = "form-control"}})
+      </div>
+      <label class="col-2 col-form-label">IP地址</label>
+        <div class="col-4">
+            <input type="text" value="@Model.IpAddress.ToString() " class="form-control" name="IpAddress" id="IpAddress" />
+        </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-2 col-form-label">描述</label>
+      <div class="col-4">
+        @Html.TextBoxFor(model => model.Description, new {htmlAttributes = new {@class = "form-control"}})
+      </div>
+      <label class="col-2 col-form-label">有效性</label>
+      <div class="col-4">
+        @Html.CheckBoxFor(model => model.IsValid, new {htmlAttributes = new {@class = "form-control"}})
+        <label>是否有效？</label>
+      </div>
+    </div>
+  </div>
+  <!--隐藏属性-->
+  @Html.HiddenFor(model => model.UniqueId)
+  @Html.HiddenFor(m => m.IsValid)
+  @Html.HiddenFor(m => m.CreatorId)
+  @Html.HiddenFor(m => m.Creator)
+  @Html.HiddenFor(m => m.CreateTime)
+  @Html.HiddenFor(m => m.DepartmentName)
+  @Html.HiddenFor(m => m.ClassName)
+  <div class="text-center">
+    <button class="btn btn-dark d-print-none " id="submit">
+      <i class="fa fa-save">保存</i>
+    </button>
+    @Html.ActionLink("返回列表", "Index")
+  </div>
+</form>
+<script type="text/javascript">
+    function setValue() {
+        let departmentName = $("#DepartmentId option:selected").text();
+        let className = $("#ClassId option:selected").text();
+        $("#DepartmentName").val(departmentName);
+        $("#ClassName").val(className);
+        return checkIp();
+    }
+
+    function checkIp() {
+        var ip = $("#IpAddress").val();
+        var isNotExist = false;
+        $.ajax({
+            type: "post",
+            url: "@Url.Action("ValidateIp")",
+            data: { "ip": ip },
+            success: function(data) {
+                if (data ===true) {
+                    layer.alert("ip地址已经存在", { icon: 5, offset: 't', time: 1000 });
+                    $("#IpAddress").focus();
+                } else {
+                    isNotExist = true;
+                }
+            }
+        });
+        return isNotExist;
+    }
+
+</script>

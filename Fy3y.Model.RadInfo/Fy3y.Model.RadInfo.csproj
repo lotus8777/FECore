@@ -1,0 +1,161 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{F63A1A57-5B29-468E-9DE4-F18EB6D52DE1}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Fy3y.Model.RadInfo</RootNamespace>
+    <AssemblyName>Fy3y.Model.RadInfo</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="dtproperties.cs" />
+    <Compile Include="EISExchange.cs" />
+    <Compile Include="EISExchangeFailed.cs" />
+    <Compile Include="EISExpandLog.cs" />
+    <Compile Include="EISFavorite.cs" />
+    <Compile Include="EISFavoriteStudies.cs" />
+    <Compile Include="EISLog.cs" />
+    <Compile Include="EISMessage.cs" />
+    <Compile Include="EISPatients.cs" />
+    <Compile Include="EISQueue.cs" />
+    <Compile Include="EISQueueCall.cs" />
+    <Compile Include="EISQueueControl.cs" />
+    <Compile Include="EISReports.cs" />
+    <Compile Include="EISResults.cs" />
+    <Compile Include="EISResultsImage.cs" />
+    <Compile Include="EISService.cs" />
+    <Compile Include="EISStudies.cs" />
+    <Compile Include="EISStudiesConsultation.cs" />
+    <Compile Include="EISStudiesConsume.cs" />
+    <Compile Include="EISStudiesDisease.cs" />
+    <Compile Include="EISStudiesQC.cs" />
+    <Compile Include="EISStudiesReviews.cs" />
+    <Compile Include="FPAssociation.cs" />
+    <Compile Include="FPFilmAmount.cs" />
+    <Compile Include="FPFilmBox.cs" />
+    <Compile Include="FPFilmImage.cs" />
+    <Compile Include="FPFilmSession.cs" />
+    <Compile Include="FPServices.cs" />
+    <Compile Include="IMGAnnexFile.cs" />
+    <Compile Include="IMGArchive.cs" />
+    <Compile Include="IMGAviFile.cs" />
+    <Compile Include="IMGNearline.cs" />
+    <Compile Include="IMGNearlineStorage.cs" />
+    <Compile Include="IMGNearlineStorageFile.cs" />
+    <Compile Include="IMGOperate.cs" />
+    <Compile Include="ListerizeRecord.cs" />
+    <Compile Include="MGRBodies.cs" />
+    <Compile Include="MGRBodiesReplace.cs" />
+    <Compile Include="MGRConsume.cs" />
+    <Compile Include="MGRControl.cs" />
+    <Compile Include="MGRDepartment.cs" />
+    <Compile Include="MGRDevice.cs" />
+    <Compile Include="MGRDisease.cs" />
+    <Compile Include="MGRDoctor.cs" />
+    <Compile Include="MGRExamine.cs" />
+    <Compile Include="MGRExamineConsume.cs" />
+    <Compile Include="MGRHospital.cs" />
+    <Compile Include="MGRLinker.cs" />
+    <Compile Include="MGRModalities.cs" />
+    <Compile Include="MGRNode.cs" />
+    <Compile Include="MGRNodeClient.cs" />
+    <Compile Include="MGRPathMarkers.cs" />
+    <Compile Include="MGRPhrase.cs" />
+    <Compile Include="MGRPrivilege.cs" />
+    <Compile Include="MGRSpecs.cs" />
+    <Compile Include="MGRTemplate.cs" />
+    <Compile Include="MGRTemplate2.cs" />
+    <Compile Include="MGRTemplate20200731.cs" />
+    <Compile Include="MGRTemplateDisease.cs" />
+    <Compile Include="MGRTemplate___.cs" />
+    <Compile Include="OAArrangeWorks.cs" />
+    <Compile Include="OACMTransaction.cs" />
+    <Compile Include="OACommunications.cs" />
+    <Compile Include="OAConsumptiveMaterial.cs" />
+    <Compile Include="OACriticalValue.cs" />
+    <Compile Include="OADeviceDiary.cs" />
+    <Compile Include="OADeviceEmploy.cs" />
+    <Compile Include="OADeviceMaintenance.cs" />
+    <Compile Include="OADeviceNitrogen.cs" />
+    <Compile Include="OADevicePartner.cs" />
+    <Compile Include="OADevicePreserve.cs" />
+    <Compile Include="OADeviceProtocol.cs" />
+    <Compile Include="OADoctors.cs" />
+    <Compile Include="OADoctorTeaching.cs" />
+    <Compile Include="OAExchangeWorkRecord.cs" />
+    <Compile Include="OAExchangeWorks.cs" />
+    <Compile Include="OAInformedConsentForm.cs" />
+    <Compile Include="OASendSaveMsg.cs" />
+    <Compile Include="OASignContent.cs" />
+    <Compile Include="OAWorkTitle.cs" />
+    <Compile Include="PACSFailedImages.cs" />
+    <Compile Include="PACSImages.cs" />
+    <Compile Include="PACSPatients.cs" />
+    <Compile Include="PACSSeries.cs" />
+    <Compile Include="PACSStudies.cs" />
+    <Compile Include="PathArchive.cs" />
+    <Compile Include="PathBorrowReturn.cs" />
+    <Compile Include="PathDrawing.cs" />
+    <Compile Include="PathFreeze.cs" />
+    <Compile Include="PathMedicalOrder.cs" />
+    <Compile Include="PathSection.cs" />
+    <Compile Include="PathStudies.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="QACSFailedImages.cs" />
+    <Compile Include="QACSImages.cs" />
+    <Compile Include="QACSPatients.cs" />
+    <Compile Include="QACSSeries.cs" />
+    <Compile Include="QACSStudies.cs" />
+    <Compile Include="RePortsCalled.cs" />
+    <Compile Include="StorageDVD.cs" />
+    <Compile Include="StorageOrder.cs" />
+    <Compile Include="StorageOrderStudies.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

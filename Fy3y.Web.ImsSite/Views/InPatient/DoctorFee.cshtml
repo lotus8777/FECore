@@ -1,0 +1,49 @@
+﻿@model IList<Fy3y.Model.Das.WardDoctorFee>
+@{
+    ViewBag.Title = "医生住院费用统计";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@Html.Partial("MonthFormPartial")
+<div class="alert alert-warning">
+
+    <ol type="1">
+        <li>Tips:</li>
+        <li>科室费用均不包含膳食费</li>
+        <li>费用床日均为当月数据，不累计</li>
+    </ol>
+</div>
+<table class="table table-sm table-bordered table-hover table-striped text-center" id="table1">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>科室</th>
+            <th>医生</th>
+            <th>药费</th>
+            <th>诊疗费</th>
+            <th>床日数</th>
+            <th>药占比</th>
+            <th>床日费</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model.Any())
+        {
+            var i = 0;
+            foreach (var item in Model)
+            {
+                i++;
+                <tr>
+                    <td>@i</td>
+                    <td>@item.DeptName </td>
+                    <td>@item.DoctorName</td>
+                    <td>@(item.DrugFee)</td>
+                    <td>@(item.MedicalFee)</td>
+                    <td>@(item.BedDays.ToString("F2"))</td>
+                    <td>@(item.DrugProportion)</td>
+                    <td>@(item.BedDayCost.ToString("F2"))</td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>

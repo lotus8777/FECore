@@ -1,0 +1,157 @@
+﻿@model IList<Fy3y.Model.Das.AdverseEvent>
+@{
+    ViewBag.Title = "不良事件报告统计";
+}
+<br />
+@Html.Partial("BeginEndFormPartial")
+<ul class="nav nav-tabs" id="mytabs" role="tablist">
+    <li class="nav-item">
+        <a class="active nav-link" data-toggle="tab" href="#statistics">数量统计</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" data-toggle="tab" href="#details">报表明细</a>
+    </li>
+</ul>
+<div class="border border-top-0 p-2 tab-content text-center">
+    <div class="active fade show tab-pane" id="statistics">
+        <table class="table table-sm table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>事件类型</th>
+                    <th>上报数量</th>
+                    <th>审核数量</th>
+                </tr>
+            </thead>
+            <tbody>
+                @{
+                    var adverseTypes = Model?.Select(p => p.AdverseType)?.Distinct().ToList();
+
+                    if (adverseTypes?.Any() != null)
+                    {
+                        var index = 1;
+                        foreach (var item in adverseTypes)
+                        {
+                            string typeName;
+                            if (item == 1)
+                            {
+                                typeName = "医疗事件";
+                            }
+                            else if (item == 2)
+                            {
+                                typeName = "护理事件";
+                            }
+                            else if (item == 3)
+                            {
+                                typeName = "器械事件";
+                            }
+                            else if (item == 4)
+                            {
+                                typeName = "药品反应";
+                            }
+                            else if (item == 5)
+                            {
+                                typeName = "药品差错";
+                            }
+                            else
+                            {
+                                typeName = "其他事件";
+                            }
+                            <tr>
+                                <td>@index </td>
+                                <td>@typeName </td>
+                                <td>@(Model?.Where(p => p.AdverseType == item)?.Count())</td>
+                                <td>@(Model?.Where(p => p.AdverseType == item && p.IsChecked)?.Count())</td>
+                            </tr>
+                            index++;
+                        }
+                    }
+                }
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="2">合计 </td>
+                    <td>@(Model?.Count())</td>
+                    <td>@(Model?.Where(p => p.IsChecked)?.Count())</td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+    <div class="fade show tab-pane" id="details">
+        <table class="table table-sm table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>事件类型</th>
+                    <th>上报时间</th>
+                    <th>上报科室</th>
+                    <th>审核状态</th>
+                    <th>报告人</th>
+                    <th>查看</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model?.Count() > 0)
+                {
+                    var index = 0;
+
+                    foreach (var item in Model)
+                    {
+                        var adverseType = string.Empty;
+                        var url = string.Empty;
+                        if (item.AdverseType == 1)
+                        {
+                            adverseType = "医疗事件";
+                            url = Url.Action("Details", "AdverseMedicalEvent", new { id = item.EventId + "|2" });
+                        }
+                        else if (item.AdverseType == 2)
+                        {
+                            adverseType = "护理事件";
+                            url = Url.Action("Details", "AdverseNursingEvent", new { id = item.EventId + "|2" });
+                        }
+                        else if (item.AdverseType == 3)
+                        {
+                            adverseType = "器械事件";
+                            url = Url.Action("Details", "AdverseInstructionEvent", new { id = item.EventId + "|2" });
+                        }
+                        else if (item.AdverseType == 4)
+                        {
+                            adverseType = "药品反应";
+                            url = Url.Action("Details", "AdverseDrugEvent", new { id = item.EventId + "|2" });
+                        }
+                        else if (item.AdverseType == 5)
+                        {
+                            adverseType = "药品差错";
+                            url = Url.Action("Details", "MedicationErrorEvent", new { id = item.EventId + "|2" });
+                        }
+                        index++;
+                        <tr>
+                            <td>@index </td>
+                            <td>@adverseType </td>
+                            <td>@item.ReportTime </td>
+                            <td>@item.ReporterDeptName </td>
+                            <td>
+                                @if (item.IsChecked)
+                                {
+                                    <span class="badge badge-success">已审核</span>
+                                }
+                                else
+                                {
+                                    <span class="badge badge-danger">未审核</span>
+                                }
+                            </td>
+                            <td>@item.ReporterName </td>
+                            <td>
+                                <div>
+                                    <a href=@url title="查看">
+                                        <i class="fa fa-search"></i>
+                                    </a>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

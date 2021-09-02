@@ -1,0 +1,39 @@
+﻿@using Fy3y.Model.Das
+@using Newtonsoft.Json
+@model Fy3y.Model.Das.Publicity
+@{
+  ViewBag.Title = Model.Title;
+  Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="form-group mb-4 row">
+  @if (!string.IsNullOrEmpty(Model.Author))
+  {
+    <div class="col">
+      撰写人：@Model.Author
+    </div>
+  }
+  <div class="col">
+    发布人：@ViewBag.employeeName
+  </div>
+  <div class="col">
+    发布时间：@Model.CreateTime
+  </div>
+</div>
+<hr />
+<div style="min-height: 300px;">
+  @Html.Raw(JsonConvert.DeserializeObject<string>(Model.Article))
+</div>
+@if (ViewBag.files != null)
+{
+  @:附件：
+  IList<UploadFile> files = ViewBag.files;
+  <table>
+    @foreach (var file in files)
+    {
+      <tr>
+        <td><a href="@Url.Action("GetFile","File",new {id=file.FileId})">@file.FileName</a> </td>
+      </tr>
+    }
+  </table>
+}
+<a class="btn btn-dark d-print-none mt-4" href="@Url.Action("List")">返回</a>

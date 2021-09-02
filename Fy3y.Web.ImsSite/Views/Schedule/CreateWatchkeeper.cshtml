@@ -1,0 +1,55 @@
+﻿@model IList<Fy3y.Model.Das.Employee>
+@{
+
+  ViewBag.Title = "添加志愿者值班人员";
+}
+<form method="post" onsubmit="checkForm()">
+  <table class="table table-sm table-bordered text-center table-striped">
+    <thead>
+      <tr>
+        <td>#</td>
+        <td>姓名</td>
+        <td>手机号</td>
+        <td>选择</td>
+      </tr>
+    </thead>
+    <tbody>
+      @{
+
+        if (Model?.Count() > 0)
+        {
+          int i = 1;
+          foreach (var item in Model)
+          {
+            <tr>
+              <td>
+                @i
+                <input type="hidden" name="employeeId" value="@item.EmployeeId" />
+                <input type="hidden" name="watcherId" value="@(item.WatchKeeper?.EmployeeId)" />
+              </td>
+              <td>@item.EmployeeName </td>
+              <td>@item.Mobile </td>
+              <td>
+                <input type="checkbox" name="isChecked" value="1"  @(item.WatchKeeper?.IsOnDuty??false?"" : "checked=true") />
+              </td>
+            </tr>
+            i++;
+          }
+        }
+      }
+    </tbody>
+  </table>
+  <input type="submit" value="保存" class="btn btn-success" />
+</form>
+
+<script type="text/javascript">
+  function checkForm() {
+    $("input[type='checkbox'][name='checked']").each(function (i) {
+      if (!this.checked) {
+        this.checked = true;
+        this.value = 0;
+      }
+    });
+    return true;
+  }
+</script>

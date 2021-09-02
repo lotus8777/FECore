@@ -1,0 +1,83 @@
+﻿<interface>
+    <health_evn_id>当前唯一就诊编码</health_evn_id>
+    <quote_health_evn_id>引用报告唯一就诊编码</quote_health_evn_id>
+    <quote_org_code>引用报告单位组织机构代码</quote_org_code>
+    <quote_org_name>引用报告单位名称</quote_org_name>
+    <quote_app_no>引用报告单号</quote_app_no>
+    <quote_type>1检验 2检查 9心电图</quote_type>
+    <content>
+        <head>
+            <APP_NO>检验报告单号</APP_NO>
+            <ybbh>样本编号</ybbh>
+            <yblx>样本类型</yblx>
+            <mzhm>门诊号码</mzhm>
+            <brxm>姓名</brxm>
+            <brxb>1男 2女，性别</brxb>
+            <brnl>12，年龄</brnl>
+            <nldw>年，年龄单位</nldw>
+            <lxdh>联系电话</lxdh>
+            <jymd>检验目的/名称</jymd>
+            <jymdbm>检验目的编码</jymdbm>
+            <sqrq>2018.10.10申请时间</sqrq>
+            <sqyssfzh>申请医生身份证号</sqyssfzh>
+            <doctor>申请医生姓名</doctor>
+            <sjrq>2018.10.11送检时间</sjrq>
+            <sjyssfzh>送检医生身份证号</sjyssfzh>
+            <sjdoctor>送检医生姓名</sjdoctor>
+            <cyrq>2018.10.10采样时间</cyrq>
+            <cyyssfzh>采样医生身份证号</cyyssfzh>
+            <cydoctor>采样医生姓名</cydoctor>
+            <jyrq>2018.10.11检验时间</jyrq>
+            <jyyssfzh>检验医生身份证号</jyyssfzh>
+            <jydoctor>检验医生姓名</jydoctor>
+            <bgrq>2018.10.11报告时间</bgrq>
+            <bgyssfzh>报告医生身份证号</bgyssfzh>
+            <bgdoctor>报告医生姓名</bgdoctor>
+            <shrq>2018.10.11审核时间</shrq>
+            <shyssfzh>审核人身份证号</shyssfzh>
+            <shdoctor>审核人姓名</shdoctor>
+            <jsrq>2018.10.11接收时间</jsrq>
+            <jsyssfzh>接收人身份证号</jsyssfzh>
+            <jsdoctor>接收人姓名</jsdoctor>
+        </head>
+        <list>
+            <item>
+                <!-- 检验项目序号 -->
+                <TEST_ITEM_NO>检验项目序号</TEST_ITEM_NO>
+                <!-- 检验报告项目代码 -->
+                <REPORT_ITEM_CODE>检验报告项目代码</REPORT_ITEM_CODE>
+                <!-- 检验报告GB项目代码  临床检验项目分类与代码  WS/T 102-1998 -->
+                <GB_CODE>10200011</GB_CODE>
+                <!-- 检验报告项目名称 -->
+                <REPORT_ITEM_NAME>检验报告项目名称</REPORT_ITEM_NAME>
+                <!-- 检验结果值 -->
+                <RESULT>10.0</RESULT>
+                <!-- 检验结果单位 -->
+                <UNITS>mol</UNITS>
+                <!--结果正常标志 N-正常 L-低 H-高 Y –异常-->
+                <ABNORMAL_INDICATOR>N</ABNORMAL_INDICATOR>
+                <!-- 仪器编号 -->
+                <INSTRUMENT_ID>仪器编号</INSTRUMENT_ID>
+                <!-- 检验日期及时间 -->
+                <RESULT_DATE_TIME>2014.4.15</RESULT_DATE_TIME>
+                <!-- 参考范围 -->
+                <REFER_CONTEXT>0~112</REFER_CONTEXT>
+            </item>
+            <item>
+                <!-- 检验项目序号 -->
+                <TEST_ITEM_NO>12</TEST_ITEM_NO>
+                <!-- 检验报告项目代码 -->
+                <REPORT_ITEM_CODE>检验报告项目代码</REPORT_ITEM_CODE>
+                <!-- 检验报告GB项目代码  临床检验项目分类与代码  WS/T 102-1998 -->
+                <GB_CODE>10200011</GB_CODE>
+                <REPORT_ITEM_NAME>检验报告项目名称</REPORT_ITEM_NAME>
+                <RESULT>10.0 检验结果值</RESULT>
+                <UNITS>mol 检验结果单位</UNITS>
+                <ABNORMAL_INDICATOR>N 结果正常标志 N-正常 L-低 H-高 Y –异常</ABNORMAL_INDICATOR>
+                <INSTRUMENT_ID>仪器编号</INSTRUMENT_ID>
+                <RESULT_DATE_TIME>2014.4.15 检验日期及时间</RESULT_DATE_TIME>
+                <REFER_CONTEXT>0~112 参考范围</REFER_CONTEXT>
+            </item>
+        </list>
+    </content>
+</interface>

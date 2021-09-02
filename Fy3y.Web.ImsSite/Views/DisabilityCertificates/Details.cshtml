@@ -1,0 +1,122 @@
+﻿@model Fy3y.Model.Das.DisabilityCertificate
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>DisabilityCertificate</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IdCard)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IdCard)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Address)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Address)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Mobile)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Mobile)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Guardian)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Guardian)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.GuardianMobile)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GuardianMobile)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DisabilityType)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DisabilityType)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DisabilityLevel)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DisabilityLevel)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DisabilityNo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DisabilityNo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EffectiveDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EffectiveDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Validity)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Validity)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CreateTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreateTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CreatorId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreatorId)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.CertId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

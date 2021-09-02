@@ -1,0 +1,55 @@
+﻿@model IList<Fy3y.Model.Das.KeyFee>
+@{
+    ViewBag.Title = "重点监控费用清单";
+}
+
+
+<div class="form-group row text-center">
+    <div class="col-2">
+        <a class="btn btn-dark d-print-none mb-1" href="@Url.Action("AddKeyFee")">
+            <i class="fa fa-plus">添加</i>
+        </a>
+    </div>
+</div>
+
+<table class="table table-bordered text-center">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>费用序号</th>
+            <th>费用名称</th>
+            <th>操作</th>
+        </tr>
+    </thead>
+    @{
+        if (Model.Count > 0)
+        {
+            int i = 1;
+            foreach (var keyFee in Model)
+            {
+                <tr>
+                    <td>@i</td>
+                    <td>@keyFee.Fyxh</td>
+                    <td>@keyFee.Fymc</td>
+                    <td>
+                        <a href="@Url.Action("DeleteKeyFee",new {id=keyFee.Fyxh})">删除</a>
+                    </td>
+                </tr>
+                i++;
+            }
+        }
+    }
+</table>
+
+<script type="text/javascript">
+    $("#addKeyFee").click(function() {
+        layer.open({
+            type: 2,
+            title: '添加监控费用',
+            shadeClose: true,
+            shade: 0.8,
+            area: ['640px', '480px'],
+            content: "@Url.Action("AddKeyFee")"
+        });
+    });
+</script>

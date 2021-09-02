@@ -1,0 +1,84 @@
+﻿@model IList<Part>
+@{
+    ViewBag.Title = "设备购入列表";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<form method="post">
+    @Html.AntiForgeryToken()
+    <fieldset>
+        <legend>查询选择</legend>
+
+        <div class="form-group row text-center ">
+            <label class="col-form-label col-1">开始</label>
+            <div class="col-2">
+                @Html.TextBox("begin", null, new {onfocus = "WdatePicker({isShowClear:false,readOnly:true,isShowOK:false})", @class = "form-control"})
+            </div>
+            <label class="col-form-label  col-1">结束</label>
+            <div class="col-2">
+                @Html.TextBox("end", null, new {onfocus = "WdatePicker({isShowClear:false,readOnly:true,isShowOK:false})", @class = "form-control"})
+            </div>
+            <div class="col-2">
+                <button class="btn btn-dark d-print-none">
+                    <span class="fa fa-search">查询</span>
+                </button>
+            </div>
+            <div class="col-2">
+                <a class="btn btn-dark" href="@Url.Action("Create")">
+                    <i class="fa fa-plus">添加</i>
+                </a>
+            </div>
+        </div>
+    </fieldset>
+</form>
+<br/>
+<table class="table table-sm table-bordered table-hover table-striped text-center" id="table1">
+    <thead>
+    <tr>
+        <th>#</th>
+        <th>入库时间</th>
+        <th>资产类型</th>
+        <th>商品名称</th>
+        <th>品牌型号</th>
+        <th>入库数量</th>
+        <th>剩余数量</th>
+        <th>单价</th>
+        <th>详情</th>
+    </tr>
+    </thead>
+    <tbody>
+    @{
+        var number = 0;
+        if (Model.Any())
+        {
+            foreach (var p in Model)
+            {
+                number++;
+                <tr>
+                    <td>@number </td>
+                    <td>@p.PurchaseDate.ToShortDateString()</td>
+                    <td>@p.ClassName </td>
+                    <td>@p.PartName </td>
+                    <td>@p.BrandModel </td>
+                    <td>@p.Quantity </td>
+                    <td>@p.RemainingQuantity </td>
+                    <td>@p.Price </td>
+                    <td>
+                        <div class="btn-group btn-group-sm">
+                            <a href="@Url.Action("Details",new{id=p.UniqueId})">
+                                <i class="fa fa-search"></i>
+                            </a>
+                        </div>
+                    </td>
+                </tr>
+            }
+        }
+    }
+    </tbody>
+</table>
+
+<script type="text/javascript">
+    jqueryDataTable();
+    $("select[name='table1_length']").change(function() {
+        setParentFrameHeight();
+    });
+</script>

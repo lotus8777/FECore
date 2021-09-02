@@ -1,0 +1,81 @@
+﻿@model IList<Zy_Brry>
+@{
+    ViewBag.Title = "Drgs病历数据上传系统";
+}
+@Html.Partial("BeginEndFormPartial")
+<ul class="nav nav-tabs" id="mytabs" role="tablist">
+    <li class="nav-item">
+        <a href="#valid" data-toggle="tab" class="nav-link active">成功</a>
+    </li>
+    <li class="nav-item">
+        <a href="#valid" data-toggle="tab" class="nav-link">失败</a>
+    </li>
+</ul>
+
+<div class="text-center border p-2 tab-content">
+    @{
+        if (Model.Any())
+        {
+            <table class="table table-bordered table-sm">
+                <thead class="thead-light">
+                    <tr>
+                        <th>#</th>
+                        <th>住院号</th>
+                        <th>姓名</th>
+                        <th>医保类型</th>
+                        <th>病区</th>
+                        <th>床号</th>
+                        <th>出院日期</th>
+                        <th>上传状态</th>
+                        <th>选择</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @{
+                        int i = 0;
+                        foreach (var item in Model)
+                        {
+                            i++;
+                            <tr>
+                                <td>@i</td>
+                                <td>@item.Zyh</td>
+                                <td>@item.Brxm</td>
+                                <td>
+                                    @(item.Brxz == 4000 ? "市医保" : "省一卡通")
+                                </td>
+                                <td>@item.GyKsdm.Ksmc</td>
+                                <td>@item.Brch</td>
+                                <td>@item.Cyrq?.ToShortDateString()</td>
+                                <td>
+                                    @if (item.Drgsflag == 1)
+                                    {
+                                        <span class="text-success">成功</span>
+                                    }
+                                    else
+                                    {
+                                        <span class="text-danger">失败</span>
+                                    }
+                                </td>
+                                <td>
+                                    <input type="checkbox" value="@item.Zyh" />
+                                </td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="2">统计</td>
+                        <td>共有</td>
+                        <td>@Model.Count</td>
+                        <td>成功</td>
+                        <td>@Model.Count(p => p.Drgsflag == 1)</td>
+                        <td>失败</td>
+                        <td>@Model.Count(p => p.Drgsflag != 1)</td>
+
+                    </tr>
+                </tfoot>
+            </table>
+        }
+    }
+</div>

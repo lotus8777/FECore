@@ -1,0 +1,22 @@
+﻿
+
+#printvisible {
+  display: block;
+}
+
+@page:right {
+  @bottom-center {
+    content: counter(page);
+  }
+}
+
+.container {
+  width: 100%;
+}
+
+.badge {
+  border: none;
+  color: black;
+  font-size: 1rem;
+  font-weight: normal;
+}

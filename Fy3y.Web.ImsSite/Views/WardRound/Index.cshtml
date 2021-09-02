@@ -1,0 +1,101 @@
+﻿@model IList<Fy3y.Model.Das.WardRound>
+@{
+    ViewBag.Title = "查房记录";
+}
+<br />
+<fieldset>
+    <legend>查询条件</legend>
+    <form id="form1" method="post">
+        @Html.AntiForgeryToken()
+        <div class="form-group row text-center">
+            <label class="col-1 col-form-label">开始</label>
+            @Html.TextBox("begin", null, new { onfocus = "WdatePicker({isShowClear:false,readOnly:true,isShowOK:false,maxDate:'%y-%M-%d'})", @class = "form-control col-2" })
+            <label class="col-1 col-form-label">结束</label>
+            @Html.TextBox("end", null, new { onfocus = "WdatePicker({isShowClear:false,readOnly:true,isShowOK:false,maxDate:'%y-%M-%d'})", @class = "form-control col-2" })
+            <div class="col-2">
+                <button class="btn btn-dark d-print-none">
+                    <span class="fa fa-search">查询</span>
+                </button>
+            </div>
+            <div class="col-2">
+                <a class="btn btn-dark d-print-none" href="@Url.Action("Create")">
+                    <i class="fa fa-plus">添加</i>
+                </a>
+            </div>
+        </div>
+    </form>
+</fieldset>
+<br />
+<div class="text-center">
+    <table class="table table-sm table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>姓名</th>
+                <th>性别</th>
+                <th>年龄</th>
+                <th>科室</th>
+                <th>申请时间</th>
+                <th>查房时间</th>
+                <th>状态</th>
+                <th>处理</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model?.Count() > 0)
+            {
+                var index = 0;
+                foreach (var item in Model)
+                {
+                    index++;
+                    <tr>
+                        <td>@index </td>
+                        <td>@item.PatientName </td>
+                        <td>@item.PatientSex </td>
+                        <td>@item.PatientAge </td>
+                        <td>@item.DepartmentName </td>
+                        <td>@item.CreateTime.ToShortDateString() </td>
+                        <td>
+                            @if (item.CheckTime != null)
+                            {
+                                @item.CheckTime.Value.ToShortDateString()
+                            }
+                        </td>
+                        @{
+                            if (item.IsChecked)
+                            {
+                                <td>
+                                    <span class="badge badge-success">已查</span>
+                                </td>
+                                <td>
+                                    <a href="@Url.Action("Details",new { id=item.UniqueId})" title="查看">
+                                        <i class="fa fa-search"></i>
+                                    </a>
+                                </td>
+                            }
+                            else
+                            {
+                                <td>
+                                    <span class="badge badge-danger">待查</span>
+                                </td>
+                                <td>
+                                    <a href="@Url.Action("Edit",new { id=item.UniqueId})" title="编辑">
+                                        <i class="fa fa-edit"></i>
+                                    </a>|
+
+                                    <a href="@Url.Action("Manage",new { id=item.UniqueId})" title="查房">
+                                        <i class="fa fa-h-square"></i>
+                                    </a>|
+
+                                    <a href="@Url.Action("Delete",new { id=item.UniqueId})" title="删除">
+                                        <i class="fa fa-trash"></i>
+                                    </a>
+                                </td>
+                            }
+                        }
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+</div>

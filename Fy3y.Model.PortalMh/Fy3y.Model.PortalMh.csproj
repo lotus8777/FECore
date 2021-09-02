@@ -1,0 +1,203 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.props" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{82A15780-2A80-4DB3-A6E3-33E2B8425E43}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Fy3y.Model.PortalMh</RootNamespace>
+    <AssemblyName>Fy3y.Model.PortalMh</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <LangVersion>latest</LangVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <LangVersion>latest</LangVersion>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="CA_RZXX_JBZD.cs" />
+    <Compile Include="CA_RZXX_MJZBL.cs" />
+    <Compile Include="CA_RZXX_MJZCF.cs" />
+    <Compile Include="CA_RZXX_YZB.cs" />
+    <Compile Include="CA_RZXX_ZYBL.cs" />
+    <Compile Include="EMR_SYS_MAX.cs" />
+    <Compile Include="ETL_LOG.cs" />
+    <Compile Include="GY_BRDA.cs" />
+    <Compile Include="GY_FBRZ.cs" />
+    <Compile Include="GY_FBSD.cs" />
+    <Compile Include="GY_IDENTITY.cs" />
+    <Compile Include="GY_IDENTITY_AER.cs" />
+    <Compile Include="GY_IDENTITY_AMQC.cs" />
+    <Compile Include="GY_IDENTITY_BA.cs" />
+    <Compile Include="GY_IDENTITY_BQ.cs" />
+    <Compile Include="GY_IDENTITY_CA.cs" />
+    <Compile Include="GY_IDENTITY_CP.cs" />
+    <Compile Include="GY_IDENTITY_CU.cs" />
+    <Compile Include="GY_IDENTITY_DX.cs" />
+    <Compile Include="GY_IDENTITY_DZ.cs" />
+    <Compile Include="GY_IDENTITY_EA.cs" />
+    <Compile Include="GY_IDENTITY_ECIS.cs" />
+    <Compile Include="GY_IDENTITY_EMR.cs" />
+    <Compile Include="GY_IDENTITY_EMRA.cs" />
+    <Compile Include="GY_IDENTITY_ENR.cs" />
+    <Compile Include="GY_IDENTITY_GHYY.cs" />
+    <Compile Include="GY_IDENTITY_HIQC.cs" />
+    <Compile Include="GY_IDENTITY_HL.cs" />
+    <Compile Include="GY_IDENTITY_HQMS.cs" />
+    <Compile Include="GY_IDENTITY_IENR.cs" />
+    <Compile Include="GY_IDENTITY_KH.cs" />
+    <Compile Include="GY_IDENTITY_KJ.cs" />
+    <Compile Include="GY_IDENTITY_LG.cs" />
+    <Compile Include="GY_IDENTITY_MOB.cs" />
+    <Compile Include="GY_IDENTITY_MQMS.cs" />
+    <Compile Include="GY_IDENTITY_MRQC.cs" />
+    <Compile Include="GY_IDENTITY_MSG.cs" />
+    <Compile Include="GY_IDENTITY_OMR.cs" />
+    <Compile Include="GY_IDENTITY_PD.cs" />
+    <Compile Include="GY_IDENTITY_PS.cs" />
+    <Compile Include="GY_IDENTITY_RS.cs" />
+    <Compile Include="GY_IDENTITY_RY.cs" />
+    <Compile Include="GY_IDENTITY_SH.cs" />
+    <Compile Include="GY_IDENTITY_SM.cs" />
+    <Compile Include="GY_IDENTITY_TJ.cs" />
+    <Compile Include="GY_IDENTITY_YF.cs" />
+    <Compile Include="GY_IDENTITY_YJ.cs" />
+    <Compile Include="GY_IDENTITY_YJYY.cs" />
+    <Compile Include="GY_IDENTITY_YK.cs" />
+    <Compile Include="GY_IDENTITY_YS.cs" />
+    <Compile Include="GY_IDENTITY_YW.cs" />
+    <Compile Include="GY_IDENTITY_YZ.cs" />
+    <Compile Include="GY_IDENTITY_ZY.cs" />
+    <Compile Include="GY_IDENTITY_ZZ.cs" />
+    <Compile Include="GY_LJJG.cs" />
+    <Compile Include="GY_ZDFW.cs" />
+    <Compile Include="HX_NUMIDENTI.cs" />
+    <Compile Include="MH_AUTORUN.cs" />
+    <Compile Include="MH_BBXX.cs" />
+    <Compile Include="MH_CAYH.cs" />
+    <Compile Include="MH_CWRZ.cs" />
+    <Compile Include="MH_DBLJ.cs" />
+    <Compile Include="MH_DLLS.cs" />
+    <Compile Include="MH_DLRZ.cs" />
+    <Compile Include="MH_DYFF.cs" />
+    <Compile Include="MH_DYLB.cs" />
+    <Compile Include="MH_DYMX.cs" />
+    <Compile Include="MH_FBLB.cs" />
+    <Compile Include="MH_FGCD.cs" />
+    <Compile Include="MH_GJT.cs" />
+    <Compile Include="MH_GJT_JS.cs" />
+    <Compile Include="MH_IDENTITY.cs" />
+    <Compile Include="MH_JGLJ.cs" />
+    <Compile Include="MH_JSCD.cs" />
+    <Compile Include="MH_JSFG.cs" />
+    <Compile Include="MH_JSFL.cs" />
+    <Compile Include="MH_JSQX.cs" />
+    <Compile Include="MH_KJFS.cs" />
+    <Compile Include="MH_KJFS_JS.cs" />
+    <Compile Include="MH_LBWJ.cs" />
+    <Compile Include="MH_LJBS.cs" />
+    <Compile Include="MH_MKCS.cs" />
+    <Compile Include="MH_MKLB.cs" />
+    <Compile Include="MH_MKQX.cs" />
+    <Compile Include="MH_RZXX.cs" />
+    <Compile Include="MH_SDLX.cs" />
+    <Compile Include="MH_SJFL.cs" />
+    <Compile Include="MH_SJGL.cs" />
+    <Compile Include="MH_SXTJ.cs" />
+    <Compile Include="MH_SXZD.cs" />
+    <Compile Include="MH_WHJL.cs" />
+    <Compile Include="MH_WHSJ.cs" />
+    <Compile Include="MH_XTCS.cs" />
+    <Compile Include="MH_XTJS.cs" />
+    <Compile Include="MH_XTMK.cs" />
+    <Compile Include="MH_XTYH.cs" />
+    <Compile Include="MH_YCLSZ.cs" />
+    <Compile Include="MH_YHCD.cs" />
+    <Compile Include="MH_YHCDJY.cs" />
+    <Compile Include="MH_YHJS.cs" />
+    <Compile Include="MH_YHXQ.cs" />
+    <Compile Include="MH_YHXQFJ.cs" />
+    <Compile Include="MH_YLJG.cs" />
+    <Compile Include="MH_YWSD.cs" />
+    <Compile Include="MH_YXRZ.cs" />
+    <Compile Include="MH_ZDHC.cs" />
+    <Compile Include="MH_ZDYF.cs" />
+    <Compile Include="MH_ZMBJ.cs" />
+    <Compile Include="MH_ZXWJ.cs" />
+    <Compile Include="MH_ZYDX.cs" />
+    <Compile Include="MH_ZYXX.cs" />
+    <Compile Include="pbcatedt.cs" />
+    <Compile Include="pbcatfmt.cs" />
+    <Compile Include="pbcatvld.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="REP_BBDZ.cs" />
+    <Compile Include="REP_BBJL.cs" />
+    <Compile Include="REP_BBLX.cs" />
+    <Compile Include="REP_BBQX.cs" />
+    <Compile Include="REP_BBXX.cs" />
+    <Compile Include="REP_DDDW.cs" />
+    <Compile Include="REP_DDDW_MX.cs" />
+    <Compile Include="REP_DWGJZ.cs" />
+    <Compile Include="REP_DWNR.cs" />
+    <Compile Include="REP_DWSZ.cs" />
+    <Compile Include="REP_GDCS.cs" />
+    <Compile Include="REP_GDCS_MX.cs" />
+    <Compile Include="REP_RQLX.cs" />
+    <Compile Include="REP_SJMR.cs" />
+    <Compile Include="REP_XTPZ.cs" />
+    <Compile Include="SJ_DLTS.cs" />
+    <Compile Include="SJ_DLTSQR.cs" />
+    <Compile Include="SJ_SJFJ.cs" />
+    <Compile Include="SJ_SJFL.cs" />
+    <Compile Include="SJ_XNSJ.cs" />
+    <Compile Include="SJ_XTSJ.cs" />
+    <Compile Include="SJ_YWSJ.cs" />
+    <Compile Include="TMP_IMAGE_TEMP.cs" />
+    <Compile Include="ZZ_FINGER.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>这台计算机上缺少此项目引用的 NuGet 程序包。使用“NuGet 程序包还原”可下载这些程序包。有关更多信息，请参见 http://go.microsoft.com/fwlink/?LinkID=322105。缺少的文件是 {0}。</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.props'))" />
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.targets'))" />
+  </Target>
+  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.targets" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" />
+</Project>

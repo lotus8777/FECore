@@ -1,0 +1,24 @@
+﻿@model Fy3y.Model.Das.SleepMonitorRegistration
+
+@if (Model.Status == 0)
+{
+<span class="text-secondary">作废</span>
+}
+else if (Model.Status == 1)
+{
+<a href="@Url.Action("Edit",new {id=Model.UniqueId})">
+  <span class="text-primary">预约</span>
+</a>
+}
+else if (Model.Status == 3)
+{
+<a href="@Url.Action("Details",new {id=Model.UniqueId})">
+  <span class="text-warning">爽约</span>
+</a>
+}
+else if (Model.Status == 2)
+{
+<a href="@Url.Action("Details",new {id=Model.UniqueId})">
+  <span class="text-success">就诊</span>
+</a>
+}

@@ -1,0 +1,90 @@
+﻿
+@using Fy3y.Model.Das
+@model IList<Fy3y.Model.Das.Department>
+@{
+  ViewBag.Title = "科室电话";
+  Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@using (Html.BeginForm())
+{
+  <div class="form-row mb-2">
+    <div class="col">
+      @Html.DropDownList("id", null, new { @class = "form-control" })
+    </div>
+    <div class="col">
+      <button class="btn btn-dark d-print-none">
+        <span class="fa fa-search">查询</span>
+      </button>
+    </div>
+    <div class="col">
+    </div>
+    <div class="col">
+    </div>
+    <div class="col">
+    </div>
+    <div class="col">
+    </div>
+  </div>
+}
+<table class="table table-sm table-bordered table-hover table-striped text-center text-middle">
+  <thead>
+    <tr>
+      <th>职能科室</th>
+      <th>业务科室</th>
+      <th>电话号码</th>
+      <th>内线或其它</th>
+    </tr>
+  </thead>
+  <tbody>
+    @if (Model.Count > 0)
+    {
+      IEnumerable<Department> primaryDepartments = Model.Where(p => p.IsValid && p.IsPrimary && p.ParentId != 0).OrderBy(p => p.ParentId);
+      foreach (var item in primaryDepartments)
+      {
+        var subDepartments = Model.Where(p => p.ParentId == item.DepartmentId && p.IsValid);
+        var subs = subDepartments as Department[] ?? subDepartments.ToArray();
+        if (subs.Count() >= 0)
+        {
+          <tr>
+            <td rowspan="@(subs.Count() + 1)">@item.DepartmentName </td>
+            <td>@item.DepartmentName </td>
+            <td>@item.Telphone </td>
+            <td>
+              @if (!string.IsNullOrEmpty(item.Housephone))
+              {
+                var strArray = item.Housephone.Split(",，".ToCharArray());
+                if (strArray.Length > 0)
+                {
+                  foreach (var str in strArray)
+                  {
+                    <span class="border">@str</span>
+                  }
+                }
+              }
+            </td>
+          </tr>
+          foreach (var sub in subs)
+          {
+            <tr>
+              <td>@sub.DepartmentName </td>
+              <td>@sub.Telphone </td>
+              <td>
+                @if (!string.IsNullOrEmpty(sub.Housephone))
+                {
+                  var strArray = sub.Housephone.Split(",，".ToCharArray());
+                  if (strArray.Length > 0)
+                  {
+                    foreach (var str in strArray)
+                    {
+                      <span class="bg-dark color-white">@str</span>
+                    }
+                  }
+                }
+              </td>
+            </tr>
+          }
+        }
+      }
+    }
+  </tbody>
+</table>

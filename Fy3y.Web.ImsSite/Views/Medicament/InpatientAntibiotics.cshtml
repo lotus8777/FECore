@@ -1,0 +1,48 @@
+﻿@model IList<Fy3y.Model.Das.InpatientAntibiotic>
+@{
+    ViewBag.Title = "住院病人抗菌药物";
+}
+
+@Html.Partial("BeginEndFormPartial")
+<table class="table table-sm table-bordered   text-center">
+    <thead>
+        <tr>
+            <th>科室</th>
+            <th>姓名</th>
+            <th>药品名称</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model!=null)
+        {
+
+            var departments = Model.Select(p => p.DepartmentName).Distinct();
+            foreach (var department in departments)
+            {
+                int currentMedicalNo = 0;
+                string currentDepartment = string.Empty;
+                int count = Model.Count(p => p.DepartmentName == department);
+                foreach (var item in Model.Where(p => p.DepartmentName == department))
+                {
+                    <tr>
+                        @if (department != currentDepartment)
+                        {
+                            currentDepartment = department;
+                            <td rowspan="@count">@item.DepartmentName </td>
+                        }
+                        @if (item.MedicalNo != currentMedicalNo)
+                        {
+                            currentMedicalNo = item.MedicalNo;
+                            var pCount = Model.Count(p => p.MedicalNo == item.MedicalNo);
+                            if (pCount > 0)
+                            {
+                                <td rowspan="@pCount">@item.PatientName </td>
+                            }
+                        }
+                        <td>@item.DrugName </td>
+                    </tr>
+                }
+            }
+        }
+    </tbody>
+</table>

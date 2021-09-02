@@ -1,0 +1,78 @@
+﻿@model Fy3y.Model.Das.SecurityReport
+@{
+  ViewBag.Title = "删除日报";
+  Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h3>你确定要删这个安全日报表吗?</h3>
+<div>
+  <dl class="dl-horizontal">
+    <dt>
+      @Html.DisplayNameFor(model => model.Criticality)
+    </dt>
+    <dd>
+      @Html.DisplayFor(model => model.Criticality)
+    </dd>
+    <dt>
+      @Html.DisplayNameFor(model => model.Death)
+    </dt>
+    <dd>
+      @Html.DisplayFor(model => model.Death)
+    </dd>
+    <dt>
+      @Html.DisplayNameFor(model => model.Infection)
+    </dt>
+    <dd>
+      @Html.DisplayFor(model => model.Infection)
+    </dd>
+    <dt>
+      @Html.DisplayNameFor(model => model.Undiagnosed)
+    </dt>
+    <dd>
+      @Html.DisplayFor(model => model.Undiagnosed)
+    </dd>
+    <dt>
+      @Html.DisplayNameFor(model => model.DrugAccident)
+    </dt>
+    <dd>
+      @Html.DisplayFor(model => model.DrugAccident)
+    </dd>
+    <dt>
+      @Html.DisplayNameFor(model => model.Harmful)
+    </dt>
+    <dd>
+      @Html.DisplayFor(model => model.Harmful)
+    </dd>
+    <dt>
+      @Html.DisplayNameFor(model => model.Complications)
+    </dt>
+    <dd>
+      @Html.DisplayFor(model => model.Complications)
+    </dd>
+    <dt>
+      @Html.DisplayNameFor(model => model.Complaint)
+    </dt>
+    <dd>
+      @Html.DisplayFor(model => model.Complaint)
+    </dd>
+    <dt>
+      @Html.DisplayNameFor(model => model.Others)
+    </dt>
+    <dd>
+      @Html.DisplayFor(model => model.Others)
+    </dd>
+    <dt>
+      @Html.DisplayNameFor(model => model.Disposal)
+    </dt>
+    <dd>
+      @Html.DisplayFor(model => model.Disposal)
+    </dd>
+  </dl>
+  @using (Html.BeginForm())
+  {
+  <div class="form-actions no-color">
+    @Html.HiddenFor(model => model.ReportId)
+    <input class="btn btn-dark d-print-none" type="submit" value="删除" /> |
+    @Html.ActionLink("返回列表", "Index", null, new {@class = "d-print-none"})
+  </div>
+  }
+</div>

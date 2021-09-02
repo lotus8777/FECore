@@ -1,0 +1,116 @@
+﻿@model IList<Fy3y.Model.Das.AdverseEvent>
+@{
+  ViewBag.Title = "不良事件报告管理";
+}
+<br />
+@Html.Partial("BeginEndFormPartial")
+<div class="text-center">
+  <table class="table table-sm table-bordered table-striped">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>事件类型</th>
+        <th>上报时间</th>
+        <th>上报科室</th>
+        <th>审核状态</th>
+        <th>报告人</th>
+        <th>操作</th>
+      </tr>
+    </thead>
+    <tbody>
+      @if (Model?.Count() > 0)
+    {
+      var index = 0;
+
+      foreach (var item in Model)
+      {
+        var adverseType = string.Empty;
+        var url = string.Empty;
+        var url1 = string.Empty;
+        if (item.AdverseType == 1)
+        {
+          adverseType = "医疗";
+          if (item.IsChecked)
+          {
+            url = Url.Action("Details", "AdverseMedicalEvent", new {id = item.EventId + "|1"});
+          }
+          else
+          {
+            url1 =Url.Action("Check","AdverseMedicalEvent",new {id=item.EventId});
+          }
+        }
+        else if (item.AdverseType == 2)
+        {
+          if (item.IsChecked)
+          {
+            url = Url.Action("Details","AdverseNursingEvent",new {id=item.EventId+"|1"});
+          }
+          else
+          {
+            url1 = Url.Action("Check","AdverseNursingEvent",new { id=item.EventId});
+          }
+          adverseType = "护理";
+        }
+        else if (item.AdverseType == 3)
+        {
+          adverseType = "器械";
+          if (item.IsChecked)
+          {
+            url = Url.Action("Details","AdverseInstructionEvent",new {id=item.EventId+"|1"});
+          }
+          else
+          {
+            url1 = Url.Action("Check","AdverseInstructionEvent",new {id=item.EventId});
+          }
+        }
+        else if (item.AdverseType == 4)
+        {
+          if (item.IsChecked)
+          {
+            url = Url.Action("Details","AdverseDrugEvent",new {id=item.EventId+"|1"});
+          }
+          else
+          {
+            url1 = Url.Action("Check","AdverseDrugEvent",new {id=item.EventId});
+          }
+          adverseType = "药品";
+        }
+        index++;
+      <tr>
+        <td>@index </td>
+        <td>@adverseType </td>
+        <td>@item.ReportTime </td>
+        <td>@item.ReporterDeptName </td>
+        <td>
+          @if (item.IsChecked)
+            {
+          <span class="badge badge-success">已审核</span>
+            }
+            else
+            {
+          <span class="badge badge-danger">未审核</span>
+            }
+        </td>
+        <td>@item.ReporterName </td>
+        <td>
+          <div>
+            @if (!string.IsNullOrEmpty(url))
+              {
+            <a href=@url title="查看">
+              <i class="fa fa-search"></i>
+            </a>
+              }
+            @if (!string.IsNullOrEmpty(url1))
+              {
+            <a href=@url1 title="审核">
+              <i class="fa fa-check"></i>
+            </a>
+              }
+          </div>
+        </td>
+      </tr>
+      }
+    }
+    </tbody>
+  </table>
+</div>

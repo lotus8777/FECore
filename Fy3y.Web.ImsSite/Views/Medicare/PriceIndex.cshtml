@@ -1,0 +1,25 @@
+﻿@model IList<Fy3y.Model.Das.MedicarePrice>
+
+@{
+  ViewBag.Title = "调价目录";
+  Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<table class="table table-sm table-bordered table-striped">
+  <tr>
+    <th>#</th>
+    <th>项目名称</th>
+    <th>二级限价</th>
+  </tr>
+  @{
+    var i = 1;
+    foreach (var item in Model)
+    {
+    <tr>
+      <td>@i </td>
+      <td>@Html.DisplayFor(modelItem => item.Xmmc) </td>
+      <td>@Html.DisplayFor(modelItem => item.Level2Price) </td>
+    </tr>
+      i++;
+    }
+  }
+</table>

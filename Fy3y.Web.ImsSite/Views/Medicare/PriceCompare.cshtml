@@ -1,0 +1,196 @@
+﻿@model IList<Fy3y.Model.Das.PriceCompare>
+
+@{
+  ViewBag.Title = "调价目录";
+  Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<br />
+<table class="table table-sm table-bordered text-center table-striped">
+  <thead>
+    <tr>
+      <th>项目总数</th>
+      <th>已核对数</th>
+      <th>未变动数量</th>
+      <th>上涨数量</th>
+      <th>下降数量</th>
+      <th>未涉及数量</th>
+      <th>未核对</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>@(Model?.Count())</td>
+      <td>@(Model?.Where(p => p.IsUpdate).Count())</td>
+      <td>
+        <a href="@Url.Action("Change",new {id=1})">
+          @(Model?.Where(p => p.NewFydj != -1 && p.IsUpdate && p.Fydj == p.NewFydj).Count())
+        </a>
+      </td>
+      <td>
+        <a href="@Url.Action("Change",new {id=2})">
+          @(Model?.Where(p => p.NewFydj != -1 && p.IsUpdate && p.Fydj < p.NewFydj).Count())
+        </a>
+      </td>
+      <td>
+        <a href="@Url.Action("Change",new {id=3})">
+          @(Model?.Where(p => p.NewFydj != -1 && p.IsUpdate && p.Fydj > p.NewFydj).Count())
+        </a>
+      </td>
+      <td>
+        <a href="@Url.Action("Change",new {id=4})">
+          @(Model?.Where(p => p.NewFydj == -1 && p.IsUpdate).Count())
+        </a>
+      </td>
+      <td>@(Model?.Where(p => !p.IsUpdate).Count())</td>
+    </tr>
+  </tbody>
+</table>
+<br />
+<div class="form-group row">
+  <div class="col-2">
+    <button class="btn btn-dark" id="update">批量更新</button>
+  </div>
+  <div class="col-5">
+    <a class="btn btn-dark" href="@Url.Action("ComparePrice")">撤销变更</a>
+    <label class="col-form-label" id="notice"> 撤销未保存变更</label>
+
+  </div>
+  <label class="col-2 col-form-label">关键字</label>
+  <div class="col-3">
+    <input class="form-control" id="key" type="text" />
+  </div>
+</div>
+<div style="overflow: hidden;">
+  <div class="col-7" style="border: 1px solid gray; float: left; height: 600px; overflow: auto;">
+    <table class="table table-sm table-bordered  table-striped text-center" id="old" style="float: unset;">
+      <thead>
+        <tr>
+          <th>费用序号 </th>
+          <th>本院项目 </th>
+          <th>原有价格 </th>
+          <th>医保项目</th>
+          <th>医保价格</th>
+          <th>更新？</th>
+        </tr>
+      </thead>
+      <tbody>
+        @{
+          foreach (var item in Model!.OrderBy(p => p.IsUpdate))
+          {
+            <tr>
+              <td>@item.Fyxh </td>
+              <td>@item.Fymc </td>
+              <td>@item.Fydj </td>
+              <td>@item.Ybmc </td>
+              <td>@item.NewFydj </td>
+              @if (item.IsUpdate)
+              {
+                <td style="background-color: green;">已更新 </td>
+              }
+              else
+              {
+                <td style="background-color: red;">待更新 </td>
+              }
+            </tr>
+          }
+        }
+      </tbody>
+    </table>
+  </div>
+  <div class="col-5" style="border: 1px dotted black; float: right; height: 600px; overflow: auto;">
+    <table class="table table-sm table-bordered text-center" id="new table-striped">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>费用名称</th>
+          <th>费用价格</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </div>
+</div>
+<script type="text/javascript">
+  var preUpdateItem = 0;
+  var currentFYXH = -1;
+  var currentFYMC = "";
+  var oldSelectedRowIndex = -1;
+  $("#old>tbody>tr").bind('click',
+    function() {
+      $("#old>tbody>tr").css("background-color", "white");
+      currentFYXH = $(this).find("td:first-child").html();
+      currentFYMC = $(this).find("td")[1].innerText;
+      oldSelectedRowIndex = $(this).index();
+      $(this).css("background-color", "gray");
+      findMedicalPrice(currentFYMC);
+    });
+  $("#new>tbody").on('click',
+    "tr",
+    function() {
+      $("#new>tbody>tr").css("background-color", "white");
+      $(this).css("background-color", "gray");
+      var oldTdArray = $("#old").find("tr")[oldSelectedRowIndex + 1];
+      var currentTdArray = $(this).find("td");
+      if (oldTdArray.cells[5].innerText !== "已更新") {
+        oldTdArray.cells[3].innerText = currentTdArray[1].innerText;
+        oldTdArray.cells[4].innerText = currentTdArray[2].innerText;
+        oldTdArray.cells[5].style.backgroundColor = "yellow";
+        oldTdArray.cells[5].innerText = "待保存";
+        preUpdateItem++;
+        $("#notice").html(`有 ${preUpdateItem}项费用待保存`);
+      } else {
+        layer.alert("已经校对过的项目暂时不允许再次校对,确有误请记录下来，联系管理员", { icon: 6 });
+      }
+    });
+  $("#key").change(function() {
+    var keyward = $(this).val();
+    findMedicalPrice(keyward);
+  });
+
+  function findMedicalPrice(fymc) {
+    $.ajax({
+      type: "post",
+      data: { "fymc": fymc },
+      url: "@Url.Action("FindPrice")",
+      dataType: "json",
+      success: function(data) {
+        $("#new>tbody").empty();
+        $("#new>tbody").append("<tr><td>0 </td><td>本次调价未涉及 </td><td>-1 </td></tr>");
+        $.each(data,
+          function(i, item) {
+            $("#new>tbody").append(`<tr><td>${i + 1}</td><td>${item.XMMC}</td><td>${item.Level2Price}</td></tr>`);
+          });
+      }
+    });
+  }
+
+  var number = 1;
+
+  $("#update").click(function() {
+    updateMedicalPrice();
+    location.reload(true);
+  });
+
+  //更新待保存的项目
+  function updateMedicalPrice() {
+    $("#old>tbody>tr").each(function(i, item) {
+      if (item.cells[5].innerText === "待保存") {
+        $.ajax({
+          async: false,
+          type: "post",
+          data: {
+            "FYXH": item.cells[0].innerText,
+            "YBMC": item.cells[3].innerText,
+            "NewFYDJ": item.cells[4].innerText
+          },
+          url: "@Url.Action("UpdatePrice")",
+          dataType: "json",
+          success: function(data) {
+            $("#notice").html(`已经更新${number}项费用`);
+            number++;
+          }
+        });
+      }
+    });
+  }
+</script>

@@ -1,0 +1,196 @@
+﻿
+@using Fy3y.Model.Das
+@model Fy3y.Model.Das.AdverseMedicalEvent
+@{
+    ViewBag.Title = "医疗安全（不良）事件报告";
+    var eventType = ViewBag.eventType as EventType;
+}
+
+<link type="text/css" rel="stylesheet" href="~/Content/viewpage.css" />
+<br />
+<div class="text-center">
+    <div class="form-group row">
+        <label class=" col-2">报告人</label>
+        <div class="col-4">
+           @Model.AdverseEvent.ReporterName
+        </div>
+        <label class=" col-2">报告时间</label>
+        <div class="col-4">
+           @Model.AdverseEvent.ReportTime
+        </div>
+    </div>
+    <br />
+    <div class="vfieldset">
+        <span class="legendtitle">A-患者基本资料</span>
+        <div class="form-group row">
+            <label class=" col-2" for="Medicalno">病案号</label>
+            <div class="col-1">
+               @Model.AdverseEvent.MedicalNo
+            </div>
+            <label class="col-2 ">性别</label>
+            <div class="  col-1 ">
+               @Html.Partial("SexPartial", Convert.ToDecimal(Model.AdverseEvent.PatientSex))
+            </div>
+
+            <label class="col-2 " for="PatientName">姓名</label>
+            <div class="col-1">
+               @Model.AdverseEvent.PatientName
+            </div>
+
+            <label class="col-1" for="PatientAge">年龄</label>
+            <div class="col-1 ">
+               @Model.AdverseEvent.PatientAge
+            </div>
+            <label class="col-2" for="DepartmentName">科室</label>
+            <div class="col-1 ">
+                @Model.AdverseEvent.PatientDeptName
+            </div>
+            <label class=" col-2" for="BedNo">床号</label>
+            <div class="col-1 ">
+               @Model.AdverseEvent.BedNo
+            </div>
+            <label class="col-2" for="Diagnosis">诊断</label>
+            <div class="col-4 text-left ">
+               @Model.AdverseEvent.Diagnosis
+            </div>
+        </div>
+    </div>
+
+    <!--不良事件情况-->
+    <div class="vfieldset">
+        <span class="legendtitle">B-不良事件情况</span>
+        <div class="form-group row">
+
+            <label class="col-2 ">发生时间</label>
+            <div class="col-2">
+               @Model.AdverseEvent.EventTime
+            </div>
+            <label class="col-2 " for="Performance">主要表现</label>
+            <div class="col-6 text-left">
+                @Model.Performance
+            </div>
+            <label class="col-2 " for="EventPlace">发生场所</label>
+            <div class="col-2">
+                @Model.EventPlace
+            </div>
+            @if (eventType?.EventLevels.Count > 0)
+            {
+
+            <label class=" col-2" for="EventLevel">事件级别</label>
+            <div class="col-2">
+                @eventType.EventLevels.Where(p=>p.LevelId==Model.LevelId).FirstOrDefault().LevelName
+            </div>
+            }
+            @if (eventType?.EventClasses.Count > 0)
+            {
+            <label class=" col-2">事件类别</label>
+            <div class="col-2">
+                @eventType.EventClasses.Where(p => p.ClassId == Model.ClassId).FirstOrDefault().ClassName
+            </div>
+            }
+        </div>
+    </div>
+    <!--C-对患者或家属影响-->
+    <div class="vfieldset">
+        <span class="legendtitle">C-对病患造成的影响</span>
+        <div class="form-group row">
+            <label class=" col-2">影响级别</label>
+            <div class="col-4 text-left">
+                @Model.AffectLevel
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class=" col-2">详细说明</label>
+            <div class="col-10">
+                <textarea class="col-12" rows="3">@Model.EventDetails</textarea>
+            </div>
+        </div>
+    </div>
+    <!--D-事后处理与分析-->
+    <div class="vfieldset">
+        <span class="legendtitle">D-事后处理与分析</span>
+        <div class="form-group row">
+            <label class="col-2 ">在场人员</label>
+            <div class="col-10">
+                <textarea class="col-12" rows="2">@Model.PersonsPresent</textarea>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class=" col-2">通知人员</label>
+            <div class="col-10">
+                <textarea class="col-12" rows="2">@Model.PersonsInform</textarea>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class=" col-2">可能因素</label>
+            <div class=" form-check form-check-inline col-2">
+                <input type="checkbox" id="causation1" name="PossibleFactor" class="form-check-input" value="个人疏忽" />
+                <label class="form-check-label" for="causation1">个人疏忽</label>
+            </div>
+            <div class=" form-check form-check-inline col-2">
+                <input type="checkbox" id="causation2" name="PossibleFactor" class="form-check-input" value="设备设施" />
+                <label class="form-check-label" for="causation2">设备设施</label>
+            </div>
+            <div class=" form-check form-check-inline col-2">
+                <input type="checkbox" id="causation3" name="PossibleFactor" class="form-check-input" value="耗材药品" />
+                <label class="form-check-label" for="causation3">耗材药品</label>
+            </div>
+            <div class=" form-check form-check-inline col-2">
+                <input type="checkbox" id="causation4" name="PossibleFactor" class="form-check-input" value="作业流程" />
+                <label class="form-check-label" for="causation4">作业流程</label>
+            </div>
+            <div class=" form-check form-check-inline col-2">
+                <input type="checkbox" id="causation5" name="PossibleFactor" class="form-check-input" value="工作环境" />
+                <label class="form-check-label" for="causation5">工作环境</label>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class=" col-2">采取措施</label>
+            <div class="  col-10">
+                <textarea class="col-12" rows="3">@Model.TakeSteps</textarea>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class=" col-2">处理情况</label>
+            <div class="  col-10">
+                <textarea class="col-12" rows="3">@Model.DisposalSituation</textarea>
+            </div>
+        </div>
+    </div>
+
+    <!--E-改进措施-->
+    <div class="vfieldset">
+        <span class="legendtitle">E-后续改进措施</span>
+        <div class="form-group row">
+            <label class=" col-2">改进措施:</label>
+            <div class="col-10">
+                <textarea class="col-12" rows="3">@Model.ImprovementMeasures</textarea>
+            </div>
+        </div>
+    </div>
+    <!--F-不良事件评价-->
+    <div class="vfieldset">
+        <span class="legendtitle">F-不良事件评价</span>
+        <div class="form-group row">
+            <label class=" col-2">主管部门意见陈述:</label>
+            <div class="col-10">
+                <textarea class="col-12" rows="3">@Model.SuperiorOpinion</textarea>
+            </div>
+        </div>
+    </div>
+    <a href="/AdverseEvent/AdverseMedicalEventList">返回</a>
+</div>
+<script type="text/javascript">
+    var factors="@Model.PossibleFactor";
+    $("input[type='checkbox']").each(function () {
+        if (factors.indexOf(this.value)>=0)
+        {
+            $(this).attr("checked","checked");
+        }
+    });
+        $("input[type='text']").attr("readonly", "readonly");
+        $("textarea").attr("readonly", "readonly");
+        $("select").attr("disabled", "true");
+        $("input[type='checkbox']").attr("disabled", "disabled");
+        $("input[type='radio']").attr("disabled", "true");
+</script>

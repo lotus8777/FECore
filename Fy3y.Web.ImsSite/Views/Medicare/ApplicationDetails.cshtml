@@ -1,0 +1,163 @@
+﻿@model Fy3y.Model.Das.MedicareApplication
+
+@{
+  ViewBag.Title = "医保备案审批单";
+}
+<br />
+<div class="content text-center">
+  <div class="col-12">
+    <div class="ibox">
+      <div class="ibox-title text-left">
+        <h5>病人基本信息</h5>
+      </div>
+      <div class="ibox-content">
+        <div class="form-group row">
+          <label class="col-2 col-form-label">病案号码</label>
+          <div class="col-4">
+            @Html.TextBoxFor(model => model.MedicalNo, new {@class = "form-control", @readonly = ""})
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-2 col-form-label">患者姓名</label>
+          <div class="col-4">
+            @Html.TextBoxFor(model => model.PatientName, new {@class = "form-control", @readonly = ""})
+          </div>
+          <label class="col-2 col-form-label">患者性别</label>
+          <div class="col-4">
+            @Html.TextBoxFor(model => model.PatientSex, new {@class = "form-control", @readonly = ""})
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-2 col-form-label">患者年龄</label>
+          <div class="col-4">
+            @Html.TextBoxFor(model => model.PatientAge, new {@class = "form-control", @readonly = ""})
+          </div>
+          <label class="col-2 col-form-label">所在床号</label>
+          <div class="col-4">
+            @Html.TextBoxFor(model => model.BedNo, new {@class = "form-control", @readonly = ""})
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-2 col-form-label">就诊科室</label>
+          <div class="col-4">
+            @Html.TextBoxFor(model => model.PatientDeptName, new {@class = "form-control", @readonly = ""})
+          </div>
+          <label class="col-2 col-form-label">就诊医生</label>
+          <div class="col-4">
+            @Html.TextBoxFor(model => model.DoctorName, new {@class = "form-control", @readonly = ""})
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-2 col-form-label">临床诊断</label>
+          <div class="col-10">
+            @Html.TextAreaFor(model => model.Diagnosis, 2, 2, new {@class = "form-control", @readonly = ""})
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="ibox">
+      <div class="ibox-title text-left">
+        <h5>申请信息</h5>
+      </div>
+      <div class="ibox-content">
+        <div class="form-group row">
+          <label class="col-2 col-form-label">申请人</label>
+          <div class="col-4">
+            @Html.TextBoxFor(model => model.CreatorName, new {@class = "form-control", @readonly = ""})
+          </div>
+          <label class="col-2 col-form-label">申请时间</label>
+          <div class="col-4">
+            @Html.TextBoxFor(model => model.CreateTime, new {Value = Model.BeginDate.ToString("yyyy/MM/dd"), @class = "form-control", @readonly = ""})
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-2 col-form-label">项目名称</label>
+          <div class="col-4">
+            @Html.TextBoxFor(model => model.ItemName, new {@class = "form-control", @readonly = ""})
+          </div>
+          <label class="col-2 col-form-label">申请数量</label>
+          <div class="col-4">
+            @Html.TextBoxFor(model => model.ApplicationCount, new {@class = "form-control", @readonly = ""})
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-2 col-form-label">开始时间</label>
+          <div class="col-4">
+            @Html.TextBoxFor(model => model.BeginDate, new {Value = Model.BeginDate.ToString("yyyy/MM/dd"), @class = "form-control", @readonly = ""})
+          </div>
+          <label class="col-2 col-form-label">结束时间</label>
+          <div class="col-4">
+            @Html.TextBoxFor(model => model.EndDate, new {Value = Model.EndDate.ToString("yyyy/MM/dd"), @class = "form-control", @readonly = ""})
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-2 col-form-label">申请理由</label>
+          <div class="col-10">
+            @Html.TextAreaFor(model => model.Reason, 2, 2, new {@class = "form-control", @readonly = ""})
+          </div>
+        </div>
+      </div>
+    </div>
+    @if (Model.StatusCode > 1)
+    {
+      //已备案
+    <div class="ibox">
+      <div class="ibox-title text-left">
+        <h5>备案结果</h5>
+      </div>
+      <div class="ibox-content">
+        <div class="form-group row">
+          <label class="col-2 col-form-label">备案人</label>
+          <div class="col-4">
+            @Html.TextBoxFor(model => model.Recorder, new {@class = "form-control  ", @readonly = ""})
+          </div>
+          <label class="col-2 col-form-label">备案结果</label>
+          <div class="col-4">
+            <input type="text" value='@(Model.StatusCode == 2 ? "备案成功" : "备案失败")' class="form-control" , readonly="readonly" />
+          </div>
+        </div>
+        @if (Model.StatusCode == 2)
+          {
+        <div class="form-group row ">
+          <label class="col-2 col-form-label">备案编号</label>
+          <div class="col-4">
+            @Html.TextBoxFor(model => model.RecordNumber, new {@class = "form-control  ", @readonly = ""})
+          </div>
+          <label class="col-2 col-form-label">截止时间</label>
+          <div class="col-4 ">
+            @Html.TextBoxFor(model => model.ExpirationDate, new {Value = Model.ExpirationDate.ToString("yyyy/MM/dd"), @class = "form-control", @readonly = ""})
+          </div>
+        </div>
+        <div class="form-group row ">
+          <label class="col-2 col-form-label">备案数量</label>
+          <div class="col-4">
+            @Html.TextBoxFor(model => model.RecordCount, new {@class = "form-control ", @readonly = ""})
+          </div>
+          <label class="col-2 col-form-label">备案金额</label>
+          <div class="col-4">
+            @Html.TextBoxFor(model => model.RecordMoney, new {@class = "form-control ", @readonly = ""})
+          </div>
+        </div>
+          }
+        <div class="form-group row">
+          <label class="col-2 col-form-label">备案日期</label>
+          <div class="col-4">
+            @Html.TextBoxFor(model => model.FinishTime, new {Value = Model.ExpirationDate.ToString("yyyy/MM/dd"), @class = "form-control", @readonly = ""})
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-2 col-form-label">备案说明</label>
+          <div class="col-10">
+            @Html.TextAreaFor(model => model.Remarks, 2, 2, new {@class = "form-control", @readonly = ""})
+          </div>
+        </div>
+      </div>
+    </div>
+    }
+  </div>
+</div>
+<div class="d-print-none form-group">
+  <div class="text-center">
+    @Html.ActionLink("返回", "ApplicationIndex")
+  </div>
+</div>

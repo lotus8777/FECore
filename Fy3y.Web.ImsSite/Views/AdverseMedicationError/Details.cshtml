@@ -1,0 +1,164 @@
+﻿@model Fy3y.Model.Das.AdverseMedicationError
+@{
+  ViewBag.Title = "药品差错事件报告";
+}
+<br />
+<div class="form-group row text-center">
+  <label class="col-2 col-form-label">报告人</label>
+  <div class="col-2 div-text">
+   @Model.AdverseEvent.ReporterName
+  </div>
+  <label class="col-2 col-form-label">报告科室</label>
+  <div class="col-2 div-text">
+    @Model.AdverseEvent.ReporterDeptName
+  </div>
+  <label class="col-2 col-form-label">报告时间</label>
+  <div class="col-2 div-text">
+   @Model.AdverseEvent.ReportTime.ToString("yyyy/MM/dd HH:mm")
+  </div>
+</div>
+
+<div class="text-center">
+  <!--基本资料-->
+  <fieldset>
+    <legend>A-基本资料</legend>
+    <div class="form-group row">
+      <label class="col-2 col-form-label">病案号码</label>
+      <div class="col-2 div-text">
+       @Model.AdverseEvent.MedicalNo
+      </div>
+      <label class="col-2 col-form-label">患者姓名</label>
+      <div class="col-2 div-text">
+       @Model.AdverseEvent.PatientName
+      </div>
+      <label class="col-2 col-form-label">患者性别</label>
+      <div class="col-2 div-text">
+        @Model.AdverseEvent.PatientSex
+
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-2 col-form-label">患者年龄</label>
+      <div class="col-2 div-text">
+       @Model.AdverseEvent.PatientAge
+      </div>
+      <label class="col-2 col-form-label">所在科室</label>
+      <div class="col-2 div-text">
+        @Model.AdverseEvent.PatientDeptName
+      </div>
+      <label class="col-2 col-form-label">所在床号</label>
+      <div class="col-2 div-text">
+       @Model.AdverseEvent.BedNo
+      </div>
+
+    </div>
+
+    <div class="form-group row">
+      <label class="col-2 col-form-label">临床诊断</label>
+      <div class="col-10 div-textarea">
+       @Model.AdverseEvent.Diagnosis
+      </div>
+    </div>
+  </fieldset>
+  <!--B-事件情况-->
+  <fieldset>
+    <legend>B-事件情况</legend>
+    <div class="form-group row">
+      <label class="col-2 col-form-label">事件时间</label>
+      <div class="col-2 div-text">
+       @Model.AdverseEvent.EventTime.ToString("yyyy/MM/dd HH:mm")
+      </div>
+      <label class="col-2 col-form-label">事发人员</label>
+      <div class="col-2 div-text">
+        @Model.Parties
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-2 col-form-label">事件经过</label>
+      <div class="col-10 div-textarea">
+        @Model.CourseOfEvent
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-2 col-form-label">涉及药品</label>
+      <div class="col-10 div-textarea">
+        @Model.DrugInfo
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-2 col-form-label">发现人员</label>
+      <div class="col-2 div-text">
+        @Model.Discoverer
+      </div>
+      <label class="col-2 col-form-label">不合理判断</label>
+      <div class="col-2 div-text">
+        @Model.UnreasonableJudgment
+
+      </div>
+      <label class="col-2 col-form-label">差错环节</label>
+      <div class="col-2 div-text">
+        @Model.ErrorLink
+      </div>
+    </div>
+  </fieldset>
+  <!--C-事件结果-->
+  <fieldset>
+    <legend>C-事件结果</legend>
+    <div class="form-group row">
+      <label class="col-2 col-form-label">伤害程度</label>
+      <div class="col-2 div-text">
+        @Model.LevelOfInjury
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-2 col-form-label">事件结果</label>
+      <div class="col-10 div-textarea">
+        @Model.EventResult
+      </div>
+    </div>
+  </fieldset>
+
+  <!-- D-改进措施-->
+  <fieldset>
+    <legend>
+      D-改进措施
+    </legend>
+    <div class="form-group row">
+      <label class="col-2">改进措施</label>
+      <div class="col-10  div-textarea">
+        @Model.SuggestionsForImprovement
+      </div>
+    </div>
+  </fieldset>
+</div>
+
+
+<!--E-主管审核-->
+<fieldset class="text-center">
+  <legend>E-主管审核</legend>
+  @if (Model.AdverseEvent.IsChecked)
+  {
+    <div class="form-group row text-center">
+      <label class="col-2 col-form-label">主管意见</label>
+      <div class="col-10 div-textarea">
+        @Model.SuperiorOpinion
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-2 col-form-label">审核人</label>
+      <div class="col-2 div-text">
+        @Model.AdverseEvent.CheckerName
+      </div>
+      <label class="col-2 col-form-label">审核时间</label>
+      <div class="col-2 div-text">
+        @Model.AdverseEvent.CheckTime.Value.ToString("yyyy/MM/dd HH:mm")
+      </div>
+    </div>
+  }
+  else
+  {
+    <label class="text-danger fa-2x">未审核</label>
+  }
+
+
+</fieldset>

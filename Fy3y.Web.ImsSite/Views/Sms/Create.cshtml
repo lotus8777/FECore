@@ -1,0 +1,71 @@
+﻿
+@{
+    ViewData["Title"] = "发送短信";
+}
+<form method="post" onsubmit="return isValid()" class="col-12">
+    @Html.AntiForgeryToken()
+    <div class="form-group row">
+        <label class="col-form-label">发送时间</label>
+        <input type="text" name="preSendTime" class="form-control" onfocus="WdatePicker({ isShowClear: false, readOnly: true, isShowOK: false, dateFmt: 'yyyy/MM/dd HH:mm' })" value="@DateTime.Now" />
+    </div>
+    <div class="form-group row">
+        <label class="col-form-label">接收人</label><a class="btn btn-success no-borders" id="addReceiver"><i class="fa fa-plus"></i></a><a class="btn btn-success no-borders" id="emptyReceiver"><i class="fa fa-minus"></i></a>
+        <textarea id="receiverName" class="form-control" rows="6" disabled="disabled" readonly="readonly"></textarea>
+    </div>
+
+    <div class="form-group row">
+        <label class="col-form-label">内容</label>
+        <textarea name="content" class="form-control" rows="6"></textarea>
+    </div>
+    <input type="hidden" name="receivers" id="receivers"/>
+
+    <div class="text-center">
+        <button class="btn btn-success">确认发送</button>
+        <a href="@Url.Action("Index")">返回</a>
+    </div>
+</form>
+<script type="text/javascript">
+    $("#addReceiver").click(function() {
+        layer.open({
+            type: 2,
+            title: '选择员工',
+            skin: 'layui-layer-rim',
+            area: ['700px', '420px'],
+            content: '@Url.Action("SelectMany", "Employee")',
+            offset:'ct'
+        });
+
+    });
+    $("#emptyReceiver").click(function() {
+        $("#receivers").val("");
+        $("#receiverName").val("");
+    });
+
+    function setValue(name, mobiles) {
+        var oldReceivers = $("#receivers").val();
+        if (oldReceivers === undefined) {
+            $("#receivers").val(mobiles);
+        } else {
+            $("#receivers").val(oldReceivers+mobiles);
+        }
+        var oldReceiverName = $("#receiverName").val();
+        if (oldReceiverName === undefined) {
+            $("#receiverName").val(name);
+        } else {
+            $("#receiverName").val(oldReceiverName+name);
+        }
+    }
+
+    function isValid() {
+        if ($("#receivers").val() === "") {
+            alert("接收人为空");
+            return false;
+        }
+        var content = $("#content").val();
+        if (content!=undefined&&content.length < 10) {
+            alert("内容不能少于10个字");
+            return false;
+        }
+        return true;
+    }
+</script>

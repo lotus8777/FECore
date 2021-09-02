@@ -1,0 +1,58 @@
+﻿@model IList<ProcStatisticsByWard>
+@{
+    ViewBag.Title = "全院在院及出入院病人数量统计";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@Html.Partial("BeginEndFormPartial")
+<table class="table table-sm table-bordered table-hover table-striped text-center">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>病区名称</th>
+            <th>服务人数</th>
+            <th>原有人数</th>
+            <th>入院人数</th>
+            <th>出院人数</th>
+            <th>办进办出</th>
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            var number = 0;
+            if (Model == null)
+            {
+                <tr><td colspan="11">无该查询数据 </td> </tr>
+            }
+            else
+            {
+                var zcyrs = Convert.ToInt32(Model.Sum(p => p.Cyrs));
+                var zryrs = Convert.ToInt32(Model.Sum(p => p.Ryrs));
+                var zbjbc = Convert.ToInt32(Model.Sum(p => p.Bjbc));
+                var zfwrs = Convert.ToInt32(Model.Sum(p => p.Fwrs));
+                var zyyrs = zfwrs - zryrs;
+                foreach (var p in Model)
+                {
+                    number++;
+                    <tr>
+                        <td>@number </td>
+                        <td>@p.Bqmc </td>
+                        <td>@(p.Fwrs)</td>
+                        <td>@(p.Fwrs - (p.Ryrs ?? 0))</td>
+                        <td>@(p.Ryrs ?? 0)</td>
+                        <td>@(p.Cyrs ?? 0)</td>
+                        <td>@(p.Bjbc ?? 0)</td>
+                    </tr>
+                }
+                <tr>
+                    <td colspan="2">总计 </td>
+                    <td>@zfwrs </td>
+                    <td>@zyyrs </td>
+                    <td>@zryrs </td>
+                    <td>@zcyrs </td>
+                    <td>@zbjbc </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>

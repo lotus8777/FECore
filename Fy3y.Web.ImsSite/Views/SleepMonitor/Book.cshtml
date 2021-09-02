@@ -1,0 +1,50 @@
+﻿@model IList<Fy3y.Model.Das.SleepMonitorRegistration>
+
+@{
+  ViewBag.Title = "睡眠监测预约";
+  DateTime begin = ViewBag.begin;
+  DateTime end = ViewBag.end;
+}
+<br />
+<style type="text/css">
+  .col-2 {
+    border: 1px solid black;
+    margin: auto;
+    min-height: 90px;
+  }
+</style>
+<div class="text-center">
+  <div class="form-group row">
+    @while (begin < end)
+    {
+      <div class="col-2 text-center ">
+        <label class="font-weight-bolder" style="font-size: large; margin-top: 5px;">@begin.ToShortDateString()</label>
+        <br />
+        @{
+          var item = Model?.FirstOrDefault(p => p.PreVisitTime.ToShortDateString() == begin.ToShortDateString());
+          if (item != null)
+          {
+            if (item.Status == 1)
+            {
+              <a href="@Url.Action("Details",new{id=item.UniqueId})" class="btn btn-primary btn-sm">已预约</a>
+            }
+            else if (item.Status == 2)
+            {
+              <a href="@Url.Action("Report",new{id=item.UniqueId})" class="btn btn-sm btn-success">已就诊</a>
+            }
+            else if (item.Status == 3)
+            {
+              @Html.ActionLink("可预约", "Create", new { bookDate = begin }, new { @class = "btn btn-secondary btn-sm" })
+            }
+          }
+          else
+          {
+            @Html.ActionLink("可预约", "Create", new { bookDate = begin }, new { @class = "btn btn-secondary btn-sm" })
+          }
+        }
+      </div>
+      begin = begin.AddDays(1);
+    }
+  </div>
+  <a class="btn btn-info" href="@Url.Action("Index")">返回</a>
+</div>

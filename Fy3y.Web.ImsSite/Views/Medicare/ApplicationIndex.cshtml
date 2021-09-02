@@ -1,0 +1,98 @@
+﻿@model IList<Fy3y.Model.Das.MedicareApplication>
+
+@{
+  ViewBag.Title = "备案申请清单";
+}
+
+<form id="form1" method="post">
+    @Html.AntiForgeryToken()
+    <fieldset>
+        <legend>查询条件</legend>
+        <div class="form-group row text-center">
+            <label class="col-1 col-form-label">开始</label>
+            @Html.TextBox("begin", null, new { onfocus = "WdatePicker({isShowClear:false,readOnly:true,isShowOK:false,dateFmt: 'yyyy/MM/dd'})", @class = "form-control col-2" })
+            <label class="col-1 col-form-label">结束</label>
+            @Html.TextBox("end", null, new { onfocus = "WdatePicker({isShowClear:false,readOnly:true,isShowOK:false,dateFmt: 'yyyy/MM/dd'})", @class = "form-control col-2" })
+            <div class="col-2">
+                <button class="btn btn-dark d-print-none">
+                    <span class="fa fa-search">查询</span>
+                </button>
+            </div>
+            <div class="col-2">
+                <a class="btn btn-success" href="@Url.Action("ApplicationCreate")">
+                    <i class="fa fa-plus">新增</i>
+                </a>
+            </div>
+        </div>
+    </fieldset>
+</form>
+<br />
+
+<table class="table table-sm table-bordered text-center table-striped">
+    <thead>
+        <tr>
+            <th># </th>
+            <th>申请时间 </th>
+            <th>病案号码 </th>
+            <th>患者姓名 </th>
+            <th>患者科室 </th>
+            <th>申请医生 </th>
+            <th>申请项目 </th>
+            <th>状态 </th>
+            <th>操作 </th>
+        </tr>
+    </thead>
+    <tbody>
+        @{
+      var i = 0;
+      foreach (var item in Model)
+      {
+        i++;
+            <tr>
+                <td>@i </td>
+                <td>@(item.CreateTime.ToShortDateString())</td>
+                <td>@item.MedicalNo </td>
+                <td>@item.PatientName </td>
+                <td>@item.PatientDeptName </td>
+                <td>@item.DoctorName </td>
+                <td>@item.ItemName </td>
+                <td>
+                    @if (item.StatusCode == 0)
+            {
+                    <span class="text-primary">新增</span>
+            }
+            else if (item.StatusCode == 1)
+            {
+                    <span class="text-secondary">作废</span>
+            }
+            else if (item.StatusCode == 2)
+            {
+                    <span class="text-success">成功</span>
+            }
+            else if (item.StatusCode == 3)
+            {
+                    <span class="text-danger">失败</span>
+            }
+                </td>
+                <td>
+                    @if (item.StatusCode == 0)
+            {
+                    <a href="@Url.Action("ApplicationEdit",new {id=item.RecordId})" title="编辑">
+                        <i class="fa fa-edit fa-lg"></i>
+                    </a>
+                    <a href="@Url.Action("ApplicationDelete",new {id=item.RecordId})" title="删除">
+                        <i class="fa fa-lg fa-trash"></i>
+                    </a>
+            }
+            else
+            {
+                    <a href="@Url.Action("ApplicationDetails",new {id=item.RecordId})" title="查看">
+                        <i class="fa fa-lg fa-search"></i>
+                    </a>
+            }
+                </td>
+            </tr>
+      }
+        }
+    </tbody>
+</table>

@@ -1,0 +1,428 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.props" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{AE1B9628-73D6-4CDB-9467-810AF2173932}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Fy3y.Model.GrldPacs</RootNamespace>
+    <AssemblyName>Fy3y.Model.GrldPacs</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <LangVersion>latest</LangVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <LangVersion>latest</LangVersion>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=5.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Bcl.AsyncInterfaces.5.0.0\lib\net461\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="Oracle.ManagedDataAccess, Version=4.122.21.1, Culture=neutral, PublicKeyToken=89b483f429c47342, processorArchitecture=MSIL">
+      <HintPath>..\packages\Oracle.ManagedDataAccess.21.3.0\lib\net462\Oracle.ManagedDataAccess.dll</HintPath>
+    </Reference>
+    <Reference Include="Oracle.ManagedDataAccess.EntityFramework, Version=6.122.21.1, Culture=neutral, PublicKeyToken=89b483f429c47342, processorArchitecture=MSIL">
+      <HintPath>..\packages\Oracle.ManagedDataAccess.EntityFramework.21.3.0\lib\net462\Oracle.ManagedDataAccess.EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Memory, Version=4.0.1.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Memory.4.5.4\lib\net461\System.Memory.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Numerics.Vectors, Version=4.1.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Numerics.Vectors.4.5.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.5.0.0\lib\net45\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Text.Encodings.Web, Version=5.0.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Text.Encodings.Web.5.0.1\lib\net461\System.Text.Encodings.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Text.Json, Version=5.0.0.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Text.Json.5.0.2\lib\net461\System.Text.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Threading.Tasks.Extensions.4.5.4\lib\net461\System.Threading.Tasks.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ValueTuple.4.5.0\lib\net47\System.ValueTuple.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="L_CLIENT.cs" />
+    <Compile Include="L_CONFIGITEM.cs" />
+    <Compile Include="L_SYSCONFIG.cs" />
+    <Compile Include="MWLMWL.cs" />
+    <Compile Include="PACS_REPORT.cs" />
+    <Compile Include="PBCATCOL.cs" />
+    <Compile Include="PBCATFMT.cs" />
+    <Compile Include="PBCATTBL.cs" />
+    <Compile Include="PIS_CHECK.cs" />
+    <Compile Include="PIS_SAMPLE.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="REPORTWL.cs" />
+    <Compile Include="SM.cs" />
+    <Compile Include="S_EXAMBOOKINFO.cs" />
+    <Compile Include="TMPEXPORT1231.cs" />
+    <Compile Include="TMPEXPORTREPSEQ.cs" />
+    <Compile Include="T_ADDRESS.cs" />
+    <Compile Include="T_ADDRESS_EX.cs" />
+    <Compile Include="T_AEAR_CONSULT.cs" />
+    <Compile Include="T_AEAR_UPLOADPATIENTLOG.cs" />
+    <Compile Include="T_AEAR_UPLOADPATIENTLOG_NEW.cs" />
+    <Compile Include="T_AEAR_UPLOADREPORTLOG.cs" />
+    <Compile Include="T_AEAR_UPLOADREPORTLOG_NEW.cs" />
+    <Compile Include="T_AEAR_USER.cs" />
+    <Compile Include="T_AERA_UPLOADEXAMLOG.cs" />
+    <Compile Include="T_BODYFILENAME.cs" />
+    <Compile Include="T_BODYPART.cs" />
+    <Compile Include="T_BUTTONSETTING.cs" />
+    <Compile Include="T_CERTIFICATION.cs" />
+    <Compile Include="T_CHARGEITEM.cs" />
+    <Compile Include="T_CLIENT.cs" />
+    <Compile Include="T_CLOUDFILM_DOWNLOAD_LOG.cs" />
+    <Compile Include="T_CLOUDFILM_IDCARDMAPPING.cs" />
+    <Compile Include="T_COMMAND.cs" />
+    <Compile Include="T_COMMAND_LINK.cs" />
+    <Compile Include="T_COMMON_IDLIST.cs" />
+    <Compile Include="T_CONFIGITEM.cs" />
+    <Compile Include="T_CONFIGURATION.cs" />
+    <Compile Include="T_CONSULTATION.cs" />
+    <Compile Include="T_CONTRAST.cs" />
+    <Compile Include="T_DATABASEINFO.cs" />
+    <Compile Include="T_DEFAULTPARA.cs" />
+    <Compile Include="T_DEFAULTPARALINK1.cs" />
+    <Compile Include="T_DEFAULTPARALINK2.cs" />
+    <Compile Include="T_DEPICT.cs" />
+    <Compile Include="T_DETAILCHARGE.cs" />
+    <Compile Include="T_DETAILTEMP.cs" />
+    <Compile Include="T_DIAGNOSECONTROL.cs" />
+    <Compile Include="T_DIAGRESULT.cs" />
+    <Compile Include="T_DIARY.cs" />
+    <Compile Include="T_DICOM_IMAGE.cs" />
+    <Compile Include="T_DICTIONARY.cs" />
+    <Compile Include="T_DOSE.cs" />
+    <Compile Include="T_EN_CATEGORY.cs" />
+    <Compile Include="T_EN_NOTICECONTENT.cs" />
+    <Compile Include="T_EN_NOTICEDETAILL.cs" />
+    <Compile Include="T_EN_NOTICETEMPLATE.cs" />
+    <Compile Include="T_EN_RECORD.cs" />
+    <Compile Include="T_EQUIPMENT.cs" />
+    <Compile Include="T_EQUIPMENT_MAINTENANCE.cs" />
+    <Compile Include="T_EQUIPMENT_USELOG.cs" />
+    <Compile Include="T_ESPHRASE.cs" />
+    <Compile Include="T_ESREPORT.cs" />
+    <Compile Include="T_ESREPORTLINK.cs" />
+    <Compile Include="T_ESTEMPLINK.cs" />
+    <Compile Include="T_ES_CUREEXAMITEM.cs" />
+    <Compile Include="T_ETIME_QUEUE.cs" />
+    <Compile Include="T_EXAMITEM.cs" />
+    <Compile Include="T_EXAMITEMCHARGEITEMLINK.cs" />
+    <Compile Include="T_EXAMITEMLINK.cs" />
+    <Compile Include="T_EXAMITEM_NOTICEDETAIL.cs" />
+    <Compile Include="T_EXAMITEM_STYLELINK.cs" />
+    <Compile Include="T_EXAMPARA.cs" />
+    <Compile Include="T_EXAMROOM.cs" />
+    <Compile Include="T_EXAMTIME.cs" />
+    <Compile Include="T_EXAM_QUEUE.cs" />
+    <Compile Include="T_EXPORTDETAIL.cs" />
+    <Compile Include="T_EXPORTSCHEME.cs" />
+    <Compile Include="T_FAVORITES.cs" />
+    <Compile Include="T_FAVORITE_REPORT.cs" />
+    <Compile Include="T_FILM.cs" />
+    <Compile Include="T_FILMASSESS.cs" />
+    <Compile Include="T_FOLLOWUP_COMMIT.cs" />
+    <Compile Include="T_FOLLOWUP_RECORD.cs" />
+    <Compile Include="T_FUNCTION.cs" />
+    <Compile Include="T_GMPHRASE.cs" />
+    <Compile Include="T_GM_ARCBORROW.cs" />
+    <Compile Include="T_GM_ARCBRWLIST.cs" />
+    <Compile Include="T_GM_ARCHIVE.cs" />
+    <Compile Include="T_GM_ARCORDER.cs" />
+    <Compile Include="T_GM_BIGEXAM.cs" />
+    <Compile Include="T_GM_BIGEXAMSAMPLE.cs" />
+    <Compile Include="T_GM_BLANKSLICE.cs" />
+    <Compile Include="T_GM_CHECKSLICEITEM.cs" />
+    <Compile Include="T_GM_COLUMNCONFIG.cs" />
+    <Compile Include="T_GM_COLUMNCONFIG11.cs" />
+    <Compile Include="T_GM_CONSULTATIONCASE.cs" />
+    <Compile Include="T_GM_CRITICALVALUE.cs" />
+    <Compile Include="T_GM_CUSTOMERREPORT.cs" />
+    <Compile Include="T_GM_CUTTING.cs" />
+    <Compile Include="T_GM_CUTTINGCERE.cs" />
+    <Compile Include="T_GM_CUTTINGMATERIAL.cs" />
+    <Compile Include="T_GM_CUTTINGSLICE.cs" />
+    <Compile Include="T_GM_DELAYREPORT.cs" />
+    <Compile Include="T_GM_DELIVERPART.cs" />
+    <Compile Include="T_GM_EMBED.cs" />
+    <Compile Include="T_GM_EXAMITEM.cs" />
+    <Compile Include="T_GM_EXAMITEMSCHEME.cs" />
+    <Compile Include="T_GM_FAVORITES.cs" />
+    <Compile Include="T_GM_FAVORITSEDETAILS.cs" />
+    <Compile Include="T_GM_ICD.cs" />
+    <Compile Include="T_GM_IDLIST.cs" />
+    <Compile Include="T_GM_JPEGIMAGE.cs" />
+    <Compile Include="T_GM_LC_REPORTITEM.cs" />
+    <Compile Include="T_GM_LC_RE_04242008015800002.cs" />
+    <Compile Include="T_GM_LIQUIDCYTOLOGY.cs" />
+    <Compile Include="T_GM_LOG.cs" />
+    <Compile Include="T_GM_MENUCONFIG.cs" />
+    <Compile Include="T_GM_ORDERBIGEXAMLINK.cs" />
+    <Compile Include="T_GM_QUALITYCONTROLLIST.cs" />
+    <Compile Include="T_GM_RANDOMPWD.cs" />
+    <Compile Include="T_GM_REAGCOMPANY.cs" />
+    <Compile Include="T_GM_REAGENT.cs" />
+    <Compile Include="T_GM_REAGENTFEEDBACK.cs" />
+    <Compile Include="T_GM_REAGENTIMAGE.cs" />
+    <Compile Include="T_GM_REAGENTLINK.cs" />
+    <Compile Include="T_GM_REAGENTLIST.cs" />
+    <Compile Include="T_GM_REAGENTNAME.cs" />
+    <Compile Include="T_GM_REAGENTNAME_BAK.cs" />
+    <Compile Include="T_GM_REPORT.cs" />
+    <Compile Include="T_GM_RPT_UICTL.cs" />
+    <Compile Include="T_GM_RPT_UIROW.cs" />
+    <Compile Include="T_GM_SAMPLE.cs" />
+    <Compile Include="T_GM_SECOND_REPORT.cs" />
+    <Compile Include="T_GM_SLICESAMPLING.cs" />
+    <Compile Include="T_GM_SPECIALAPPLY.cs" />
+    <Compile Include="T_GM_SUPPLYREPORT.cs" />
+    <Compile Include="T_GRAPHICREPORT.cs" />
+    <Compile Include="T_HINT.cs" />
+    <Compile Include="T_HISORDER.cs" />
+    <Compile Include="T_HISTORYREPORT.cs" />
+    <Compile Include="T_HIS_BILLING.cs" />
+    <Compile Include="T_HIS_BILLINGINFO.cs" />
+    <Compile Include="T_HIS_DETAILCHARGE.cs" />
+    <Compile Include="T_HIS_EXAMITEMCONFIG.cs" />
+    <Compile Include="T_HIS_EXAMITEMLINK.cs" />
+    <Compile Include="T_HL7UPLOADTASK.cs" />
+    <Compile Include="T_HOSPITALCONFIG.cs" />
+    <Compile Include="T_HZPY.cs" />
+    <Compile Include="T_IDFORMAT.cs" />
+    <Compile Include="T_IEISTERMINAL.cs" />
+    <Compile Include="T_IMAGEEX.cs" />
+    <Compile Include="T_IMAGE_DSTOREPATH.cs" />
+    <Compile Include="T_IMAGE_QUALITY.cs" />
+    <Compile Include="T_IMAGE_QUALITY_COMMENT.cs" />
+    <Compile Include="T_IMAGE_QUALITY_ITEM.cs" />
+    <Compile Include="T_INTERPOSITIONCURE.cs" />
+    <Compile Include="T_INTERTHERAPY.cs" />
+    <Compile Include="T_JOB_DISTRIBUTION.cs" />
+    <Compile Include="T_JOB_WEIGHTSCORE.cs" />
+    <Compile Include="T_KEYWORD.cs" />
+    <Compile Include="T_MAXID.cs" />
+    <Compile Include="T_MEASURE_TEMPLATE.cs" />
+    <Compile Include="T_MEASURE_TEMPLATE_ITEM.cs" />
+    <Compile Include="T_MERGEEXAM.cs" />
+    <Compile Include="T_MESSAGE.cs" />
+    <Compile Include="T_MESSAGEFUNCTIONLINK.cs" />
+    <Compile Include="T_MODALITY_CONFIG.cs" />
+    <Compile Include="T_M_EQUIPMENT_LOG.cs" />
+    <Compile Include="T_M_QUALITYCONTROL.cs" />
+    <Compile Include="T_M_QUALITYCONTROLITEM.cs" />
+    <Compile Include="T_M_REMARK.cs" />
+    <Compile Include="T_M_REPORTSUMMARY.cs" />
+    <Compile Include="T_OPERATION_LOG.cs" />
+    <Compile Include="T_ORDER.cs" />
+    <Compile Include="T_ORDERFILE.cs" />
+    <Compile Include="T_ORDERMODIFY.cs" />
+    <Compile Include="T_ORDERREPORTLINK.cs" />
+    <Compile Include="T_ORDERSTATUSUPLOADTASK.cs" />
+    <Compile Include="T_ORDER_COMMENT.cs" />
+    <Compile Include="T_ORDER_DELAY.cs" />
+    <Compile Include="T_ORDER_FILM_GRADE.cs" />
+    <Compile Include="T_ORDER_ITEM.cs" />
+    <Compile Include="T_ORDER_LOG.cs" />
+    <Compile Include="T_ORDER_OT.cs" />
+    <Compile Include="T_ORDER_PARTITION.cs" />
+    <Compile Include="T_ORDER_PATHOLOGY.cs" />
+    <Compile Include="T_ORM_QUEUE.cs" />
+    <Compile Include="T_OTPHRASE.cs" />
+    <Compile Include="T_OTREPORTTEMP.cs" />
+    <Compile Include="T_OT_REPORT.cs" />
+    <Compile Include="T_O_JPEGIMAGE.cs" />
+    <Compile Include="T_PACSPETCTINTERFACE.cs" />
+    <Compile Include="T_PATHOLOGY.cs" />
+    <Compile Include="T_PATHOLOGYOLD.cs" />
+    <Compile Include="T_PATIDLIST.cs" />
+    <Compile Include="T_PATIENT.cs" />
+    <Compile Include="T_PATIENT_BAK.cs" />
+    <Compile Include="T_PDFCONVERTRECORD.cs" />
+    <Compile Include="T_PRINT_CLIENT.cs" />
+    <Compile Include="T_PRINT_COND.cs" />
+    <Compile Include="T_PRINT_FILE.cs" />
+    <Compile Include="T_PRINT_LIST.cs" />
+    <Compile Include="T_PRINT_LOCAL.cs" />
+    <Compile Include="T_PRINT_PRINTER.cs" />
+    <Compile Include="T_PRINT_PROCESS.cs" />
+    <Compile Include="T_PRINT_TASK.cs" />
+    <Compile Include="T_QUEUENAMEROLE.cs" />
+    <Compile Include="T_QUE_BOOKINGMAXNUM.cs" />
+    <Compile Include="T_QUE_BOOKTERMINAL.cs" />
+    <Compile Include="T_QUE_BOOKTERMINALTYPE.cs" />
+    <Compile Include="T_QUE_CALLSYSLINK.cs" />
+    <Compile Include="T_QUE_CHECKTYPE.cs" />
+    <Compile Include="T_QUE_CURRENTBOOKINGAMOUNT.cs" />
+    <Compile Include="T_QUE_DISPALYCALLEDQUEUE.cs" />
+    <Compile Include="T_QUE_DISPLAYCONTENT.cs" />
+    <Compile Include="T_QUE_DISPLAYFIELD.cs" />
+    <Compile Include="T_QUE_DISPLAYSTYLE.cs" />
+    <Compile Include="T_QUE_EXAMITEMPROPERTY.cs" />
+    <Compile Include="T_QUE_HOURLYBOOKINGNUMBER.cs" />
+    <Compile Include="T_QUE_MAXQUEUENUMBER.cs" />
+    <Compile Include="T_QUE_NUMBERTIMECONFIG.cs" />
+    <Compile Include="T_QUE_NUMBERTIMEDETAILCONFIG.cs" />
+    <Compile Include="T_QUE_QNPRINTTEMPLATEREL.cs" />
+    <Compile Include="T_QUE_QUEUE.cs" />
+    <Compile Include="T_QUE_QUEUECONFIG.cs" />
+    <Compile Include="T_QUE_QUEUECONFIGNUMBER.cs" />
+    <Compile Include="T_QUE_QUEUELEVEL.cs" />
+    <Compile Include="T_QUE_QUEUENAME.cs" />
+    <Compile Include="T_QUE_QUEUENAME_THIRDLINK.cs" />
+    <Compile Include="T_QUE_QUEUENUMBER.cs" />
+    <Compile Include="T_QUE_QUEUEORDERLINK.cs" />
+    <Compile Include="T_QUE_QUEUERELATION.cs" />
+    <Compile Include="T_QUE_QUEUESTOPCONFIG.cs" />
+    <Compile Include="T_QUE_QUEUETERMINAL.cs" />
+    <Compile Include="T_QUE_QUEUETEST.cs" />
+    <Compile Include="T_QUE_REGULATION.cs" />
+    <Compile Include="T_QUE_RELATIONSHIP.cs" />
+    <Compile Include="T_QUE_REMINDINFO.cs" />
+    <Compile Include="T_QUE_ROLLSTYLE.cs" />
+    <Compile Include="T_QUE_ROOM.cs" />
+    <Compile Include="T_QUE_SCREEN.cs" />
+    <Compile Include="T_QUE_SCREENRELATION.cs" />
+    <Compile Include="T_QUE_SCREENSET.cs" />
+    <Compile Include="T_QUE_SCREENTERMINAL.cs" />
+    <Compile Include="T_QUE_SYSTEMDICTIONARY.cs" />
+    <Compile Include="T_QUE_TEMPORARYCONFIG.cs" />
+    <Compile Include="T_QUE_TEMPORARYCONFIGNUMBER.cs" />
+    <Compile Include="T_QUE_TERMINALQUEUEREL.cs" />
+    <Compile Include="T_QUE_TERMINALTYPEQUEUEREL.cs" />
+    <Compile Include="T_QUE_THIRDLINK.cs" />
+    <Compile Include="T_QUE_USER.cs" />
+    <Compile Include="T_QUE_VOICECONTENT.cs" />
+    <Compile Include="T_QUE_WORKSTATION.cs" />
+    <Compile Include="T_QUE_WORKSTATIONRELATION.cs" />
+    <Compile Include="T_RADIOACTIVEMEDICATION.cs" />
+    <Compile Include="T_REGION_CONSULT.cs" />
+    <Compile Include="T_REGION_TARGETINFO.cs" />
+    <Compile Include="T_REGION_TASK.cs" />
+    <Compile Include="T_REGION_TASK_LINK.cs" />
+    <Compile Include="T_REGPACS_LOG.cs" />
+    <Compile Include="T_REMINDPERSON.cs" />
+    <Compile Include="T_REMINDSCHEME.cs" />
+    <Compile Include="T_REPORT.cs" />
+    <Compile Include="T_REPORTBACKUP.cs" />
+    <Compile Include="T_REPORTOPTION.cs" />
+    <Compile Include="T_REPORTPIC.cs" />
+    <Compile Include="T_REPORTREMARK.cs" />
+    <Compile Include="T_REPORTUPLOADTASK.cs" />
+    <Compile Include="T_REPORT_CERTIFICATE.cs" />
+    <Compile Include="T_REPORT_MEASURE_VALUE.cs" />
+    <Compile Include="T_REPORT_PARTITION.cs" />
+    <Compile Include="T_REPORT_QUEUE.cs" />
+    <Compile Include="T_REPORT_QUEUE_BACK.cs" />
+    <Compile Include="T_REPORT_STYLE.cs" />
+    <Compile Include="T_REPORT_TEMP.cs" />
+    <Compile Include="T_REPTTEMP.cs" />
+    <Compile Include="T_REPTTEMPCATEGORY.cs" />
+    <Compile Include="T_REP_ITEM.cs" />
+    <Compile Include="T_REP_ITEMVALUE.cs" />
+    <Compile Include="T_REP_REPORT.cs" />
+    <Compile Include="T_REP_TEMPLATE.cs" />
+    <Compile Include="T_REP_TIPDATA.cs" />
+    <Compile Include="T_RISORDER.cs" />
+    <Compile Include="T_ROOTLIST.cs" />
+    <Compile Include="T_SEQUENCE.cs" />
+    <Compile Include="T_SMS_LOG.cs" />
+    <Compile Include="T_STYLE.cs" />
+    <Compile Include="T_STYLECATEGORY.cs" />
+    <Compile Include="T_ST_SCHEMA.cs" />
+    <Compile Include="T_ST_WORKLOAD.cs" />
+    <Compile Include="T_SYSCONFIG.cs" />
+    <Compile Include="T_TASK_DISTRIBUTION.cs" />
+    <Compile Include="T_TEMPLINK.cs" />
+    <Compile Include="T_TEMPST.cs" />
+    <Compile Include="T_TEMP_DISTINC_ORM.cs" />
+    <Compile Include="T_TEMP_ST.cs" />
+    <Compile Include="T_USER.cs" />
+    <Compile Include="T_USERACTOR.cs" />
+    <Compile Include="T_USERROLE.cs" />
+    <Compile Include="T_USER_POSITION_LINK.cs" />
+    <Compile Include="T_USMEASURE_CONFIG.cs" />
+    <Compile Include="T_USPHRASE.cs" />
+    <Compile Include="T_USREPORT.cs" />
+    <Compile Include="T_US_AVIIMAGE.cs" />
+    <Compile Include="T_US_DICOMIMAGE.cs" />
+    <Compile Include="T_US_LOCATION.cs" />
+    <Compile Include="T_US_MEASURE.cs" />
+    <Compile Include="T_US_SENDIMAGE.cs" />
+    <Compile Include="T_VOICE_QUEUE.cs" />
+    <Compile Include="T_WORKLISTDETAIL.cs" />
+    <Compile Include="T_WORKLISTSCHEME.cs" />
+    <Compile Include="T_WORKLOADACCOUNT.cs" />
+    <Compile Include="T_WORKPOSITION.cs" />
+    <Compile Include="T_WORKPOSITION_ATTRIBUTE.cs" />
+    <Compile Include="T_WORKSCHEDULE.cs" />
+    <Compile Include="T_WORKTYPE.cs" />
+    <Compile Include="X_HISORDER.cs" />
+    <Compile Include="X_MAPPING.cs" />
+    <Compile Include="X_ORDER.cs" />
+    <Compile Include="X_PATIENT.cs" />
+    <Compile Include="X_PATIENTCODE.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="Oracle.DataAccess.Common.Configuration.Section.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Oracle.ManagedDataAccess.Client.Configuration.Section.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>这台计算机上缺少此项目引用的 NuGet 程序包。使用“NuGet 程序包还原”可下载这些程序包。有关更多信息，请参见 http://go.microsoft.com/fwlink/?LinkID=322105。缺少的文件是 {0}。</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.props'))" />
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.targets'))" />
+  </Target>
+  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.targets" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" />
+</Project>

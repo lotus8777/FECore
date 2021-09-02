@@ -1,0 +1,90 @@
+﻿@model IList<Fy3y.Model.Das.Salary>
+
+@{
+    ViewData["Title"] = "职工薪资明细";
+    int i = 1;
+}
+
+<form method="post">
+    @Html.AntiForgeryToken()
+    <fieldset>
+        <legend>查询条件</legend>
+        <div class="form-group row">
+            <label class="col-form-label col-2 text-right">选择年度</label>
+            <input type="text" class="form-control col-2" name="month" value="@ViewBag.month" onfocus="WdatePicker({ isShowClear: false, readOnly: true, isShowOK: false, dateFmt: 'yyyyMM' })"/>
+            <div class="col-2"><button class="btn btn-success"><i class="fa fa-search"></i>查询</button></div>
+            
+        </div>
+    </fieldset>
+</form>
+<br/>
+
+<table class="table table-bordered text-center table-sm table-striped" id="table1">
+    <thead>
+    <tr>
+        <th>#</th>
+        <th>
+            月份
+        </th>
+        <th>
+            姓名
+        </th>
+        <th>
+            工龄
+        </th>
+        <th>
+            收入
+        </th>
+        <!--支出-->
+        <th>
+            支出
+        </th>
+        <th>
+            实收
+        </th>
+        <th>
+            明细
+        </th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@i</td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SalaryMonth)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EmployeeName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.WorkAge)
+            </td>
+            <td>
+                @(item.Income.ToString("F"))
+            </td>
+            <td>
+                @(item.Expend.ToString("F"))
+            </td>
+            <td>
+                @(item.Fsalary.ToString("F"))
+            </td>
+            <td>
+                <a href="@Url.Action("SalaryDetail",new { id=item.SalaryId})"><i class="fa fa-search"></i></a>
+            </td>
+        </tr>
+        i++;
+    }
+
+    </tbody>
+    <tfoot>
+    <tr>
+        <td colspan="4">合计</td>
+        <td>@(Model.Sum(p=>p.Income).ToString("F"))</td>
+        <td>@(Model.Sum(p=>p.Expend).ToString("F"))</td>
+        <td>@(Model.Sum(p=>p.Fsalary).ToString("F"))</td>
+        <td></td>
+    </tr>
+    </tfoot>
+</table>

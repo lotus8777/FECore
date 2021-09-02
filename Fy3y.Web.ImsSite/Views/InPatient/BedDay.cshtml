@@ -1,0 +1,50 @@
+﻿@model IList<BedDay>
+@{
+  ViewBag.Title = "床日统计";
+  Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="container-fluid">
+    @Html.Partial("BeginEndFormPartial")
+    <table class="table table-sm table-bordered table-hover table-striped text-center">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>病区</th>
+                <th>总床日</th>
+                <th>出院床日</th>
+                <th>在院床日</th>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                if (Model.Any())
+                {
+                    var i = 0;
+                    if (Model != null)
+                    {
+                        foreach (var item in Model)
+                        {
+                            i++;
+                            <tr>
+                                <td>@i </td>
+                                <td>@item.Bqmc </td>
+                                <td>@item.TotalCount.ToString("F2")</td>
+                                <td>@item.OutCount.ToString("F2")</td>
+                                <td>@((item.TotalCount-item.OutCount).ToString("F2"))</td>
+                            </tr>
+                        }
+                        <tr>
+                            <td colspan="2">
+                                合计
+                            </td>
+                            <td>@Model.Sum(p => p.TotalCount).ToString("F2") </td>
+                            <td>@Model.Sum(p => p.OutCount).ToString("F2") </td>
+                            <td>@((Model.Sum(p => p.TotalCount)-Model.Sum(p=>p.OutCount)).ToString("F2")) </td>
+                        </tr>
+                    }
+
+                }
+            }
+        </tbody>
+    </table>
+</div>

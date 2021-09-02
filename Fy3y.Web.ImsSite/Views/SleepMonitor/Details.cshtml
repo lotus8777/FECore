@@ -1,0 +1,118 @@
+﻿@model Fy3y.Model.Das.SleepMonitorRegistration
+@{
+  ViewBag.Title = "睡眠监测报告单";
+}
+<br />
+<fieldset>
+  <legend>预约及患者信息</legend>
+  <div class="form-group row">
+    <label class="col-2 col-form-label">预约来源</label>
+    <label class="col-4">@Model.Source</label>
+    @Html.HiddenFor(m => m.Source)
+    <label class="col-2 col-form-label">患者性别</label>
+    <label class="col-2">
+      @if (Model.PatientSex == 1)
+      {
+        @:男
+      }
+      else if (Model.PatientSex == 2)
+      {
+        @:女
+      }
+      else
+      {
+        @:其他
+      }
+    </label>
+    @Html.HiddenFor(m => m.PatientSex)
+  </div>
+  <div class="form-group row">
+    <label class="col-2 col-form-label">患者姓名</label>
+    <div class="col-4">
+      @Html.DisplayFor(m => m.PatientName, new { @class = "form-control", @readonly = "" })
+    </div>
+    <label class="col-2 col-form-label">患者年龄</label>
+    <div class="col-4">
+      @Html.DisplayFor(m => m.PatientAge, new { @class = "form-control", placeholder = "岁", @readonly = "" })
+    </div>
+  </div>
+  <div class="form-group row">
+    <label class="col-2 col-form-label">预约时间</label>
+    <div class="col-4">
+      @Html.DisplayFor(m => m.PreVisitTime)
+    </div>
+    <label class="col-2 col-form-label ">预约医生</label>
+    <div class="col-4">
+      @Html.DisplayFor(m => m.Doctor)
+    </div>
+  </div>
+  <div class="form-group row">
+    <label class="col-2 col-form-label">联系方式</label>
+    <label class="col-4"> @Html.DisplayFor(m => m.Contact)</label>
+  </div>
+</fieldset>
+<fieldset>
+  <legend>就诊结果信息</legend>
+  @if (Model.Status == 2)
+  {
+    <div class="form-group row">
+      <label class="col-2 col-form-label">是否就诊</label>
+      <div class="col-1 form-check form-check-inline">
+        @Html.RadioButtonFor(m => m.Status, 2, new { @class = "form-check-input  ", id = "Status2", @checked = "" })
+        <label class="form-check-label">是</label>
+      </div>
+    </div>
+    <div class="form-group row" id="analystsArea">
+      <label class="col-2 col-form-label">图像分析</label>
+      <div class="col-4">
+        @Model.Analysts
+      </div>
+      <label class="col-2 col-form-label">完成时间</label>
+      <div class="col-4">
+        @Model.FinishTime
+      </div>
+    </div>
+  }
+  else if (Model.Status == 3)
+  {
+    <div class="form-group row">
+      <label class="col-2 col-form-label">是否就诊</label>
+      <div class="col-1 form-check form-check-inline">
+        @Html.RadioButtonFor(m => m.Status, 3, new { @class = "form-check-input", id = "Status3" })
+        <label class="form-check-label">否</label>
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-2 col-form-label">未就诊原因</label>
+      <div class="col-10 text-left">
+        <textarea class="col-12" rows="3">@Model.Cause</textarea>
+      </div>
+    </div>
+  }
+  else if (Model.Status == 1)
+  {
+    <label>已经预约,等待就诊</label>
+  }
+</fieldset>
+<a href="@Url.Action("Index")">返回</a>
+<script type="text/javascript">
+  $("textarea").attr("readonly", true);
+  $('#notCause').hide();
+  $("#Cause").attr("disabled", true);
+  $("input:radio[name='Status']").change(function() {
+    if (this.value === "3") {
+      $("#analystsArea").hide();
+      $("#notCause").show();
+      $("#Analysts").attr("disabled", true);
+      $("#FinishTime").attr("disabled", true);
+      $("#Cause").removeAttr("disabled");
+
+    } else if (this.value === "2") {
+      $("#analystsArea").show();
+      $("#notCause").hide();
+      $("#Cause").attr("disabled", true);
+      $("#Analysts").removeAttr("disabled");
+      $("#FinishTime").removeAttr("disabled");
+    }
+  });
+</script>

@@ -1,0 +1,69 @@
+﻿@{
+    Layout = "~/Views/Shared/_EmptyLayout.cshtml";
+}
+<div style="height: 350px; width: 600px;">
+    <br />
+    <div class="form-group row text-center">
+        <label class="col-form-label col-sm-3">拼音首字母</label>
+        <div class="col-sm-4">
+            <input class="form-control" id="key" name="key" type="text" />
+        </div>
+    </div>
+    <div class="col-12">
+        <table class="table table-sm table-bordered text-center table-striped">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>科室</th>
+                    <th>姓名</th>
+                    <th>选择</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+    </div>
+</div>
+<script type="text/javascript">
+
+  $("#key").on("input propertychange",
+    function() {
+      $.ajax({
+        type: "POST",
+        url: "@Url.Action("GetEmployeePinYin")",
+        contentType: 'application/x-www-form-urlencoded;charset=utf-8',
+        data: { key: $("#key").val() },
+        dataType: "json",
+        success: function(data) {
+          var i = 0;
+          $("tbody").html("");
+          $.each(data,
+            function(index, item) {
+              i++;
+              $("tbody").append(
+                  `<tr>
+                        <td>${i}</td>
+                        <td>${item.departmentName}</td>
+                        <td>${item.employeeName}</td>
+                        <td><a href="javascript:void(0)" onclick="setParentValue(${item.employeeId},\'${item.employeeName
+                                          }\')">选择</a></td>
+                   </tr>`
+              );
+            });
+        },
+        error: function(e) {
+          console.log(e);
+        }
+      });
+    });
+
+  function setParentValue(employeeId, employeeName) {
+    if (employeeId === "" || employeeName === "") {
+      layer.alert("请选择用户！");
+      return;
+    }
+    parent.setValue(employeeId, employeeName);
+    var index = parent.layer.getFrameIndex(window.name);
+    parent.layer.close(index);
+  }
+</script>

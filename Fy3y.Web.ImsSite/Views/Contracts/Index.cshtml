@@ -1,0 +1,71 @@
+﻿@model IList<Contract>
+@{
+  ViewBag.Title = "合同清单";
+}
+<div class="form-group row">
+  <div class="col-2">
+    <a class="btn btn-dark" href="@Url.Action("Create")">
+      <i class="fa fa-plus">添加</i>
+    </a>
+  </div>
+</div>
+<table class="table table-sm table-bordered table-striped text-center">
+  <tr>
+    <th>#</th>
+    <th>合同类型</th>
+    <th>合同名称</th>
+    <th>合同金额</th>
+    <th>乙方</th>
+    <th>签署日期</th>
+    <th>合同时限</th>
+    <td>合同附件</td>
+    <th></th>
+  </tr>
+  @{
+    int i = 1;
+    foreach (var item in Model)
+    {
+      <tr>
+        <td>@i</td>
+        <td>@item.ContractType</td>
+        <td>@item.ContactName</td>
+        <td>@item.ContactAmount</td>
+        <td>@item.Seller</td>
+        <td>@item.SigningDate.ToShortDateString() </td>
+        <td>@item.ExpiryDate.ToShortDateString() </td>
+        <td>
+          <a  href="javascript:void(0)" onclick="GetPdfBase64Binary('@item.ContactId')">合同</a>
+        </td>
+        <td>
+          <a href="@Url.Action("Edit",new{id=item.ContactId})" title="详细">
+            <i class="fa fa-edit"></i>
+          </a> |
+          <a href="@Url.Action("Details",new{id=item.ContactId})" title="详细">
+            <i class="fa fa-search"></i>
+          </a>|
+          <a href="javascript:void(0)" onclick="remove('@Url.Action("Delete",new{id=item.ContactId})')" title="删除">
+            <i class="fa fa-trash"></i>
+          </a>
+        </td>
+      </tr>
+      i++;
+    }
+  }
+</table>
+
+<script type="text/javascript">
+  function GetPdfBase64Binary(recordId) {
+    $.ajax({
+      url: '@Url.Action("GetBase64FileBinary","File")',
+      data: { recordId: recordId },
+      type: "post",
+      dataType:"json",
+      success: function(data) {
+        sessionStorage.setItem("pdfurl",data);
+        window.location.href = "/pdfjs/web/viewer.html";
+      }
+    });
+
+  }
+
+</script>

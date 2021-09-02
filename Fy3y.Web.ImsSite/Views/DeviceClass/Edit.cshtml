@@ -1,0 +1,111 @@
+﻿@model Fy3y.Model.Das.DeviceClass
+@{
+  ViewBag.Title = "新增分类";
+}
+<form id="form1">
+  @Html.AntiForgeryToken()
+  <div class="content">
+    @Html.ValidationSummary(true, "", new {@class = "text-danger"})
+    <div class="form-group row">
+      <label class="col-2 col-form-label">父类型</label>
+      <div class="col-10">
+        @Html.DropDownList("ParentId", null, new {@class = "form-control"})
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-2 col-form-label">分类名称</label>
+      <div class="col-10">
+        @Html.TextBoxFor(model => model.ClassName, new {@class = "form-control", required = ""})
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-2 col-form-label">标准代码</label>
+      <div class="col-10">
+        @Html.TextBoxFor(model => model.ClassCode, new {@class = "form-control", required = ""})
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-2 col-form-label">生命周期</label>
+      <div class="col-10">
+        @Html.TextBoxFor(model => model.LifeCycle, new {@class = "form-control", required = ""})
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-2 col-form-label">设备单位</label>
+      <div class="col-10">
+        @Html.TextBoxFor(model => model.Unit, new {@class = "form-control", required = ""})
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-2 col-form-label">最高限价</label>
+      <div class="col-10">
+        @Html.TextBoxFor(model => model.Price, new {@class = "form-control", required = ""})
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-2 col-form-label">标签</label>
+      <div class="col-10">
+        @Html.TextBoxFor(model => model.Tags, new {@class = "form-control", required = ""})
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-2 col-form-label">有效性</label>
+      <div class="col-10">
+        <div class="checkbox">
+          @Html.CheckBoxFor(model => model.IsValid)
+        </div>
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-2 col-form-label">终结点</label>
+      <div class="col-10">
+        <div class="checkbox">
+          @Html.CheckBoxFor(model => model.IsEnd)
+        </div>
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-2 col-form-label">备注说明</label>
+      <div class="col-10">
+        @Html.EditorFor(model => model.Remarks, new {htmlAttributes = new {@class = "form-control"}})
+      </div>
+    </div>
+  </div>
+  @Html.HiddenFor(p => p.CreateTime)
+  @Html.HiddenFor(p => p.CreatorId)
+  @Html.HiddenFor(p => p.ClassId)
+  @Html.HiddenFor(p => p.Path)
+</form>
+<div class="form-group row">
+  <div class="col-10 offset-2">
+    <button class="btn btn-dark d-print-none" id="submit">
+      <i class="fa fa-save">保存</i>
+    </button>
+    @Html.ActionLink("返回列表", "Index")
+  </div>
+</div>
+<script>
+  function validForm() {
+    return $("#form1").validate({
+      rules: {
+        EmployeeName: {
+          required: true
+        },
+        Mobile: {
+          required: true
+        }
+      }
+    });
+  }
+
+  //注册表单验证
+  $(validForm());
+  //点击表单保存按钮触发单击事件，进行表单验证，验证通过发起ajax请求，验证不通过在表单里提示
+  $("#submit").click(function() {
+    if (validForm().form()) {
+      var url = "@Url.Action("Edit")";
+      var data = $("#form1").serialize();
+      AjaxSubmit(url, data);
+    }
+  });
+</script>

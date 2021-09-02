@@ -1,0 +1,156 @@
+﻿@model IList<Fy3y.Model.Das.KeyDrug>
+@{
+    ViewBag.Title = "重点监控药品";
+}
+<form id="form1" method="post">
+    @Html.AntiForgeryToken()
+    <fieldset>
+        <legend>查询条件</legend>
+        <div class="form-group row text-center">
+            <label class="col-1 col-form-label">开始</label>
+            @Html.TextBox("begin", null, new { onfocus = "WdatePicker({isShowClear:false,readOnly:true,isShowOK:false,dateFmt: 'yyyy/MM/dd'})", @class = "form-control col-2" })
+            <label class="col-1 col-form-label">结束</label>
+            @Html.TextBox("end", null, new { onfocus = "WdatePicker({isShowClear:false,readOnly:true,isShowOK:false,dateFmt: 'yyyy/MM/dd'})", @class = "form-control col-2" })
+            <div class="col-2">
+                <button class="btn btn-dark d-print-none">
+                    <span class="fa fa-search">查询</span>
+                </button>
+            </div>
+            <div class="col-2">
+                <a class="btn btn-dark d-print-none mb-1" href="@Url.Action("AddKeyDrug",new {id=1})">
+                    <i class="fa fa-plus">添加</i>
+                </a>
+            </div>
+        </div>
+    </fieldset>
+</form>
+<br/>
+<table class="table table-sm table-bordered text-center table-striped">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>药品名称</th>
+            <th>药品产地</th>
+            <th>药品规格</th>
+            <th>包装单位</th>
+            <th>最小单位</th>
+            <th class="d-print-none">删除监控</th>
+            <th>查看排名</th>
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            if (Model?.Count() > 0)
+            {
+                var i = 1;
+                foreach (var keyDrug in Model)
+                {
+                    var idValue = keyDrug.Ypxh + "-" + keyDrug.Ypcd;
+                    <tr class="bg-info">
+                        <td>@i </td>
+                        <td>@keyDrug.Ypmc </td>
+                        <td>@keyDrug.Cdmc </td>
+                        <td>@keyDrug.Ypgg </td>
+                        <td>@keyDrug.Ypdw </td>
+                        <td>@keyDrug.Zxdw </td>
+                        <td class="d-print-none">
+                            <a href="javascript:void(0)" onclick="remove('@Url.Action("DeleteKeyDrug",new {id=keyDrug.KeyId})')" style="color: white;">
+                                <i class="fa fa-trash"></i>
+                            </a>
+                        </td>
+                        <td>
+                            <a href="javascript:void(0)" id="@idValue" onclick="toggleTable(this)">
+                                <i id="@("i" + idValue)" class="fa fa-arrow-circle-down"></i>
+                            </a>
+                        </td>
+                    </tr>
+                    <tr id="@("tr" + idValue)" style="display: none">
+                        <td colspan="8">
+                            <table class="" style="width: 100%">
+                                <thead>
+                                    <tr>
+                                        <th>排名</th>
+                                        <th>医生</th>
+                                        <th>病区</th>
+                                        <th>合理用药情况</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="@("tbody" + idValue)"></tbody>
+                            </table>
+                        </td>
+                    </tr>
+                    i++;
+                }
+            }
+        }
+    </tbody>
+</table>
+<script type="text/javascript">
+  @*@keyDrug.YPXH,@keyDrug.YPCD*@
+  //ypxh, ypcd
+  function toggleTable(object) {
+    var id = object.id;
+    const rowsCount = $(`#tbody${id}`).find("tr").length;
+    const begin = $("#begin").val();
+    const end = $("#end").val();
+    const arr = id.split("-");
+    var rowHeight = $("tr:first").height();
+    var newRowsCount = 0;
+    if (rowsCount <= 0) {
+      $.ajax({
+        type: "POST",
+        url: "@Url.Action("GetTop10RankByDrug")",
+        data: { "begin": begin, "end": end, "ypxh": arr[0], "ypcd": arr[1] },
+        success: function(msg) {
+          if (msg.status === 1) {
+            const dataLength = msg.data.length;
+            if (dataLength > 0) {
+              msg.data.forEach(function(row, index) {
+                  $(`#tbody${id}`).append(
+                      `<tr>
+                        <td>${index + 1}</td>
+                        <td>${row.Ygxm}</td>
+                        <td>${row.Ksmc}</td>
+                        <td></td>
+                     </tr>`);
+              });
+              newRowsCount = dataLength + 1;
+            } else {
+              $(`#tbody${id}`).append("<tr><td colspan='4'>没有数据 </td></tr>");
+              newRowsCount = 2;
+            }
+            if (newRowsCount > 0) {
+              const frameHeight = rowHeight * newRowsCount;
+            }
+          } else {
+            layer.msg(msg.message,
+              {
+                icon: 2,
+                time: 2000
+              });
+          }
+        },
+        error: function() {
+          layer.msg('操作失败!',
+            {
+              icon: 2,
+              time: 2000
+            });
+        }
+      });
+    }
+
+    $(`#i${id}`).toggleClass("fa-arrow-circle-up fa-arrow-circle-down");
+    $(`#tr${id}`).toggle();
+  }
+
+  function appendRow(row, index, id) {
+    $(`#tbody${id}`)
+        .append(`<tr>
+                    <td>${index + 1}</td>
+                    <td>${row.ygxm}</td>
+                    <td>${row.ksmc}</td>
+                    <td></td>
+                </tr>`);
+  }
+</script>

@@ -1,0 +1,56 @@
+﻿@model IList<Fy3y.Model.Das.PriceCompare>
+@{
+  ViewBag.Title = "价格变动目录";
+}
+<table class="table table-sm table-bordered text-center" id="old" style="float:unset;">
+  <thead>
+    <tr>
+      <th>费用序号</th>
+      <th>本院项目 </th>
+      <th>原有价格 </th>
+      <th>医保项目</th>
+      <th>医保价格</th>
+      <th>结果</th>
+    </tr>
+  </thead>
+  <tbody>
+    @{
+    foreach (var item in Model.OrderBy(p => p.IsUpdate))
+    {
+      <tr>
+        <td>@item.Fyxh </td>
+        <td>@item.Fymc </td>
+        <td>@item.Fydj </td>
+        <td>@item.Ybmc </td>
+        <td>@item.NewFydj </td>
+        @if (item.IsUpdate)
+        {
+          if (item.NewFydj == -1)
+          {
+        <td>/</td>
+          }
+          else if (item.Fydj == item.NewFydj)
+          {
+        <td>=</td>
+          }
+          else if (item.Fydj > item.NewFydj)
+          {
+        <td>↓</td>
+          }
+          else if (item.Fydj < item.NewFydj)
+          {
+        <td>↑</td>
+          }
+        }
+        else
+        {
+        <td style="background-color: red;">待更新 </td>
+        }
+      </tr>
+    }
+    }
+  </tbody>
+</table>
+<div class="text-center">
+  <a class="btn btn-dark" href="@Url.Action("ComparePrice")">返回</a>
+</div>

@@ -1,0 +1,15 @@
+﻿@using Fy3y.GeneralTools.General
+@model Inpatient
+
+@{
+  var age = -1;
+  if (!string.IsNullOrEmpty(Model.Sfzh) && Model.Sfzh.Length == 18)
+  {
+    age = Convert.ToInt32(DateTimeHelper.NominalAge(Model.Sfzh));
+  }
+  else if (Model.Csny.HasValue)
+  {
+    age = Convert.ToInt32(DateTimeHelper.NominalAge(Model.Csny.Value));
+  }
+  @Html.Partial("AgePartial",age)
+}

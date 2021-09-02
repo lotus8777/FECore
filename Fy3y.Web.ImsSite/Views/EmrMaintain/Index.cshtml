@@ -1,0 +1,73 @@
+﻿@model List<EmployeePrivilege>
+
+@{
+    ViewData["Title"] = "电子病历权限";
+}
+
+<form method="post" action="@Url.Action("GetPrivilege")">
+    @Html.AntiForgeryToken()
+    <fieldset>
+        <legend>修改权限</legend>
+        <div class="form-group row text-center">
+            <div class="col-2">
+                <button class="btn btn-success">获取值班权限</button>
+            </div>
+        </div>
+    </fieldset>
+</form>
+<br/>
+<div class="alert alert-warning">
+    Tips:
+    <ol type="1">
+        <li>医护人员获取值班权限会自动获取5个病区的权限。</li>
+        <li>同时会把其他医护人员的权限重置为默认病区权限。</li>
+        <li>非医护人员无法获取值班权限。</li>
+        <li>有其他问题需求请联系信息科。</li>
+    </ol>
+
+</div>  
+
+<table class="table table-sm table-bordered text-center" id="table1">
+    <thead>
+        <tr>
+            <th>
+                #
+            </th>
+            <th>
+                权限类别
+            </th>
+            <th>
+                员工姓名
+            </th>
+            <th>
+                科室名称
+            </th>
+            <th>默认病区</th>
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            var i = 1;
+            foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @i
+                    </td>
+                    <td>
+                        @item.Yglb
+                    </td>
+                    <td>
+                        @item.Ygxm
+                    </td>
+                    <td>
+                        @item.Qxmc
+                    </td>
+                    <td>@item.Mrqx</td>
+
+                </tr>
+                i++;
+            }
+        }
+    </tbody>
+</table>

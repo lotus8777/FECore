@@ -1,0 +1,64 @@
+﻿@model IList<Top10AmountByDrug>
+@{
+    ViewBag.Title = "单药前十五名";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<table class="table table-sm table-bordered table-hover table-striped text-center">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>药品名称</th>
+            <th>药品类别</th>
+            <th>药品规格</th>
+            <th>药品单位</th>
+            <th>基本药物</th>
+            <th>抗生素</th>
+            <th>医生</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model.Any())
+        {
+            var i = 1;
+            foreach (var item in Model)
+            {
+                if (i > 15)
+                {
+                    break;
+                }
+                <tr>
+                    <td>@i </td>
+                    <td>@item.Ypmc </td>
+                    <td>@item.Ypsx </td>
+                    <td>@item.Ypgg </td>
+                    <td>@item.Ypdw </td>
+                    <td>
+                        @if (item.Jbywpb == 1)
+                        {
+                            <i class="fa fa-check"></i>
+                        }
+                        else
+                        {
+                            <i class="fa fa-times"></i>
+                        }
+                    </td>
+                    <td>
+                        @if (item.Ksbz == 1)
+                        {
+                            <i class="fa fa-check"></i>
+                        }
+                        else
+                        {
+                            <i class="fa fa-times"></i>
+                        }
+                    </td>
+                    <td>@item.Ysxm </td>
+                </tr>
+                i++;
+            }
+        }
+    </tbody>
+</table>
+<button class="btn btn-dark d-print-none" onclick="javascript:window.history.go(-1);">
+    <i class="fa fa-backward">后退</i>
+</button>

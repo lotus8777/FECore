@@ -1,0 +1,806 @@
+﻿{
+    "OnceNumber": "2000",
+    "ViewSets": [
+        {
+            "Index": "1",
+            "ViewName": "v_yyh_mjzjybg",
+            "ViewText": "门(急)诊检验报告",
+            "SetCode": "C0101.0303.02",
+            "Sql": "select * from v_yyh_mjzjybg where WS06_00_927_01>='{0}' and WS06_00_927_01<'{1}' and WS06_00_925_01 is not null and WS02_01_030_01 is not null and WS01_00_010_01 is not null and WS01_00_008_03 is not null and WS01_00_018_01 is not null",
+            "Use": "1"
+        },
+        {
+            "Index": "2",
+            "ViewName": "v_yyh_mjzjycgbg",
+            "ViewText": "门(急)诊检验常规报告",
+            "SetCode": "C0101.0303.0201",
+            "Sql": "select * from v_yyh_mjzjycgbg where WS06_00_926_01>='{0}' and WS06_00_926_01<'{1}' and WS01_00_010_01 is not null and WS02_01_906_01 is not null and WS01_00_008_03 is not null and WS01_00_018_01 is not null and WS01_00_907_01 is not null",
+            "Use": "1"
+        },
+        {
+            "Index": "3",
+            "ViewName": "v_yyh_mjzjysqd",
+            "ViewText": "门(急)诊检验申请单",
+            "SetCode": "C0101.0303.01",
+            "Sql": "select * from v_yyh_mjzjysqd where WS06_00_917_01>='{0}' and WS06_00_917_01<'{1}' and WS02_01_030_01 is not null and WS01_00_010_01 is not null and WS01_00_008_03 is not null and WS06_00_901_01 is not null and WS01_00_907_01 is not null",
+            "Use": "1"
+        },
+        {
+            "Index": "4",
+            "ViewName": "v_yyh_mjzjyxjbg",
+            "ViewText": "门(急)诊检验细菌报告",
+            "SetCode": "C0101.0303.0202",
+            "Sql": "select * from v_yyh_mjzjyxjbg where WS06_00_926_01>='{0}' and WS06_00_926_01<'{1}' and WS01_00_010_01 is not null and WS01_00_008_03 is not null and WS01_00_018_01 is not null and WS01_00_907_01 is not null and WS02_01_906_01 is not null",
+            "Use": "0"
+        },
+        {
+            "Index": "5",
+            "ViewName": "v_yyh_mjzjyymbg",
+            "ViewText": "门(急)诊检验药敏报告",
+            "SetCode": "C0101.0303.020201",
+            "Sql": "select * from v_yyh_mjzjyymbg where WS99_99_013_06>='{0}' and WS99_99_013_06<'{1}' and WS01_00_010_01 is not null and WS01_00_008_03 is not null and WS01_00_018_01 is not null and WS01_00_907_01 is not null  and WS02_01_906_01 is not null",
+            "Use": "0"
+        },
+        {
+            "Index": "6",
+            "ViewName": "v_yyh_mjzjcbg",
+            "ViewText": "门(急)诊检查报告",
+            "SetCode": "C0101.0305.02",
+            "Sql": "select * from v_yyh_mjzjcbg where WS06_00_927_01>='{0}' and WS06_00_927_01<'{1}' and WS06_00_926_01 is not null and WS02_01_906_01 is not null and WS01_00_010_01 is not null and WS01_00_008_03 is not null and WS01_00_018_01 is not null and WS01_00_907_01 is not null",
+            "Use": "1"
+        },
+        {
+            "Index": "7",
+            "ViewName": "v_yyh_mjzjcsqd",
+            "ViewText": "门(急)诊检查申请单",
+            "SetCode": "C0101.0305.01",
+            "Sql": "select * from v_yyh_mjzjcsqd where WS06_00_917_01>='{0}' and WS06_00_917_01<'{1}' and WS02_01_030_01 is not null and WS01_00_010_01 is not null and WS01_00_008_03 is not null and WS01_00_907_01 is not null",
+            "Use": "1"
+        },
+        {
+            "Index": "8",
+            "ViewName": "v_yyh_blgyhzjbxx",
+            "ViewText": "病历概要-患者基本信息",
+            "SetCode": "C0105.0599.01",
+            "Sql": "select * from v_yyh_blgyhzjbxx where WS06_00_062_01>='{0}' and WS06_00_062_01<'{1}' and WS02_01_039_001 is not null",
+            "Use": "0"
+        },
+        {
+            "Index": "9",
+            "ViewName": "v_yyh_yyywlrb",
+            "ViewText": "医院业务量日报",
+            "SetCode": "F0101.0102.01",
+            "Sql": "select * from v_yyh_yyywlrb where WS06_00_918_05>='{0}' and WS06_00_918_05<'{1}'",
+            "Use": "0"
+        },
+        {
+            "Index": "10",
+            "ViewName": "",
+            "ViewText": "医院业务收入日报",
+            "SetCode": "F0101.0102.02",
+            "Sql": "select * from v_yyh_yyywsrrb where WS06_00_918_05>='{0}' and WS06_00_918_05<'{1}'",
+            "Use": "0"
+        },
+        {
+            "Index": "11",
+            "ViewName": "v_yyh_mjzbljl",
+            "ViewText": "门(急)诊病历记录",
+            "SetCode": "C0101.0302.02",
+            "Sql": "select * from v_yyh_mjzbljl where WS06_00_062_01>='{0}' and WS06_00_062_01<'{1}' and WS02_01_030_01 is not null and WS01_00_010_01 is not null",
+            "Use": "0"
+        },
+        {
+            "Index": "12",
+            "ViewName": "v_yyh_mjzghdj",
+            "ViewText": "门(急)诊挂号登记",
+            "SetCode": "C0101.0201.01",
+            "Sql": "select * from v_yyh_mjzghdj where WS09_00_900_01>='{0}' and WS09_00_900_01<'{1}' and WS02_01_039_001 is not null and WS02_01_040_001 is not null and WS02_01_030_01 is not null and WS01_00_910_01 is not null and WS01_00_010_01 is not null and WS09_00_904_01 is not null and WS09_00_901_01 is not null and WS02_01_039_060 is not null",
+            "Use": "0"
+        },
+        {
+            "Index": "13",
+            "ViewName": "v_yyh_mjzzdjl",
+            "ViewText": "门(急)诊诊断记录",
+            "SetCode": "C0101.0401.01",
+            "Sql": "select * from v_yyh_mjzzdjl where WS05_01_058_01>='{0}' and WS05_01_058_01<'{1}' and WS01_00_010_01 is not null and WS05_01_080_01 is not null and WS02_01_906_01 is not null",
+            "Use": "0"
+        },
+        {
+            "Index": "14",
+            "ViewName": "",
+            "ViewText": "门(急)诊处方记录",
+            "SetCode": "C0101.0502.01",
+            "Sql": "select * from v_yyh_mjzcfjl where WS08_50_033_01>='{0}' and WS08_50_033_01<'{1}' and WS02_01_906_01 is not null and WS01_00_010_01 is not null and WS01_00_020_01 is not null and WS06_00_901_01 is not null and WS01_00_919_01 is not null",
+            "Use": "0"
+        },
+        {
+            "Index": "15",
+            "ViewName": "v_yyh_mjzcfmx",
+            "ViewText": "门(急)诊处方明细",
+            "SetCode": "C0101.0502.0101",
+            "Sql": "select * from v_yyh_mjzcfmx where WS08_50_033_01>='{0}' and WS08_50_033_01<'{1}' and WS02_01_906_01 is not null and WS01_00_010_01 is not null and WS01_00_020_01 is not null and WS99_99_903_08 is not null",
+            "Use": "0"
+        },
+        {
+            "Index": "16",
+            "ViewName": "v_yyh_zyryjl",
+            "ViewText": "住院入院记录",
+            "SetCode": "C0102.0301.01",
+            "Sql": "select * from v_yyh_zyryjl where WS09_00_053_01>='{0}' and WS09_00_053_01<'{1}' and WS01_00_014_01 is not null and WS02_01_030_01 is not null and WS06_00_092_01 is not null and WS01_00_008_01 is not null",
+            "Use": "0"
+        },
+        {
+            "Index": "17",
+            "ViewName": "v_yyh_zycyjl",
+            "ViewText": "住院出院记录",
+            "SetCode": "C0102.0601.05",
+            "Sql": "select * from v_yyh_zycyjl where WS06_00_017_01>='{0}' and WS06_00_017_01<'{1}' and WS02_01_030_01 is not null and WS01_00_014_01 is not null and WS01_00_004_01 is not null",
+            "Use": "0"
+        },
+        {
+            "Index": "18",
+            "ViewName": "v_yyh_zybasyfyxx",
+            "ViewText": "住院病案首页费用信息",
+            "SetCode": "C0103.0801.01",
+            "Sql": "select * from v_yyh_zybasyfyxx where WS06_00_913_01>='{0}' and WS06_00_913_01<'{1}' and WS02_01_030_01 is not null and WS01_00_014_01 is not null and WS01_00_004_01 is not null",
+            "Use": "0"
+        },
+        {
+            "Index": "19",
+            "ViewName": "v_yyh_zybasypgbg",
+            "ViewText": "住院病案首页评估报告",
+            "SetCode": "C0103.0601.01",
+            "Sql": "select * from v_yyh_zybasypgbg where WS06_00_913_01>='{0}' and WS06_00_913_01<'{1}' and WS01_00_014_01 is not null and WS01_00_004_01 is not null and WS02_01_030_01 is not null and WS06_00_092_01 is not null and WS06_00_017_01 is not null and WS09_00_120_01 is not null",
+            "Use": "0"
+        },
+        {
+            "Index": "20",
+            "ViewName": "v_yyh_zybasyssxx",
+            "ViewText": "住院病案首页手术信息",
+            "SetCode": "C0103.0303.01",
+            "Sql": "select * from v_yyh_zybasyssxx where WS06_00_913_01>='{0}' and WS06_00_913_01<'{1}' and WS02_01_030_01 is not null and WS01_00_014_01 is not null and WS01_00_004_01 is not null and WS01_00_901_01 is not null",
+            "Use": "1"
+        },
+        {
+            "Index": "21",
+            "ViewName": "v_yyh_zybasyzdxx",
+            "ViewText": "住院病案首页诊断信息",
+            "SetCode": "C0103.0401.01",
+            "Sql": "select * from v_yyh_zybasyzdxx where WS06_00_913_01>='{0}' and WS06_00_913_01<'{1}' and WS02_01_030_01 is not null and WS01_00_014_01 is not null and WS01_00_004_01 is not null and WS05_01_901_01 is not null and WS05_01_901_02 is not null and WS05_01_900_01 is not null and WS05_01_024_01 is not null",
+            "Use": "0"
+        },
+        {
+            "Index": "22",
+            "ViewName": "v_yyh_zycyxj",
+            "ViewText": "住院出院小结",
+            "SetCode": "C0102.0601.01",
+            "Sql": "select * from v_yyh_zycyxj where WS08_50_908_02>='{0}' and WS08_50_908_02<'{1}' and WS02_01_030_01 is not null and WS01_00_014_01 is not null and WS01_00_004_01 is not null",
+            "Use": "0"
+        },
+        {
+            "Index": "23",
+            "ViewName": "v_yyh_zyyzjl",
+            "ViewText": "住院医嘱记录",
+            "SetCode": "C0102.0512.01",
+            "Sql": "select * from v_yyh_zyyzjl where WS06_00_222_02>='{0}' and WS06_00_222_02<'{1}' and WS02_01_030_01 is not null and WS01_00_014_01 is not null and WS02_10_090_01 is not null and WS01_00_903_01 is not null and WS01_00_907_01 is not null",
+            "Use": "0"
+        },
+        {
+            "Index": "24",
+            "ViewName": "v_yyh_zyjysqd",
+            "ViewText": "住院检验申请单",
+            "SetCode": "C0102.0303.01",
+            "Sql": "select * from v_yyh_zyjysqd where WS06_00_917_01>='{0}' and WS06_00_917_01<'{1}' and WS02_01_030_01 is not null and WS01_00_014_01 is not null",
+            "Use": "1"
+        },
+        {
+            "Index": "25",
+            "ViewName": "v_yyh_zyjybg",
+            "ViewText": "住院检验报告",
+            "SetCode": "C0102.0303.02",
+            "Sql": "select * from v_yyh_zyjybg where WS06_00_927_01>='{0}' and WS06_00_927_01<'{1}' and WS02_01_030_01 is not null and WS01_00_014_01 is not null and WS01_00_018_01 is not null and WS06_00_925_01 is not null",
+            "Use": "1"
+        },
+        {
+            "Index": "26",
+            "ViewName": "v_yyh_zyjcsqd",
+            "ViewText": "住院检查申请单",
+            "SetCode": "C0102.0305.01",
+            "Sql": "select * from v_yyh_zyjcsqd where WS06_00_917_01>='{0}' and WS06_00_917_01<'{1}' and WS02_01_030_01 is not null and WS01_00_014_01 is not null and WS01_00_008_03 is not null and WS01_00_907_01 is not null",
+            "Use": "1"
+        },
+        {
+            "Index": "27",
+            "ViewName": "v_yyh_zyjcbg",
+            "ViewText": "住院检查报告",
+            "SetCode": "C0102.0305.02",
+            "Sql": "select * from v_yyh_zyjcbg where WS06_00_927_01>='{0}' and WS06_00_927_01<'{1}' and WS02_01_030_01 is not null and WS01_00_014_01 is not null and WS01_00_008_03 is not null and WS01_00_018_01 is not null and WS01_00_907_01 is not null and WS06_00_924_01 is not null and WS06_00_926_01 is not null",
+            "Use": "1"
+        },
+        {
+            "Index": "28",
+            "ViewName": "v_yyh_zyjycgbg",
+            "ViewText": "住院检验常规报告",
+            "SetCode": "C0102.0303.0201",
+            "Sql": "select * from v_yyh_zyjycgbg where WS06_00_926_01>='{0}' and WS06_00_926_01<'{1}' and WS02_01_030_01 is not null and WS01_00_014_01 is not null and WS01_00_018_01 is not null and WS01_00_907_01 is not null",
+            "Use": "1"
+        },
+        {
+            "Index": "29",
+            "ViewName": "v_yyh_zyjyxjbg",
+            "ViewText": "住院检验细菌报告",
+            "SetCode": "C0102.0303.0202",
+            "Sql": "select * from v_yyh_zyjyxjbg where WS06_00_926_01>='{0}' and WS06_00_926_01<'{1}' and WS02_01_030_01 is not null and WS01_00_014_01 is not null and WS01_00_018_01 is not null and WS01_00_907_01 is not null",
+            "Use": "0"
+        },
+        {
+            "Index": "30",
+            "ViewName": "v_yyh_zyjyymbg",
+            "ViewText": "住院检验药敏报告",
+            "SetCode": "C0102.0303.020201",
+            "Sql": "select * from v_yyh_zyjyymbg where WS99_99_013_06>='{0}' and WS99_99_013_06<'{1}' and WS02_01_030_01 is not null and WS01_00_018_01 is not null and WS01_00_907_01  is not null",
+            "Use": "0"
+        },
+        {
+            "Index": "31",
+            "ViewName": "v_yyh_mjzfyjs",
+            "ViewText": "门(急)诊费用结算",
+            "SetCode": "C0101.0801.01",
+            "Sql": "select * from v_yyh_mjzfyjs where WS07_00_912_01>='{0}' and WS07_00_912_01<'{1}' and WS02_01_906_01 is not null and WS01_00_010_01 is not null and WS01_00_008_01 is not null",
+            "Use": "0"
+        },
+        {
+            "Index": "32",
+            "ViewName": "v_yyh_mjzfymx",
+            "ViewText": "门(急)诊费用明细",
+            "SetCode": "C0101.0801.02",
+            "Sql": "select * from v_yyh_mjzfymx where WS07_00_911_01>='{0}' and WS07_00_911_01<'{1}' and WS02_01_906_01 is not null and WS01_00_010_01 is not null and WS01_00_936_02 is not null and WS01_00_907_01 is not null",
+            "Use": "0"
+        },
+        {
+            "Index": "33",
+            "ViewName": "v_yyh_mjzssjl",
+            "ViewText": "门(急)诊手术记录",
+            "SetCode": "C0101.0503.02",
+            "Sql": "select * from v_yyh_mjzssjl where WS06_00_095_01>='{0}' and WS06_00_095_01<'{1}' and WS02_01_906_01 is not null and WS01_00_010_01 is not null and WS01_00_008_03 is not null and WS01_00_901_01 is not null",
+            "Use": "0"
+        },
+        {
+            "Index": "34",
+            "ViewName": "v_yyh_zyfyjs",
+            "ViewText": "住院费用结算",
+            "SetCode": "C0102.0801.01",
+            "Sql": "select * from v_yyh_zyfyjs where WS07_00_912_01>='{0}' and WS07_00_912_01<'{1}' and WS02_01_030_01 is not null and WS01_00_014_01 is not null and WS01_00_008_01 is not null",
+            "Use": "0"
+        },
+        {
+            "Index": "35",
+            "ViewName": "v_yyh_zyfymx",
+            "ViewText": "住院费用明细",
+            "SetCode": "C0102.0801.02",
+            "Sql": "select * from v_yyh_zyfymx where WS07_00_911_01>='{0}' and WS07_00_911_01<'{1}' and WS02_01_030_01 is not null and WS01_00_014_01 is not null and WS01_00_936_02 is not null and WS01_00_907_01 is not null",
+            "Use": "0"
+        },
+        {
+            "Index": "36",
+            "ViewName": "v_yyh_zyhzjl",
+            "ViewText": "住院会诊记录",
+            "SetCode": "C0102.0601.02",
+            "Sql": "select * from v_yyh_zyhzjl where WS06_00_343_01>='{0}' and WS06_00_343_01<'{1}' and WS02_01_030_01 is not null and WS01_00_010_01 is not null and WS01_00_014_01 is not null and WS01_00_015_03 is not null",
+            "Use": "0"
+        },
+        {
+            "Index": "37",
+            "ViewName": "v_yyh_zyssjl",
+            "ViewText": "住院手术记录",
+            "SetCode": "C0102.0503.01",
+            "Sql": "select * from v_yyh_zyssjl where WS06_00_095_01>='{0}' and WS06_00_095_01<'{1}' and WS02_01_030_01 is not null and WS01_00_014_01 is not null and WS01_00_008_03 is not null and WS01_00_901_01 is not null",
+            "Use": "0"
+        },
+        {
+            "Index": "38",
+            "ViewName": "v_yyh_wzcgjl",
+            "ViewText": "物资采购记录",
+            "SetCode": "C0202.0102.03",
+            "Sql": "select * from v_yyh_wzcgjl where WS07_00_926_01>='{0}' and WS07_00_926_01<'{1}' and WS99_99_903_56 is not null",
+            "Use": "0"
+        },
+        {
+            "Index": "39",
+            "ViewName": "v_yyh_wzcgjlmx",
+            "ViewText": "物资采购明细记录",
+            "SetCode": "C0202.0102.0301",
+            "Sql": "select * from v_yyh_wzcgjlmx where WS07_00_926_01>='{0}' and WS07_00_926_01<'{1}' and WS99_00_930_07 is not null and WS99_99_903_56 is not null",
+            "Use": "0"
+        },
+        {
+            "Index": "40",
+            "ViewName": "v_yyh_ypcgjl",
+            "ViewText": "药品采购记录",
+            "SetCode": "C0202.0102.02",
+            "Sql": "select * from v_yyh_ypcgjl where WS07_00_926_01>='{0}' and WS07_00_926_01<'{1}' and WS99_99_903_56 is not null",
+            "Use": "0"
+        },
+        {
+            "Index": "41",
+            "ViewName": "v_yyh_ypcgrkjl",
+            "ViewText": "药品采购入库记录",
+            "SetCode": "C0202.0102.01",
+            "Sql": "select * from v_yyh_ypcgrkjl where WS99_99_013_28>='{0}' and WS99_99_013_28<'{1}' and WS99_99_903_55 is not null",
+            "Use": "0"
+        },
+        {
+            "Index": "42",
+            "ViewName": "v_yyh_ypcgxxjl",
+            "ViewText": "药品采购详细记录",
+            "SetCode": "C0202.0102.0201",
+            "Sql": "select * from v_yyh_ypcgxxjl where WS07_00_926_01>='{0}' and WS07_00_926_01<='{1}' and WS99_00_930_07 is not null and WS99_99_903_56 is not null",
+            "Use": "0"
+        },
+        {
+            "Index": "43",
+            "ViewName": "v_yyh_ypcgrkxxjl",
+            "ViewText": "药品采购入库记录详细记录",
+            "SetCode": "C0202.0102.0101",
+            "Sql": "select * from v_yyh_ypcgrkxxjl where WS99_99_013_28>='{0}' and WS99_99_013_28<='{1}' and WS99_00_930_07 is not null and WS99_99_903_55 is not null",
+            "Use": "0"
+        },
+        {
+            "Index": "44",
+            "ViewName": "v_yyh_gzrytjdj",
+            "ViewText": "公职人员体检登记",
+            "SetCode": "C0104.0202.01",
+            "Sql": "select * from v_yyh_gzrytjdj where WS09_00_052_01>='{0}' and WS09_00_052_01<'{1}' and WS06_00_961_02 is not null and WS99_99_903_58 is not null and WS02_01_030_01 is not null",
+            "Use": "0"
+        },
+        {
+            "Index": "45",
+            "ViewName": "v_yyh_yyjktjcgjc",
+            "ViewText": "医院健康体检常规检查",
+            "SetCode": "C0104.0302.11",
+            "Sql": "select * from v_yyh_yyjktjcgjc where WS04_10_905_01>='{0}' and WS04_10_905_01<'{1}' and WS01_00_018_01 is not null and WS01_00_008_01 is not null",
+            "Use": "0"
+        },
+        {
+            "Index": "46",
+            "ViewName": "v_yyh_yyjktjbgjl",
+            "ViewText": "医院健康体检报告记录",
+            "SetCode": "C0104.0601.11",
+            "Sql": "select * from v_yyh_yyjktjbgjl where WS06_00_926_01>='{0}' and WS06_00_926_01<'{1}' and WS02_01_030_01 is not null and WS01_00_018_01 is not null and WS01_00_008_01 is not null and WS04_10_905_01 is not null",
+            "Use": "0"
+        },
+        {
+            "Index": "47",
+            "ViewName": "",
+            "ViewText": "医院健康体检辅助检查",
+            "SetCode": "C0104.0305.11",
+            "Sql": "select * from v_yyh_yyjktjfzjc where WS04_10_905_01>='{0}' and WS04_10_905_01<'{1}' and WS01_00_008_01 is not null and WS01_00_018_01 is not null and WS01_00_907_01 is not null",
+            "Use": "0"
+        },
+        {
+            "Index": "48",
+            "ViewName": "",
+            "ViewText": "医院健康体检实验室检验",
+            "SetCode": "C0104.0303.11",
+            "Sql": "select * from v_yyh_yyjktjsysjy where WS06_00_927_01>='{0}' and WS06_00_927_01<'{1}' and WS01_00_008_01 is not null and WS01_00_018_01 is not null and WS04_10_905_01 is not null",
+            "Use": "0"
+        },
+        {
+            "Index": "49",
+            "ViewName": "",
+            "ViewText": "医院健康体检实验室检验常规报告",
+            "SetCode": "C0104.0303.1101",
+            "Sql": "select * from v_yyh_yyjktjsysjycgbg where WS04_10_905_01>='{0}' and WS04_10_905_01<'{1}' and WS01_00_008_01 is not null and WS01_00_018_01 is not null and WS01_00_907_01 is not null",
+            "Use": "0"
+        },
+        {
+            "Index": "50",
+            "ViewName": "",
+            "ViewText": "医院健康体检异常摘要信息",
+            "SetCode": "C0104.0511.11",
+            "Sql": "select * from v_yyh_yyjktjyczyxx where WS04_10_905_01>='{0}' and WS04_10_905_01<'{1}' and WS01_00_018_01 is not null and WS01_00_008_01 is not null and WS02_01_922_01 is not null",
+            "Use": "0"
+        },
+        {
+            "Index": "51",
+            "ViewName": "",
+            "ViewText": "住院病程记录首次病程记录",
+            "SetCode": "C0102.0515.02",
+            "Sql": "select * from v_yyh_zybcjlscbcjl where WS09_00_053_01>='{0}' and WS09_00_053_01<'{1}' and WS02_01_030_01 is not null and WS01_00_014_01 is not null and WS01_00_004_01 is not null",
+            "Use": "0"
+        },
+        {
+            "Index": "52",
+            "ViewName": "",
+            "ViewText": "住院病程记录日常病程记录",
+            "SetCode": "C0102.0515.04",
+            "Sql": "select * from v_yyh_zybcjlrcbcjl where WS09_00_053_01>='{0}' and WS09_00_053_01<'{1}' and WS02_01_030_01 is not null and WS01_00_014_01 is not null and WS01_00_004_01 is not null and WS06_00_092_01 is not null",
+            "Use": "0"
+        },
+        {
+            "Index": "53",
+            "ViewName": "v_yyh_zyzdjl",
+            "ViewText": "住院诊断记录",
+            "SetCode": "C0102.0401.01",
+            "Sql": "select * from v_yyh_zyzdjl where WS05_01_058_01>='{0}' and WS05_01_058_01<'{1}' and WS02_01_030_01 is not null and WS01_00_014_01 is not null and WS05_01_080_01 is not null",
+            "Use": "0"
+        },
+        {
+            "Index": "54",
+            "ViewName": "v_yyh_24xsnrcyjl",
+            "ViewText": "24小时内入出院记录",
+            "SetCode": "C0102.0301.02",
+            "Sql": "select * from v_yyh_24xsnrcyjl where WS06_00_017_01>='{0}' and WS06_00_017_01<'{1}' and WS02_01_030_01 is not null and WS01_00_014_01 is not null and WS01_00_004_01 is not null and WS06_00_092_01 is not null and WS06_00_017_01 is not null",
+            "Use": "0"
+        },
+        {
+            "Index": "55",
+            "ViewName": "v_yyh_zyzlyyjl",
+            "ViewText": "住院治疗用药记录",
+            "SetCode": "C0102.0503.0201",
+            "Sql": "select * from v_yyh_zyzlyyjl where WS06_00_095_02>='{0}' and WS06_00_095_02<'{1}' and WS02_01_030_01 is not null and WS01_00_014_01 is not null and WS01_00_008_03 is not null and WS99_99_903_37 is not null",
+            "Use": "0"
+        },
+        {
+            "Index": "56",
+            "ViewName": "v_yyh_zyzljl",
+            "ViewText": "住院治疗记录",
+            "SetCode": "C0102.0503.02",
+            "Sql": "select * from v_yyh_zyzljl where WS09_00_053_02>='{0}' and WS09_00_053_02<'{1}' and WS02_01_030_01 is not null and WS01_00_014_01 is not null and WS01_00_008_03 is not null",
+            "Use": "0"
+        },
+        {
+            "Index": "57",
+            "ViewName": "v_yyh_zyzljlmxjl",
+            "ViewText": "住院治疗记录明细记录",
+            "SetCode": "C0102.0503.0202",
+            "Sql": "select * from v_yyh_zyzljlmxjl where WS06_00_095_02>='{0}' and WS06_00_095_02<'{1}' and WS02_01_030_01 is not null and WS01_00_014_01 is not null and WS01_00_008_03 is not null and WS99_99_903_37 is not null",
+            "Use": "0"
+        },
+        {
+            "Index": "58",
+            "ViewName": "v_yyh_zyrcydj",
+            "ViewText": "住院入出院登记",
+            "SetCode": "C0102.0201.01",
+            "Sql": "select * from v_yyh_zyrcydj where WS06_00_017_01>='{0}' and WS06_00_017_01<'{1}' and WS02_01_030_01 is not null and WS02_01_005_01_01 is not null and WS01_00_014_01 is not null and WS06_00_092_01 is not null and WS99_00_930_07 is not null",
+            "Use": "0"
+        },
+        {
+            "Index": "59",
+            "ViewName": "",
+            "ViewText": "住院病程记录术前讨论",
+            "SetCode": "C0102.0515.09",
+            "Sql": "select * from v_yyh_zybcjlsqtl where WS06_00_275_00>='{0}' and WS06_00_275_00<'{1}' and WS02_01_030_01 is not null and WS01_00_014_01 is not null and WS01_00_004_01 is not null and WS01_00_008_03 is not null and WS99_99_903_28 is not null",
+            "Use": "0"
+        },
+        {
+            "Index": "60",
+            "ViewName": "",
+            "ViewText": "住院病程记录术前小结",
+            "SetCode": "C0102.0515.10",
+            "Sql": "select * from v_yyh_zybcjlsqxj where WS06_00_092_02>='{0}' and WS06_00_092_02<'{1}' and WS02_01_030_01 is not null and WS01_00_014_01 is not null and WS01_00_008_03 is not null and WS99_99_903_29 is not null",
+            "Use": "0"
+        },
+        {
+            "Index": "61",
+            "ViewName": "",
+            "ViewText": "住院病程记录术后首次病程记录",
+            "SetCode": "C0102.0515.11",
+            "Sql": "select * from v_yyh_zybcjlshscbcjl where WS09_00_053_01>='{0}' and WS09_00_053_01<'{1}' and WS02_01_030_01 is not null and WS01_00_014_01 is not null and WS01_00_004_01 is not null and WS01_00_008_03 is not null and WS99_99_903_27 is not null and WS99_99_903_24 is not null",
+            "Use": "0"
+        },
+        {
+            "Index": "62",
+            "ViewName": "",
+            "ViewText": "住院病程记录疑难病例讨论记录",
+            "SetCode": "C0102.0515.06",
+            "Sql": "select * from v_yyh_zybcjlynbltljl where WS06_00_275_00>='{0}' and WS06_00_275_00<'{1}' and WS02_01_030_01 is not null and WS99_99_903_32 is not null and WS01_00_014_01 is not null and WS01_00_004_01 is not null",
+            "Use": "0"
+        },
+        {
+            "Index": "63",
+            "ViewName": "",
+            "ViewText": "住院病程记录上级医师查房记录",
+            "SetCode": "C0102.0515.05",
+            "Sql": "select * from v_yyh_zybcjlsjyscfjl where WS06_00_189_01>='{0}' and WS06_00_189_01<'{1}' and WS02_01_030_01 is not null and WS01_00_014_01 is not null and WS01_00_004_01 is not null and WS99_99_903_23 is not null",
+            "Use": "0"
+        },
+        {
+            "Index": "64",
+            "ViewName": "",
+            "ViewText": "住院病程记录出院小结",
+            "SetCode": "C0102.0515.13",
+            "Sql": "select * from v_yyh_zybcjlcyxj where WS06_00_017_01>='{0}' and WS06_00_017_01<'{1}' and WS02_01_030_01 is not null and WS01_00_014_01 is not null and WS01_00_004_01 is not null and WS06_00_092_01 is not null and WS06_00_017_01 is not null and WS09_00_053_02 is not null",
+            "Use": "0"
+        },
+        {
+            "Index": "65",
+            "ViewName": "",
+            "ViewText": "门(急)诊体格检查",
+            "SetCode": "C0101.0302.01",
+            "Sql": "select * from v_yyh_mjztgjc where WS06_00_048_02>='{0}' and WS06_00_048_02<'{1}' and WS02_01_906_01 is not null and WS01_00_010_01 is not null and WS04_10_900_01 is not null and WS06_00_048_02 is not null",
+            "Use": "0"
+        },
+        {
+            "Index": "66",
+            "ViewName": "v_yyh_zzyjl",
+            "ViewText": "转诊(院)记录",
+            "SetCode": "C0105.0203.01",
+            "Sql": "select * from v_yyh_zzyjl where WS06_00_974_02>='{0}' and WS06_00_974_02<'{1}' and WS02_01_030_01 is not null and WS01_00_908_09 is not null and WS01_00_014_01 is not null",
+            "Use": "0"
+        },
+        {
+            "Index": "67",
+            "ViewName": "",
+            "ViewText": "住院一般护理记录",
+            "SetCode": "C0102.0513.01",
+            "Sql": "select * from v_yyh_zyybhljl where WS09_00_053_01>='{0}' and WS09_00_053_01<'{1}' and WS02_01_030_01 is not null and WS01_00_014_01 is not null and WS99_99_903_31 is not null and WS09_00_053_01 is not null",
+            "Use": "0"
+        },
+        {
+            "Index": "68",
+            "ViewName": "",
+            "ViewText": "住院手术麻醉",
+            "SetCode": "C0102.0504.01",
+            "Sql": "select * from v_yyh_zyssmz where WS06_00_095_03>='{0}' and WS06_00_095_03<'{1}' and WS02_01_030_01 is not null and WS01_00_014_01 is not null and WS01_00_908_14 is not null",
+            "Use": "0"
+        },
+        {
+            "Index": "69",
+            "ViewName": "",
+            "ViewText": "住院手术麻醉明细",
+            "SetCode": "C0102.0504.0101",
+            "Sql": "select * from v_yyh_zyssmzmx where WS06_00_095_03>='{0}' and WS06_00_095_03<'{1}' and WS01_00_014_01 is not null and WS01_00_908_14 is not null and WS99_99_903_13 is not null and WS02_01_030_01 is not null",
+            "Use": "0"
+        },
+        {
+            "Index": "70",
+            "ViewName": "",
+            "ViewText": "麻醉术前访视记录",
+            "SetCode": "C0102.0510.01",
+            "Sql": "select * from v_yyh_mzsqfsjl where WS09_00_053_08>='{0}' and WS09_00_053_08<'{1}' and WS02_01_030_01 is not null and WS01_00_008_03 is not null and WS99_99_903_15 is not null",
+            "Use": "0"
+        },
+        {
+            "Index": "71",
+            "ViewName": "",
+            "ViewText": "麻醉术后访视记录",
+            "SetCode": "C0102.0510.02",
+            "Sql": "select * from v_yyh_mzshfsjl where WS09_00_053_08>='{0}' and WS09_00_053_08<'{1}' and WS02_01_030_01 is not null and WS01_00_008_03 is not null and WS01_00_908_14 is not null and WS01_00_908_13 is not null and WS06_00_233_01 is not null and WS09_00_053_08 is not null",
+            "Use": "0"
+        },
+        {
+            "Index": "72",
+            "ViewName": "",
+            "ViewText": "住院生命体征记录",
+            "SetCode": "C0102.0513.02",
+            "Sql": "select * from v_yyh_zysmtzjl where WS09_00_053_01>='{0}' and WS09_00_053_01<'{1}' and WS02_01_030_01 is not null and WS01_00_014_01 is not null and WS99_99_903_13 is not null",
+            "Use": "0"
+        },
+        {
+            "Index": "73",
+            "ViewName": "",
+            "ViewText": "住院病程记录交接班记录",
+            "SetCode": "C0102.0515.07",
+            "Sql": "select * from v_yyh_zybcjljbjl where WS09_00_053_01>='{0}' and WS09_00_053_01<'{1}' and WS02_01_030_01 is not null and WS01_00_014_01 is not null and WS01_00_004_01 is not null and WS99_99_903_14 is not null and WS06_00_092_01 is not null and WS09_00_107_01 is not null and WS99_99_013_02 is not null and WS99_99_013_03 is not null and WS09_00_053_01 is not null",
+            "Use": "0"
+        },
+        {
+            "Index": "74",
+            "ViewName": "",
+            "ViewText": "住院病程记录抢救记录",
+            "SetCode": "C0102.0515.08",
+            "Sql": "select * from v_yyh_zybcjlcyxj where WS06_00_232_01>='{0}' and WS06_00_232_01<'{1}' and WS02_01_030_01 is not null and WS01_00_014_01 is not null and WS01_00_004_01 is not null and WS99_99_903_20 is not null and WS06_00_221_02 is not null and WS06_00_218_12 is not null",
+            "Use": "0"
+        },
+        {
+            "Index": "75",
+            "ViewName": "",
+            "ViewText": "住院病程记录死亡病例讨论记录",
+            "SetCode": "C0102.0515.12",
+            "Sql": "select * from v_yyh_zybcjlswbltljl where WS06_00_275_00>='{0}' and WS06_00_275_00<'{1}' and WS02_01_030_01 is not null and WS01_00_014_01 is not null and WS01_00_004_01 is not null and WS06_00_275_00 is not null and WS99_99_903_30 is not null and WS09_00_053_02 is not null",
+            "Use": "0"
+        },
+        {
+            "Index": "76",
+            "ViewName": "",
+            "ViewText": "住院病程记录阶段小结",
+            "SetCode": "C0102.0515.03",
+            "Sql": "select * from v_yyh_zybcjljdxj where WS06_00_092_02>='{0}' and WS06_00_092_02<'{1}' and WS02_01_030_01 is not null and WS01_00_014_01 is not null and WS01_00_004_01 is not null and WS01_00_908_11 is not null and WS06_00_092_01 is not null and WS06_00_092_02 is not null and WS09_00_053_02 is not null",
+            "Use": "0"
+        },
+        {
+            "Index": "77",
+            "ViewName": "",
+            "ViewText": "住院转科登记",
+            "SetCode": "C0102.0203.01",
+            "Sql": "select * from v_yyh_zyzkdj where WS06_00_316_01>='{0}' and WS06_00_316_01<'{1}' and WS02_01_030_01 is not null and WS01_00_014_01 is not null and WS01_00_909_01 is not null and WS06_00_092_01 is not null and WS06_00_313_01 is not null and WS06_00_316_01 is not null",
+            "Use": "0"
+        },
+        {
+            "Index": "78",
+            "ViewName": "",
+            "ViewText": "住院输血治疗记录",
+            "SetCode": "C0102.0509.01",
+            "Sql": "select * from v_yyh_zysxzljl where WS06_00_105_01>='{0}' and WS06_00_105_01<'{1}' and WS02_01_030_01 is not null and WS01_00_014_01 is not null and WS01_00_008_03 is not null and WS99_99_903_26 is not null and WS01_00_023_01 is not null and WS06_00_218_11 is not null and WS06_00_218_15 is not null and WS06_00_105_01 is not null",
+            "Use": "0"
+        },
+        {
+            "Index": "79",
+            "ViewName": "",
+            "ViewText": "入院评估",
+            "SetCode": "C0102.0601.03",
+            "Sql": "select * from v_yyh_rypg where WS05_10_144_01>='{0}' and WS05_10_144_01<'{1}' and WS02_01_030_01 is not null and WS99_99_903_22 is not null and WS01_00_014_01 is not null and WS01_00_004_01 is not null and WS06_00_092_01 is not null and WS05_10_144_01 is not null",
+            "Use": "0"
+        },
+        {
+            "Index": "80",
+            "ViewName": "",
+            "ViewText": "出入量记录",
+            "SetCode": "C0102.0513.05",
+            "Sql": "select * from v_yyh_crljl where WS09_00_053_01>='{0}' and WS09_00_053_01<'{1}' and WS02_01_030_01 is not null and WS01_00_014_01 is not null and WS99_99_903_05 is not null and WS09_00_053_01 is not null and WS99_99_903_06 is not null and WS09_00_053_02 is not null",
+            "Use": "0"
+        },
+        {
+            "Index": "81",
+            "ViewName": "",
+            "ViewText": "出院评估和指导",
+            "SetCode": "C0102.0601.04",
+            "Sql": "select * from v_yyh_cypgyzd where WS06_00_925_01>='{0}' and WS06_00_925_01<'{1}' and WS02_01_030_01 is not null and WS99_99_903_07 is not null and WS01_00_014_01 is not null and WS01_00_004_01 is not null and WS06_00_017_01 is not null and WS09_00_053_10 is not null",
+            "Use": "0"
+        },
+        {
+            "Index": "82",
+            "ViewName": "",
+            "ViewText": "24小时内入院死亡记录",
+            "SetCode": "C0302.0601.03",
+            "Sql": "select * from v_yyh_24xsnryswjl where WS09_00_053_01>='{0}' and WS09_00_053_01<'{1}' and WS01_00_014_01 is not null and WS01_00_004_01 is not null and WS02_01_030_01 is not null and WS09_00_053_01 is not null and WS01_00_008_01 is not null",
+            "Use": "0"
+        },
+        {
+            "Index": "83",
+            "ViewName": "",
+            "ViewText": "高值耗材",
+            "SetCode": "C0301.0514.01",
+            "Sql": "select * from v_yyh_gzhc where WS09_00_053_01>='{0}' and WS09_00_053_01<'{1}' and WS02_01_030_01 is not null and WS01_00_014_01 is not null and WS99_99_903_10 is not null and WS09_00_053_01 is not null and WS08_50_055_01 is not null",
+            "Use": "0"
+        },
+        {
+            "Index": "84",
+            "ViewName": "",
+            "ViewText": "体检收入日报",
+            "SetCode": "F0101.0102.03",
+            "Sql": "select * from v_yyh_tjsrrb where WS04_10_905_01>='{0}' and WS04_10_905_01<'{1}' and WS99_99_241_48 is not null and WS99_99_241_49 is not null and WS04_10_905_01 is not null and WS06_00_966_01 is not null",
+            "Use": "0"
+        },
+        {
+            "Index": "85",
+            "ViewName": "",
+            "ViewText": "分娩记录",
+            "SetCode": "B0205.0508.01",
+            "Sql": "select * from v_yyh_fmjl where WS02_10_013_01>='{0}' and WS02_10_013_01<'{1}' and WS02_01_030_01 is not null and WS01_00_008_06 is not null and WS01_00_014_01 is not null and WS99_99_903_43 is not null and WS06_00_092_01 is not null and WS02_10_013_01 is not null and WS06_00_273_01 is not null and WS09_00_053_02 is not null",
+            "Use": "0"
+        },
+        {
+            "Index": "86",
+            "ViewName": "",
+            "ViewText": "剖宫产记录",
+            "SetCode": "B0205.0508.05",
+            "Sql": "select * from v_yyh_pgcjl where WS06_00_095_01>='{0}' and WS06_00_095_01<'{1}' and WS02_01_030_01 is not null and WS01_00_014_01 is not null and WS99_99_903_43 is not null and WS01_00_026_01 is not null and WS06_00_095_01 is not null and WS06_00_221_01 is not null and WS06_00_907_01 is not null",
+            "Use": "0"
+        },
+        {
+            "Index": "87",
+            "ViewName": "",
+            "ViewText": "待产记录",
+            "SetCode": "B0205.0508.04",
+            "Sql": "select * from v_yyh_dcjl where WS06_00_197_01>='{0}' and WS06_00_197_01<'{1}' and WS02_01_030_01 is not null and WS01_00_014_01 is not null and WS99_99_903_09 is not null and WS06_00_197_01 is not null",
+            "Use": "0"
+        },
+        {
+            "Index": "88",
+            "ViewName": "",
+            "ViewText": "急诊留观病历",
+            "SetCode": "C0101.0301.01",
+            "Sql": "select * from v_yyh_jzlgbl where WS09_00_053_01>='{0}' and WS09_00_053_01<'{1}' and WS02_01_030_01 is not null and WS01_00_008_01 is not null and WS01_00_010_01 is not null and WS06_00_235_01 is not null and WS09_00_053_01 is not null and WS06_00_062_01 is not null",
+            "Use": "0"
+        },
+        {
+            "Index": "89",
+            "ViewName": "",
+            "ViewText": "手术护理记录",
+            "SetCode": "C0102.0503.03",
+            "Sql": "select * from v_yyh_sshljl where WS09_00_053_02>='{0}' and WS09_00_053_02<'{1}' and WS02_01_906_01 is not null and WS01_00_901_01 is not null and WS01_00_908_12 is not null and WS06_00_256_01 is not null and WS06_00_095_01 is not null and WS09_00_107_01 is not null and WS09_00_053_02 is not null",
+            "Use": "0"
+        },
+        {
+            "Index": "90",
+            "ViewName": "",
+            "ViewText": "其他知情告知同意书",
+            "SetCode": "C0102.0599.01",
+            "Sql": "select * from v_yyh_qtzqgztys where WS09_00_053_07>='{0}' and WS09_00_053_07<'{1}' and WS02_01_030_01 is not null and WS99_99_903_19 is not null and WS09_00_118_01 is not null and WS09_00_118_02 is not null and WS09_00_053_07 is not null",
+            "Use": "0"
+        },
+        {
+            "Index": "91",
+            "ViewName": "",
+            "ViewText": "手术知情同意书",
+            "SetCode": "C0102.0503.04",
+            "Sql": "select * from v_yyh_qtzqgztys where WS09_00_053_02>='{0}' and WS09_00_053_02<'{1}' and WS02_01_030_01 is not null and WS99_99_903_25 is not null and WS09_00_118_01 is not null and WS09_00_118_02 is not null and WS09_00_053_05 is not null and WS09_00_053_07 is not null and WS09_00_053_02 is not null",
+            "Use": "0"
+        },
+        {
+            "Index": "92",
+            "ViewName": "",
+            "ViewText": "特殊检查及特殊治疗同意书",
+            "SetCode": "C0102.0599.02",
+            "Sql": "select * from v_yyh_tsjcjtszltys where WS09_00_053_02>='{0}' and WS09_00_053_02<'{1}' and WS02_01_030_01 is not null and WS09_00_118_01 is not null and WS09_00_118_02 is not null and WS09_00_053_02 is not null",
+            "Use": "0"
+        },
+        {
+            "Index": "93",
+            "ViewName": "",
+            "ViewText": "输血治疗同意书",
+            "SetCode": "C0102.0509.02",
+            "Sql": "select * from v_yyh_sxzltys where WS09_00_053_07>='{0}' and WS09_00_053_07<'{1}' and WS02_01_030_01 is not null and WS99_00_930_07 is not null and WS09_00_118_01 is not null and WS09_00_118_02 is not null and WS09_00_053_07 is not null",
+            "Use": "0"
+        },
+        {
+            "Index": "94",
+            "ViewName": "",
+            "ViewText": "病危（重）通知书",
+            "SetCode": "C0102.0513.06",
+            "Sql": "select * from v_yyh_bwtzs where WS09_00_053_06>='{0}' and WS09_00_053_06<'{1}' and WS02_01_030_01 is not null and WS99_99_903_04 is not null and WS09_00_118_01 is not null and WS09_00_053_06 is not null and WS09_00_053_07 is not null",
+            "Use": "0"
+        },
+        {
+            "Index": "95",
+            "ViewName": "",
+            "ViewText": "麻醉知情同意书",
+            "SetCode": "C0102.0503.05",
+            "Sql": "select * from v_yyh_mzzqtys where WS09_00_053_05>='{0}' and WS09_00_053_05<'{1}' and WS02_01_030_01 is not null and WS99_99_903_17 is not null and WS09_00_118_01 is not null and WS09_00_053_05 is not null and WS09_00_053_08 is not null",
+            "Use": "0"
+        },
+        {
+            "Index": "96",
+            "ViewName": "",
+            "ViewText": "护理计划",
+            "SetCode": "C0102.0513.04",
+            "Sql": "select * from v_yyh_hljh where WS09_00_053_02>='{0}' and WS09_00_053_02<'{1}' and WS02_01_030_01 is not null and WS01_00_014_01 is not null and WS01_00_908_10 is not null and WS01_00_004_01 is not null and WS09_00_053_02 is not null",
+            "Use": "0"
+        },
+        {
+            "Index": "97",
+            "ViewName": "",
+            "ViewText": "死亡记录",
+            "SetCode": "C0302.0601.02",
+            "Sql": "select * from v_yyh_swjl where WS09_00_053_13>='{0}' and WS09_00_053_13<'{1}' and WS02_01_030_01 is not null and WS01_00_014_01 is not null and WS99_99_903_38 is not null and WS06_00_092_01 is not null and WS02_01_036_01 is not null",
+            "Use": "0"
+        },
+        {
+            "Index": "98",
+            "ViewName": "",
+            "ViewText": "病历概要-卫生事件摘要",
+            "SetCode": "C0105.0599.03",
+            "Sql": "select * from v_yyh_blgywssjzy where WS06_00_062_01>='{0}' and WS06_00_062_01<'{1}' and WS02_01_906_01 is not null and WS01_00_008_01 is not null and WS06_00_062_01 is not null",
+            "Use": "0"
+        },
+        {
+            "Index": "99",
+            "ViewName": "",
+            "ViewText": "病历概要-基本健康信息",
+            "SetCode": "C0105.0599.02",
+            "Sql": "select * from v_yyh_blgyjbjkxx where WS06_00_062_01>='{0}' and WS06_00_062_01<'{1}' and WS02_01_030_01 is not null and WS01_00_008_01 is not null and WS06_00_062_01 is not null",
+            "Use": "0"
+        },
+        {
+            "Index": "100",
+            "ViewName": "",
+            "ViewText": "病重（病危）护理记录",
+            "SetCode": "C0102.0513.03",
+            "Sql": "select * from v_yyh_bzhljl where WS09_00_053_10>='{0}' and WS09_00_053_10<'{1}' and WS02_01_030_01 is not null and WS01_00_014_01 is not null and WS99_99_903_03 is not null and WS09_00_053_10 is not null",
+            "Use": "0"
+        }
+    ]
+
+}

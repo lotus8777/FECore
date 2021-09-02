@@ -1,0 +1,138 @@
+﻿@model IList<DoctorDrug>
+@{
+  ViewBag.Title = "进口药品使用监控";
+}
+@using (Html.BeginForm(null, null, FormMethod.Post))
+{
+  @Html.AntiForgeryToken()
+    <fieldset>
+        <legend>选择条件</legend>
+
+        <div class="form-group mb-2 row">
+            <div class="col-2">
+                @Html.TextBox("begin", null, new { onfocus = "WdatePicker({isShowClear:false,readOnly:true,isShowOK:false})", @class = "form-control", style = "min-width:110px;" })
+            </div>
+            <div class="col-2">
+                @Html.TextBox("end", null, new { onfocus = "WdatePicker({isShowClear:false,readOnly:true,isShowOK:false})", @class = "form-control", style = "min-width:110px;" })
+            </div>
+            <div class="col-2">
+                <button class="btn btn-dark d-print-none">
+                    <span class="fa fa-search">查询</span>
+                </button>
+            </div>
+        </div>
+    </fieldset>
+    <br/>
+}
+<table class="table table-sm table-bordered text-center table-striped">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>医生</th>
+      <th>药品总额</th>
+      <th>进口总额</th>
+      <th>总占比</th>
+      <th>住院药品</th>
+      <th>住院进口</th>
+      <th>住院占比</th>
+      <th>门诊总额</th>
+      <th>门诊进口</th>
+      <th>门诊占比</th>
+    </tr>
+  </thead>
+  <tbody>
+    @{
+      if (Model?.Count() > 0)
+      {
+        var total = Model.Sum(p => p.TotalAmount);
+        var keyTotal = Model.Where(p => p.IsKeyDrug).Sum(p => p.TotalAmount);
+        var inTotal = Model.Where(p => p.DepartmentType == 1).Sum(p => p.TotalAmount);
+        var inKeyTotal = Model.Where(p => p.DepartmentType == 1 && p.IsKeyDrug).Sum(p => p.TotalAmount);
+        var outTotal = Model.Where(p => p.DepartmentType == 2).Sum(p => p.TotalAmount);
+        var outKeyTotal = Model.Where(p => p.DepartmentType == 2 && p.IsKeyDrug).Sum(p => p.TotalAmount);
+        var i = 1;
+        var doctor = Model?.Select(p => p.DoctorName).Distinct().ToList();
+        if (doctor.Any())
+        {
+          foreach (var item in doctor)
+          {
+            var inHospitalTotal = Model.Where(p => p.DoctorName == item && p.DepartmentType == 1).Sum(p => p.TotalAmount);
+            var outHospitalTotal = Model.Where(p => p.DoctorName == item && p.DepartmentType == 2).Sum(p => p.TotalAmount);
+            var inHospitalkey = Model.Where(p => p.DoctorName == item && p.DepartmentType == 1 && p.IsKeyDrug).Sum(p => p.TotalAmount);
+            var outHospitalkey = Model.Where(p => p.DoctorName == item && p.DepartmentType == 2 && p.IsKeyDrug).Sum(p => p.TotalAmount);
+            var doctorTotal = Model.Where(p => p.DoctorName == item).Sum(p => p.TotalAmount);
+            var doctorKeyTotal = Model.Where(p => p.DoctorName == item && p.IsKeyDrug).Sum(p => p.TotalAmount);
+            <tr>
+              <td>@i </td>
+              <td>@item </td>
+              <td>@doctorTotal </td>
+              <td>@doctorKeyTotal </td>
+              @if (doctorTotal == 0)
+              {
+                <td>0%</td>
+              }
+              else
+              {
+                <td>@((doctorKeyTotal / doctorTotal).ToString("p")) </td>
+              }
+              <td>@inHospitalTotal </td>
+              <td>@inHospitalkey </td>
+              @if (inHospitalTotal == 0)
+              {
+                <td>0%</td>
+              }
+              else
+              {
+                <td>@((inHospitalkey / inHospitalTotal).ToString("p"))</td>
+              }
+              <td>@outHospitalTotal </td>
+              <td>@outHospitalkey </td>
+              @if (outHospitalTotal == 0)
+              {
+                <td>0%</td>
+              }
+              else
+              {
+                <td>@((outHospitalkey / outHospitalTotal).ToString("p"))</td>
+              }
+            </tr>
+            i++;
+          }
+        }
+        <tr>
+          <td colspan="2">总计 </td>
+          <td>@total </td>
+          <td>@keyTotal </td>
+          @if (total == 0)
+          {
+            <td>0%</td>
+          }
+          else
+          {
+            <td>@((keyTotal / total).ToString("p"))</td>
+          }
+          <td>@inTotal </td>
+          <td>@inKeyTotal </td>
+          @if (inTotal == 0)
+          {
+            <td>0%</td>
+          }
+          else
+          {
+            <td>@((inKeyTotal / inTotal).ToString("p"))</td>
+          }
+          <td>@outTotal </td>
+          <td>@outKeyTotal </td>
+          @if (outTotal == 0)
+          {
+            <td>0%</td>
+          }
+          else
+          {
+            <td>@((outKeyTotal / outTotal).ToString("p"))</td>
+          }
+        </tr>
+      }
+    }
+  </tbody>
+</table>

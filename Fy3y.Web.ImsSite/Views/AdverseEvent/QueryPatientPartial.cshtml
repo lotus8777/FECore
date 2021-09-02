@@ -1,0 +1,36 @@
+﻿
+<fieldset class="text-center">
+  <legend>查找病人</legend>
+  <div class="form-group row">
+    <div style="width:110px;margin-left:40px;">
+      <select class="custom-select" name="medicalType">
+        <option value="0">住院号码</option>
+        <option value="1">门诊号码</option>
+      </select>
+    </div>
+
+    <div style="width:120px;margin-left:10px;">
+      <input type="text" name="medical" class="form-control" />
+    </div>
+    <div class="col-2 text-left">
+      <input type="button" value="查找" id="btnSelect" class="btn btn-primary" />
+    </div>
+  </div>
+  <br />
+</fieldset>
+<script type="text/javascript">
+  $("#btnSelect").click(function () {
+    var medicalNo = $("input[name='medical']").val();
+    var medicalType = $("select[name='medicalType']").val();
+    var token = '@Html.AntiForgeryToken()';
+    token = $(token).val();
+    getPatientInfo(medicalNo, medicalType, token);
+    var length = $("fieldset#drugs").length;
+    if (length > 0)
+    {
+      getPatientDrugs(medicalNo, medicalType, token);
+    }
+  });
+
+
+</script>

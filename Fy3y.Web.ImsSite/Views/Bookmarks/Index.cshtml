@@ -1,0 +1,41 @@
+﻿@model IEnumerable<Fy3y.Das.Bookmarks>
+
+@{
+  ViewBag.Title = "收藏链接";
+}
+<p>
+  <a href="@Url.Action("Create")" class="btn btn-default"><i class="fa fa-plus">创建</i></a>
+</p>
+<table class="table table-sm table-bordered table-striped text-center">
+  <thead>
+    <tr>
+      <th># </th>
+      <th>链接名称</th>
+      <th>链接地址 </th>
+      <th>登录账户 </th>
+      <th>登录密码 </th>
+      <th>操作</th>
+    </tr>
+  </thead>
+
+  @{
+    int i = 1;
+    foreach (var item in Model)
+    {
+      <tr>
+        <td>@i</td>
+        <td>
+          <a href="@item.LinkUrl">@item.Title</a>
+        </td>
+        <td class="text-left">@Html.DisplayFor(modelItem => item.LinkUrl) </td>
+        <td>@item.Account </td>
+        <td>@item.Password</td>
+        <td>
+          <a href="@Url.Action("Edit",new { id=item.LinkId})"><i class="fa fa-edit"></i></a>
+        </td>
+      </tr>
+      i++;
+    }
+  }
+
+</table>

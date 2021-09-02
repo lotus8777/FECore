@@ -1,0 +1,160 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.props" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{65F9E1E0-095E-4AEB-BE9F-741640C6CC6A}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Fy3y.Model.PortalHis</RootNamespace>
+    <AssemblyName>Fy3y.Model.PortalHis</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <LangVersion>latest</LangVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <LangVersion>latest</LangVersion>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Bk_Dmzd.cs" />
+    <Compile Include="Bk_Jsb.cs" />
+    <Compile Include="BOC_JSJL.cs" />
+    <Compile Include="BQ_HSDA.cs" />
+    <Compile Include="EMR_JCBG.cs" />
+    <Compile Include="EMR_JCBG_HR.cs" />
+    <Compile Include="EMR_JCBW.cs" />
+    <Compile Include="EMR_JCSQ.cs" />
+    <Compile Include="EMR_JCSQ_HR.cs" />
+    <Compile Include="EMR_JCXM.cs" />
+    <Compile Include="EMR_JCZX.cs" />
+    <Compile Include="EMR_WH_JSYLQX.cs" />
+    <Compile Include="EMR_WH_YLQXYP.cs" />
+    <Compile Include="EMR_WH_YSKSQX.cs" />
+    <Compile Include="EMR_WH_YSXZQX.cs" />
+    <Compile Include="EMR_WH_ZLXZ.cs" />
+    <Compile Include="GY_BRXZ.cs" />
+    <Compile Include="GY_DMZD.cs" />
+    <Compile Include="GY_IDENTITY_MS.cs" />
+    <Compile Include="GY_JBBM.cs" />
+    <Compile Include="GY_KSDM.cs" />
+    <Compile Include="GY_KSWK.cs" />
+    <Compile Include="GY_QXKZ.cs" />
+    <Compile Include="GY_SFXM.cs" />
+    <Compile Include="GY_SYPC.cs" />
+    <Compile Include="Gy_Xxry.cs" />
+    <Compile Include="GY_YGDM.cs" />
+    <Compile Include="GY_YLML.cs" />
+    <Compile Include="GY_YLMX.cs" />
+    <Compile Include="gy_ylsf.cs" />
+    <Compile Include="GY_YLSF_t.cs" />
+    <Compile Include="GY_ZFBL.cs" />
+    <Compile Include="HZYB_DMZD.cs" />
+    <Compile Include="HZYB_JSJL.cs" />
+    <Compile Include="HZYB_KA63.cs" />
+    <Compile Include="HZYB_QDJL.cs" />
+    <Compile Include="MS_BRDA.cs" />
+    <Compile Include="MS_BRZH.cs" />
+    <Compile Include="MS_CF01.cs" />
+    <Compile Include="MS_CF02.cs" />
+    <Compile Include="MS_FKXX.cs" />
+    <Compile Include="MS_FSDYYB.cs" />
+    <Compile Include="MS_GHKS.cs" />
+    <Compile Include="MS_GHMX.cs" />
+    <Compile Include="MS_KSPB.cs" />
+    <Compile Include="MS_MZMX.cs" />
+    <Compile Include="MS_MZXX.cs" />
+    <Compile Include="MS_SFMX.cs" />
+    <Compile Include="MS_THMX.cs" />
+    <Compile Include="Ms_Xxjm.cs" />
+    <Compile Include="MS_YGPJ.cs" />
+    <Compile Include="MS_YJ01.cs" />
+    <Compile Include="MS_YJ02.cs" />
+    <Compile Include="MS_YSDL.cs" />
+    <Compile Include="MS_YSPB.cs" />
+    <Compile Include="MS_YYGH.cs" />
+    <Compile Include="MZYY_GHXX.cs" />
+    <Compile Include="MZYY_YYXX.cs" />
+    <Compile Include="OMR_BL01.cs" />
+    <Compile Include="OMR_BLZY.cs" />
+    <Compile Include="PAY_DMZD.cs" />
+    <Compile Include="PAY_FKJL.cs" />
+    <Compile Include="pay_fkrz.cs" />
+    <Compile Include="PAY_JSJL.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="PT_LISPATIENTINFO.cs" />
+    <Compile Include="PT_LISRESULT.cs" />
+    <Compile Include="WXYKT_DMZD.cs" />
+    <Compile Include="WXYKT_JSJL.cs" />
+    <Compile Include="YB_FYDZ.cs" />
+    <Compile Include="YB_YPDZ.cs" />
+    <Compile Include="YB_YPDZ_NEW.cs" />
+    <Compile Include="YK_CDDZ.cs" />
+    <Compile Include="YK_TYPK.cs" />
+    <Compile Include="YK_YPCD.cs" />
+    <Compile Include="YK_YPML.cs" />
+    <Compile Include="YK_YPSX.cs" />
+    <Compile Include="YS_MZ_JBZD.cs" />
+    <Compile Include="YS_MZ_JZLS.cs" />
+    <Compile Include="YS_ZY_JBZD.cs" />
+    <Compile Include="YS_ZY_JZJL.cs" />
+    <Compile Include="ZY_BQYZ.cs" />
+    <Compile Include="ZY_BRDA.cs" />
+    <Compile Include="ZY_BRRY.cs" />
+    <Compile Include="ZY_CWSZ.cs" />
+    <Compile Include="ZY_FYMX.cs" />
+    <Compile Include="ZY_FYMX_JS.cs" />
+    <Compile Include="ZY_JSMX.cs" />
+    <Compile Include="ZY_RYZD.cs" />
+    <Compile Include="ZY_TBKK.cs" />
+    <Compile Include="ZY_YPYF.cs" />
+    <Compile Include="ZY_ZKJL.cs" />
+    <Compile Include="ZY_ZYJS.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>这台计算机上缺少此项目引用的 NuGet 程序包。使用“NuGet 程序包还原”可下载这些程序包。有关更多信息，请参见 http://go.microsoft.com/fwlink/?LinkID=322105。缺少的文件是 {0}。</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.props'))" />
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.targets'))" />
+  </Target>
+  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.targets" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" />
+</Project>

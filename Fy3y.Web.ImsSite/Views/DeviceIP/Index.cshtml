@@ -1,0 +1,67 @@
+﻿@model IList<Fy3y.Model.Das.DeviceIp>
+@{
+  ViewBag.Title = "IP地址列表";
+  Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+    <div class="form-row mb-2">
+        <div class="col-2">
+            <a class="btn btn-success" href="@Url.Action("Create")">
+                <i class="fa fa-plus">添加</i>
+            </a>
+        </div>
+    </div>
+
+<hr/>
+<div class="text-center">
+    <table class="table table-sm table-bordered table-hover table-striped" id="table1">
+        <thead>
+        <tr>
+            <th>#</th>
+            <th>所在科室</th>
+            <th>设备类型</th>
+            <th>设备名称</th>
+            <th>IP地址</th>
+            <th>备注</th>
+            <th class="d-print-none">编辑</th>
+        </tr>
+        </thead>
+        <tbody>
+        @if (Model?.Count() > 0)
+        {
+            var i = 0;
+            foreach (var item in Model)
+            {
+                i++;
+                <tr>
+                    <td>@i </td>
+                    <td>@item.DepartmentName </td>
+                    <td>@item.ClassName </td>
+                    <td>@item.DeviceName </td>
+                    <td>@item.IpAddress.ToString() </td>
+                    <td class="text-left">@item.Description </td>
+                    <td class="d-print-none">
+                        <div>
+                            <a href="@Url.Action("Edit",new{id=item.UniqueId})" title="编辑">
+                                <i class="fa fa-edit"></i>
+                            </a>
+                            <a href="javascript:void(0)" onclick="remove('@Url.Action("Delete",new {id=item.UniqueId})')" title="删除">
+                                <i class="fa fa-trash"></i>
+                            </a>
+                        </div>
+                    </td>
+                </tr>
+            }
+        }
+        </tbody>
+    </table>
+</div>
+    
+<script type="text/javascript">
+    jqueryDataTable();
+
+    $("select[name='table1_length']").change(function() {
+        setParentFrameHeight();
+    });
+</script>

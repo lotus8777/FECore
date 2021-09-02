@@ -1,0 +1,46 @@
+﻿@model IList<Fy3y.Model.Das.NonDrugFee>
+
+@{
+    ViewBag.Title = "非药品费用统计";
+    var i = 0;
+}
+@Html.Partial("BeginEndFormPartial")
+<table class="table table-sm table-bordered text-center table-striped">
+    <tr>
+        <th>#</th>
+        <th>费用序号</th>
+        <th>费用名称</th>
+        @*<th>住院数量</th>*@
+        <th>费用数量</th>
+        @*<th>住院金额</th>*@
+        <th>费用总额 </th>
+        <th>差价</th>
+        @*<th>住院差额</th>*@
+        <th>总差额</th>
+        <th>分类1</th>
+        <th>分类2</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        i++;
+        <tr>
+            <td>@i </td>
+            <td>@item.FeeNo </td>
+
+            <td>@Html.DisplayFor(modelItem => item.FeeName) </td>
+            @*<td>@item.InPatientCount </td>*@
+            <td>@Html.DisplayFor(modelItem => item.TotalCount) </td>
+            @*<td>@item.InFee </td>*@
+            <td>@Html.DisplayFor(modelItem => item.TotalFee) </td>
+            <td>@item.Spread </td>
+            @*<td>@(item.InPatientCount*item.Spread)</td>*@
+            <td>@(item.Spread * item.TotalCount)</td>
+            <td>@item.FeeClass </td>
+            <td>@item.FeeType </td>
+        </tr>
+    }
+</table>
+
+<div class="text-center">
+    <a href="@Url.Action("NonDrugFee")" class="btn btn-link">返回</a>
+</div>

@@ -1,0 +1,102 @@
+﻿@model SecurityReportStatistics
+@{
+  ViewBag.Title = "医疗安全周报表";
+  Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style type="text/css">
+  body {
+    height: 1300px;
+  }
+
+  table {
+    width: 95%;
+  }
+
+  td {
+    font-size: 20px;
+    height: 30px;
+  }
+
+  .left {
+    border: none;
+    text-align: left;
+  }
+
+  .right {
+    border: none;
+    text-align: right;
+  }
+
+  .leftRight {
+    border: none;
+  }
+
+  .table th, .table td {
+    vertical-align: top !important;
+  }
+</style>
+<br />
+<br />
+<div>
+  <table>
+    <tr>
+      <td>上报时间：@Model.Begin.ToShortDateString() 至 @Model.End.ToShortDateString() </td>
+      <td>上报单位：杭州市富阳区第三人民医院 </td>
+    </tr>
+  </table>
+  <table class="table table-sm table-bordered text-center table-striped">
+    <tr>
+      <td>报告项目 </td>
+      <td>上报人数 </td>
+      <td>报告项目 </td>
+      <td>上报人数 </td>
+      <td>报告项目 </td>
+      <td>上报人数 </td>
+    </tr>
+    <tr>
+      <td>@Html.DisplayNameFor(model => model.Criticality)</td>
+      <td>@Html.DisplayFor(model => model.Criticality)</td>
+      <td>@Html.DisplayNameFor(model => model.Infection)</td>
+      <td>@Html.DisplayFor(model => model.Infection)</td>
+      <td>@Html.DisplayNameFor(model => model.Undiagnosed)</td>
+      <td>@Html.DisplayFor(model => model.Undiagnosed)</td>
+    </tr>
+    <tr>
+      <td>@Html.DisplayNameFor(model => model.Death)</td>
+      <td>@Html.DisplayFor(model => model.Death)</td>
+      <td>@Html.DisplayNameFor(model => model.DrugAccident)</td>
+      <td>@Html.DisplayFor(model => model.DrugAccident)</td>
+      <td>@Html.DisplayNameFor(model => model.Harmful)</td>
+      <td>@Html.DisplayFor(model => model.Harmful)</td>
+    </tr>
+    <tr>
+      <td>@Html.DisplayNameFor(model => model.Complications)</td>
+      <td>@Html.DisplayFor(model => model.Complications)</td>
+      <td>@Html.DisplayNameFor(model => model.Complaint)</td>
+      <td>@Html.DisplayFor(model => model.Complaint)</td>
+      <td>@Html.DisplayNameFor(model => model.Others)</td>
+      <td>@Html.DisplayFor(model => model.Others)</td>
+    </tr>
+    <tr>
+      <td colspan="6" style="height: 960px; text-align: left; vertical-align: top;">
+        @Html.DisplayNameFor(model => model.Disposal):
+        <br />
+        <div>
+          @if (Model?.Disposal.Count > 0)
+          {
+            foreach (var item in Model.Disposal)
+            {
+              <p>@item</p>
+            }
+          }
+        </div>
+      </td>
+    </tr>
+  </table>
+  <table class="leftRight">
+    <tr>
+      <td>报告人：许红燕 </td>
+      <td>审核人：姚庚华 </td>
+    </tr>
+  </table>
+</div>

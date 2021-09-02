@@ -1,0 +1,56 @@
+﻿
+@using Fy3y.Model.Das
+@model IList<Fy3y.Model.Das.MaintainOrder>
+@{
+  ViewBag.Title = "后勤服务申报列表";
+}
+<div class="text-center">
+  <table class="table table-sm table-bordered table-hover table-striped">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>单号</th>
+        <th>科室</th>
+        <th>设备</th>
+        <th>类型</th>
+        <th>时间</th>
+        <th>状态</th>
+        <th>操作</th>
+      </tr>
+    </thead>
+    <tbody>
+      @if (Model?.Count() > 0)
+    {
+      var departments = (IList<Department>) ViewBag.departments;
+      var i = 0;
+      foreach (var item in Model)
+      {
+        i++;
+      <tr>
+        <td>@i </td>
+        <td>@item.OrderId </td>
+        <td>@(departments?.Where(p => p.DepartmentId == item.DepartmentId).FirstOrDefault()?.DepartmentName)</td>
+        <td>@item.DeviceType </td>
+        <td>@item.MaintainType </td>
+        <td>@item.CreateTime </td>
+        <td>
+          @if (item.MaintainStatus == "申请")
+            {
+          <span class="badge badge-primary">@item.MaintainStatus</span>
+            }
+            else
+            {
+          <span class="badge badge-success">@item.MaintainStatus</span>
+            }
+        </td>
+        <td>
+          <a href="../Maintain/View/@item.OrderId">
+            <i class="fa fa-eye"></i>
+          </a>
+        </td>
+      </tr>
+      }
+    }
+    </tbody>
+  </table>
+</div>

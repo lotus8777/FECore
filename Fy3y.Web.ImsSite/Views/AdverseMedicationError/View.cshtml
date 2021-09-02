@@ -1,0 +1,254 @@
+﻿@model Fy3y.Model.Das.AdverseMedicationError
+@{
+    ViewBag.Title = "医疗器械（不良）事件报告";
+}
+<br />
+<link href="~/Content/viewpage.css" type="text/css" rel="stylesheet" />
+<div class="text-center">
+    <div class="form-group row ">
+        <label class=" col-2">报告人</label>
+        <div class="col-4 text-left ">
+           @Model.AdverseEvent.ReporterName
+        </div>
+        <label class=" col-2">报告时间</label>
+        <div class="col-4  text-left  ">
+           @Model.AdverseEvent.ReportTime
+        </div>
+    </div><br />
+
+    <!--A-患者基本信息-->
+    <div class="vfieldset">
+        <span class="legendtitle">A-患者基本资料</span>
+        <div class="form-group row">
+            <label class=" col-2" for="Medicalno">病案号</label>
+            <div class="col-1">
+               @Model.AdverseEvent.MedicalNo
+            </div>
+            <label class="col-2 ">性别</label>
+            <div class="  col-1 ">
+               @Html.Partial("SexPartial", Convert.ToDecimal(Model.AdverseEvent.PatientSex))
+            </div>
+
+            <label class="col-2 " for="PatientName">姓名</label>
+            <div class="col-1">
+               @Model.AdverseEvent.PatientName
+            </div>
+
+            <label class="col-1" for="PatientAge">年龄</label>
+            <div class="col-1 ">
+               @Model.AdverseEvent.PatientAge
+            </div>
+            <label class="col-2" for="DepartmentName">科室</label>
+            <div class="col-1 ">
+               @Model.AdverseEvent.PatientDeptName
+            </div>
+            <label class=" col-2" for="BedNo">床号</label>
+            <div class="col-1 ">
+               @Model.AdverseEvent.BedNo
+            </div>
+            <label class="col-2" for="Diagnosis">诊断</label>
+            <div class="col-4 text-left ">
+               @Model.AdverseEvent.Diagnosis
+            </div>
+        </div>
+    </div>
+    <!--B-不良事件情况-->
+    <div class="vfieldset">
+        <span class="legendtitle">B-不良事件情况</span>
+        <div class="form-group row">
+
+            <label class="col-2 ">发生时间</label>
+            <div class="col-2 text-left ">
+               @Model.AdverseEvent.EventTime
+            </div>
+            <label class="col-2 ">知悉时间</label>
+            <div class="col-2 text-left ">
+                @Model.KnowTime
+            </div>
+            <label class="col-2 ">使用场所</label>
+            <div class="col-2 text-left ">
+                @Model.OperationPlace
+            </div>
+            <label class="col-2 ">预期作用</label>
+            <div class="col-4 text-left ">
+                @Model.ExpectedEffect
+            </div>
+
+            <label class="col-2 ">事件后果</label>
+            <div class="col-4 text-left ">
+                @Model.EventResult
+            </div>
+            <label class="col-2 ">主要表现</label>
+            <div class="col-10 text-left ">
+                @Model.Performance
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class=" col-2">事件陈述</label>
+            <div class="col-10 text-left ">
+                <textarea rows="4" class="col-12">@Model.EventDetails</textarea>
+            </div>
+        </div>
+    </div>
+
+    <!--C-医疗器械使用情况-->
+    <div class="vfieldset">
+        <span class="legendtitle">C-医疗器械使用情况</span>
+        <div class="form-group row">
+            <label class=" col-2" for="medicalno">产品名称</label>
+            <div class="col-4">
+                @Model.ProductName
+            </div>
+
+            <label class="col-2 " for="patientname">商品名称</label>
+            <div class="col-4">
+                @Model.CommodityName
+            </div>
+            <label class=" col-2" for="medicalno">企业名称</label>
+            <div class="col-4">
+                @Model.EnterpriseName
+            </div>
+
+            <label class="col-2 " for="patientname">联系电话</label>
+            <div class="col-4">
+                @Model.ContactNumber
+            </div>
+            <label class=" col-2" for="medicalno">企业地址</label>
+            <div class="col-10 text-left">
+                @Model.EnterpriseAddress
+            </div>
+            <label class=" col-2" for="medicalno">注册证号</label>
+            <div class="col-4">
+                @Model.RegistrationNumber
+            </div>
+
+            <label class="col-2 " for="patientname">型号规格</label>
+            <div class="col-4">
+                @Model.Specification
+            </div>
+            <label class=" col-2" for="medicalno">产品编号</label>
+            <div class="col-4">
+                @Model.CatalogNumber
+            </div>
+
+            <label class="col-2 " for="patientname">产品批号</label>
+            <div class="col-4">
+                @Model.LotNumber
+            </div>
+            <label class="col-2 ">操作人员</label>
+            <div class="col-2">
+                @Model.OperatorType
+            </div>
+            <label class="col-2 ">生产日期</label>
+            <div class="col-2">
+                @Model.ProducedDate.ToShortDateString()
+            </div>
+
+            <label class=" col-2" for="medicalno">有效期至</label>
+            <div class="col-2">
+                @Model.ExpiryDate.ToShortDateString()
+            </div>
+            <label class="col-2 " for="patientname">停用日期</label>
+            <div class="col-2">
+                @Model.DisabledDate.ToShortDateString()
+            </div>
+
+            @if (Model.ImplantationDate.HasValue)
+            {
+            <label class=" col-2" for="medicalno">植入日期</label>
+            <div class="col-2">
+                @(Model.ImplantationDate?.ToShortDateString())
+            </div>
+            }
+        </div>
+        <div class="form-group row">
+            <label class="col-2 " for="patientname">报告状态</label>
+            <div class=" form-check form-check-inline col-2">
+                <input type="checkbox" id="ReportUnit1" name="ReportUnit" class="form-check-input" value="已通知使用单位" />
+                <label class="form-check-label" for="ReportUnit1">已通知使用单位</label>
+            </div>
+            <div class=" form-check form-check-inline col-2">
+                <input type="checkbox" id="ReportUnit2" name="ReportUnit" class="form-check-input" value="已通知生产企业" />
+                <label class="form-check-label" for="ReportUnit2">已通知生产企业</label>
+            </div>
+            <div class=" form-check form-check-inline col-2">
+                <input type="checkbox" id="ReportUnit3" name="ReportUnit" class="form-check-input" value="已通知经营企业" />
+                <label class="form-check-label" for="ReportUnit3">已通知经营企业</label>
+            </div>
+            <div class=" form-check form-check-inline col-2">
+                <input type="checkbox" id="ReportUnit4" name="ReportUnit" class="form-check-input" value="已通知药监部门" />
+                <label class="form-check-label" for="ReportUnit4">已通知药监部门</label>
+            </div>
+        </div>
+    </div>
+
+    <!--D-关联性评价-->
+    <div class="vfieldset">
+        <span class="legendtitle">D-关联性评价</span>
+        <div class="form-group row text-left">
+            <label class="col-1"></label>
+            <label class="col-10">(1)使用医疗器械与已发生/可能发生的伤害事件之间是否具有合理的先后时间顺序？</label>
+            <div class="col-1">
+                @Html.RadioButtonFor(m => m.TimeSequence, Model.TimeSequence)
+                <label for="TimeSequence">@Model.TimeSequence</label>
+            </div>
+        </div>
+
+        <div class="form-group row text-left">
+            <label class=" col-1"></label>
+            <label class="col-10">(2)已发生/可能发生的伤害事件是否属于所使用医疗器械可能导致的伤害类型？</label>
+            <div class="col-1">
+                @Html.RadioButtonFor(m => m.BelongTo, Model.BelongTo)
+                <label for="TimeSequence">@Model.BelongTo</label>
+            </div>
+        </div>
+        <div class="form-group row text-left">
+            <label class=" col-1"></label>
+            <label class="col-10">(3)已发生/可能发生的伤害事件是否可用合并用药和/或械的作用、患者病情或其他非医疗器械因素来解释？</label>
+            <div class="col-1">
+                @Html.RadioButtonFor(m => m.OtherFactor, Model.OtherFactor)
+                <label for="TimeSequence">@Model.OtherFactor</label>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class=" col-1"></label>
+            <label class="col-8 text-left">评价结论：综上所述是否与该医疗器械有关？</label>
+            <div class="col-3 text-left">
+                @Model.Conclusion
+            </div>
+        </div>
+    </div>
+
+    <!--E-主管部门意见-->
+    <div class="vfieldset">
+        <span class="legendtitle">E-不良事件评价</span>
+        <div class="form-group row">
+            <label class=" col-2">主管部门意见陈述:</label>
+            <div class="col-10 text-left ">
+                <textarea class="col-12" rows="4">@Model.SuperiorOpinion</textarea>
+            </div>
+        </div>
+    </div>
+    <a href="/AdverseInstructionEvent/Index" class="d-print-none">返回</a>
+</div>
+<script type="text/javascript">
+
+    $("input[type='radio'][name='TimeSequence'][value='@Model.TimeSequence']").attr("checked",true);
+    $("input[type='radio'][ name='BelongTo'][ value='@Model.BelongTo']").attr("checked", true);
+    $("input[type='radio'][ name='OtherFactor'][ value='@Model.OtherFactor']").attr("checked",true);
+
+    //通知单位赋值
+    var units="@Model.ReportUnit";
+    $("input[type='checkbox'][name='ReportUnit']").each(function () {
+        if (units.indexOf(this.value)>=0)
+        {
+            $(this).attr("checked","checked");
+        }
+    });
+
+        $("input[type='text']").attr("readonly", "readonly");
+        $("textarea").attr("readonly", "readonly");
+        $("select").attr("disabled", "true");
+        $("input[type='checkbox']").attr("disabled", "disabled");
+        $("input[type='radio']").attr("disabled", "true");
+</script>

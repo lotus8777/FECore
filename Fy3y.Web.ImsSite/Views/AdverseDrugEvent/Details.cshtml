@@ -1,0 +1,287 @@
+﻿@model Fy3y.Model.Das.AdverseDrugEvent
+@{
+  ViewBag.Title = "药品不良反应报告";
+}
+<br />
+<div class="text-center">
+  <div class="form-group row text-center">
+    <label class="col-2 col-form-label">报告类型</label>
+    <div class="col-2 div-text">
+      @(Model.ReportProperty ?? "一般")
+    </div>
+    <label class="col-2 col-form-label">报告科室</label>
+    <div class="col-2 div-text">
+      @Model.AdverseEvent.ReporterDeptName
+    </div>
+    <label class="col-2 col-form-label">报告时间</label>
+    <div class="col-2 div-text">
+     @Model.AdverseEvent.ReportTime.ToString("yyyy/MM/dd HH:mm")
+    </div>
+  </div>
+  <fieldset>
+    <legend>A-基本资料</legend>
+    <div class="form-group row">
+      <label class="col-2 col-form-label">病案号码</label>
+      <div class="col-2 div-text">
+       @Model.AdverseEvent.MedicalNo
+      </div>
+      <label class="col-2 col-form-label">民族</label>
+      <div class="col-2 div-text">
+        @Model.AdverseEvent.Nationality
+      </div>
+      <label class="col-2 col-form-label">患者姓名</label>
+      <div class="col-2 div-text">
+       @Model.AdverseEvent.PatientName
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-2 col-form-label">患者性别</label>
+      <div class="col-2 div-text">
+        @Model.AdverseEvent.PatientSex
+      </div>
+      <label class="col-2 col-form-label">出生年月</label>
+      <div class="col-2 div-text">
+        @(Model.AdverseEvent.Birthday?.ToString("yyyy/MM/dd"))
+      </div>
+      <label class="col-2 col-form-label">患者年龄</label>
+      <div class="col-2 div-text">
+       @Model.AdverseEvent.PatientAge
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-2 col-form-label">联系方式</label>
+      <div class="col-2 div-text">
+        @Model.AdverseEvent.PatientContact
+      </div>
+      <label class="col-2 col-form-label">所在科室</label>
+      <div class="col-2 div-text">
+        @Model.AdverseEvent.PatientDeptName
+      </div>
+      <label class="col-2 col-form-label">体重(KG)</label>
+      <div class="col-2 div-text">
+        @Model.BodyWeight
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-2 col-form-label">临床诊断</label>
+      <div class="col-10 div-text-left">
+       @Model.AdverseEvent.Diagnosis
+      </div>
+    </div>
+  </fieldset>
+  <fieldset>
+    <legend>B-其他信息</legend>
+    <div class="form-group row">
+      <label class="col-2 col-form-label">既往事件</label>
+      <div class="col-4 div-text-left">
+        @Model.PreviousAdverse
+      </div>
+      <label class="col-2 col-form-label">家族事件</label>
+      <div class="col-4 div-text-left">
+        @Model.FamilyAdverse
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-2 col-form-label">其他信息</label>
+      <div class=" col-10 div-text-left">
+        @(Model.OtherInfo ?? "无")
+      </div>
+    </div>
+  </fieldset>
+  <!--C-怀疑用药-->
+  <fieldset id="drug">
+    <legend>C-用药情况</legend>
+    @{
+      if (Model?.AdverseDrugs?.Count > 0)
+      {
+        var i = 0;
+        foreach (var item in Model.AdverseDrugs)
+        {
+          <div class="form-group row">
+            <label class="col-12 text-center" style="color: red; font-size: x-large;">
+              @(i == 0 ? "怀疑用药" : "并用药品")
+            </label>
+          </div>
+          <hr style="border: 1px solid black;" />
+          <div style="font-size: 0.8rem;">
+            <div class="form-group row">
+              <label class="col-2 col-form-label">商品名称</label>
+              <div class="col-2 div-text">
+                @item.ProductName
+              </div>
+              <label class="col-2 col-form-label">通用名称</label>
+              <div class="col-2 div-text">
+                @item.CommonName
+              </div>
+              <label class="col-2 col-form-label">批准文号</label>
+              <div class="col-2 div-text">
+                @item.ApprovelNumber
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-2 col-form-label">药品批号</label>
+              <div class="col-2 div-text">
+                @item.BatchNumber
+              </div>
+              <label class="col-2 col-form-label">生产厂家</label>
+              <div class="col-6 div-text">
+                @item.Manufacturer
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-2 col-form-label">药品剂型</label>
+              <div class="col-2 div-text">
+                @item.DosageForm
+              </div>
+              <label class="col-2 col-form-label">给药途径</label>
+              <div class="col-2 div-text">
+                @item.AdministrationRoute
+              </div>
+              <label class="col-2 col-form-label">用法用量</label>
+              <div class="col-2 div-text">
+                @item.UsageDosage
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-2 col-form-label">开始时间</label>
+              <div class="col-2 div-text">
+                @item.StartTime.ToString("yyyy/MM/dd")
+              </div>
+              <label class="col-2 col-form-label">结束时间</label>
+              <div class="col-2 div-text">
+                @item.EndTime.ToString("yyyy/MM/dd")
+              </div>
+              <label class="col-2 col-form-label">用药原因</label>
+              <div class="col-2 div-text-left">
+                @item.Remarks
+              </div>
+            </div>
+          </div>
+          i++;
+        }
+      }
+    }
+  </fieldset>
+  <!--D-事件情况-->
+  <fieldset>
+    <legend>D-事件情况</legend>
+    <div class="form-group row">
+      <label class="col-2 col-form-label">事件名称</label>
+      <div class="col-4 div-text">
+        @Model.EventName
+      </div>
+      <label class="col-2 col-form-label">事件时间</label>
+      <div class="col-4 div-text">
+       @Model.AdverseEvent.EventTime.ToString("yyyy/MM/d")
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-2 col-form-label">事件过程</label>
+      <div class="col-10 div-textarea">
+        @Model.EventDetails
+      </div>
+    </div>
+  </fieldset>
+  <!--E-事件结果-->
+  <fieldset>
+    <legend>E-事件结果</legend>
+    <div class="form-group row text-left">
+      <label class="col-7 col-form-label offset-1">事件结果</label>
+      <div class="col-4 div-text">
+        @Model.EventResult
+      </div>
+    </div>
+    <div class="form-group row text-left">
+      <label class="col-7 col-form-label offset-1">停药或减量后反应/事件是否消失或减轻？</label>
+      <div class="col-4 div-text">
+        @Model.StopAffect
+      </div>
+    </div>
+    <div class="form-group row text-left">
+      <label class="col-7 col-form-label offset-1">再次使用可疑药品后是否再次出现同样反应/事件？</label>
+      <div class="col-4 div-text">
+        @Model.ReuseConclusion
+      </div>
+    </div>
+    <div class="form-group row text-left">
+      <label class="col-7 col-form-label offset-1">对原患疾病的影响？</label>
+      <div class="col-4 div-text">
+        @Model.DiseaseAffect
+      </div>
+    </div>
+  </fieldset>
+  <fieldset>
+    <legend>F-关联评价</legend>
+    <div class="form-group row text-left">
+      <label class="col-5 col-form-label offset-1">报告人认为是否与使用药品有关？</label>
+      <div class="col-3 div-text">
+        @Model.ReporterConclusion
+      </div>
+      <div class="col-3 div-text">
+       @Model.AdverseEvent.ReporterName
+      </div>
+    </div>
+    <div class="form-group row text-left">
+      <label class="col-5 col-form-label offset-1">报告单位认为是否与使用药品有关？</label>
+      <div class="col-3 div-text">
+        @Model.DepartmentConclusion
+      </div>
+      <div class="col-3 div-text">
+        @Model.AdverseEvent.CheckerName
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-2 col-form-label">备注信息</label>
+      <div class="col-10 div-textarea">
+        @Model.Remarks
+      </div>
+    </div>
+  </fieldset>
+  <div>
+    <div class="form-group row">
+      <label class="col-2 col-form-label">报告时间</label>
+      <div class="col-4 div-text">
+       @Model.AdverseEvent.ReportTime.ToString("yyyy/MM/dd")
+      </div>
+      <label class="col-2 col-form-label">审核时间</label>
+      <div class="col-4 div-text">
+        @(Model.AdverseEvent.CheckTime?.ToString("yyyy/MM/dd"))
+      </div>
+    </div>
+  </div>
+  <div>
+    @if (ViewBag.fatherType == "1")
+    {
+      <a class="d-print-none" href="@Url.Action("Manage","AdverseEvent")">返回</a>
+    }
+    else if (ViewBag.fatherType == "2")
+    {
+      <a href="@Url.Action("Statistics","AdverseEvent")">返回</a>
+    }
+    else
+    {
+      <a class="d-print-none" href="@Url.Action("Index","AdverseEvent")">返回</a>
+    }
+  </div>
+</div>
+<script type="text/javascript">
+  ///其他信息
+  var otherInfos = "@Model?.OtherInfo";
+  $("input[type='checkbox'][name='OtherInfo']").each(function() {
+    if (otherInfos.indexOf(this.value) >= 0) {
+      $(this).attr("checked", "checked");
+    }
+  });
+
+  //报表属性
+  var reportProperty = "@Model?.ReportProperty";
+  $("input[type='checkbox'][name='ReportProperty']").each(function() {
+    if (reportProperty.indexOf(this.value) >= 0) {
+      $(this).attr("checked", "checked");
+    }
+  });
+
+  $("input").attr("readonly", "readonly");
+  $("textarea").attr("readonly", "readonly");
+  $("input[type='checkbox']").attr("disabled", "true");
+</script>

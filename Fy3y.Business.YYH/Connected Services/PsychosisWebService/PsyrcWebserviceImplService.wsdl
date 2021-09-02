@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://webservice.psyrc.neusoft.com/" xmlns:ns1="http://schemas.xmlsoap.org/soap/http" name="PsyrcWebserviceImplService" targetNamespace="http://webservice.psyrc.neusoft.com/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xs:schema attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="http://webservice.psyrc.neusoft.com/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:element name="resourceMethod" type="tns:resourceMethod" />
+      <xs:element name="resourceMethodResponse" type="tns:resourceMethodResponse" />
+      <xs:complexType name="resourceMethod">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="xmlData" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="resourceMethodResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="xmlData" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="Exception" type="tns:Exception" />
+      <xs:complexType name="Exception">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="message" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+    </xs:schema>
+  </wsdl:types>
+  <wsdl:message name="Exception">
+    <wsdl:part name="Exception" element="tns:Exception" />
+  </wsdl:message>
+  <wsdl:message name="resourceMethod">
+    <wsdl:part name="parameters" element="tns:resourceMethod" />
+  </wsdl:message>
+  <wsdl:message name="resourceMethodResponse">
+    <wsdl:part name="parameters" element="tns:resourceMethodResponse" />
+  </wsdl:message>
+  <wsdl:portType name="PsyrcWebservice">
+    <wsdl:operation name="resourceMethod">
+      <wsdl:input name="resourceMethod" message="tns:resourceMethod" />
+      <wsdl:output name="resourceMethodResponse" message="tns:resourceMethodResponse" />
+      <wsdl:fault name="Exception" message="tns:Exception" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="PsyrcWebserviceImplServiceSoapBinding" type="tns:PsyrcWebservice">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="resourceMethod">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="resourceMethod">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="resourceMethodResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="Exception">
+        <soap:fault use="literal" name="Exception" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="PsyrcWebserviceImplService">
+    <wsdl:port name="PsyrcWebserviceImplPort" binding="tns:PsyrcWebserviceImplServiceSoapBinding">
+      <soap:address location="http://10.120.48.15:8885/JSBBKSBJK/JSBYSXXZC" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

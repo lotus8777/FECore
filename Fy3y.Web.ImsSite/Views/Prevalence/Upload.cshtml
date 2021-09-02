@@ -1,0 +1,17 @@
+﻿
+@{
+    ViewBag.Title = "上传疫情截图";
+}
+<form method="post" action="@Url.Action("UploadImage")" enctype="multipart/form-data">
+    <div class="form-group row">
+        <div class="col-8">
+            <input type="file" name="myFile" accept=".jpg,.bmp,.png,.gif" class="col-12 form-control" style="border: 1px solid red">
+        </div>
+
+        <div class="col-4">
+            <button class="btn btn-success">上传</button>
+        </div>
+
+    </div>
+
+</form>

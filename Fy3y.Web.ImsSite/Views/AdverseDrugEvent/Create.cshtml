@@ -1,0 +1,296 @@
+﻿@model Fy3y.Model.Das.AdverseDrugEvent
+@{
+    ViewBag.Title = "药品不良反应报告";
+}
+<br />
+@Html.Partial("~/Views/AdverseEvent/QueryPatientPartial.cshtml")
+<form id="form1" method="post" onsubmit="return validForm()">
+    @Html.AntiForgeryToken()
+    <fieldset>
+        <legend>A-基本资料</legend>
+        <div class="text-center">
+            <div class="form-group row">
+                <label class="col-2 col-form-label">病案号码</label>
+                <div class="col-4">
+                    @Html.TextBoxFor(m => m.AdverseEvent.MedicalNo, new { @class = "form-control", placeholder = "住院号/门诊号" })
+                </div>
+                <label class="col-2 col-form-label">民族</label>
+                <div class="col-4">
+                    @Html.TextBoxFor(m => m.AdverseEvent.Nationality, new { @class = "form-control", placeholder = "选择民族", list = "nationalityList", required = "" })
+                    <datalist id="nationalityList">
+                        <option>汉族</option>
+                        <option>满族</option>
+                        <option>蒙古族</option>
+                        <option>回族</option>
+                        <option>藏族</option>
+                    </datalist>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-2 col-form-label">患者姓名</label>
+                <div class="col-4">
+                    @Html.TextBoxFor(m => m.AdverseEvent.PatientName, new { @class = "form-control" })
+                </div>
+                <label class="col-2 col-form-label">患者性别</label>
+                <div class="col-4">
+                    @Html.TextBoxFor(m => m.AdverseEvent.PatientSex, new { @class = "form-control", list = "sexList" })
+                    <datalist id="sexList">
+                        <option>男</option>
+                        <option>女</option>
+                        <option>其他</option>
+                    </datalist>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-2 col-form-label">出生年月</label>
+                <div class="col-4">
+                    @Html.TextBoxFor(m => m.AdverseEvent.Birthday, new { @class = "form-control", onfocus = "WdatePicker({ isShowClear: false, readOnly: true, isShowOK: false, maxDate: '%y-%M-%d', dateFmt: 'yyyy-MM-dd HH:mm:ss' })" })
+                </div>
+                <label class="col-2 col-form-label">患者年龄</label>
+                <div class="col-4">
+                    @Html.TextBoxFor(m => m.AdverseEvent.PatientAge, new { @class = "form-control", required = "" })
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-2 col-form-label">联系方式</label>
+                <div class="col-4">
+                    @Html.TextBoxFor(m => m.AdverseEvent.PatientContact, new { @class = "form-control" })
+                </div>
+                <label class="col-2 col-form-label">所在科室</label>
+                <div class="col-4">
+                    @Html.TextBoxFor(m => m.AdverseEvent.PatientDeptName, new { @class = "form-control" })
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-2 col-form-label">体重(KG)</label>
+                <div class="col-4">
+                    @Html.TextBoxFor(m => m.BodyWeight, new { @class = "form-control", required = "" })
+                </div>
+                <label class="col-2 col-form-label">临床诊断</label>
+                <div class="col-4">
+                    @Html.TextBoxFor(m => m.AdverseEvent.Diagnosis, new { @class = "form-control" })
+                </div>
+            </div>
+        </div>
+    </fieldset>
+    <fieldset>
+        <legend>B-其他信息</legend>
+        <div class="text-center">
+            <div class="form-group row">
+                <label class="col-2 col-form-label">报告类型</label>
+                <div class="col-2 form-check form-check-inline">
+                    <input class="form-check-input" id="ReportProperty1" name="ReportProperty" type="checkbox" value="新的" />
+                    <label class="form-check-label" for="ReportProperty1">新的</label>
+                </div>
+                <div class="col-2 form-check form-check-inline">
+                    <input class="form-check-input" id="ReportProperty2" name="ReportProperty" type="checkbox" value="一般" />
+                    <label class="form-check-label" for="ReportProperty2">一般</label>
+                </div>
+                <div class="col-2 form-check form-check-inline">
+                    <input class="form-check-input" id="ReportProperty3" name="ReportProperty" type="checkbox" value="严重" />
+                    <label class="form-check-label" for="ReportProperty3">严重</label>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-2 col-form-label">其他信息</label>
+                <div class="col-2 form-check form-check-inline">
+                    <input class="form-check-input" id="OtherInfo1" name="OtherInfo" type="checkbox" value="吸烟史" />
+                    <label class="form-check-label" for="OtherInfo1">吸烟史</label>
+                </div>
+                <div class="col-2 form-check form-check-inline">
+                    <input class="form-check-input" id="OtherInfo2" name="OtherInfo" type="checkbox" value="饮酒史" />
+                    <label class="form-check-label" for="OtherInfo2">饮酒史</label>
+                </div>
+                <div class="col-2 form-check form-check-inline">
+                    <input class="form-check-input" id="OtherInfo3" name="OtherInfo" type="checkbox" value="妊娠期" />
+                    <label class="form-check-label" for="OtherInfo3">妊娠期</label>
+                </div>
+                <div class="col-2 form-check form-check-inline">
+                    <input class="form-check-input" id="OtherInfo4" name="OtherInfo" type="checkbox" value="肝病史" />
+                    <label class="form-check-label" for="OtherInfo4">肝病史</label>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-2 col-form-label"></label>
+                <div class="col-2 form-check form-check-inline">
+                    <input class="form-check-input" id="OtherInfo5" name="OtherInfo" type="checkbox" value="肾病史" />
+                    <label class="form-check-label" for="OtherInfo5">肾病史</label>
+                </div>
+                <div class="col-2 form-check form-check-inline">
+                    <input class="form-check-input" id="OtherInfo6" name="OtherInfo" type="checkbox" value="过敏史" />
+                    <label class="form-check-label" for="OtherInfo6">过敏史</label>
+                </div>
+                <div class="col-2 form-check form-check-inline">
+                    <input class="form-check-input" id="OtherInfo7" name="OtherInfo" type="checkbox" value="其他" />
+                    <label class="form-check-label" for="OtherInfo7">其他</label>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-2 col-form-label">既往事件</label>
+                <div class="col-4">
+                    @Html.TextBoxFor(m => m.PreviousAdverse, new { @class = "form-control", list = "AdverseList", placeHolder = "既往药品不良反应/事件,有请填写相关说明" })
+                    <datalist id="AdverseList">
+                        <option value="不详">不详</option>
+                        <option value="无">无</option>
+                        <option value="有">有</option>
+                    </datalist>
+                </div>
+                <label class="col-2 col-form-label">家族事件</label>
+                <div class="col-4">
+                    @Html.TextBoxFor(m => m.FamilyAdverse, new { @class = "form-control", list = "AdverseList", placeHolder = "家族药品不良反应/事件,有请填写相关说明" })
+                </div>
+            </div>
+        </div>
+    </fieldset>
+    <!--C-怀疑用药-->
+    <fieldset id="drugs">
+        <legend>C-用药情况</legend>
+        <div class="text-center">
+            <div class="form-group row">
+                <label class="col-2 col-form-label">患者用药</label>
+                <div class="col-4">
+                    <select class="custom-select" id="drugNo" name="drugNo">
+                        <option>请填写病人住院号码后点击查找</option>
+                    </select>
+                </div>
+                <div class="col-2">
+                    <a class="btn btn-success" id="addDrugs">添加药品</a>
+                </div>
+            </div>
+        </div>
+    </fieldset>
+    <!--D-事件情况-->
+    <fieldset>
+        <legend>D-事件情况</legend>
+        <div class="text-center">
+            <div class="form-group row">
+                <label class="col-2 col-form-label">事件名称</label>
+                <div class="col-4">
+                    @Html.TextBoxFor(m => m.EventName, new { @class = "form-control", required = "" })
+                </div>
+                <label class="col-2 col-form-label">事件时间</label>
+                <div class="col-4">
+                    @Html.TextBoxFor(m => m.AdverseEvent.EventTime, new { @class = "form-control", onfocus = "WdatePicker({ isShowClear: false, readOnly: true, isShowOK: false, maxDate: '%y-%M-%d', dateFmt: 'yyyy/MM/dd HH:mm' })" })
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-2 col-form-label">事件过程</label>
+                <div class="col-10">
+                    @Html.TextAreaFor(m => m.EventDetails, 3, 2, new { @class = "form-control", placeholder = "不良反应/事件过程描述（包括症状、体征、临床检验等）及处理情况（2000字之内):填写要求：血常规检测,肝功能,肾功能,血脂分析,生命体征,血气", required = "" })
+                </div>
+            </div>
+        </div>
+    </fieldset>
+    <!--E-事件结果-->
+    <fieldset>
+        <legend>E-事件结果</legend>
+        <div class="text-center">
+            <div class="form-group row text-left">
+                <label class="col-7 col-form-label offset-1">事件结果</label>
+                <div class="col-4">
+                    @Html.TextBoxFor(m => m.EventResult, new { @class = "form-control", list = "EventResultList" })
+                    <datalist id="EventResultList">
+                        <option>痊愈</option>
+                        <option>好转</option>
+                        <option>未好转</option>
+                        <option>不详</option>
+                        <option>有后遗症</option>
+                        <option>死亡</option>
+                    </datalist>
+                </div>
+            </div>
+            <div class="form-group row text-left">
+                <label class="col-7 col-form-label offset-1">停药或减量后反应/事件是否消失或减轻？</label>
+                <div class="col-4">
+                    @Html.TextBoxFor(m => m.StopAffect, new { @class = "form-control", list = "StopAffectList", required = "" })
+                    <datalist id="StopAffectList">
+                        <option>是</option>
+                        <option>否</option>
+                        <option>不明</option>
+                        <option>未停药或减量</option>
+                    </datalist>
+                </div>
+            </div>
+            <div class="form-group row text-left">
+                <label class="col-7 col-form-label offset-1">再次使用可疑药品后是否再次出现同样反应/事件？</label>
+                <div class="col-4">
+                    @Html.TextBoxFor(m => m.ReuseConclusion, new { @class = "form-control", list = "ReuseConclusionList", required = "" })
+                    <datalist id="ReuseConclusionList">
+                        <option>是</option>
+                        <option>否</option>
+                        <option>不明</option>
+                        <option>未使用</option>
+                    </datalist>
+                </div>
+            </div>
+            <div class="form-group row text-left">
+                <label class="col-7 col-form-label offset-1">对原患疾病的影响？</label>
+                <div class="col-4">
+                    @Html.TextBoxFor(m => m.DiseaseAffect, new { @class = "form-control", list = "DiseaseAffectList", required = "" })
+                    <datalist id="DiseaseAffectList">
+                        <option>不明显</option>
+                        <option>病程延长</option>
+                        <option>病情加重</option>
+                        <option>导致后遗症</option>
+                        <option>导致死亡</option>
+                    </datalist>
+                </div>
+            </div>
+        </div>
+    </fieldset>
+    <fieldset>
+        <legend>
+            F-关联评价
+        </legend>
+        <div class="text-center">
+            <div class="form-group row text-left">
+                <label class="col-5 col-form-label offset-1">报告人认为是否与使用药品有关？</label>
+                <div class="col-3">
+                    @Html.TextBoxFor(m => m.ReporterConclusion, new { @class = "form-control", list = "conclusionList", required = "" })
+                </div>
+                <div class="col-3">
+                    @Html.TextBoxFor(m => m.AdverseEvent.ReporterName, new { @class = "form-control", required = "" })
+                </div>
+                <datalist id="conclusionList">
+                    <option>肯定</option>
+                    <option>很可能</option>
+                    <option>可能</option>
+                    <option>可能无关</option>
+                    <option>待评价</option>
+                    <option>无法评价</option>
+                </datalist>
+            </div>
+        </div>
+    </fieldset>
+    @Html.HiddenFor(m => m.AdverseEvent.EventId)
+    @Html.HiddenFor(m => m.AdverseEvent.ReportTime)
+    @Html.HiddenFor(m => m.AdverseEvent.IsChecked)
+    @Html.HiddenFor(m => m.AdverseEvent.BedNo)
+    @Html.HiddenFor(m => m.AdverseEvent.AdverseType)
+    @Html.HiddenFor(m => m.AdverseEvent.ReporterDeptName)
+    @Html.HiddenFor(m => m.AdverseEvent.CheckerId)
+    <br />
+    <div class="text-center">
+        <button class="btn btn-dark" id="btnSubmit">保存</button>
+        <a href="@Url.Action("Index","AdverseEvent")">返回</a>
+    </div>
+</form>
+<script type="text/javascript">
+    //验证表单内容是否存在
+    function validForm() {
+        return $("#form1").validate({
+            rules: {
+                EventResult: {
+                    required: true
+                }
+            }
+        });
+    }
+    //注册表单验证方法
+    $(validForm());
+    //保存数据
+    $("a#addDrugs").click(function () {
+        var drugInfo = $("#drugNo").val();
+        getDrugInfo(drugInfo);
+    });
+    var i = 0;</script>

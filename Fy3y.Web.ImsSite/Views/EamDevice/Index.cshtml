@@ -1,0 +1,42 @@
+﻿@model IList<Fy3y.Model.Das.EamDevice>
+
+@{
+  ViewBag.Title = "固定资产清单";
+  var i = 0;
+}
+<p>
+  @Html.ActionLink("新增", "Create", null, new {@class = "btn btn-success"})
+</p>
+<table class="table table-sm table-bordered text-center table-striped">
+  <tr>
+    <th>#</th>
+    <th>名称</th>
+    <th>品牌</th>
+    <th>型号</th>
+    <th>科室</th>
+    <th>价格</th>
+    <th>日期</th>
+    <th>操作</th>
+  </tr>
+  @foreach (var item in Model)
+  {
+    i++;
+  <tr>
+    <td>@i </td>
+    <td>@item.DeviceName </td>
+    <td>@item.Brand </td>
+    <td>@item.DeviceModel </td>
+    <td>@item.DepartmentName </td>
+    <td>@item.Price </td>
+    <td>@item.PurchaseDate </td>
+    <td>
+      <a href="@Url.Action("Edit", new {id = item.UniqueId})" title="编辑">
+        <i class="fa fa-edit fa-lg"></i>
+      </a>|
+      <a href="@Url.Action("Details", new {id = item.UniqueId})" title="查看">
+        <i class="fa fa-lg fa-search"></i>
+      </a>
+    </td>
+  </tr>
+  }
+</table>

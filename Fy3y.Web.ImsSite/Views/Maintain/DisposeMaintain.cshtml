@@ -1,0 +1,165 @@
+﻿
+@using Fy3y.Model.Das
+@model Fy3y.Model.Das.Maintain
+@{
+  ViewBag.Title = "设备信息服务单";
+  ViewBag.SubTitle = "单号：" + Model.MaintainId.ToString("D10");
+  var deviceUsages = new List<DeviceUsage>();
+}
+<style type="text/css">
+  * {
+    font-size: 20px;
+  }
+</style>
+<table class="table table-sm table-bordered text-center table-striped">
+  <tr><td colspan="4" style="font-size: 24px; font-weight: bolder;">申请单信息 </td> </tr>
+  <tr>
+    <td class="text-center">申请科室 </td>
+    <td>@Model.DepartmentName </td>
+    <td class="text-center">申请人 </td>
+    <td>@Model.ReporterName </td>
+  </tr>
+  <tr>
+    <td class="text-center">故障设备 </td>
+    <td>@Model.DeviceName </td>
+    <td class="text-center">申请时间 </td>
+    <td>@Model.CreateTime </td>
+  </tr>
+  <tr>
+    <td class="text-center">处理方式 </td>
+    <td colspan="3">
+      <div class="form-inline">
+        <label class="form-check-label" for="repair" style="margin-left: 25px;">
+          @Html.RadioButtonFor(model => model.MaintainType, "维修", new {@class = "form-check-input", onclick = "return false"})维修
+        </label>
+        <label class="form-check-label" for="instead " style="margin-left: 50px;">
+          @Html.RadioButtonFor(model => model.MaintainType, "更换", new {@class = "form-check-input", onclick = "return false"})更换
+        </label>
+        <label class="form-check-label" for="add" style="margin-left: 50px;">
+          @Html.RadioButtonFor(model => model.MaintainType, "添加", new {@class = "form-check-input", onclick = "return false"})添加
+        </label>
+      </div>
+    </td>
+  </tr>
+  <tr>
+    <td class="text-center">优先级别 </td>
+    <td colspan="3">
+      <div class="form-inline">
+        <label class="form-check-label" for="normal" style="margin-left: 25px;">
+          @Html.RadioButtonFor(model => model.Priority, "普通", new {@class = "form-check-input", onclick = "return false"})普通
+        </label>
+        <label class="form-check-label" for="urgency " style="margin-left: 50px;">
+          @Html.RadioButtonFor(model => model.Priority, "紧急", new {@class = "form-check-input", onclick = "return false"})紧急
+        </label>
+        <label class="form-check-label" for="extra" style="margin-left: 50px;">
+          @Html.RadioButtonFor(model => model.Priority, "特急", new {@class = "form-check-input", onclick = "return false"})特急
+        </label>
+      </div>
+    </td>
+  </tr>
+  <tr>
+    <td class="text-center">故障描述 </td>
+    <td>@Html.TextAreaFor(model => model.Remarks, new {@class = "form-control", rows = "3", style = "border:none;", @readonly = ""}) </td>
+  </tr>
+  <tr>
+    <td colspan="4" style="font-size: 24px; font-weight: bolder;">
+      处理/维护/维修记录
+      <a href="@Url.Action("AddDispose",new { id=Model.MaintainId})" class="btn btn-dark d-print-none mb-1">
+        <i class="fa fa-plus">添加处理记录</i>
+      </a>
+    </td>
+  </tr>
+  @if (Model.DisposeMaintains?.Count > 0)
+  {
+    foreach (var item in Model.DisposeMaintains)
+    {
+      if (item.DeviceUsages?.Count() > 0)
+      {
+        deviceUsages.AddRange(item.DeviceUsages);
+      }
+  <tr>
+    <td>处理人 </td>
+    <td>@item.DisposerName </td>
+    <td>处理时间 </td>
+    <td>@item.DisposeTime </td>
+  </tr>
+
+  <tr>
+    <td>处理过程 </td>
+    <td>@Html.TextArea("Remarks", item.Remarks, new {@class = "form-control", rows = "3", style = "border:none;", @readonly = ""}) </td>
+  </tr>
+  <tr>
+    <td>处理结果 </td>
+    <td class="text-left" colspan="3">
+      @if (item.Result == "正在处理")
+          {
+      <span class="badge badge-secondary">@item.Result</span>
+          }
+          else if (item.Result == "处理完成")
+          {
+      <span class="badge badge-success">@item.Result</span>
+          }
+          else if (item.Result == "无法完成")
+          {
+      <span class="badge badge-warning">@item.Result</span>
+          }
+          else
+          {
+      <span class="badge badge-info">@item.Result</span>
+          }
+    </td>
+  </tr>
+    }
+  }
+  <tr>
+    <td colspan="4" style="font-size: 24px; font-weight: bolder;">
+      设备/配件/耗材使用清单
+      @if (Model.DisposeMaintains?.Count > 0)
+      {
+      <a href="@Url.Action("AddDeviceUsage","Maintain",new{id=Model.DisposeMaintains.LastOrDefault().DisposeId})" class="btn btn-dark d-print-none mb-1">
+        <i class="fa fa-plus">添加设备/配件</i>
+      </a>
+      }
+    </td>
+  </tr>
+  @if (deviceUsages.Count > 0)
+  {
+  <tr>
+    <td colspan="4">
+      <table class="table table-sm table-striped">
+        <tr>
+          <td>#</td>
+          <td>设备编号 </td>
+          <td>设备名称 </td>
+          <td>品牌型号 </td>
+          <td>数量 </td>
+        </tr>
+        @foreach (var item in deviceUsages)
+          {
+            var i = 1;
+        <tr>
+          <td>@i </td>
+          <td>@item.DeviceId.ToString("D10")</td>
+          <td>@item.DeviceName </td>
+          <td>@item.BrandModel </td>
+          <td>@item.Quantity </td>
+        </tr>
+          }
+      </table>
+    </td>
+  </tr>
+  }
+  else
+  {
+  <tr>
+    <td><textarea class="form-control" rows="3" style="border: none;">无使用记录</textarea> </td>
+  </tr>
+  }
+  <tr>
+    <td>科室确认 </td>
+    <td><textarea rows="3" style="border: none;"></textarea> </td>
+  </tr>
+</table>
+<script type="text/javascript">
+  $(".badge").attr("style", "font-size:1em;margin-left:25px;");
+</script>

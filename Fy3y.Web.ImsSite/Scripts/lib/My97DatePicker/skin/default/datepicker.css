@@ -1,0 +1,230 @@
+/*
+ * My97 DatePicker 4.8
+ */
+.WdateDiv {
+  background-color: #FFFFFF;
+  border: #bbb 1px solid;
+  padding: 2px;
+  width: 180px;
+}
+
+.WdateDiv2 { width: 360px; }
+
+.WdateDiv * { font-size: 9pt; }
+
+.WdateDiv .NavImg a {
+  cursor: pointer;
+  display: block;
+  height: 16px;
+  width: 16px;
+}
+
+.WdateDiv .NavImgll a {
+  background: transparent url(img.gif) no-repeat scroll 0 0;
+  float: left;
+}
+
+.WdateDiv .NavImgl a {
+  background: transparent url(img.gif) no-repeat scroll -16px 0;
+  float: left;
+}
+
+.WdateDiv .NavImgr a {
+  background: transparent url(img.gif) no-repeat scroll -32px 0;
+  float: right;
+}
+
+.WdateDiv .NavImgrr a {
+  background: transparent url(img.gif) no-repeat scroll -48px 0;
+  float: right;
+}
+
+.WdateDiv #dpTitle {
+  height: 24px;
+  margin-bottom: 2px;
+  padding: 1px;
+}
+
+.WdateDiv .yminput {
+  border: 0px;
+  cursor: pointer;
+  height: 20px;
+  margin-top: 2px;
+  text-align: center;
+  width: 50px;
+}
+
+.WdateDiv .yminputfocus {
+  border: #ccc 1px solid;
+  color: blue;
+  font-weight: bold;
+  height: 20px;
+  margin-top: 2px;
+  text-align: center;
+  width: 50px;
+}
+
+.WdateDiv .menuSel {
+  background-color: #FFFFFF;
+  border: #ccc 1px solid;
+  display: none;
+  position: absolute;
+  z-index: 1;
+}
+
+.WdateDiv .menu {
+  background-color: #fff;
+  cursor: pointer;
+}
+
+.WdateDiv .menuOn {
+  background-color: #BEEBEE;
+  cursor: pointer;
+}
+
+.WdateDiv .invalidMenu { color: #aaa; }
+
+.WdateDiv .YMenu { margin-top: 20px; }
+
+.WdateDiv .MMenu {
+  margin-top: 20px;
+  *width: 62px;
+}
+
+.WdateDiv .hhMenu {
+  margin-left: 26px;
+  margin-top: -90px;
+}
+
+.WdateDiv .mmMenu {
+  margin-left: 26px;
+  margin-top: -46px;
+}
+
+.WdateDiv .ssMenu {
+  margin-left: 26px;
+  margin-top: -24px;
+}
+
+.WdateDiv .Wweek {
+  background: #DAF3F5;
+  border-right: #BDEBEE 1px solid;
+  text-align: center;
+}
+
+.WdateDiv .MTitle { background-color: #BDEBEE; }
+
+.WdateDiv .WdayTable2 {
+  border: #c5d9e8 1px solid;
+  border-collapse: collapse;
+}
+
+.WdateDiv .WdayTable2 table { border: 0; }
+
+.WdateDiv .WdayTable {
+  border: #c5d9e8 1px solid;
+  line-height: 20px;
+}
+
+.WdateDiv .WdayTable td { text-align: center; }
+
+.WdateDiv .Wday { cursor: pointer; }
+
+.WdateDiv .WdayOn {
+  background-color: #C0EBEF;
+  cursor: pointer;
+}
+
+.WdateDiv .Wwday {
+  color: #FF2F2F;
+  cursor: pointer;
+}
+
+.WdateDiv .WwdayOn {
+  background-color: #C0EBEF;
+  color: #000;
+  cursor: pointer;
+}
+
+.WdateDiv .Wtoday {
+  color: blue;
+  cursor: pointer;
+}
+
+.WdateDiv .Wselday { background-color: #A9E4E9; }
+
+.WdateDiv .WspecialDay { background-color: #66F4DF; }
+
+.WdateDiv .WotherDay {
+  color: #6A6AFF;
+  cursor: pointer;
+}
+
+.WdateDiv .WotherDayOn {
+  background-color: #C0EBEF;
+  cursor: pointer;
+}
+
+.WdateDiv .WinvalidDay { color: #aaa; }
+
+.WdateDiv #dpTime {
+  float: left;
+  margin-right: 30px;
+  margin-top: 3px;
+}
+
+.WdateDiv #dpTime #dpTimeStr { margin-left: 1px; }
+
+.WdateDiv #dpTime input {
+  border: #ccc 1px solid;
+  height: 20px;
+  text-align: center;
+  width: 18px;
+}
+
+.WdateDiv #dpTime .tB { border-right: 0px; }
+
+.WdateDiv #dpTime .tE {
+  border-left: 0;
+  border-right: 0;
+}
+
+.WdateDiv #dpTime .tm {
+  border-left: 0;
+  border-right: 0;
+  width: 7px;
+}
+
+.WdateDiv #dpTime #dpTimeUp {
+  background: url(img.gif) no-repeat -32px -16px;
+  border: 0px;
+  height: 10px;
+  width: 13px;
+}
+
+.WdateDiv #dpTime #dpTimeDown {
+  background: url(img.gif) no-repeat -48px -16px;
+  border: 0px;
+  height: 10px;
+  width: 13px;
+}
+
+.WdateDiv #dpQS {
+  background: url(img.gif) no-repeat 0px -16px;
+  cursor: pointer;
+  float: left;
+  height: 20px;
+  margin-right: 3px;
+  margin-top: 3px;
+  width: 20px;
+}
+
+.WdateDiv #dpControl { text-align: right; }
+
+.WdateDiv .dpButton {
+  border: #ccc 1px solid;
+  height: 20px;
+  margin-right: 1px;
+  margin-top: 2px;
+  width: 45px;
+}

@@ -1,0 +1,138 @@
+﻿@model Fy3y.Model.Das.Purchase
+
+@{
+  ViewBag.Title = "购买申请单";
+}
+<br />
+<br />
+<br />
+<form id="form1">
+  @Html.AntiForgeryToken()
+  <div class="text-center">
+
+    @Html.ValidationSummary(true, "", new {@class = "text-danger"})
+    <div class="form-group row">
+      <label class="col-2 control-label">申请人</label>
+      <div class="col-4">
+        @Html.TextBoxFor(model => model.CreatorName, new {@class = "form-control", @readonly = ""})
+      </div>
+      <label class="col-md-2 control-label">申请科室</label>
+      <div class="col-4">
+        @Html.TextBoxFor(model => model.DepartmentName, new {@class = "form-control", @readonly = ""})
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-md-2 control-label">申请时间</label>
+      <div class="col-4">
+        @Html.TextBoxFor(model => model.CreateTime, new {@class = "form-control", @readonly = ""})
+      </div>
+      <label class="col-md-2 control-label">采购预算</label>
+      <div class="col-4">
+        @Html.TextBoxFor(model => model.Budget, new {@class = "form-control"})
+      </div>
+    </div>
+    <div class="d-print-none form-group row">
+      <div class="col-2"></div>
+      <div class="col-10 text-left">
+        <a class="btn btn-dark btn-sm" href="javascript:void(0)" onclick="addRow()">
+          <i class="fa fa-plus">增加项目</i>
+        </a>
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-2 control-label">项目明细</label>
+      <div class="col-10">
+        <table class="table table-sm table-bordered text-center table-striped">
+          <thead>
+            <tr>
+              <th style="width: 10%;">序号</th>
+              <th style="width: 30%;">名称</th>
+              <th style="width: 30%;">规格型号</th>
+              <th style="width: 10%;">单位</th>
+              <th style="width: 10%;">数量</th>
+              <th style="width: 10%;">-</th>
+            </tr>
+          </thead>
+          <tbody id="items"></tbody>
+        </table>
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-2 control-label">申请原因</label>
+      <div class="col-10">
+        @Html.TextAreaFor(model => model.Remarks, new {@class = "form-control", rows = "5"})
+      </div>
+    </div>
+    @Html.HiddenFor(m => m.PurchaseId)
+    @Html.HiddenFor(m => m.CreatorId)
+    @Html.HiddenFor(m => m.DepartmentId)
+    @Html.HiddenFor(m => m.CreateTime)
+    @Html.HiddenFor(m => m.IsValid)
+  </div>
+</form>
+<datalist id="unitList">
+  <option>台</option>
+  <option>条</option>
+  <option>个</option>
+  <option>片</option>
+  <option>根</option>
+</datalist>
+<datalist id="itemList">
+  <option>台式电脑</option>
+  <option>一体电脑</option>
+  <option>普通打印机</option>
+  <option>多功能一体机</option>
+  <option>电视机</option>
+</datalist>
+<div class="d-print-none text-center">
+  <button class="btn btn-dark" id="submit">保存</button>
+  <a href="@Url.Action("Index")">返回</a>
+</div>
+<script>
+
+  function addRow() {
+    tb = document.getElementById("items");
+    var newRow = tb.insertRow();
+    newRow.insertCell().innerHTML =
+      newRow.rowIndex + "<input type='hidden' value='@(Guid.NewGuid().ToString())' name='itemid' />";
+    newRow.insertCell().innerHTML = "<input class='form-control' list='itemList' name='itemName' type='text' />";
+    newRow.insertCell().innerHTML = "<input class='form-control' name='brandmodel' type='text' />";
+    newRow.insertCell().innerHTML = "<input class='form-control' list='unitList' name='unit' type='Text' />";
+    newRow.insertCell().innerHTML = "<input class='form-control' name='number' type='Text' value='1' />";
+    newRow.insertCell().innerHTML =
+      "<a href='javascript:void(0)' onclick='deleteRow(this.parentElement.parentElement.rowIndex)'><i class='fa fa-minus'></i></a>";
+  }
+
+  function deleteRow(index) {
+    var tb = document.getElementById("items");
+    tb.deleteRow(index - 1);
+    for (var i = 0; i < tb.rows.length; i++) {
+      tb.rows[i].cells[0].innerText = i + 1;
+    }
+
+  }
+
+  function validForm() {
+    return $("#form1").validate({
+      rules: {
+        Remarks: {
+          required: true
+        },
+        Details: {
+          required: true
+        }
+      }
+    });
+  }
+
+  //注册表单验证
+  $(validForm());
+  //点击表单保存按钮触发单击事件，进行表单验证，验证通过发起ajax请求，验证不通过在表单里提示
+  $("#submit").click(function() {
+    if (validForm().form()) {
+      var url = "@Url.Action("Create")";
+      var data = $("#form1").serialize();
+      AjaxSubmit(url, data);
+    }
+  });
+</script>

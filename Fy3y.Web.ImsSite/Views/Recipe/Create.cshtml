@@ -1,0 +1,69 @@
+﻿@model Fy3y.Model.Das.Recipe
+@{
+  ViewBag.Title = "添加处方";
+}
+<form id="form1">
+  @Html.AntiForgeryToken()
+  @Html.ValidationSummary(true, "", new {@class = "text-danger"})
+  <div class="form-group">
+    @Html.LabelFor(model => model.DrugName, new {@class = "control-label col-md-2"})
+    <div class="col-md-10">
+      @Html.EditorFor(model => model.DrugName, new {htmlAttributes = new {@class = "form-control", @readonly = "ReadOnly", Value = "美沙酮口服溶液1mg/ml"}})
+      @Html.ValidationMessageFor(model => model.DrugName, "", new {@class = "text-danger"})
+    </div>
+  </div>
+  <div class="form-group">
+    @Html.LabelFor(model => model.DrugNumber, new {@class = "control-label col-md-2"})
+    <div class="col-md-10">
+      @Html.EditorFor(model => model.DrugNumber, new {htmlAttributes = new {@class = "form-control"}})
+      @Html.ValidationMessageFor(model => model.DrugNumber, "", new {@class = "text-danger"})
+    </div>
+  </div>
+  <div class="form-group">
+    @Html.LabelFor(model => model.Dignose, new {@class = "control-label col-md-2"})
+    <div class="col-md-10">
+      @Html.EditorFor(model => model.Dignose, new {htmlAttributes = new {@class = "form-control", @readonly = "ReadOnly", Value = "海洛因依赖"}})
+      @Html.ValidationMessageFor(model => model.Dignose, "", new {@class = "text-danger"})
+    </div>
+  </div>
+  <div class="form-group">
+    @Html.LabelFor(model => model.CreatorId, new {@class = "control-label col-md-2"})
+    <div class="col-md-10">
+      <input class="form-control" readonly="readonly" type="text" value="林小美" />
+      <input name="CreatorId" type="hidden" value="52" />
+    </div>
+  </div>
+  <div class="form-group">
+    @Html.LabelFor(model => model.Dispenser, new {@class = "control-label col-md-2"})
+    <div class="col-md-10">
+      <input class="form-control" readonly="readonly" type="text" value="冯晖" />
+      <input name="Dispenser" type="hidden" value="63" />
+    </div>
+  </div>
+  <div class="form-group">
+    @Html.LabelFor(model => model.CreateTime, new {@class = "control-label col-md-2"})
+    <div class="col-md-10">
+      @Html.EditorFor(model => model.CreateTime, new {htmlAttributes = new {@class = "form-control", @readonly = "ReadOnly", onfocus = "WdatePicker({isShowClear:false,readOnly:true,isShowOK:false})"}})
+      @Html.ValidationMessageFor(model => model.CreateTime, "", new {@class = "text-danger"})
+      @*<input type="text" onclick="WdatePicker({isShowClear:false,readOnly:true,isShowOK:false})" name="CreateTime" class="form-control" readonly="readonly" />*@
+    </div>
+  </div>
+  @Html.HiddenFor(model => model.PatientId)
+  @Html.HiddenFor(model => model.IsValid)
+</form>
+<div class="text-center">
+  <button class="btn btn-dark d-print-none" id="submit">
+    <i class="fa fa-save">保存</i>
+  </button>
+  @Html.ActionLink("返回列表", "PatientRecipes", new {id = Model.PatientId})
+</div>
+<script type="text/javascript">
+
+  //点击表单保存按钮触发单击事件，进行表单验证，验证通过发起ajax请求，验证不通过在表单里提示
+  $("#submit").click(function() {
+    $("#submit").attr("disabled", true);
+    var url = "@Url.Action("Create")";
+    var data = $("#form1").serialize();
+    AjaxSubmit(url, data);
+  });
+</script>

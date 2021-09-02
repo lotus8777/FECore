@@ -1,0 +1,187 @@
+﻿@{
+    Layout = "~/Views/Shared/_EmptyLayout.cshtml";
+}
+<br />
+<link href="/lib/jstree/dist/themes/default/style.css" type="text/css" rel="stylesheet" />
+<style type="text/css">
+    body {
+        font-size: 0.8rem;
+    }
+</style>
+<script src="/lib/jstree/dist/jstree.js" type="text/javascript"></script>
+<div class="form-group row">
+    <div class="form-check col-10 text-right">
+        <input type="checkbox" name="selectAll" id="selectAll" class="form-check-input" />
+        <label class="form-check-label">全选</label>
+    </div>
+    <div class="col-2">
+        <input type="button" value="确定" id="confirm" class="btn btn-success btn-sm " />
+    </div>
+
+</div>
+
+<div>
+    <div id="jsTree" style="border: 1px solid gray; float: left; min-height: 500px; width: 150px;"></div>
+    <div id="table" style="margin-left: 155px">
+    </div>
+</div>
+<script type="text/javascript">
+  $(document).ready(function() {
+    $("#jsTree").jstree({
+      "core": {
+        "data": {
+          url: "@Url.Action("GetTreeData")",
+          type: "post",
+          dataType: "json",
+          data: function(node) {
+            return { "nodeId": node.id };
+          },
+          success: function() {
+            getEmployee(0);
+          }
+        }
+      }
+
+    });
+
+    // 展开节点
+    $("#jsTree").on("loadvd.jstree",
+      function(event, data) {
+        // 展开所有节点
+        $('#jsTree').jstree('open_all');
+        // 展开指定节点
+        //data.instance.open_node(1);     // 单个节点 （1 是顶层的id）
+        //data.instance.open_node([1, 10]); // 多个节点 (展开多个几点只有在一次性装载后所有节点后才可行）
+      });
+
+    // 所有节点都加载完后
+    $("#jsTree").on("ready.jstree",
+      function(event, data) {
+        //alert('all ok');
+        //data.instance.open_node(1); // 展开root节点
+        //// 隐藏根节点 http://stackoverflow.com/questions/10429876/how-to-hide-root-node-from-jstree
+        //$("#1_anchor").css("visibility", "hidden");
+        //$("li#1").css("position", "relative")
+        //$("li#1").css("top", "-20px")
+        //$("li#1").css("left", "-20px")
+        //$(".jstree-last .jstree-icon").first().hide();
+      });
+    $('#jsTree').on("changed.jstree",
+      function(e, data) {
+        //console.log("The selected nodes are:");
+        //console.log(data.selected);
+        getEmployee(data.node.id);
+        //alert('node.id is:' + data.node.id);
+        //alert('node.text is:'+data.node.text);
+        //console.log(data);
+
+        // TODO: 传递给Tab
+        //$.ajax({
+        //    type:"post",
+        //    url: 'Home/GetTreedata/',
+        //    data: { 'id': data.node.id }
+        //});
+      });
+  });
+
+  function getTree() {
+    $.ajax({
+      type: "post",
+      dataType: "json",
+      url: "@Url.Action("GetTreeData")",
+      success: function(data) {
+        $("#tree").treeview({
+          expandIcon: "fa fa-plus",
+          collapseIcon: "fa fa-minus",
+          levels: 2,
+          data: [
+            {
+              text: "全部",
+              id: '0',
+              state: {
+                selected: true
+              },
+              nodes: JSON.parse(data)
+            }
+          ],
+          showBorder: true,
+          onNodeSelected: function(event, node) {
+
+            getEmployee(node.id);
+          },
+          onNodeUnselected: function(event, node) {
+          }
+        });
+        getEmployee(0);
+      }
+    });
+  }
+
+  function getEmployee(id) {
+    $.ajax({
+      type: "post",
+      dateType: "text",
+      url: "@Url.Action("SelectEmployeeTableRow")",
+      data: { "departmentId": id },
+      success: function(msg) {
+          $("#table").empty();
+          $("#table").html(msg.data.result);
+          //setParentFrameHeight();
+      }
+    });
+  }
+
+    $("#confirm").click(function () {
+
+        var employee = "";
+        var mobile = "";
+        $("input[name='patient']:checkbox:checked").each(function() {
+            var e = $(this).data("employee");
+            var m = $(this).data("mobile");
+            if (e !== undefined&&m!=undefined) {
+                employee += `${e},`;
+                mobile += `${m},`;
+            }
+        });
+        if (employee==="") {
+            alert("未选择任何值");
+            return;
+        }
+        parent.setValue(employee,mobile);
+        var index = parent.layer.getFrameIndex(window.name);
+        parent.layer.close(index);
+    });
+
+
+  function setParentValue(employeeId, employeeName) {
+      if (employeeId === "" || employeeName === "") {
+          layer.alert("请选择用户！");
+          return;
+      }
+      parent.setValue(employeeId, employeeName);
+      var index = parent.layer.getFrameIndex(window.name);
+      parent.layer.close(index);
+      }
+
+      $("#selectAll").change(function() {
+
+          if (($("#selectAll")[0].checked)) {
+              selectAll();
+          } else {
+              cancelAll();
+          }
+      });
+
+
+      function selectAll() {
+          $(":checkbox").each(function() {
+              this.checked = true;
+          });
+      }
+
+      function cancelAll() {
+          $(":checkbox").each(function() {
+              this.checked = false;
+          });
+      }
+</script>

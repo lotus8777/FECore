@@ -1,0 +1,140 @@
+﻿
+@using Fy3y.Model.Das
+@model IList<Fy3y.Model.Das.AdverseNursingEvent>
+@{
+    ViewBag.Title = "护理不良事件清单";
+    var eventType = ViewBag.eventType as EventType;
+}
+<br />
+<div class="form-group row">
+    <div class="col-2">
+        <a class="btn btn-dark" href="@Url.Action("Create")">
+            <i class="fa fa-plus">添加</i>
+        </a>
+    </div>
+</div>
+
+<ul class="nav nav-tabs" id="myTabs" role="tablist">
+    <li class="nav-item">
+        <a class="nav-link" data-toggle="tab" href="#statistics">分类统计</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" data-toggle="tab" href="#details">明细清单</a>
+    </li>
+</ul>
+
+<div class="border border-top-0 p-2 tab-content">
+    <div class="active fade show tab-pane" id="statistics">
+        <table class="table table-sm table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>上报科室</th>
+                    <th>事件类别</th>
+                    <th>类别数量</th>
+                    <th>总数量</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model?.Count() > 0)
+                {
+                    var departments = Model.Select(p => p.AdverseEvent.ReporterDeptName).Distinct().ToList();
+                    if (departments.Any())
+                    {
+                        int t = 0;
+                        foreach (var department in departments)
+                        {
+                            t++;
+                            var events = Model.Where(p => p.AdverseEvent.ReporterDeptName == department).ToList();
+                            if (events.Any())
+                            {
+                                var eventCount = events.Count;
+                                var eventClass = events.Select(p => p.EventClass.ClassName).Distinct().ToList();
+                                if (eventClass.Any())
+                                {
+                                    int i = 0;
+                                    foreach (var ec in eventClass)
+                                    {
+                                        var classCount = events.Count(p => p.EventClass.ClassName == ec);
+                                        if (i == 0)
+                                        {
+                                            <tr>
+                                                <td rowspan="@classCount">@t</td>
+                                                <td rowspan="@classCount">@department</td>
+                                                <td>@ec</td>
+                                                <td>@classCount</td>
+                                                <td rowspan="@classCount">@eventCount</td>
+
+                                            </tr>
+                                        }
+                                        else
+                                        {
+                                            <tr>
+                                                <td>@ec</td>
+                                                <td>@classCount</td>
+                                            </tr> 
+                                        }
+                                        i++;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+    <div class="fade tab-pane" id="details">
+        <table class="table table-sm table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>上报时间</th>
+                    <th>上报科室</th>
+                    <th>事件级别</th>
+                    <th>影响级别</th>
+                    <th>报告人</th>
+                    <th>查看</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model?.Count() > 0)
+                {
+                    var index = 0;
+                    foreach (var item in Model)
+                    {
+                        index++;
+                        <tr>
+                            <td>@index </td>
+                            <td>item.AdverseEvent.ReportTime </td>
+                            <td>@item.AdverseEvent.ReporterDeptName </td>
+                            <td>@(eventType?.EventLevels?.FirstOrDefault(p => p.LevelId == item.LevelId)?.LevelName)</td>
+                            <td>@item.AffectLevel </td>
+                            <td>@item.AdverseEvent.ReporterName </td>
+                            <td class="d-print-none">
+                                <div>
+                                    @if (item.AdverseEvent.IsChecked)
+                                    {
+                                        <a href="@Url.Action("Details",new{id=item.EventId})" title="查看">
+                                            <i class="fa fa-search"></i>
+                                        </a>
+                                    }
+                                    else
+                                    {
+                                        <a href="@Url.Action("Create",new{id=item.EventId})" title="修改">
+                                            <i class="fa fa-edit"></i>
+                                        </a>
+                                        <a href="javascript:void(0)" onclick="remove('@Url.Action("Delete",new{id=item.EventId})')" title="删除">
+                                            <i class="fa fa-trash"></i>
+                                        </a>
+                                    }
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+

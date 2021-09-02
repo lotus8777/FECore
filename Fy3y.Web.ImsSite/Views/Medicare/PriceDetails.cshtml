@@ -1,0 +1,53 @@
+﻿@model Fy3y.Model.Das.MedicarePrice
+
+@{
+  ViewBag.Title = "Details";
+  Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h2>Details</h2>
+<div>
+  <h4>MedicarePrice</h4>
+  <hr />
+  <dl class="dl-horizontal">
+    <dt>
+      @Html.DisplayNameFor(model => model.Xmbm)
+    </dt>
+    <dd>
+      @Html.DisplayFor(model => model.Xmbm)
+    </dd>
+    <dt>
+      @Html.DisplayNameFor(model => model.Xmmc)
+    </dt>
+    <dd>
+      @Html.DisplayFor(model => model.Xmmc)
+    </dd>
+    <dt>
+      @Html.DisplayNameFor(model => model.Level3Price)
+    </dt>
+    <dd>
+      @Html.DisplayFor(model => model.Level3Price)
+    </dd>
+    <dt>
+      @Html.DisplayNameFor(model => model.Level2Price)
+    </dt>
+    <dd>
+      @Html.DisplayFor(model => model.Level2Price)
+    </dd>
+    <dt>
+      @Html.DisplayNameFor(model => model.Level3Child)
+    </dt>
+    <dd>
+      @Html.DisplayFor(model => model.Level3Child)
+    </dd>
+    <dt>
+      @Html.DisplayNameFor(model => model.Level2Child)
+    </dt>
+    <dd>
+      @Html.DisplayFor(model => model.Level2Child)
+    </dd>
+  </dl>
+</div>
+<p>
+  @Html.ActionLink("Edit", "Edit", new {id = Model.Xmxh}) |
+  @Html.ActionLink("Back to List", "PriceIndex")
+</p>

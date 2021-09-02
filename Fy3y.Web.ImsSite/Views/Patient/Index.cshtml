@@ -1,0 +1,52 @@
+﻿@model IList<Fy3y.Model.Das.Patient>
+@{
+  ViewBag.Title = "服药病人";
+}
+<ul class="nav nav-tabs" id="mytabs" role="tablist">
+  <li class="nav-item">
+    <a class="active nav-link" data-toggle="tab" href="#statistics">人员状况</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" data-toggle="tab" href="#valid">正在服药</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" data-toggle="tab" href="#invalid">暂停服药</a>
+  </li>
+  <li class="nav-item">
+    <a class="btn btn-dark mb-1 ml-2 nav-link" href="@Url.Action("Create")">
+      <i class="fa fa-plus">增加</i>
+    </a>
+  </li>
+</ul>
+<div class="border border-top-0 p-2 tab-content">
+  <div class="active fade show tab-pane" id="statistics">
+    <ul class="list-unstyled row">
+      <li class="col-3">
+        <div class="card">
+          <div class="card-body">
+            <span>正在服药</span>
+            <h1 class="text-center">
+              @(Model.Count(p => p.IsValid))
+            </h1>
+          </div>
+        </div>
+      </li>
+      <li class="col-3">
+        <div class="card">
+          <div class="card-body">
+            <span>暂停服药</span>
+            <h1 class="text-center">
+              @(Model.Count(p => !p.IsValid))
+            </h1>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div class="fade tab-pane" id="valid">
+      @Html.Partial("PatientListPartitial", Model?.Where(p => p.IsValid))
+  </div>
+  <div class="fade tab-pane" id="invalid">
+      @Html.Partial("PatientListPartitial", Model?.Where(p => !p.IsValid))
+  </div>
+</div>

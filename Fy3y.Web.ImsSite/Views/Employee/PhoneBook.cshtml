@@ -1,0 +1,71 @@
+﻿@model IList<Fy3y.Model.Das.Employee>
+@{
+  ViewBag.Title = "职工电话";
+  Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@using (Html.BeginForm(null, null, FormMethod.Post))
+{
+  <div class="form-row mb-2">
+    <div class="col">
+      @Html.DropDownList("departmentId", null, new { @class = "form-control" })
+    </div>
+    <div class="col">
+      <button class="btn btn-dark d-print-none">
+        <span class="fa fa-search">查询</span>
+      </button>
+    </div>
+    <div class="col">
+    </div>
+    <div class="col">
+    </div>
+    <div class="col">
+    </div>
+    <div class="col">
+    </div>
+  </div>
+}
+<table class="table table-sm table-bordered table-hover table-striped text-center">
+  <thead>
+    <tr>
+      <th>职能科室</th>
+      <th>员工姓名</th>
+      <th>手机号码</th>
+      <th>短号或其它</th>
+    </tr>
+  </thead>
+  <tbody>
+    @if (Model.Any())
+    {
+      var departments = Model.Select(p => p.DepartmentId).Distinct();
+      foreach (var item in departments.OrderBy(p => p))
+      {
+        var departmentEmployees = Model.Where(p => p.DepartmentId == item).ToList();
+        if (departmentEmployees.Any())
+        {
+          var i = 1;
+          foreach (var sub in departmentEmployees)
+          {
+            if (i == 1)
+            {
+              <tr>
+                <td rowspan="@departmentEmployees.Count()">@sub.Department.DepartmentName </td>
+                <td>@sub.EmployeeName </td>
+                <td>@sub.Mobile </td>
+                <td>@sub.OtherPhone </td>
+              </tr>
+            }
+            else
+            {
+              <tr>
+                <td>@sub.EmployeeName </td>
+                <td>@sub.Mobile </td>
+                <td>@sub.OtherPhone </td>
+              </tr>
+            }
+            i++;
+          }
+        }
+      }
+    }
+  </tbody>
+</table>

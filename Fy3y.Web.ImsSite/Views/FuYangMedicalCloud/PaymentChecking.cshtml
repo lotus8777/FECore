@@ -1,0 +1,43 @@
+﻿@model Tuple<PaymentCheck, PaymentCheck>
+@{
+  ViewBag.Title = "智慧医疗结算对账信息";
+}
+
+<partial name="BeginEndFormPartial" />
+<div>
+  <table class="table table-sm table-bordered text-center table-striped">
+    <thead>
+      <tr>
+        <th>核对项目</th>
+        <th>本院数据</th>
+        <th>云平台数据</th>
+        <th>差额对比</th>
+      </tr>
+    </thead>
+    <tr>
+      <td>交易数量 </td>
+      <td>@Model.Item2.Jysl </td>
+      <td>@Model.Item1.Jysl </td>
+      <td>@(Model.Item2.Jysl - Model.Item1.Jysl)</td>
+    </tr>
+    <tr>
+      <td>社保总额 </td>
+      <td>@Model.Item2.Ybje </td>
+      <td>@Model.Item1.Ybje </td>
+      <td>@(Model.Item2.Ybje - Model.Item1.Ybje)</td>
+    </tr>
+    <tr>
+      <td>第三方总额 </td>
+      <td>@Model.Item2.Qtje </td>
+      <td>@Model.Item1.Qtje </td>
+      <td>@(Model.Item2.Qtje - Model.Item1.Qtje)</td>
+    </tr>
+    <tr>
+      <td>合计金额 </td>
+      <td>@Model.Item2.Zjje </td>
+      <td>@Model.Item1.Zjje </td>
+      <td>@(Model.Item2.Zjje - Model.Item1.Zjje)</td>
+    </tr>
+  </table>
+</div>
+<a href="@Model.Item1.DetailUrl">详情链接</a>

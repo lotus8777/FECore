@@ -1,0 +1,77 @@
+﻿@model IList<Inpatient>
+@{
+    ViewBag.Title = "出院病人";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@Html.Partial("BeginEndFormPartial")
+
+<table class="table table-sm table-bordered table-hover table-striped text-center" id="table1">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>住院号</th>
+            <th>姓名</th>
+            <th>性别</th>
+            <th>年龄</th>
+            <th>科室</th>
+            <th>床号</th>
+            <th>入院时间</th>
+            <th>出院时间</th>
+            <th>床日</th>
+            <th>类型</th>
+
+        </tr>
+    </thead>
+
+    @{
+        var number = 0;
+        if (Model?.Count > 0)
+        {
+            double totalDays = 0;
+            <tbody>
+                @foreach (var p in Model)
+                {
+
+                    var day = (p.Cyrq ?? DateTime.Now).Subtract(p.Ryrq).TotalDays;
+                    totalDays += day;
+                    number++;
+                    <tr>
+                        <td>@number </td>
+                        <td>@p.Zyhm </td>
+                        <td>@p.Brxm </td>
+                        <td>
+                           @Html.Partial("SexPartial",p.Brxb)
+                        </td>
+                        <td>
+                            @Html.Partial("Partial/PatientAgePartial",p)
+                        </td>
+                        <td>@p.Ksmc </td>
+                        <td>@p.Brch </td>
+                        <td>@p.Ryrq.ToString("yyyy-MM-dd hh:mm") </td>
+                        <td>
+                            @if (p.Cyrq != null)
+                            {
+                                @p.Cyrq.Value.ToString("yyyy-MM-dd hh:mm")
+                            }
+                        </td>
+                        <td>@day.ToString("f2") </td>
+                        <td>
+                            @Html.Partial("Partial/PatientTypePartial",p.Brlx)
+                        </td>
+                    </tr>
+                }
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="2">总人数</td>
+                    <td>@Model.Count </td>
+                    <td colspan="2">总床日数 </td>
+                    <td>@(totalDays.ToString("f2"))</td>
+                    <td colspan="2">平均床日</td>
+                    <td> @((totalDays/Model.Count()).ToString("f2")) </td>
+                    <td></td>
+                </tr>
+            </tfoot>
+        }
+    }
+</table>

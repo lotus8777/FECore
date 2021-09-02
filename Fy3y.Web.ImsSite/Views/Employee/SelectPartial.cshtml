@@ -1,0 +1,33 @@
+﻿@model IList<Fy3y.Model.Das.Employee>
+<table class="table table-sm table-bordered table-hover table-striped text-center" style="width: 500px;">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>姓名</th>
+      <th>科室</th>
+      @*<th>状态</th>*@
+      @*<th>联系方式</th>*@
+      <th>选择</th>
+    </tr>
+  </thead>
+  <tbody>
+    @if (Model.Any())
+  {
+    var i = 0;
+    foreach (var item in Model)
+    {
+      i++;
+    <tr>
+      <td>@i </td>
+      <td>@item.EmployeeName </td>
+      <td>@item.Department.DepartmentName </td>
+      @*<td>@(item.Workstatus?.statusName) </td>*@
+      @*<td>@item.Mobile </td>*@
+      <td>
+        <input type="checkbox" name="patient" data-employee="@item.EmployeeName" data-mobile="@item.Mobile"/>
+      </td>
+    </tr>
+    }
+  }
+  </tbody>
+</table>

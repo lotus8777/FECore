@@ -1,0 +1,257 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{1B745592-C745-4EC0-A547-A12694B6354C}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Fy3y.Model.YYH</RootNamespace>
+    <AssemblyName>Fy3y.Model.YYH</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <LangVersion>9.0</LangVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <LangVersion>latest</LangVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <LangVersion>latest</LangVersion>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Mjz_Fyjs.cs" />
+    <Compile Include="Mjz_Fymx.cs" />
+    <Compile Include="Mjz_Ghdj.cs" />
+    <Compile Include="Mjz_JySqd.cs" />
+    <Compile Include="BussinessData.cs" />
+    <Compile Include="Mjz_Jyxjbg.cs" />
+    <Compile Include="Mjz_Jyymbg.cs" />
+    <Compile Include="Mjz_Ssjl.cs" />
+    <Compile Include="Mjz_Tgjc.cs" />
+    <Compile Include="Mjz_Zdjl.cs" />
+    <Compile Include="Mjz_Jycgbg.cs" />
+    <Compile Include="Mjz_Jybg.cs" />
+    <Compile Include="PsychosisReportOut.cs" />
+    <Compile Include="DischargeReport.cs" />
+    <Compile Include="DoctorReport.cs" />
+    <Compile Include="DrugReport.cs" />
+    <Compile Include="YYhBase.cs" />
+    <Compile Include="YYhBaseReturn.cs" />
+    <Compile Include="YYHBatchNumberIn.cs" />
+    <Compile Include="YYhBatchReport.cs" />
+    <Compile Include="YYHReportIn.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="PsychosisReport.cs" />
+    <Compile Include="ReportHandle.cs" />
+    <Compile Include="BaseReport.cs" />
+    <Compile Include="Xx_Zcfjm.cs" />
+    <Compile Include="YYHParaIn.cs" />
+    <Compile Include="Mjz_CFjl.cs" />
+    <Compile Include="Mjz_Cfmx.cs" />
+    <Compile Include="YYhSingleDeclareIn.cs" />
+    <Compile Include="yyh_24xsnrcyjl.cs" />
+    <Compile Include="yyh_24xsnryswjl.cs" />
+    <Compile Include="yyh_blgyhzjbxx.cs" />
+    <Compile Include="yyh_blgyjbjkxx.cs" />
+    <Compile Include="yyh_blgywssjzy.cs" />
+    <Compile Include="yyh_bwtzs.cs" />
+    <Compile Include="yyh_bzhljl.cs" />
+    <Compile Include="yyh_crljl.cs" />
+    <Compile Include="yyh_cypgyzd.cs" />
+    <Compile Include="yyh_dcjl.cs" />
+    <Compile Include="yyh_fmjl.cs" />
+    <Compile Include="yyh_gzhc.cs" />
+    <Compile Include="yyh_gzrytjdj.cs" />
+    <Compile Include="yyh_hljh.cs" />
+    <Compile Include="yyh_jzlgbl.cs" />
+    <Compile Include="yyh_mjzbljl.cs" />
+    <Compile Include="yyh_mjzcfjl.cs" />
+    <Compile Include="yyh_mjzcfmx.cs" />
+    <Compile Include="yyh_mjzfyjs.cs" />
+    <Compile Include="yyh_mjzfymx.cs" />
+    <Compile Include="yyh_mjzghdj.cs" />
+    <Compile Include="Mjz_Jcbg.cs" />
+    <Compile Include="Mjz_JcSqd.cs" />
+    <Compile Include="yyh_mjzjybg.cs" />
+    <Compile Include="yyh_mjzjycgbg.cs" />
+    <Compile Include="yyh_mjzjysqd.cs" />
+    <Compile Include="yyh_mjzjyxjbg.cs" />
+    <Compile Include="yyh_mjzjyymbg.cs" />
+    <Compile Include="yyh_mjzssjl.cs" />
+    <Compile Include="yyh_mjztgjc.cs" />
+    <Compile Include="yyh_mjzzdjl.cs" />
+    <Compile Include="yyh_mzshfsjl.cs" />
+    <Compile Include="yyh_mzsqfsjl.cs" />
+    <Compile Include="yyh_mzzqtys.cs" />
+    <Compile Include="yyh_pgcjl.cs" />
+    <Compile Include="Yyh_Qt_24xsryswjl.cs" />
+    <Compile Include="Yyh_Qt_Blgyhzjbxx.cs" />
+    <Compile Include="Yyh_Qt_Blgywssjzy.cs" />
+    <Compile Include="Yyh_Qt_Bwztzs.cs" />
+    <Compile Include="Yyh_Qt_Bzbwhljl.cs" />
+    <Compile Include="Yyh_Qt_Ghzc.cs" />
+    <Compile Include="Yyh_Qt_Hljl.cs" />
+    <Compile Include="Yyh_Qt_Qtzqgztys.cs" />
+    <Compile Include="Yyh_Qt_Swjl.cs" />
+    <Compile Include="Yyh_Qt_Tjsrrb.cs" />
+    <Compile Include="Yyh_Qt_Wzcgjl.cs" />
+    <Compile Include="Yyh_Qt_Wzcgmxjl.cs" />
+    <Compile Include="Yyh_Qt_Ypcgjl.cs" />
+    <Compile Include="Yyh_Qt_Ypcgrkjlxxjl.cs" />
+    <Compile Include="Yyh_Qt_Ypcgxxjl.cs" />
+    <Compile Include="Yyh_Qt_Yyywrb.cs" />
+    <Compile Include="Yyh_Qt_Yyywsrqb.cs" />
+    <Compile Include="Yyh_Qy_Blgyjbjkxx.cs" />
+    <Compile Include="yyh_rypg.cs" />
+    <Compile Include="yyh_sshljl.cs" />
+    <Compile Include="yyh_sszqtys.cs" />
+    <Compile Include="yyh_swjl.cs" />
+    <Compile Include="yyh_sxzltys.cs" />
+    <Compile Include="yyh_tjsrrb.cs" />
+    <Compile Include="Yyh_Tj_Gzrytjdj.cs" />
+    <Compile Include="Yyh_Tj_Yyjktjbgjl.cs" />
+    <Compile Include="Yyh_Tj_Yyjktjcgjc.cs" />
+    <Compile Include="Yyh_Tj_Yyjktjfzjc.cs" />
+    <Compile Include="Yyh_Tj_Yyjktjsysjy.cs" />
+    <Compile Include="Tj_Yyjktjsysjycgbg.cs" />
+    <Compile Include="Tj_Yyjktjyczyxx.cs" />
+    <Compile Include="yyh_tsjcjtszltys.cs" />
+    <Compile Include="yyh_wzcgjl.cs" />
+    <Compile Include="yyh_wzcgjlmx.cs" />
+    <Compile Include="yyh_ypcgjl.cs" />
+    <Compile Include="yyh_ypcgrkjl.cs" />
+    <Compile Include="yyh_ypcgrkjlxxjl.cs" />
+    <Compile Include="yyh_ypcgxxjl.cs" />
+    <Compile Include="yyh_yyjktjbgjl.cs" />
+    <Compile Include="yyh_yyjktjcgjc.cs" />
+    <Compile Include="yyh_yyjktjfzjc.cs" />
+    <Compile Include="yyh_yyjktjsysjy.cs" />
+    <Compile Include="yyh_yyjktjsysjycgbg.cs" />
+    <Compile Include="yyh_yyjktjyczyxx.cs" />
+    <Compile Include="yyh_yyywlrb.cs" />
+    <Compile Include="yyh_yyywsrrb.cs" />
+    <Compile Include="yyh_zybasyfyxx.cs" />
+    <Compile Include="yyh_zybasypgbg.cs" />
+    <Compile Include="yyh_zybasyssxx.cs" />
+    <Compile Include="yyh_zybasyzdxx.cs" />
+    <Compile Include="yyh_zybcjlcyxj.cs" />
+    <Compile Include="yyh_zybcjljdxj.cs" />
+    <Compile Include="yyh_zybcjljjbjl.cs" />
+    <Compile Include="yyh_zybcjlqjjl.cs" />
+    <Compile Include="yyh_zybcjlrcbcjl.cs" />
+    <Compile Include="yyh_zybcjlscbcjl.cs" />
+    <Compile Include="yyh_zybcjlshscbcjl.cs" />
+    <Compile Include="yyh_zybcjlsjyscfjl.cs" />
+    <Compile Include="yyh_zybcjlsqtl.cs" />
+    <Compile Include="yyh_zybcjlsqxj.cs" />
+    <Compile Include="yyh_zybcjlswbltljl.cs" />
+    <Compile Include="yyh_zybcjlynbltljl.cs" />
+    <Compile Include="yyh_zycyjl.cs" />
+    <Compile Include="yyh_zycyxj.cs" />
+    <Compile Include="yyh_zyfyjs.cs" />
+    <Compile Include="yyh_zyfymx.cs" />
+    <Compile Include="yyh_zyhzjl.cs" />
+    <Compile Include="yyh_zyjcbg.cs" />
+    <Compile Include="yyh_zyjcsqd.cs" />
+    <Compile Include="yyh_zyjybg.cs" />
+    <Compile Include="yyh_zyjycgbg.cs" />
+    <Compile Include="yyh_zyjysqd.cs" />
+    <Compile Include="yyh_zyjyxjbg.cs" />
+    <Compile Include="yyh_zyjyymbg.cs" />
+    <Compile Include="yyh_zyrcydj.cs" />
+    <Compile Include="yyh_zyryjl.cs" />
+    <Compile Include="yyh_zysmtzjl.cs" />
+    <Compile Include="yyh_zyssjl.cs" />
+    <Compile Include="yyh_zyssmz.cs" />
+    <Compile Include="yyh_zyssmzmx.cs" />
+    <Compile Include="yyh_zysxzljl.cs" />
+    <Compile Include="yyh_zyybhljl.cs" />
+    <Compile Include="yyh_zyyzjl.cs" />
+    <Compile Include="yyh_zyzdjl.cs" />
+    <Compile Include="yyh_zyzkdj.cs" />
+    <Compile Include="yyh_zyzljl.cs" />
+    <Compile Include="yyh_zyzljlmxjl.cs" />
+    <Compile Include="yyh_zyzlyyjl.cs" />
+    <Compile Include="yyh_zzyjl.cs" />
+    <Compile Include="Zy_24HourCryjl.cs" />
+    <Compile Include="Yyy_Qt_Ypcgrkjl.cs" />
+    <Compile Include="Zy_Bcjljjbjl.cs" />
+    <Compile Include="Zy_Bcjlqjjl.cs" />
+    <Compile Include="Zy_Bcjlsqtl.cs" />
+    <Compile Include="Zy_Bcjlsqxj.cs" />
+    <Compile Include="Zy_Bcjlynbltljl.cs" />
+    <Compile Include="Zy_Crljl.cs" />
+    <Compile Include="Zy_Cypgyzd.cs" />
+    <Compile Include="Mjz_JySqdReport.cs" />
+    <Compile Include="Zy_Rypg.cs" />
+    <Compile Include="Zy_Sxzljl.cs" />
+    <Compile Include="Zy_Zkdj.cs" />
+    <Compile Include="Zy_zljl.cs" />
+    <Compile Include="Zy_Zljlmxjl.cs" />
+    <Compile Include="Zy_Zlyyjl.cs" />
+    <Compile Include="Zy_Bcjljdxj.cs" />
+    <Compile Include="Zy_Bcjlrcbcjl.cs" />
+    <Compile Include="Zy_Bcjlscbcjl.cs" />
+    <Compile Include="Zy_Bcjlshscbcjl.cs" />
+    <Compile Include="Zy_Bcjlsjyscfjl.cs" />
+    <Compile Include="Zy_bcjlswbltljl.cs" />
+    <Compile Include="Zy_Cyjl.cs" />
+    <Compile Include="Zy_Hzjl.cs" />
+    <Compile Include="Zy_mzshfsjl.cs" />
+    <Compile Include="Zy_Mzsqfsjl.cs" />
+    <Compile Include="Zy_Rcydj.cs" />
+    <Compile Include="Zy_Smtzjl.cs" />
+    <Compile Include="Zy_Ssmz.cs" />
+    <Compile Include="Zy_ssmzmx.cs" />
+    <Compile Include="Zy_Ybhljl.cs" />
+    <Compile Include="Zy_Zdjl.cs" />
+    <Compile Include="Zy_Zzyjl.cs" />
+    <Compile Include="Zy_Fymx.cs" />
+    <Compile Include="Zy_Jycgbg.cs" />
+    <Compile Include="Zy_JySqd.cs" />
+    <Compile Include="Zy_Jyxjbg.cs" />
+    <Compile Include="Zy_Jyymbg.cs" />
+    <Compile Include="Zy_Ryjl.cs" />
+    <Compile Include="Zy_Ssjl.cs" />
+    <Compile Include="Zy_Yzjl.cs" />
+    <Compile Include="Zy_Basypgbg.cs" />
+    <Compile Include="Zy_Basyssxx.cs" />
+    <Compile Include="Zy_Basyzdxx.cs" />
+    <Compile Include="Zy_Basy_Fyxx.cs" />
+    <Compile Include="Zy_Cyxj.cs" />
+    <Compile Include="Zy_Fyjs.cs" />
+    <Compile Include="Zy_Jcbg.cs" />
+    <Compile Include="Zy_Jcsqd.cs" />
+    <Compile Include="Zy_Jybg.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

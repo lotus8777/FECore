@@ -1,0 +1,184 @@
+﻿@model IList<Zy_Brry>
+@{
+    ViewBag.Title = "医保Drgs上传情况";
+}
+<form id="form1" method="post">
+    @Html.AntiForgeryToken()
+    <fieldset>
+        <legend>查询条件</legend>
+        <div class="form-group row text-center">
+            <label class="col-1 col-form-label">时间范围</label>
+            <div class="col-2">
+                @Html.TextBox("begin", null, new { onfocus = "WdatePicker({isShowClear:false,readOnly:true,isShowOK:false,dateFmt: 'yyyy/MM/dd'})", @class = "form-control" })
+            </div>
+            <div class="col-2">
+                @Html.TextBox("end", null, new { onfocus = "WdatePicker({isShowClear:false,readOnly:true,isShowOK:false,dateFmt: 'yyyy/MM/dd'})", @class = "form-control" })
+            </div>
+
+            <div class="col-2">
+                <button class="btn btn-dark d-print-none">
+                    <span class="fa fa-search">查询</span>
+                </button>
+            </div>
+            <div class="col-4 btn-group" role="group">
+                <a class="btn btn-success" onclick="UploadAll();return false;">全部上传</a>
+                <a class="btn btn-primary" onclick="DeUploadAll();return false;">全部删除</a>
+                <a class="btn btn-warning" href="http://172.16.33.55:8010/" target="_blank">医保DRGs网站</a>
+            </div>
+        </div>
+    </fieldset>
+</form>
+<br />
+
+<table class="table table-bordered table-sm text-center" id="tableFull">
+    <thead>
+        <tr>
+            <td>#</td>
+            <td>住院号</td>
+            <td>姓名</td>
+            <td>医保</td>
+            <td>病区</td>
+            <td>床号</td>
+            <td>医生</td>
+            <td>出院日期</td>
+            <td>状态</td>
+            <td>上传日期</td>
+            <td>错误</td>
+            <td>出院小结</td>
+            <td>操作</td>
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            if (Model.Any())
+            {
+                int i = 0;
+                foreach (var item in Model)
+                {
+                    i++;
+                    <tr>
+                        <td>@i</td>
+                        <td>@item.Zyh</td>
+                        <td>@item.Brxm</td>
+                        <td>@item.Brxz </td>
+                        <td>@item.Gy_Ksdm.Ksmc</td>
+                        <td>@item.Brch</td>
+                        <td>@(item.Yg_Zzys?.Ygxm??"")</td>
+                        <td>@(item.Cyrq?.ToShortDateString()) </td>
+                        <td>
+                            @if (item.Drgsflag == 2||item.Drgsflag==3)
+                            {
+                                <label class="badge badge-success">已上传</label>
+                            }
+                            else
+                            {
+                                <label class="badge badge-danger">待上传</label>
+                            }
+                        </td>
+                        <td>@(item.Drgsscsj?.ToString("yyyy/MM/dd")) </td>
+                        <td>@item.Qfdbyy </td>
+                        <td><a href="@Url.Action("DischargeResult",new {jzxh=item.Zyh})"><span class="fa fa-plus"></span></a></td>
+                        <td>
+                            @if (item.Drgsflag == 2||item.Drgsflag==3)
+                            {
+                                <a class="btn btn-sm btn-default" href="javascript:void(0)" data-url="@Url.Action("DeleteUpload")" data-zyh="@item.Zyh" data-type="2" onclick="ExecDrgs(this)">删除</a>
+                            }
+                            else
+                            {
+                                <a class="btn btn-sm btn-default" href="javascript:void(0)" data-url="@Url.Action("DoUpload")" data-zyh="@item.Zyh" data-type="1" onclick="ExecDrgs(this)">上传</a>
+                            }
+                        </td>
+                    </tr>
+                }
+            }
+        }
+    </tbody>
+</table>
+<script type="text/javascript">
+    function ExecDrgs(obj) {
+        const tr = $(obj).closest("tr");
+        var td = tr.find("td");
+        $.ajax({
+            type: "post",
+            url: obj.dataset.url,
+            data: { "zyh": obj.dataset.zyh },
+            success: function(msg) {
+                if (msg.IsSuccess === true) {
+
+                    ChangeObj(obj, td);
+                    layer.msg("操作成功",
+                        {
+                            icon: 1,
+                            time: 2000
+                        });
+                } else {
+                    //失败处理
+                    layer.msg(msg.Msg,
+                        {
+                            icon: 2,
+                            time: 2000
+                        });
+                }
+                td[10].innerText = msg.Msg;
+                td[9].innerText = new Date().toLocaleDateString();
+            }
+        });
+    }
+
+    function ExecDrgsNoMsg(obj, index, lenght) {
+        const tr = $(obj).closest("tr");
+        var td = tr.find("td");
+        $.ajax({
+            type: "post",
+            url: obj.dataset.url,
+            data: { "zyh": obj.dataset.zyh },
+            async: true,
+            success: function(msg) {
+                if (msg.IsSuccess === true) {
+                    ChangeObj(obj, td);
+                }
+                td[10].innerText = msg.Msg;
+                td[9].innerText = new Date().toLocaleDateString();
+            }
+        });
+    }
+
+    function ChangeObj(obj, td) {
+        if (obj.dataset.type === "1") {
+            obj.innerText = `删除`;
+            td[8].innerHTML = `<label class="badge badge-success">已上传</label>`;
+            obj.dataset.url = "@Url.Action("DeleteUpload")";
+            obj.dataset.type = "2";
+
+        } else {
+            obj.innerText = "上传";
+            td[8].innerHTML = `<label class="badge badge-danger">待上传</label>`;
+            obj.dataset.url = "@Url.Action("DoUpload")";
+            obj.dataset.type = "1";
+        }
+    }
+
+
+    function UploadAll() {
+        const links = $("a[data-type='1']");
+        //var length = links.length;
+       
+        setTimeout(EachLink(links),2000);
+        layer.closeAll();
+    }
+
+    function DeUploadAll() {
+        const links = $("a[data-type='2']");
+        setTimeout(EachLink(links), 2000);
+        layer.closeAll();
+    }
+
+    function EachLink(e) {
+        var length = e.length;
+        $.each(e,
+            function(index, item) {
+                ExecDrgsNoMsg(item, index, length);
+            });
+    }
+
+</script>

@@ -1,0 +1,12 @@
+﻿@model Fy3y.Model.Das.SleepMonitorRegistration
+<td>@Model.PreVisitTime.ToShortDateString()  </td>
+<td>@Model.PatientName  </td>
+<td>@Html.Partial("SexPartial", Model.PatientSex) </td>
+<td>
+    @Html.Partial("AgePartial", Model.PatientAge)
+</td>
+<td>@Model.Contact </td>
+<td>@Model.Doctor </td>
+<td>
+    @Html.Partial("RegistrationStatusPartial", Model)
+</td>

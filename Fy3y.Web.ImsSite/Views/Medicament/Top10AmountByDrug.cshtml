@@ -1,0 +1,62 @@
+﻿@model IList<Top10AmountByDrug>
+@{
+    ViewBag.Title = "前十五药品";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@Html.Partial("BeginEndFormPartial")
+<table class="border-info table table-bordered table-hover table-striped text-center">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>药品名称</th>
+            <th>药品类别</th>
+            <th>药品规格</th>
+            <th>药品单位</th>
+            <th>基本药物</th>
+            <th>抗生素</th>
+            <th class="d-print-none">前十医生</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model?.Count() > 0)
+        {
+            var i = 1;
+            foreach (var item in Model)
+            {
+                <tr>
+                    <td>@i </td>
+                    <td>@item.Ypmc </td>
+                    <td>@item.Ypsx </td>
+                    <td>@item.Ypgg </td>
+                    <td>@item.Ypdw </td>
+                    <td>
+                        @if (item.Jbywpb == 1)
+                        {
+                            <i class="fa fa-check"></i>
+                        }
+                        else
+                        {
+                            <i class="fa fa-times"></i>
+                        }
+                    </td>
+                    <td>
+                        @if (item.Ksbz == 1)
+                        {
+                            <i class="fa fa-check"></i>
+                        }
+                        else
+                        {
+                            <i class="fa fa-times"></i>
+                        }
+                    </td>
+                    <td class="d-print-none">
+                        <a href="@Url.Action("SingleDrugAmountByDoctor",new {ViewBag.begin,ViewBag.end,drugid=item.Ypxh})">
+                            <i class="fa fa-search"></i>
+                        </a>
+                    </td>
+                </tr>
+                i++;
+            }
+        }
+    </tbody>
+</table>

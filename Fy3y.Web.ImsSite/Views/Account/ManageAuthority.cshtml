@@ -1,0 +1,69 @@
+﻿
+@using Fy3y.Model.Das
+@model IList<ModuleExtend>
+@{
+    ViewBag.Title = "权限管理";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    Account account = ViewBag.account;
+}
+<form class="text-center" id="form1" method="post">
+    @Html.AntiForgeryToken()
+    <table class="table table-sm table-bordered table-hover text-center table-striped" id="table1">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>类别</th>
+                <th>模块</th>
+                <th>选择</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model?.Count() > 0)
+            {
+                var types = Model.Select(p => p.ParentModuleId).Distinct();
+                var i = 1;
+                foreach (var item in types)
+                {
+                    var num = Model.Where(p => p.ParentModuleId == item)?.Count() ?? 0;
+                    if (num == 0)
+                    {
+                        break;
+                    }
+                    var rowNumber = 1;
+                    if (account.Modules == null)
+                    {
+                        account.Modules = "";
+                    }
+                    foreach (var sub in Model.Where(p => p.ParentModuleId == item))
+                    {
+                        if (rowNumber == 1)
+                        {
+                            <tr>
+                                <td>@i </td>
+                                <td rowspan="@num">@sub.ParentModuleName </td>
+                                <td>@sub.ModuleName </td>
+                                <td><input type="checkbox" value="@sub.ModuleId" name="Modules" @(account.Modules.IndexOf(sub.ModuleId.ToString(), StringComparison.Ordinal) == -1 ? "" : "checked=checked") /> </td>
+                            </tr>
+                        }
+                        else
+                        {
+                            <tr>
+                                <td>@i </td>
+                                <td>@sub.ModuleName </td>
+                                <td><input type="checkbox" value="@sub.ModuleId" name="Modules" @(account.Modules.IndexOf(sub.ModuleId.ToString(), StringComparison.Ordinal) == -1 ? "" : "checked=checked") /> </td>
+                            </tr>
+                        }
+                        rowNumber++;
+                        i++;
+                    }
+                }
+            }
+        </tbody>
+    </table>
+    <input type="hidden" value="@account.UserId" name="UserId" />
+    <br />
+    <div class="text-center">
+        <button class="btn btn-dark d-print-none" id="submit">保存</button>
+        <a href="@Url.Action("Index")">返回</a>
+    </div>
+</form>

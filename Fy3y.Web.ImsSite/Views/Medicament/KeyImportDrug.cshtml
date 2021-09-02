@@ -1,0 +1,69 @@
+﻿@model IList<Fy3y.Model.Das.KeyDrug>
+@{
+  ViewBag.Title = "重点监测进口药品";
+  Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<a class="btn btn-dark d-print-none mb-1" href="@Url.Action("AddKeyDrug",new {id=2})">
+  <i class="fa fa-plus">添加</i>
+</a>
+<div class="text-center">
+  <table class="table table-sm table-bordered table-striped">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>药品</th>
+        <th>厂家</th>
+        <th>规格</th>
+        <th>单位</th>
+        <th>基药</th>
+        <th>抗生素</th>
+        <th><i class="fa fa-minus"></i> </th>
+      </tr>
+    </thead>
+    <tbody>
+      @{
+
+        if (Model?.Count() > 0)
+        {
+          var i = 1;
+          foreach (var item in Model)
+          {
+            <tr>
+              <td>@i </td>
+              <td>@item.Ypmc </td>
+              <td>@item.Cdmc </td>
+              <td>@item.Ypgg </td>
+              <td>@item.Ypdw </td>
+              <td>
+                @if (item.Jbyw)
+                {
+                  <i class="fa fa-check"></i>
+                }
+                else
+                {
+                  <i class="fa fa-times"></i>
+                }
+              </td>
+              <td>
+                @if (item.Ksyw)
+                {
+                  <i class="fa fa-check"></i>
+                }
+                else
+                {
+                  <i class="fa fa-times"></i>
+                }
+              </td>
+              <td>
+                <a href="javascript:void(0)" onclick="remove('@Url.Action("DeleteKeyDrug",new {id=item.KeyId})')">
+                  <i class="fa fa-minus"></i>
+                </a>
+              </td>
+            </tr>
+            i++;
+          }
+        }
+      }
+    </tbody>
+  </table>
+</div>

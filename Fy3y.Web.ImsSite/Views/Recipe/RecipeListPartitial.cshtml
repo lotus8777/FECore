@@ -1,0 +1,61 @@
+﻿@model IList<Fy3y.Model.Das.Recipe>
+<table class="table table-sm table-bordered table-hover table-striped text-center">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>@Html.DisplayNameFor(model => model.RecipeId) </th>
+      <th>服药日期</th>
+      <th>姓名</th>
+      <th>@Html.DisplayNameFor(model => model.DrugName) </th>
+      <th>@Html.DisplayNameFor(model => model.DrugNumber) </th>
+      <th>@Html.DisplayNameFor(model => model.Dignose) </th>
+      <th>有效 </th>
+      <th>操作 </th>
+    </tr>
+  </thead>
+  @{
+    var i = 0;
+    foreach (var item in Model)
+    {
+      i++;
+      <tr>
+        <td>@i </td>
+        <td>
+          N
+          <u>o</u>:
+          <u>@($"{item.RecipeId:000000000}")</u>
+        </td>
+        <td>@item.CreateTime.ToShortDateString()</td>
+        <td>@item.Patient.PatientName </td>
+        <td>@Html.DisplayFor(modelItem => item.DrugName) </td>
+        <td>@Html.DisplayFor(modelItem => item.DrugNumber) </td>
+        <td>@Html.DisplayFor(modelItem => item.Dignose) </td>
+        <td>
+          @{
+            if (item.IsValid)
+            {
+              <span class="badge badge-success">有效</span>
+            }
+            else
+            {
+              <span class="badge badge-danger">作废</span>
+            }
+          }
+        </td>
+        <td class="d-print-none">
+          <div>
+            <a href="@Url.Action("Edit",new {id=item.RecipeId})" title="编辑">
+              <i class="fa fa-edit"></i>
+            </a>
+            <a href="javascript:void(0)" onclick="remove('@Url.Action("Delete",new {id=item.RecipeId})')" title="删除">
+              <i class="fa fa-trash"></i>
+            </a>
+            <a href="@Url.Action("ViewRecipe",new {id=item.RecipeId})" title="查看" target="_blank">
+              <i class="fa fa-search"></i>
+            </a>
+          </div>
+        </td>
+      </tr>
+    }
+  }
+</table>

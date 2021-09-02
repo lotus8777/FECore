@@ -1,0 +1,48 @@
+﻿@model IList<Fy3y.Model.Das.Employee>
+@{
+     
+    ViewBag.Title = "员工列表";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<br />
+
+
+<div class="col-2">
+    <a class="btn btn-secondary" href="@Url.Action("Create")">添加员工</a>
+</div>
+<hr/>
+<br/>
+    <table class="table table-sm table-bordered table-hover table-striped text-center" id="table1">
+        <thead>
+        <tr>
+            <th>#</th>
+            <th>姓名</th>
+            <th>科室</th>
+            <th>状态</th>
+            <th>联系方式</th>
+            <th>操作</th>
+        </tr>
+        </thead>
+        <tbody>
+        @if (Model?.Count() > 0)
+        {
+            var i = 0;
+            foreach (var item in Model)
+            {
+                i++;
+                <tr>
+                    <td>@i </td>
+                    <td>@item.EmployeeName </td>
+                    <td>@item.Department.DepartmentName</td>
+                    <td>@(item.WorkStatus?.StatusName) </td>
+                    <td>@item.Mobile </td>
+                    <td>
+                        <a href="@Url.Action("Create", new {id = item.EmployeeId})">
+                            <span class="fa fa-edit"></span>
+                        </a>
+                    </td>
+                </tr>
+            }
+        }
+        </tbody>
+    </table>

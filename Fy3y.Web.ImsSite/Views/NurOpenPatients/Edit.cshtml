@@ -1,0 +1,83 @@
+﻿@model Fy3y.Model.Das.NurOpenPatient
+@{
+  ViewBag.Title = "增加开放病人记录";
+}
+@using (Html.BeginForm())
+{
+@Html.AntiForgeryToken()
+<div class="text-center">
+  @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+  <div class="form-group row">
+    <label class="col-form-label col-2">住院号</label>
+    <div class="col-md-4">
+      @Html.TextBoxFor(model => model.MedicalNo, new { @class = "form-control" })
+      @Html.ValidationMessageFor(model => model.MedicalNo, "", new { @class = "text-danger" })
+    </div>
+    <a href="javascript:void(0)" class="btn btn-success" id="lookUp" onclick="searchPatient()"><i class="fa fa-search">查找</i></a>
+  </div>
+  <div class="form-group row">
+    <label class="col-form-label col-2">姓名</label>
+    <div class="col-md-4">
+      @Html.TextBoxFor(model => model.PatientName, new { @class = "form-control", @readonly = "" })
+      @Html.ValidationMessageFor(model => model.PatientName, "", new { @class = "text-danger" })
+    </div>
+    <label class="col-form-label col-2">床号</label>
+    <div class="col-md-4">
+      @Html.TextBoxFor(model => model.BedNo, new { @class = "form-control", @readonly = "" })
+      @Html.ValidationMessageFor(model => model.BedNo, "", new { @class = "text-danger" })
+    </div>
+  </div>
+  @*<div class="form-group row">
+      <label class="col-form-label col-2">科室</label>
+      <div class="col-md-4">
+        @Html.TextBoxFor(model => model.DepartmentName, new { @class = "form-control", @readonly = "" })
+      </div>
+    </div>*@
+
+  <div class="form-group row">
+    <label class="col-form-label col-2">开始时间</label>
+    <div class="col-md-4">
+      @Html.TextBoxFor(m => m.OpenTime, new
+      {
+        onfocus = "WdatePicker({ isShowClear: false, readOnly: true, isShowOK: false, dateFmt: 'yyyy-MM-dd HH:mm' })",
+        @class = "form-control",
+        value = DateTime.Now
+      })
+    </div>
+    <label class="col-form-label col-2">结束时间</label>
+    <div class="col-md-4">
+      @Html.TextBoxFor(m => m.CloseTime, new
+      {
+        onfocus = "WdatePicker({ isShowClear: false, readOnly: true, isShowOK: false, dateFmt: 'yyyy-MM-dd HH:mm' })",
+        @class = "form-control",
+        value = DateTime.Now
+      })
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label class="col-form-label col-2">备注</label>
+    <div class="col-md-10">
+      @Html.TextAreaFor(model => model.Remarks, new { @class = "form-control", rows = 3 })
+    </div>
+  </div>
+  @Html.HiddenFor(p => p.OpenId)
+  @Html.HiddenFor(p => p.CreateTime)
+  @Html.HiddenFor(p => p.DepartmentId)
+  @Html.HiddenFor(p => p.DepartmentName)
+  <div class="form-group">
+    <div class="col-md-offset-2 col-md-10">
+      <input type="submit" value="保存" class="btn btn-success" /> @Html.ActionLink("返回列表", "Index")
+    </div>
+  </div>
+</div>
+}
+<script type="text/javascript">
+  //页面初始化后绑定
+  setReceiverName();
+  //查找病人信息
+  function searchPatient() {
+    var medicalno = $("#MedicalNo").val();
+    getPatientInfo(medicalno);
+  }
+</script>

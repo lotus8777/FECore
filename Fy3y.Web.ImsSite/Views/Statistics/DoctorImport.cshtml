@@ -1,0 +1,61 @@
+﻿@model IList<Fy3y.Model.Das.OutDoctorBusiness>
+@{
+    ViewBag.Title = "收治统计";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@Html.Partial("MonthFormPartial")
+<div class="alert alert-warning">
+    <ol type="1" class="list-group">
+        <li class="list-group-item list-group-item-danger">收治得分规则：＜1%扣1分，＜1.5%扣0.5分，≥2%加0.5分，≥3%加1分。</li>
+    </ol>
+</div>
+
+<table class="table table-sm table-bordered text-center" id="table1">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>科室</th>
+            <th>医生</th>
+            <th>门诊量</th>
+            <th>收治量</th>
+            <th>药品费</th>
+            <th>诊疗费</th>
+            <th>书写次</th>
+            <th>药占比</th>
+            <th>均次费</th>
+            <th>均处方</th>
+            <th>书写比</th>
+            <th>收治比</th>
+            <th>收治分</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model.Any())
+        {
+
+            var no = 0;
+            foreach (var item in Model)
+            {
+                no++;
+                <tr>
+                    <td>@no </td>
+                    <td>@item.DeptName </td>
+                    <td>@item.DoctorName </td>
+                    <td>@item.OutPatientCount</td>
+                    <td>@item.NotInOutCount </td>
+                    <td>@(item.OutDrugFee)</td>
+                    <td>@(item.OutMedicalFee )</td>
+                    <td>@(item.EmrNumber )</td>
+                    <td>@(item.DrugProportion)</td>
+                    <td>@(item.AverageOfFee)</td>
+                    <td>@(item.AverageOfPrescription)</td>
+                    <td>@(item.WriteProportion)</td>
+                    <td>@(item.InpatientProportion.ToString("P2"))</td>
+                    <td>@(item.InpatientScore)</td>
+                </tr>
+            }
+        }
+
+    </tbody>
+</table>

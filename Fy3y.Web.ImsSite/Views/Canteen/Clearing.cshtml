@@ -1,0 +1,38 @@
+﻿@model IList<DietFeeOfDepartment>
+@{
+    ViewBag.Title = "结算对账";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@Html.Partial("BeginEndFormPartial")
+<table class="table table-sm table-bordered table-hover table-striped text-center">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>病区</th>
+            <th>膳食费用</th>
+        </tr>
+    </thead>
+    <tbody>
+        @{
+
+            var i = 1;
+            foreach (var item in Model)
+            {
+
+                <tr>
+                    <td>@i </td>
+                    <td>@item.Ksmc </td>
+                    <td>@item.Zjje </td>
+                </tr>
+                i++;
+            }
+        }
+    </tbody>
+    <tfoot>
+        <tr>
+            <td colspan="2">总计</td>
+            <td>@(Model.Sum(p => p.Zjje)) </td>
+        </tr>
+
+    </tfoot>
+</table>

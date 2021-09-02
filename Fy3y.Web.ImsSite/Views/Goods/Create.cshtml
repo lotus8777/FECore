@@ -1,0 +1,119 @@
+﻿@model Fy3y.Model.Das.Goods
+
+@{
+  ViewBag.Title = "添加设备";
+}
+
+<form method="post" class="text-center" enctype="multipart/form-data">
+  @Html.AntiForgeryToken()
+
+  <div class="content">
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-group row">
+      <label class="col-2 col-form-label">产品类型</label>
+      <div class="col-4">
+        @Html.TextBoxFor(model => model.ClassName, new { @class = "form-control",@readonly="" })
+        @Html.HiddenFor(m=>m.ClassId)
+      </div>
+      <div class="col-2">
+        <a class="btn btn-success" href="javascript:void(0)" onclick="openSelect()">
+          <i class="fa fa-book">选择</i>
+        </a>
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-2 col-form-label">产品名称</label>
+      <div class="col-4">
+        @Html.TextBoxFor(model => model.GoodsName,  new { @class = "form-control"})
+      </div>
+      <label class="col-2 col-form-label">品牌型号</label>
+      <div class="col-4">
+        @Html.TextBoxFor(model => model.BrandModel,  new { @class = "form-control"  })
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-2 col-form-label">单价</label>
+      <div class="col-4">
+        @Html.TextBoxFor(model => model.Price,   new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.Price, "", new { @class = "text-danger" })
+      </div>
+      <label class="col-2 col-form-label">单位</label>
+      <div class="col-4">
+        @Html.TextBoxFor(model => model.Unit,  new { @class = "form-control"  })
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label class="col-2 col-form-label">产品规格</label>
+      <div class="col-10">
+        @Html.TextBoxFor(model => model.Tags, new { @class = "form-control" })
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-2 col-form-label">产品图片</label>
+      <div class="col-10">
+        <input accept=".jpeg,.bmp,.png,.jpg,.gif" class="form-control-file" id="uploadImage" name="upoadImage" type="file">
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-2 col-form-label">搜索标签</label>
+      <div class="col-10">
+        @Html.TextBoxFor(model => model.Tags, new { @class = "form-control" })
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-2 col-form-label">有效性</label>
+      <div class="col-10 text-left">
+        @Html.CheckBoxFor(model => model.IsValid)
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-2 col-form-label">备注说明</label>
+      <div class="col-10">
+        @Html.TextAreaFor(model => model.Remarks, new { @class = "form-control" })
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="col-4 offset-2">
+        <input type="submit" class="btn btn-success" value="保存" />
+        @Html.ActionLink("返回", "Index")
+      </div>
+    </div>
+  </div>
+</form>
+
+<script type="text/javascript">
+  $('.custom-file-input').on('change', function() {
+    let fileName = $(this).val().split('\\').pop();
+    $(this).next('.custom-file-label').addClass("selected").html(fileName);
+  });
+
+  function openSelect() {
+    layer.open({
+      type: 2,
+      title: '选择设备类型',
+      skin: 'layui-layer-rim',
+      area: ['420px', '600px'],
+      content: '@Url.Action("Select","DeviceClass")'
+    });
+    return false;
+  }
+
+  function setValue(nodeId) {
+    $.ajax({
+      type: "POST",
+      url: "@Url.Action("GetDeviceClass","DeviceClass")",
+      data: { "id": nodeId },
+      success: function(data) {
+        $("#ClassName").val(data.ClassName);
+        $("#ClassId").val(data.ClassId);
+        $("#GoodsName").val(data.ClassName);
+        $("#Unit").val(data.Unit);
+        $("#Price").val(data.Price);
+      },
+      error: function(data) {
+        alert("错误!${data.ClassId}");
+      }
+    });
+  }
+</script>

@@ -1,0 +1,69 @@
+﻿@model IList<FixedBedDayStatistics>
+
+@{
+  ViewBag.Title = "可调节长期病人";
+}
+<form id="form1" method="post">
+  @Html.AntiForgeryToken()
+  <fieldset>
+    <legend>查询条件</legend>
+    <div class="form-group row text-center">
+      <label class="col-1 col-form-label">开始</label>
+      @Html.TextBox("begin", null, new { onfocus = "WdatePicker({isShowClear:false,readOnly:true,isShowOK:false,dateFmt: 'yyyy/MM/dd'})", @class = "form-control col-2" })
+      <label class="col-1 col-form-label">结束</label>
+      @Html.TextBox("end", null, new { onfocus = "WdatePicker({isShowClear:false,readOnly:true,isShowOK:false,dateFmt: 'yyyy/MM/dd'})", @class = "form-control col-2" })
+      <label class="col-1 col-form-label">床日</label>
+      @Html.TextBox("maxDays", null, new { @class = "form-control col-1" })
+      <div class="col-2">
+        <button class="btn btn-dark d-print-none">
+          <span class="fa fa-search">查询</span>
+        </button>
+      </div>
+    </div>
+  </fieldset>
+</form>
+<br />
+
+<table class="table table-sm table-bordered table-striped text-center">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>病区</th>
+      <th>出院人数</th>
+      <th>总床日</th>
+      <th>本次长期人数</th>
+      <th>本次长期总床日 </th>
+      <th>长期人数(含办进办出)</th>
+      <th>长期人数(含办进办出)总床日</th>
+    </tr>
+  </thead>
+  <tbody>
+    @if (Model?.Count>0)
+    {
+      int i = 1;
+      foreach (var item in Model)
+      {
+    <tr>
+      <td>@i</td>
+      <td>@item.DepartmentName </td>
+      <td>@item.OutpatientCount</td>
+      <td>@item.OutpatientBedDays.ToString("F2") </td>
+      <td>@item.CurrentLongCount</td>
+      <td>@item.CurrentLongBedDays.ToString("F2")</td>
+      <td>@item.InoutLongCount</td>
+      <td>@item.InOutLongBedDays.ToString("F2")</td>
+    </tr>
+        i++;
+      }
+  <tr>
+    <td colspan="2">合计</td>
+    <td>@Model.Sum(p => p.OutpatientCount)</td>
+    <td>@Model.Sum(p => p.OutpatientBedDays).ToString("F2") </td>
+    <td>@Model.Sum(p => p.CurrentLongCount)</td>
+    <td>@Model.Sum(p => p.CurrentLongBedDays).ToString("F2") </td>
+    <td>@Model.Sum(p => p.InoutLongCount)</td>
+    <td>@Model.Sum(p => p.InOutLongBedDays).ToString("F2") </td>
+  </tr>
+    }
+  </tbody>
+</table>

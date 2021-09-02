@@ -1,0 +1,49 @@
+﻿@model IList<WardFeeStatistics>
+
+@{
+    ViewBag.Title = "病区费用";
+}
+
+@Html.Partial("MonthFormPartial")
+@if (Model?.Any() != null)
+{
+    int i = 1;
+    var a = Model.FirstOrDefault();
+    <table class="table table-bordered table-sm text-center">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>病区</th>
+                @foreach (var t in a.ItemDictionary)
+                {
+                    <th>@t.Key</th>
+                }
+                <th>合计</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                decimal total = 0;
+                <tr>
+                    <td>@i</td>
+                    <td>@item.DeptName</td>
+                    @foreach (var t in item.ItemDictionary)
+                    {
+                        total += t.Value;
+                        <td>@t.Value</td>
+                    }
+                    <td>@total</td>
+                </tr>
+                i++;
+            }
+
+        </tbody>
+    </table>
+}
+else
+{
+    <div>数据为空</div>
+}
+
+<div>费用不包含膳食费</div>

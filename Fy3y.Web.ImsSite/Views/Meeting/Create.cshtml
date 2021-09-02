@@ -1,0 +1,101 @@
+﻿@model Fy3y.Model.Das.Meeting
+
+@{
+  ViewBag.Title = "添加会议";
+}
+<form id="form1">
+  @Html.AntiForgeryToken()
+  <div class="form-horizontal">
+    <div class="form-group">
+      <label class="col-md-2 control-label">会议主题</label>
+      <div class="col-md-10">
+        @Html.TextBoxFor(m => m.Topic, new {@class = "form-control"})
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-md-2 control-label">开始时间</label>
+      <div class="col-md-10">
+        @Html.TextBoxFor(m => m.StartTime, new {@class = "form-control", onfocus = "WdatePicker({isShowClear:false,readOnly:true,isShowOK:false,dateFmt:'yyyy-MM-dd HH:mm'})", @readonly = ""})
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-md-2 control-label">结束时间</label>
+      <div class="col-md-10">
+        @Html.TextBoxFor(m => m.StopTime, new {@class = "form-control", onfocus = "WdatePicker({isShowClear:false,readOnly:true,isShowOK:false,dateFmt:'yyyy-MM-dd HH:mm'})", @readonly = ""})
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-md-2 control-label">会议内容</label>
+      <div class="col-md-10">
+        @Html.TextAreaFor(m => m.Content, new {@class = "form-control"})
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-md-2 control-label">参会人员</label>
+      <div class="col-md-10">
+        @Html.TextBoxFor(m => m.Attendee, new {@class = "form-control", placeholder = "有多个请以逗号（,）分隔"})
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-md-2 control-label">会议地点</label>
+      <div class="col-md-10">
+        @Html.TextBoxFor(m => m.Place, new {@class = "form-control", list = "meetingPlace"})
+      </div>
+      <datalist id="meetingPlace">
+        <option>卫计局1号楼301室</option>
+        <option>卫计局2号楼601室</option>
+      </datalist>
+    </div>
+    <div class="form-group">
+      <label class="col-md-2 control-label">联系人</label>
+      <div class="col-md-10">
+        @Html.TextBoxFor(m => m.Linkman, new {@class = "form-control", placeholder = "有多个请以逗号（,）分隔"})
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-md-2 control-label">联系方式</label>
+      <div class="col-md-10">
+        @Html.TextBoxFor(m => m.Contact, new {@class = "form-control", placeholder = "有多个请以逗号（,）分隔"})
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-md-2 control-label">会议备注</label>
+      <div class="col-md-10">
+        @Html.TextAreaFor(m => m.Remarks, new {@class = "form-control"})
+      </div>
+    </div>
+  </div>
+  @Html.HiddenFor(m => m.MeetingId)
+</form>
+<div>
+  <input class="btn btn-success" id="submit" type="submit" value="添加" />
+  @Html.ActionLink("返回列表", "Index")
+</div>
+<script>
+  function validForm() {
+    return $("#form1").validate({
+      rules: {
+        Topic: {
+          required: true
+        },
+        Place: {
+          required: true
+        },
+        Content: {
+          required: true
+        }
+      }
+    });
+  }
+
+  //注册表单验证
+  $(validForm());
+  //点击表单保存按钮触发单击事件，进行表单验证，验证通过发起ajax请求，验证不通过在表单里提示
+  $("#submit").click(function() {
+    if (validForm().form()) {
+      var url = "@Url.Action("Create")";
+      var data = $("#form1").serialize();
+      AjaxSubmit(url, data);
+    }
+  });
+</script>

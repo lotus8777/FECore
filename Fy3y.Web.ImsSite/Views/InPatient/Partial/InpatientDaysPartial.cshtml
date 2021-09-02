@@ -1,0 +1,6 @@
+﻿@model Zy_Brry
+@{
+  var t = (Model.Cyrq ?? DateTime.Now) - Model.Ryrq;
+  var day = (int) (t.TotalMinutes / 1440);
+  @day
+}

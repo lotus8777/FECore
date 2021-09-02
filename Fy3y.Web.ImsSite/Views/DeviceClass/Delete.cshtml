@@ -1,0 +1,64 @@
+﻿@model Fy3y.Model.Das.DeviceClass
+
+@{
+  ViewBag.Title = "Delete";
+}
+<h2>Delete</h2>
+<h3>Are you sure you want to delete this?</h3>
+<div>
+  <h4>DeviceClass</h4>
+  <hr />
+  <dl class="dl-horizontal">
+    <dt>
+      @Html.DisplayNameFor(model => model.Parent.ClassName)
+    </dt>
+    <dd>
+      @Html.DisplayFor(model => model.Parent.ClassName)
+    </dd>
+    <dt>
+      @Html.DisplayNameFor(model => model.ClassName)
+    </dt>
+    <dd>
+      @Html.DisplayFor(model => model.ClassName)
+    </dd>
+    <dt>
+      @Html.DisplayNameFor(model => model.Remarks)
+    </dt>
+    <dd>
+      @Html.DisplayFor(model => model.Remarks)
+    </dd>
+    <dt>
+      @Html.DisplayNameFor(model => model.Path)
+    </dt>
+    <dd>
+      @Html.DisplayFor(model => model.Path)
+    </dd>
+    <dt>
+      @Html.DisplayNameFor(model => model.CreatorId)
+    </dt>
+    <dd>
+      @Html.DisplayFor(model => model.CreatorId)
+    </dd>
+    <dt>
+      @Html.DisplayNameFor(model => model.CreateTime)
+    </dt>
+    <dd>
+      @Html.DisplayFor(model => model.CreateTime)
+    </dd>
+    <dt>
+      @Html.DisplayNameFor(model => model.IsValid)
+    </dt>
+    <dd>
+      @Html.DisplayFor(model => model.IsValid)
+    </dd>
+  </dl>
+  @using (Html.BeginForm())
+  {
+  @Html.AntiForgeryToken()
+
+  <div class="form-actions no-color">
+    <input class="btn btn-success" type="submit" value="Delete" /> |
+    @Html.ActionLink("Back to List", "Index")
+  </div>
+  }
+</div>

@@ -1,0 +1,33 @@
+﻿@{
+    Layout = null;
+}
+<html>
+<head>
+    <title>疫情风险地区</title>
+    <link rel="stylesheet" href="~/Scripts/lib/bootstrap/dist/css/bootstrap.css" />
+    <script type="text/javascript">
+        if (!window.name) {
+            window.name = 'test';
+            window.location.replace(window.location.href);
+        }
+    </script>
+</head>
+<body>
+
+
+
+
+    <div style="font-size: medium; color: red;">
+
+    </div>
+
+    <br />
+    <div class="text-center display-4">
+        <a href="@Url.Action("Login","Home")">登录系统</a>
+        <a href="@Url.Action("Upload")">上传最新疫情截图</a>
+        <br />
+        <img src="~/Content/images/fengxian.jpg?t=@(Guid.NewGuid().ToString("N"))" style="height: auto; width: 768px; margin: auto;" />
+    </div>
+
+</body>
+</html>

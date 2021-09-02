@@ -1,0 +1,283 @@
+﻿@model IList<SiteMenu>
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta content="no-referrer" name="referrer" charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <title>DAS-数据分析系统</title>
+
+    <link rel="stylesheet" href="~/Scripts/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/Scripts/lib/font-awesome/css/font-awesome.min.css" />
+    <link href="~/Content/animate.css" type="text/css" rel="stylesheet" />
+    <link href="~/Content/site.css" type="text/css" rel="stylesheet" />
+    <link href="~/Content/style.css" type="text/css" rel="stylesheet" />
+
+    <!--Js libaries-->
+    <script src="~/Scripts/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/Scripts/lib/popper.js/dist/umd/popper.min.js"></script>
+    <script src="~/Scripts/lib/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="~/Scripts/lib/bootstrap/dist/js/bootstrap.bundle.min.js" type="text/javascript"></script>
+    <script src="~/Scripts/lib/jquery-ui/jquery-ui.min.js" type="text/javascript"></script>
+    @*<script src="~/js/modernizr-2.8.3.js" type="text/javascript"></script>*@
+    <script src="~/Scripts/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/Scripts/lib/My97DatePicker/WdatePicker.js" type="text/javascript"></script>
+    <script src="~/Scripts/lib/metisMenu/dist/jquery.metisMenu.js" type="text/javascript"></script>
+    <script src="~/Scripts/lib/slimScroll/jquery.slimscroll.min.js"></script>
+    <!-- Flot -->
+    <script src="~/Scripts/lib/flot/jquery.flot.js"></script>
+    <script src="~/Scripts/lib/flot/jquery.flot.tooltip.min.js"></script>
+    <script src="~/Scripts/lib/flot/jquery.flot.spline.js"></script>
+    <script src="~/Scripts/lib/flot/jquery.flot.resize.js"></script>
+    <script src="~/Scripts/lib/flot/jquery.flot.resize.js"></script>
+    <script src="~/Scripts/lib/flot/jquery.flot.pie.js"></script>
+    <!-- Mainly scripts -->
+    <!-- Peity -->
+    <script src="~/Scripts/lib/peity/jquery.peity.min.js"></script>
+    <script src="~/Scripts/lib/pace/pace.min.js"></script>
+    <!-- jQuery UI -->
+    <!-- Sparkline -->
+    <script src="~/Scripts/lib/sparkline/jquery.sparkline.min.js"></script>
+    <!-- ChartJS-->
+    <script src="~/Scripts/lib/chartJs/Chart.min.js"></script>
+    <!-- layer -->
+    <script src="~/Scripts/lib/layer/layer.js" type="text/javascript"></script>
+    <script src="~/Scripts/script.js" type="text/javascript"></script>
+    <script src="~/Scripts/site.js" type="text/javascript"></script>
+
+
+</head>
+<!--class="mini-navbar"会缩小-->
+
+<body>
+    <div id="wrapper">
+        @Html.Partial("_Navigation", Model)
+        <div class="dashbard-1 gray-bg" id="page-wrapper">
+            <div class="row" id="navHeader">
+                <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
+                    <div class="navbar-header">
+                        <a class="btn btn-dark minimalize-styl-2 navbar-minimalize" href="#">
+                            <i class="fa fa-bars"></i>
+                        </a>
+                        <div class="minimalize-styl-2">
+                            <strong style="color: red;">@DateTime.Now.ToString("yyyy年MM月dd日 dddd")</strong>
+                        </div>
+                    </div>
+                    <ul class="nav navbar-left navbar-top-links">
+                        <!--提醒图标-->
+                        <li class="dropdown">
+                            <a class="count-info dropdown-toggle" data-toggle="dropdown" href="#">
+                                <i class="fa fa-bell"></i>
+                                <span class="label label-primary">8</span>
+                            </a>
+                            <ul class="dropdown-alerts dropdown-menu">
+                                <li>
+                                    <a class="dropdown-item" href="mailbox.html">
+                                        <div>
+                                            <i class="fa fa-envelope fa-fw"></i> You have 16 messages
+                                            <span class="float-right small text-muted">4 minutes ago</span>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li class="dropdown-divider"></li>
+                                <li>
+                                    <a class="dropdown-item" href="profile.html">
+                                        <div>
+                                            <i class="fa fa-fw fa-twitter"></i> 3 New Followers
+                                            <span class="float-right small text-muted">12 minutes ago</span>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li class="dropdown-divider"></li>
+                                <li>
+                                    <a class="dropdown-item" href="grid_options.html">
+                                        <div>
+                                            <i class="fa fa-fw fa-upload"></i> Server Rebooted
+                                            <span class="float-right small text-muted">4 minutes ago</span>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li class="dropdown-divider"></li>
+                                <li>
+                                    <div class="link-block text-center">
+                                        <a class="dropdown-item" data-link="@Url.Action("List")" href="javascript:void(0)">
+                                            <strong>查看所有通知</strong>
+                                            <i class="fa fa-angle-right"></i>
+                                        </a>
+                                    </div>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <div>
+                                <a class="btn" href="javascript:void(0)" id="reloadIframe" title="刷新">
+                                    <i class="fa fa-refresh "></i>
+                                </a>
+                                <a class="btn" href="javascript:void(0)" id="printIframe" title="打印">
+                                    <i class="fa fa-print"></i>
+                                </a>
+                                <a class="btn" href="@Url.Action("Logout")" title="注销">
+                                    <i class="fa fa-power-off"></i>
+                                </a>
+                            </div>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+            <div class="tabs-container">
+                <ul class="nav nav-tabs" id="mainTabs" role="list">
+                </ul>
+                <div class="border border-top-0 tab-content">
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+  var currentTabId = "";
+  //打开链接页面
+  $("[data-link]").click(function() {
+    const url = $(this).attr("data-link");
+    openFrame(url);
+  });
+
+  function openFrame(url) {
+          const linkId = getLinkId(url);
+          //判断存在这个是否tab
+          if ($(`#mainTabs #TAB_${linkId}`).length > 0) {
+              //显示
+              $(`#mainTabs #TAB_${linkId} a`).tab('show');
+              //刷新当前IFRAME
+              $(`#IFRAMEPAGE_${linkId}`).attr("src", url);
+          } else {
+              if ($(".nav-link").length < 5) {
+                  const tabTitle = $(this).text();
+                  //新增
+                  addTab(url, linkId, tabTitle);
+                  refreshTabHistory(false /*isDelete*/, linkId);
+                  //添加Content
+              } else {
+                  layer.alert('最多允许打开5个标签页', { icon: 6 });
+              }
+          }
+      }
+
+  function addTab(url, linkId, tabTitle) {
+    const tabId = `TAB_${linkId}`;
+    const tabContentId = `TABCONTENT_${linkId}`;
+    const frameId = `IFRAMEPAGE_${linkId}`;
+    $("#mainTabs>li>a").removeClass("active");
+    //添加Tab页
+    $("#mainTabs").append(`<li id=${tabId} class='nav-item'>
+                            <a data-toggle='tab' class='nav-link active' href=#${tabContentId}>${tabTitle}
+                              <i class='fa fa-times fa-lg' onclick='deleteTab("${linkId}")'>
+                              </i></a></li>`);
+    //添加Content
+    //添加新的内容显示
+    $(".tab-content > div").removeClass("show active");
+      $(".tab-content").append(`<div id='${tabContentId}' class=' tab-pane show active'>
+                              <iframe id='${frameId}' title=${frameId} name='${frameId}' width='100%' height='600px' frameborder='0' scrolling='no'  src='${url}'>
+                              </iframe></div>`);
+  }
+   //删除Tab
+  function deleteTab(id) {
+    const tabLink = $(`#TAB_${id}>a`);
+    const tab = $(`#TAB_${id}`);
+    const tabContent = $(`#TABCONTENT_${id}`);
+    if (!tabLink.hasClass("active")) {
+      tab.remove();
+      tabContent.remove();
+      refreshTabHistory(true, id);
+    } else {
+      tab.remove();
+      tabContent.remove();
+      refreshTabHistory(true, id);
+      $(`#TAB_${currentTabId} > a`).tab('show');
+    }
+  }
+
+  //关闭当前tab页的快速方法
+  function closeCurrentTab() {
+    deleteTab(currentTabId);
+  }
+
+  function refreshTabHistory(isDelete, curTabId) {
+    if (!refreshTabHistory.histoty) {
+      //用来记录用户点击tab的历史
+      refreshTabHistory.histoty = [];
+    }
+    let index = 0;
+    let length = refreshTabHistory.histoty.length;
+    //查找传入的tab页签在历史记录中的位置
+    for (; index < length; index++) {
+      if (refreshTabHistory.histoty[index] === curTabId) {
+        break;
+      }
+    }
+    //如果是删除页签，直接在历史记录中删除即可，历史记录的其他页签的顺序不变
+    if (isDelete) {
+      refreshTabHistory.histoty.splice(index, 1);
+      //如果是新增页签，先保证历史记录中没有改页签（有就删掉），然后将新增的页签放在历史记录的最后面（即该页签为最新）
+    } else {
+      if (index < length) {
+        refreshTabHistory.histoty.splice(index, 1);
+      }
+      refreshTabHistory.histoty.push(curTabId);
+    }
+    currentTabId = refreshTabHistory.histoty[refreshTabHistory.histoty.length - 1];
+  }
+
+  function getLinkId(url) {
+    let arr = url.split("/");
+    if (arr[2] == undefined) {
+      arr[2] = "Index";
+    }
+    return `${arr[1]}_${arr[2]}`;
+  }
+    /**默认随机打开一个链接**/
+    //$("li:not(.nav-header)>[data-link='/Publicity/List']").first().click();
+  //var rand = parseInt(Math.random() * (linkCount));
+  //$("[data-link]")[rand].click();
+        openFrame('/Publicity/List');
+
+
+  //打印Iframe页面
+  $("#printIframe").click(function() {
+    let href = $(".nav-link.active").attr("href");
+    currentTabId = href.substr(12);
+    let iframe = document.getElementById(`IFRAMEPAGE_${currentTabId}`);
+    iframe.contentWindow.focus();
+    iframe.contentWindow.print();
+  });
+  //刷新Iframe页面
+  $("#reloadIframe").click(function() {
+    let href = $(".nav-link.active").attr("href");
+    currentTabId = href.substr(12);
+    document.getElementById(`IFRAMEPAGE_${currentTabId}`).contentWindow.location.reload(true);
+  });
+  let openLuck = function() {
+    window.open("@Url.Action("Index","Luck")",
+      "幸运抽奖",
+      "height = 768, width = 1024, toolbar = no, menubar = no, scrollbars = no, resizable = no, location = no, status = no");
+  };
+  $('a[data-toggle="tab"]').on('shown.bs.tab',
+    function(e) {
+      // 获取已激活的标签页的名称
+      //var activeTabHref = $(e.target).attr("href");
+      //var linkArray = activeTabHref.split("_");
+      //currentTabId = linkArray[1] + "_" + linkArray[2];
+      // 获取前一个激活的标签页的名称
+      //var previousTab = $(e.relatedTarget).text();
+      //$(".active-tab span").html(activeTab);
+      //$(".previous-tab span").html(previousTab);
+      let href = $(".nav-link.active").attr("href");
+      currentTabId = href.substr(12);
+      setFrameHeight(`{IFRAMEPAGE_${currentTabId}`);
+      });
+
+
+    </script>
+</body>
+</html>

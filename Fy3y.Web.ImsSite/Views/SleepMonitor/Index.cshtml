@@ -1,0 +1,102 @@
+﻿@model IList<Fy3y.Model.Das.SleepMonitorRegistration>
+
+@{
+  ViewBag.Title = "睡眠监测预约管理";
+}
+<br />
+<form id="form1" method="post">
+  @Html.AntiForgeryToken()
+  <div class="form-row mb-2">
+    <div class="col">
+      @Html.TextBox("begin", null, new { onfocus = "WdatePicker({isShowClear:false,readOnly:true,isShowOK:false})", @class = "form-control" })
+    </div>
+    <div class="col">
+      @Html.TextBox("end", null, new { onfocus = "WdatePicker({isShowClear:false,readOnly:true,isShowOK:false})", @class = "form-control" })
+    </div>
+    <div class="col">
+      <button class="btn btn-dark d-print-none">
+        <span class="fa fa-search">查询</span>
+      </button>
+    </div>
+    <div class="col">
+      <a class="btn btn-dark" href="@Url.Action("Book")">
+        <i class="fa fa-plus">预约</i>
+      </a>
+    </div>
+    <div class="col">
+    </div>
+    <div class="col">
+    </div>
+    <div class="col">
+    </div>
+  </div>
+</form>
+<ul class="nav nav-tabs" id="mytabs" role="tablist">
+  <li class="nav-item">
+    <a class="active nav-link" data-toggle="tab" href="#valid">已预约</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" data-toggle="tab" href="#other">已处理</a>
+  </li>
+</ul>
+<div class="border border-top-0 p-2 tab-content">
+  <div class="active fade show tab-pane" id="valid">
+    <table class="table table-sm table-bordered table-responsive-sm table-striped text-center">
+      <thead>
+        <tr>
+          @Html.Partial("TableHeaderPartial")
+          <th>操作 </th>
+        </tr>
+      </thead>
+      @{
+        var valid = Model?.Where(p => p.Status == 1).OrderBy(p => p.PreVisitTime).ToList();
+        if (valid?.Count > 0)
+        {
+          foreach (var item in valid)
+          {
+              <tr>
+                  <td>@(valid.IndexOf(item) + 1)</td>
+                  @Html.Partial("TableRowPartial",item)
+                  <td class="d-print-none">
+                      <div>
+                          <a href="@Url.Action("Edit",new{id=item.UniqueId})" title="修改">
+                              <i class="fa fa-edit"></i>
+                          </a>
+                          <a href="@Url.Action("Report",new{id=item.UniqueId})" title="处理">
+                              <i class="fa fa-paper-plane"></i>
+                          </a>
+                      </div>
+                  </td>
+              </tr>
+          }
+        }
+      }
+    </table>
+  </div>
+  <div class="fade tab-pane" id="other">
+    <table class="table table-sm table-bordered table-responsive-sm table-striped text-center">
+      <thead>
+        <tr>
+          @Html.Partial("TableHeaderPartial")
+        </tr>
+      </thead>
+      @{
+        var other = (Model ?? throw new InvalidOperationException()).Where(p => p.Status != 1).ToList();
+        if (other.Count > 0)
+        {
+          foreach (var item in other)
+          {
+            if (item.Status == 1 && item.PreVisitTime <= DateTime.Now.AddDays(-1))
+            {
+              item.Status = 4;
+            }
+              <tr>
+                  <td>@(other.IndexOf(item) + 1)</td>
+                  @Html.Partial("TableRowPartial", item)
+              </tr>
+          }
+        }
+      }
+    </table>
+  </div>
+</div>

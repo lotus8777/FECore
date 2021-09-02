@@ -1,0 +1,55 @@
+﻿@model IList<InpatientFeeStatistics>
+@{
+    ViewBag.Title = "三无病人费用清单";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@Html.Partial("BeginEndFormPartial")
+<table class="table table-sm table-bordered table-hover table-striped text-center">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>住院号</th>
+            <th>姓名</th>
+            <th>出院日期</th>
+            <th>床日数</th>
+            <th>总费用</th>
+            <th>医保费用</th>
+            <th>自费总额</th>
+            <th>伙食费</th>
+            <th>其他费</th>
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            var number = 0;
+            if (Model.Any())
+            {
+                foreach (var p in Model)
+                {
+                    number++;
+                    <tr>
+                        <td>@number </td>
+                        <td>@p.Zyhm </td>
+                        <td>@p.Brxm </td>
+                        <td>@p.Cyrq.ToShortDateString() </td>
+                        <td>@p.Zyts</td>
+                        <td>@p.Zjje</td>
+                        <td>@p.Ybje</td>
+                        <td>@p.Zfje</td>
+                        <td>@p.Hsje</td>
+                        <td>@(p.Zfje-p.Hsje)</td>
+                    </tr>
+                }
+    <tr>
+        <td colspan="4">合计</td>
+        <td>@Model.Sum(p => p.Zyts) </td>
+        <td>@Model.Sum(p => p.Zjje) </td>
+        <td>@Model.Sum(p => p.Ybje) </td>
+        <td>@Model.Sum(p => p.Zfje) </td>
+        <td>@Model.Sum(p => p.Hsje) </td>
+        <td>@Model.Sum(p => p.Zfje-p.Hsje) </td>
+    </tr>
+            }
+        }
+    </tbody>
+</table>

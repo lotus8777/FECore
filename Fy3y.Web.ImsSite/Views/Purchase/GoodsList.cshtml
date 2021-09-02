@@ -1,0 +1,89 @@
+﻿@model IList<Fy3y.Model.Das.DeviceClass>
+@{
+  ViewBag.Title = "添加物品";
+}
+<style type="text/css">
+  .rowcell {
+    display: table-cell;
+    height: 50px;
+    padding: 0 10px;
+    vertical-align: middle;
+  }
+</style>
+<div style="font-size: medium;">
+  <div class="form-group row text-center">
+    <form class="col-8 form-group row" method="post">
+      @Html.AntiForgeryToken()
+      <label class="col-form-label col-2">搜索</label>
+      <input type="text" name="key" class="form-control form-control-lg col-6" placeholder="请输入关键字" />
+      <div class="col-4">
+        <button class="btn btn-success">
+          <i class="fa fa-search">查询</i>
+        </button>
+      </div>
+    </form>
+    <div class="col-4">
+      <a class="btn btn-success" style="float: right;">
+        <i class="fa fa-shopping-cart">查看申请单<span id="itemCount" class="badge badge-success">@ViewBag.itemNumber</span></i>
+      </a>
+    </div>
+  </div>
+
+  <table class="table table-sm text-center table-striped" style="width: 100%; ">
+    <thead>
+      <tr>
+        <td>物品 </td>
+        <td>类别 </td>
+        <td>价格(元)</td>
+        <td>数量 </td>
+        <td>单位 </td>
+        <td>操作 </td>
+      </tr>
+    </thead>
+    @{
+
+      if (Model.Any())
+      {
+        foreach (var item in Model)
+        {
+      <tr>
+        <td>
+          <div class="img-thumbnail bg-info rowcell">
+            @item.ClassName
+          </div>
+        </td>
+        <td>@item.Parent.ClassName </td>
+        <td>@item.Price </td>
+        <td><input type="number" value="1" class="form-control" name="Count" style="width: 80px;" /> </td>
+        <td>@item.Unit </td>
+        <td>
+          <a class="btn btn-success" onclick="addItem(@item.ClassId, this)">
+            <i class="fa fa-plus">加入申请单</i>
+          </a>
+        </td>
+      </tr>
+        }
+      }
+    }
+  </table>
+</div>
+<script type="text/javascript">
+  function addItem(productId, obj) {
+    var td = $(obj).parents("tr").children("td");
+    var data = {
+      "productId": productId,
+      "productName": td[0].innerText,
+      "price": td[2].innerText,
+      "quantity": td[3].children[0].value
+    };
+    $.ajax({
+      type: "post",
+      data: data,
+      url: "@Url.Action("AddItemToCart")",
+      success: function (data) {
+        $("#itemCount").empty().html(data);
+      }
+    });
+
+  }
+</script>

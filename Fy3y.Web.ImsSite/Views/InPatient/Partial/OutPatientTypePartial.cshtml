@@ -1,0 +1,18 @@
+﻿@model int
+
+@if (Model == 0)
+{
+    <span class="text-secondary">在院</span>
+}
+else if (Model == 1)
+{
+    <span class="text-info">待结算</span>
+}
+else if (Model == 8)
+{
+    <span class="text-success">出院</span>
+}
+else if (Model == 99)
+{
+    <span class="text-danger">作废</span>
+}
